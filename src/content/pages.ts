@@ -99,7 +99,7 @@ export const servicesPage = {
     en: ["Six services,", "one system."],
   } as Bi<string[]>,
   intro: {
-    ar: "لا نبيع خدمات منفصلة. كل خدمة هنا جزء من منظومة تخدم هدفًا واحدًا: أن يراك عميلك، ويفهمك، ويختارك. تقدر تبدأ بواحدة وتوسّع بعدين.",
+    ar: "لا نبيع خدمات منفصلة. كل خدمة هنا جزء من منظومة تخدم هدفًا واحدًا: أن يراك عميلك، ويفهمك، ويختارك. يمكنك أن تبدأ بواحدة وتوسّع لاحقًا.",
     en: "We don't sell detached services. Each one is part of a system serving a single goal: that your customer sees you, understands you, and chooses you. Start with one and expand later.",
   } as Bi,
   detailLabel: { ar: "ما يشمله", en: "What's included" } as Bi,
@@ -465,6 +465,11 @@ export const packagesPage = {
     ar: "الباقات نقاط بداية شائعة لا قوالب مغلقة. نبني على حجم مشروعك وسوقك، والسعر يُحدَّد بعد أن نفهم ما تحتاجه فعلًا.",
     en: "These are common starting points, not closed templates. We build around the size of your project and your market, and the price follows once we understand what you actually need.",
   } as Bi,
+  ctaLines: {
+    ar: ["لم تجد ما", "تبحث عنه؟"],
+    en: ["Not finding", "what you need?"],
+  } as Bi<string[]>,
+  ctaPrimary: { ar: "اطلب عرضًا مخصّصًا", en: "Request a custom quote" } as Bi,
 };
 
 /* ── /contact ── */
@@ -495,11 +500,11 @@ export const contactPage = {
 export const notFound = {
   label: { ar: "خطأ 404", en: "Error 404" } as Bi,
   title: {
-    ar: ["الصفحة دي", "مش موجودة."],
+    ar: ["هذه الصفحة", "غير موجودة."],
     en: ["This page", "doesn't exist."],
   } as Bi<string[]>,
   intro: {
-    ar: "يمكن الرابط اتغيّر أو فيه غلطة في العنوان. تقدر ترجع للرئيسية أو تشوف أعمالنا.",
+    ar: "ربما تغيّر الرابط أو في العنوان خطأ. يمكنك العودة إلى الرئيسية أو تصفّح أعمالنا.",
     en: "The link may have changed, or there's a typo in the address. Head back home, or take a look at our work.",
   } as Bi,
   home: { ar: "الرئيسية", en: "Home" } as Bi,

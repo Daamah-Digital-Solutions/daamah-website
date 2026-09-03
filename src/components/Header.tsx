@@ -131,6 +131,10 @@ export function Header() {
             <img
               src={theme === "dark" ? "/assets/logo-wordmark-light.png" : "/assets/logo-wordmark.png"}
               alt={t(brand.name)}
+              /* المقاس الأصلي — منه يحسب المتصفح العرض قبل التحميل
+                 فلا يقفز ما بعده في الشريط */
+              width={2035}
+              height={544}
               className="h-[19px] w-auto sm:h-[21px]"
             />
           </Link>

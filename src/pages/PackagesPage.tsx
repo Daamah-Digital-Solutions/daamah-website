@@ -88,13 +88,7 @@ export function PackagesPage() {
         </Wrap>
       </section>
 
-      <PageCta
-        lines={{
-          ar: ["مش لاقي اللي", "بتدوّر عليه؟"],
-          en: ["Not finding", "what you need?"],
-        }}
-        primary={{ ar: "اطلب عرض مخصّص", en: "Request a custom quote" }}
-      />
+      <PageCta lines={packagesPage.ctaLines} primary={packagesPage.ctaPrimary} />
     </>
   );
 }

@@ -73,12 +73,16 @@ export function WorkDetailPage() {
       <section className="mt-14 sm:mt-20">
         <Wrap>
           <Reveal>
-            <div className="overflow-hidden bg-paper-2">
+            {/* نسبة ثابتة كبطاقة العمل: بدونها لا يُعرف ارتفاع الصورة
+                قبل تحميلها، فيقفز نصف الصفحة حين تصل */}
+            <div className="aspect-[3/2] overflow-hidden bg-paper-2">
               <img
                 src={item.image}
                 alt={t(item.name)}
+                width={1400}
+                height={933}
                 decoding="async"
-                className="w-full object-cover dark:brightness-[0.85]"
+                className="size-full object-cover dark:brightness-[0.85]"
               />
             </div>
           </Reveal>

@@ -33,6 +33,7 @@ export const ui = {
   themeLabel: { ar: "تبديل الوضع الداكن", en: "Toggle dark mode" } as Bi,
   themeDark: { ar: "الوضع الداكن", en: "Dark mode" } as Bi,
   themeLight: { ar: "الوضع الفاتح", en: "Light mode" } as Bi,
+  whatsappFab: { ar: "تواصل معنا", en: "Chat with us" } as Bi,
 };
 
 export const hero = {
@@ -422,7 +423,7 @@ export const packages = {
       slug: "full",
       no: "02",
       name: { ar: "الباقة المتكاملة", en: "Complete" } as Bi,
-      tagline: { ar: "كل اللي شركتك محتاجاه", en: "Everything your company needs" } as Bi,
+      tagline: { ar: "كل ما تحتاجه شركتك", en: "Everything your company needs" } as Bi,
       badge: { ar: "الأكثر طلبًا", en: "Most requested" } as Bi | null,
       featured: true,
       features: [

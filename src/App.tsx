@@ -5,6 +5,7 @@ import { ThemeProvider } from "./theme";
 import { MotionGate } from "./motion";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { WhatsAppFab } from "./components/WhatsAppFab";
 import { Intro, shouldPlayIntro } from "./components/Intro";
 import { ScrollManager } from "./components/Routing";
 import { Seo } from "./components/Seo";
@@ -68,6 +69,7 @@ export default function App() {
               </Routes>
             </main>
             <Footer />
+            <WhatsAppFab />
           </MotionGate>
         </LangProvider>
       </BrowserRouter>

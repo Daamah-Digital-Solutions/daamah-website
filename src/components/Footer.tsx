@@ -22,6 +22,8 @@ export function Footer() {
                   : "/assets/logo-wordmark-light.png"
               }
               alt={t(brand.name)}
+              width={2035}
+              height={544}
               className="h-[22px] w-auto"
             />
             <p className="tag mt-5 text-paper/35">{t(footer.tagline)}</p>

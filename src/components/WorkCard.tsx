@@ -32,6 +32,8 @@ export function WorkCard({
           <img
             src={item.image}
             alt={t(item.name)}
+            width={1400}
+            height={933}
             loading="lazy"
             decoding="async"
             className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04] group-hover:grayscale-0 dark:brightness-[0.78] dark:group-hover:brightness-100"

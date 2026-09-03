@@ -44,6 +44,8 @@ function WorkStrip() {
             <img
               src={item.src}
               alt={t(item.label)}
+              width={1400}
+              height={933}
               loading="lazy"
               decoding="async"
               /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها

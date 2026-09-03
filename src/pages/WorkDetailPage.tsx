@@ -1,32 +1,45 @@
 import { Navigate, useParams } from "react-router-dom";
 import { useLang } from "../i18n";
-import { services, work } from "../content/home";
+import { work } from "../content/home";
 import { workDetails, workPage } from "../content/pages";
+import {
+  markets as marketLabels,
+  sectorMeta,
+  serviceMeta,
+  servicesOf,
+  storyBySlug,
+  workItems,
+} from "../content/work";
 import { PageCta } from "../components/PageCta";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
-
-/** فئة العمل ← الخدمة التي أنتجته */
-const CATEGORY_SERVICE: Record<string, string> = {
-  brand: "branding",
-  web: "web-development",
-  social: "social-media",
-};
 
 export function WorkDetailPage() {
   const { slug = "" } = useParams();
   const { t, path } = useLang();
 
-  const index = work.items.findIndex((w) => w.slug === slug);
-  const item = index >= 0 ? work.items[index] : undefined;
+  const index = workItems.findIndex((w) => w.slug === slug);
+  const item = index >= 0 ? workItems[index] : undefined;
   const detail = workDetails[slug];
-
 
   // مسار غير معروف: تحويل إلى قائمة الأعمال بدل صفحة فارغة
   if (!item || !detail) return <Navigate to={path("/work")} replace />;
 
-  const next = work.items[(index + 1) % work.items.length];
-  const serviceSlug = CATEGORY_SERVICE[item.cat];
-  const service = services.items.find((s) => s.slug === serviceSlug);
+  const next = workItems[(index + 1) % workItems.length];
+  const story = item.client ? storyBySlug(item.client) : undefined;
+  const storyServices = item.client ? servicesOf(item.client) : [];
+
+  const facts = [
+    { label: t(workPage.sectorLabel), value: t(sectorMeta(item.sector).label) },
+    { label: t(workPage.serviceLabel), value: t(serviceMeta(item.service).label) },
+    ...(item.markets.length
+      ? [
+          {
+            label: t(workPage.marketsLabel),
+            value: item.markets.map((m) => t(marketLabels[m])).join(" · "),
+          },
+        ]
+      : []),
+  ];
 
   return (
     <>
@@ -36,24 +49,28 @@ export function WorkDetailPage() {
             <SectionLabel>{t(workPage.label)}</SectionLabel>
           </Reveal>
 
-          <MaskLines
-            lines={[t(item.name)]}
-            className="display mt-8 max-w-[16ch] sm:mt-12"
-          />
+          <MaskLines lines={[t(item.name)]} className="display mt-8 max-w-[16ch] sm:mt-12" />
 
           <Reveal delay={180}>
             <p className="body mt-10 max-w-[56ch] sm:mt-12">{t(detail.desc)}</p>
           </Reveal>
 
-          {/* بيانات المشروع */}
+          {/* الفصل من قصّة أطول — الرابط يُقال هنا لا في قسم منفصل */}
+          {story && storyServices.length > 1 && (
+            <Reveal delay={220}>
+              <div className="mt-10 flex flex-col gap-3 border-s-2 border-red ps-5">
+                <p className="tag text-ink/40">
+                  {t(work.storyOf)} {t(story.name)} — <span className="nums ltr">{storyServices.length}</span>{" "}
+                  {t(work.storyServices)}
+                </p>
+                <TextLink href={`/clients/${story.slug}`}>{t(work.storyRead)}</TextLink>
+              </div>
+            </Reveal>
+          )}
+
           <Reveal delay={240} className="mt-14 border-t border-[var(--line)] sm:mt-16">
-            {/* حقلان فقط — ما نعرفه فعلًا عن كل مشروع. إضافة «سنة»
-                تفترض تاريخًا لا يوجد في الملف التعريفي. */}
-            <dl className="grid grid-cols-1 sm:grid-cols-2">
-              {[
-                { label: t(workPage.sectorLabel), value: t(item.sector) },
-                { label: t(workPage.serviceLabel), value: service ? t(service.name) : "—" },
-              ].map((row, i) => (
+            <dl className="grid grid-cols-1 sm:grid-cols-3">
+              {facts.map((row, i) => (
                 <div
                   key={row.label}
                   className={`border-b border-[var(--line)] py-6 sm:border-b-0 sm:py-8 ${
@@ -122,11 +139,14 @@ export function WorkDetailPage() {
         </Wrap>
       </section>
 
+      {/* النداء يحمل الخدمة، فيصل النموذج وقد اختارها الزائر ضمنًا */}
       <PageCta
-        lines={{
-          ar: ["عايز نتيجة", "زي دي؟"],
-          en: ["Want a result", "like this?"],
-        }}
+        lines={workPage.detailCtaLines}
+        primaryHref={
+          serviceMeta(item.service).page
+            ? `/contact?service=${serviceMeta(item.service).page}`
+            : "/contact"
+        }
       />
     </>
   );

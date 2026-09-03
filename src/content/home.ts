@@ -196,8 +196,10 @@ export const services = {
 /* ─────────────────────────────────────────────
    (03) الأعمال
    ───────────────────────────────────────────── */
-export type WorkCategory = "brand" | "web" | "social";
-
+/**
+ * نصوص قسم الأعمال. البيانات نفسها — الأعمال وتصنيفها وقصص العملاء —
+ * في `work.ts`، لأنها صارت أكبر من أن تعيش وسط نصوص الصفحة.
+ */
 export const work = {
   index: "03",
   label: { ar: "أعمالنا", en: "Work" } as Bi,
@@ -205,127 +207,23 @@ export const work = {
     ar: ["أكثر من 150 مشروعًا", "في 10 قطاعات."],
     en: ["More than 150 projects", "across 10 sectors."],
   } as Bi<string[]>,
-  filters: [
-    { key: "all", label: { ar: "الكل", en: "All" } as Bi },
-    { key: "brand", label: { ar: "هوية بصرية", en: "Branding" } as Bi },
-    { key: "web", label: { ar: "مواقع", en: "Websites" } as Bi },
-    { key: "social", label: { ar: "سوشيال ميديا", en: "Social" } as Bi },
-  ] as { key: WorkCategory | "all"; label: Bi }[],
-  items: [
-    {
-      slug: "building-line",
-      cat: "brand" as WorkCategory,
-      name: { ar: "بيلدنج لاين", en: "Building Line" } as Bi,
-      sector: { ar: "مقاولات — السعودية", en: "Construction — Saudi Arabia" } as Bi,
-      image: "/assets/work/brand-buildingline.jpg",
-    },
-    {
-      slug: "amlak",
-      cat: "brand" as WorkCategory,
-      name: { ar: "أملاك العقارية", en: "Amlak Real Estate" } as Bi,
-      sector: { ar: "عقارات — جورجيا والسعودية", en: "Real estate — Georgia & Saudi" } as Bi,
-      image: "/assets/work/brand-amlak.jpg",
-    },
-    {
-      slug: "elitegate",
-      cat: "brand" as WorkCategory,
-      name: { ar: "إيليت جيت", en: "Elitegate Properties" } as Bi,
-      sector: { ar: "استثمار عقاري", en: "Property investment" } as Bi,
-      image: "/assets/work/brand-elitegate.jpg",
-    },
-    {
-      slug: "basmat-alomran",
-      cat: "brand" as WorkCategory,
-      name: { ar: "بصمة العمران", en: "Basmat Alomran" } as Bi,
-      sector: { ar: "مقاولات — السعودية", en: "Construction — Saudi Arabia" } as Bi,
-      image: "/assets/work/brand-basmat.jpg",
-    },
-    {
-      slug: "inmaa",
-      cat: "brand" as WorkCategory,
-      name: { ar: "إنماء للمقاولات", en: "Inmaa Constructions" } as Bi,
-      sector: { ar: "مقاولات", en: "Construction" } as Bi,
-      image: "/assets/work/brand-inmaa.jpg",
-    },
-    {
-      slug: "adg-brand",
-      cat: "brand" as WorkCategory,
-      name: { ar: "إيه دي جي", en: "ADG Real Estate" } as Bi,
-      sector: { ar: "عقارات — جورجيا ولبنان", en: "Real estate — Georgia & Lebanon" } as Bi,
-      image: "/assets/work/brand-adg.jpg",
-    },
-    {
-      slug: "fragancia",
-      cat: "web" as WorkCategory,
-      name: { ar: "فراجانسيا", en: "Fragancia" } as Bi,
-      sector: { ar: "متجر إلكتروني — عطور", en: "E-commerce — fragrance" } as Bi,
-      image: "/assets/work/web-fragancia.jpg",
-    },
-    {
-      slug: "vibrant-design",
-      cat: "web" as WorkCategory,
-      name: { ar: "فايبرانت ديزاين", en: "Vibrant Design" } as Bi,
-      sector: { ar: "تصميم داخلي", en: "Interior design" } as Bi,
-      image: "/assets/work/web-vibrant.jpg",
-    },
-    {
-      slug: "web-contracting",
-      cat: "web" as WorkCategory,
-      name: { ar: "مجموعة مقاولات", en: "Contracting Group" } as Bi,
-      sector: { ar: "مقاولات — الإمارات", en: "Construction — UAE" } as Bi,
-      image: "/assets/work/web-contracting.jpg",
-    },
-    {
-      slug: "insurance",
-      cat: "web" as WorkCategory,
-      name: { ar: "شركة تأمين", en: "Insurance Group" } as Bi,
-      sector: { ar: "تأمين ومال", en: "Insurance & finance" } as Bi,
-      image: "/assets/work/web-insurance.jpg",
-    },
-    {
-      slug: "fashion-store",
-      cat: "web" as WorkCategory,
-      name: { ar: "علامة أزياء", en: "SV Fashion" } as Bi,
-      sector: { ar: "متجر إلكتروني — أزياء", en: "E-commerce — fashion" } as Bi,
-      image: "/assets/work/web-fashion.jpg",
-    },
-    {
-      slug: "eco-vista",
-      cat: "social" as WorkCategory,
-      name: { ar: "إيكو فيستا", en: "Eco Vista" } as Bi,
-      sector: { ar: "مقاولات — السعودية", en: "Construction — Saudi Arabia" } as Bi,
-      image: "/assets/work/social-ecovista.jpg",
-    },
-    {
-      slug: "sky-shooter",
-      cat: "social" as WorkCategory,
-      name: { ar: "سكاي شوتر", en: "Sky Shooter" } as Bi,
-      sector: { ar: "تصوير جوي — الإمارات", en: "Aerial filming — UAE" } as Bi,
-      image: "/assets/work/social-skyshooter.jpg",
-    },
-    {
-      slug: "green-flash",
-      cat: "social" as WorkCategory,
-      name: { ar: "جرين فلاش", en: "Green Flash" } as Bi,
-      sector: { ar: "صناعي وطاقة", en: "Industrial & energy" } as Bi,
-      image: "/assets/work/social-greenflash.jpg",
-    },
-    {
-      slug: "ahl-alquran",
-      cat: "social" as WorkCategory,
-      name: { ar: "أكاديمية أهل القرآن", en: "Ahl Alquran Academy" } as Bi,
-      sector: { ar: "تعليم — أمريكا وأوروبا", en: "Education — US & Europe" } as Bi,
-      image: "/assets/work/social-ahlalquran.jpg",
-    },
-    {
-      slug: "adg-social",
-      cat: "social" as WorkCategory,
-      name: { ar: "إيه دي جي العقارية", en: "ADG Realestate" } as Bi,
-      sector: { ar: "استثمار عقاري — جورجيا", en: "Property investment — Georgia" } as Bi,
-      image: "/assets/work/social-adg.jpg",
-    },
-  ],
-  empty: { ar: "لا أعمال في هذه الفئة بعد.", en: "No work in this category yet." } as Bi,
+
+  /* المرشِّحان: القطاع أوّلًا — «أفهم مجالك» تسبق «أتقن هذه الخدمة» */
+  sectorLabel: { ar: "القطاع", en: "Sector" } as Bi,
+  serviceLabel: { ar: "الخدمة", en: "Service" } as Bi,
+  all: { ar: "الكل", en: "All" } as Bi,
+  clear: { ar: "إعادة الضبط", en: "Reset" } as Bi,
+  of: { ar: "من", en: "of" } as Bi,
+
+  /* شارة العمل الذي هو فصل من قصّة أطول */
+  storyOf: { ar: "من قصة", en: "Part of" } as Bi,
+  storyServices: { ar: "خدمات", en: "services" } as Bi,
+  storyRead: { ar: "اقرأ القصّة كاملة", en: "Read the full story" } as Bi,
+
+  empty: {
+    ar: "لا أعمال تطابق هذا الاختيار بعد.",
+    en: "Nothing matches this selection yet.",
+  } as Bi,
   allLabel: { ar: "شاهد كل الأعمال", en: "See all work" } as Bi,
 };
 

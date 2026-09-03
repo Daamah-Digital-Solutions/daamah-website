@@ -1,20 +1,21 @@
 import { Navigate, useParams } from "react-router-dom";
 import { useLang } from "../i18n";
-import { services, work } from "../content/home";
+import { services } from "../content/home";
 import { servicesPage, serviceDetails, workPage } from "../content/pages";
+import { workItems, type ServiceKey } from "../content/work";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { Chevron, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 import { WorkCard } from "../components/WorkCard";
 
-/** الخدمة ← فئة الأعمال المرتبطة بها */
-const RELATED: Record<string, "brand" | "web" | "social" | null> = {
+/**
+ * صفحة الخدمة ← مفتاح الخدمة في الأعمال.
+ * ما لا أعمال له بعد يبقى خارج الخريطة، فلا يُعرض قسمٌ فارغ.
+ */
+const RELATED: Record<string, ServiceKey | undefined> = {
   branding: "brand",
   "web-development": "web",
   "social-media": "social",
-  "digital-marketing": null,
-  "media-buying": null,
-  "performance-marketing": null,
 };
 
 export function ServiceDetailPage() {
@@ -28,8 +29,8 @@ export function ServiceDetailPage() {
   // مسار غير معروف: تحويل إلى قائمة الخدمات بدل صفحة فارغة
   if (!service || !detail) return <Navigate to={path("/services")} replace />;
 
-  const cat = RELATED[slug];
-  const related = cat ? work.items.filter((w) => w.cat === cat).slice(0, 3) : [];
+  const key = RELATED[slug];
+  const related = key ? workItems.filter((w) => w.service === key).slice(0, 3) : [];
 
   return (
     <>

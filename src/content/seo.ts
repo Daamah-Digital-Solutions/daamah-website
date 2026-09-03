@@ -1,5 +1,6 @@
 import type { Bi } from "../i18n";
-import { brand, services, work } from "./home";
+import { brand, services } from "./home";
+import { clientStories, sectorMeta, workItems } from "./work";
 import {
   aboutPage,
   contactPage,
@@ -77,11 +78,18 @@ export const routes: RouteMeta[] = [
     description: workPage.intro,
     priority: 0.9,
   },
-  ...work.items.map<RouteMeta>((w) => ({
+  ...workItems.map<RouteMeta>((w) => ({
     path: `/work/${w.slug}`,
     title: titled(w.name),
-    description: workDetails[w.slug]?.desc ?? w.sector,
+    description: workDetails[w.slug]?.desc ?? sectorMeta(w.sector).label,
     priority: 0.6,
+  })),
+  /* قصص العملاء أعلى أولويةً من العمل المفرد: هي ما نريد أن يُقرأ */
+  ...clientStories.map<RouteMeta>((c) => ({
+    path: `/clients/${c.slug}`,
+    title: titled(c.name),
+    description: c.lede,
+    priority: 0.7,
   })),
   {
     path: "/process",

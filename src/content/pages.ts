@@ -235,6 +235,29 @@ export const workPage = {
   serviceLabel: { ar: "الخدمة", en: "Service" } as Bi,
   backLabel: { ar: "كل الأعمال", en: "All work" } as Bi,
   nextLabel: { ar: "المشروع التالي", en: "Next project" } as Bi,
+  marketsLabel: { ar: "الأسواق", en: "Markets" } as Bi,
+  ctaLines: {
+    ar: ["مشروعك التالي", "يبدأ من هنا."],
+    en: ["Your next project", "starts here."],
+  } as Bi<string[]>,
+  detailCtaLines: {
+    ar: ["تريد نتيجة", "مثل هذه؟"],
+    en: ["Want a result", "like this?"],
+  } as Bi<string[]>,
+};
+
+/* ── /clients/:slug — قصّة عميل ── */
+export const clientPage = {
+  label: { ar: "قصة عميل", en: "Client story" } as Bi,
+  chaptersLabel: { ar: "فصول العلاقة", en: "The relationship" } as Bi,
+  resultsLabel: { ar: "أثر العلاقة", en: "What it produced" } as Bi,
+  sinceLabel: { ar: "منذ", en: "Since" } as Bi,
+  servicesLabel: { ar: "الخدمات المنفّذة", en: "Services delivered" } as Bi,
+  backLabel: { ar: "كل الأعمال", en: "All work" } as Bi,
+  ctaLines: {
+    ar: ["علاقة مثل هذه", "تبدأ بمشروع واحد."],
+    en: ["A relationship like this", "starts with one project."],
+  } as Bi<string[]>,
 };
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */

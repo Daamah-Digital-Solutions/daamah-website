@@ -8,6 +8,7 @@ import { Footer } from "./components/Footer";
 import { Intro, shouldPlayIntro } from "./components/Intro";
 import { ScrollManager } from "./components/Routing";
 import { Seo } from "./components/Seo";
+import { Analytics } from "./components/Analytics";
 import { Home } from "./pages/Home";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
@@ -54,6 +55,7 @@ export default function App() {
         <LangProvider>
           <ScrollManager />
           <Seo />
+          <Analytics />
           {/* الحركة لا تبدأ قبل أن ترتفع الستارة */}
           <MotionGate started={introDone}>
             {playIntro && !introDone && <Intro onDone={onIntroDone} />}

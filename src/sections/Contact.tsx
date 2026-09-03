@@ -1,5 +1,6 @@
 import { useLang } from "../i18n";
 import { brand, contact } from "../content/home";
+import { track } from "../analytics";
 import { Arrow, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
 
 /** رابط تواصل كبير — الوسيلة نفسها هي زرّ النداء، لا نموذج معطّل. */
@@ -7,16 +8,19 @@ function Channel({
   href,
   label,
   value,
+  event,
   external = false,
 }: {
   href: string;
   label: string;
   value: string;
+  event: "whatsapp_click" | "email_click";
   external?: boolean;
 }) {
   return (
     <a
       href={href}
+      onClick={() => track(event)}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group flex items-center justify-between gap-6 border-t border-[var(--line)] py-7 last:border-b"
     >
@@ -54,11 +58,13 @@ export function Contact() {
               href={`mailto:${brand.email}`}
               label={t(contact.emailLabel)}
               value={brand.email}
+              event="email_click"
             />
             <Channel
               href={brand.whatsapp}
               label={t(contact.whatsappLabel)}
               value={brand.phone}
+              event="whatsapp_click"
               external
             />
           </Reveal>

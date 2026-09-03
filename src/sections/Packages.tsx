@@ -56,7 +56,7 @@ export function Packages() {
 
               <div className="mt-10">
                 <Btn
-                  href="/contact"
+                  href={`/contact?package=${p.slug}`}
                   variant={p.featured ? "ink" : "outline"}
                   className="w-full justify-center"
                 >

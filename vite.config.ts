@@ -20,6 +20,32 @@ const esc = (s: string) =>
  * إطلاقًا، فلا ترى إلا ما في الرأس وقت التحميل. بدون هذه الخطوة تظهر
  * كل روابط الموقع بعنوان الرئيسية وبلا صورة معاينة.
  */
+/**
+ * يحقن وسم تحقّق Google Search Console في الرأس — إن وُجد رمزه.
+ *
+ * يُحقن هنا لا يُكتب في `index.html` مباشرةً: الرمز يخصّ حساب النشر،
+ * ولا مكان له في مستودع عام. وبلا رمز لا يُضاف وسم فارغ.
+ */
+function verification(): Plugin {
+  let code: string | undefined;
+  return {
+    name: "daamah:verification",
+    configResolved(config) {
+      code = config.env.VITE_GSC_VERIFICATION as string | undefined;
+    },
+    transformIndexHtml() {
+      if (!code) return;
+      return [
+        {
+          tag: "meta",
+          attrs: { name: "google-site-verification", content: code },
+          injectTo: "head",
+        },
+      ];
+    },
+  };
+}
+
 function prerenderMeta(): Plugin {
   return {
     name: "daamah:prerender-meta",
@@ -100,7 +126,7 @@ function prerenderMeta(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), prerenderMeta()],
+  plugins: [react(), tailwindcss(), verification(), prerenderMeta()],
   resolve: {
     alias: { "@": new URL("./src/", import.meta.url).pathname },
   },

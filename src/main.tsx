@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles/globals.css";
 import App from "./App";
 import { brand, services } from "./content/home";
+import { initAnalytics } from "./analytics";
 
 /* بيانات منظّمة لمحركات البحث */
 const ld = {
@@ -35,6 +36,8 @@ const ld = {
     })),
   },
 };
+initAnalytics();
+
 const tag = document.createElement("script");
 tag.type = "application/ld+json";
 tag.textContent = JSON.stringify(ld);

@@ -94,6 +94,7 @@ export function ServiceDetailPage() {
       )}
 
       <PageCta
+        primaryHref={`/contact?service=${slug}`}
         secondary={{ ar: "كل الخدمات", en: "All services" }}
         secondaryHref="/services"
       />

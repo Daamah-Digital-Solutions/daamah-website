@@ -1,0 +1,444 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+/* الوضع الداكن يُقاد بسمة على <html> لا بتفضيل النظام:
+   الزرّ يجب أن يتجاوز إعداد الجهاز. */
+@custom-variant dark (&:where(html[data-theme="dark"] *));
+
+/* ═══════════════════════════════════════════════════════════
+   دَعمة — نظام التصميم
+   الاتجاه: «دقّة وحضور» — ورق دافئ، حبر شبه أسود، والأحمر
+   يُستعمل كعلامة ترقيم لا كخلفية. الرقيّ يأتي من المساحة
+   والتفاصيل الشعرية (خطوط 1px)، لا من كثافة اللون.
+   ═══════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── اللون ── */
+  --color-red: #e70000; /* أحمر العلامة — كما هو في الملف التعريفي */
+  --color-red-deep: #a31919;
+
+  --color-ink: #0b0b0d; /* شبه أسود، بارد قليلًا */
+  --color-ink-2: #17171a;
+  --color-paper: #fbfaf8; /* أوف-وايت دافئ — الأبيض الصافي يبدو معمليًا */
+  --color-paper-2: #f2efe9;
+  --color-paper-3: #e8e4dc;
+
+  --font-sans: "Satoshi", "Plex Arabic", system-ui, sans-serif;
+
+  --radius-pill: 999px;
+
+  /* ── الحركة ──
+     منحنى واحد لكل شيء يدخل أو يُكشف. الثاني للتبديلات ثنائية
+     الاتجاه فقط (فتح/غلق)، لأن منحنى الخروج السريع يبدو مقطوعًا
+     وهو راجع. لا ثالث لهما — تعدّد المنحنيات هو ما يجعل المواقع
+     تبدو مُجمّعة من قطع. */
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* سلّم المدد — خمس درجات، ولكل درجة وظيفة واحدة */
+  --dur-fast: 200ms; /* ردّ فوري: لون، حدّ، تحديد */
+  --dur-base: 320ms; /* تفاعل: hover، تبديل، انزلاق سهم */
+  --dur-slow: 600ms; /* انتقال عنصر كامل */
+  --dur-reveal: 900ms; /* كشف عند دخول الشاشة */
+  --dur-hero: 1100ms; /* سطور العنوان الضخم */
+}
+
+:root {
+  color-scheme: light;
+
+  /* مشتقّات شفّافة — تُستعمل عبر var() في الأماكن التي
+     يعجز فيها Tailwind عن التعبير بإيجاز */
+  --line: rgba(11, 11, 13, 0.1);
+  --line-strong: rgba(11, 11, 13, 0.18);
+  --line-faint: rgba(11, 11, 13, 0.05);
+  --muted: rgba(11, 11, 13, 0.56);
+
+  /* ارتفاع الهيدر — تستعمله الأقسام لحساب المساحة العلوية */
+  --header-h: 74px;
+}
+
+/* ═══════════════════════════════════════════════
+   الوضع الداكن
+   لا يوجد لون مكتوب بالثابت في المكوّنات: كلها تشير إلى
+   هذه المتغيّرات، فتبديل قيمها هنا يقلب الموقع بالكامل.
+   الأسماء تبقى صادقة في الوضعين — «الورق» هو الخلفية دائمًا
+   و«الحبر» هو النص دائمًا، أيًّا كان لونهما.
+   ═══════════════════════════════════════════════ */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-paper: #0c0c0e; /* شبه أسود دافئ — الأسود الصافي يبدو حفرة */
+  --color-paper-2: #141417;
+  --color-paper-3: #1e1e22;
+  --color-ink: #edebe7; /* أوف-وايت — الأبيض الصافي يُبهر على خلفية داكنة */
+  --color-ink-2: #d6d3ce;
+
+  /* الأحمر يُرفع قليلًا في الإضاءة فقط: #E70000 على شبه الأسود
+     يفقد تشبّعه ويُقرأ بنيًّا. الدرجة اللونية (0°) كما هي. */
+  --color-red: #ff1a1a;
+
+  --line: rgba(237, 235, 231, 0.13);
+  --line-strong: rgba(237, 235, 231, 0.24);
+  --line-faint: rgba(237, 235, 231, 0.07);
+  --muted: rgba(237, 235, 231, 0.55);
+}
+
+/* التبديل نفسه: تلاشٍ عامّ قصير تضعه theme.tsx للحظة التبديل فقط.
+   لو جُعل دائمًا لتباطأ كل تفاعل في الموقع، ولو اقتُصر على body
+   لتلاشت الخلفية بينما يقفز الهيدر والأزرار دفعةً واحدة.
+   الحركة والشفافية مستثناة كي لا يتعثّر كشف الأقسام. */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color 0.3s var(--ease-out-quint),
+    border-color 0.3s var(--ease-out-quint),
+    color 0.3s var(--ease-out-quint),
+    fill 0.3s var(--ease-out-quint) !important;
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 24px);
+  background: var(--color-paper);
+  /* clip لا hidden: hidden ينشئ حاوية تمرير فينزاح أصل الرسم في RTL */
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-paper-3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-red);
+}
+
+/* ═══════════════════════════════════════════════
+   الطباعة
+   العربي واللاتيني لهما مقاييس بصرية مختلفة:
+   اللاتيني يحتمل تتبّعًا سالبًا في الأحجام الكبيرة،
+   والعربي لا يحتمله إطلاقًا (يكسر وصلات الحروف).
+   لذلك كل ضبط للتتبّع مشروط باللغة.
+   ═══════════════════════════════════════════════ */
+
+.display {
+  font-weight: 500;
+  line-height: 1.02;
+  font-size: clamp(2.9rem, 8vw, 7.5rem);
+}
+html[lang="en"] .display {
+  letter-spacing: -0.042em;
+}
+html[lang="ar"] .display {
+  font-weight: 600;
+  line-height: 1.22;
+  font-size: clamp(2.5rem, 7.1vw, 6.75rem);
+}
+
+/* الجملة الكبيرة — لحظة البيان */
+.lede {
+  font-weight: 300;
+  line-height: 1.3;
+  font-size: clamp(1.6rem, 3.5vw, 3.15rem);
+}
+html[lang="en"] .lede {
+  letter-spacing: -0.028em;
+}
+html[lang="ar"] .lede {
+  font-weight: 400;
+  line-height: 1.62;
+  font-size: clamp(1.45rem, 3.1vw, 2.75rem);
+}
+
+/* عنوان قسم */
+.h2 {
+  font-weight: 500;
+  line-height: 1.06;
+  font-size: clamp(1.9rem, 3.6vw, 3.1rem);
+}
+html[lang="en"] .h2 {
+  letter-spacing: -0.032em;
+}
+html[lang="ar"] .h2 {
+  font-weight: 600;
+  line-height: 1.34;
+}
+
+/* نص الجسم */
+.body {
+  font-weight: 400;
+  line-height: 1.72;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+html[lang="ar"] .body {
+  line-height: 2.05;
+  font-size: 16px;
+}
+
+/* اللافتة الصغيرة: حروف كبيرة، تتبّع واسع — نبرة «مواصفات فنية» */
+.tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+html[lang="ar"] .tag {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* الأرقام: مصفوفة العرض حتى لا ترقص أثناء العدّ */
+.nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* الأرقام والحروف اللاتينية داخل نص عربي تُقرأ LTR */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* ═══════════════════════════════════════════════
+   التفاصيل
+   ═══════════════════════════════════════════════ */
+
+/* خطّ شعري — الوحدة البنائية الأساسية للتصميم */
+.rule {
+  height: 1px;
+  background: var(--line);
+}
+
+/* رابط نصّي بخطّ يُرسم تحته من جهة البداية */
+.ulink {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: var(--ul-pos, 0%) 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-slow) var(--ease-out-quint);
+  padding-bottom: 2px;
+}
+[dir="rtl"] .ulink {
+  --ul-pos: 100%;
+}
+.ulink:hover {
+  background-size: 100% 1px;
+}
+
+/* حلقة التركيز — للتنقّل بلوحة المفاتيح.
+   :focus-visible لا :focus، فلا تظهر الحلقة عند النقر بالفأرة. */
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── الزرّ ──
+   اللون يدخل كمسحة لها اتجاه، لا كتغيّر لون دفعةً واحدة: الأخير
+   مسطّح ولا يعطي إحساسًا بأن الزرّ استجاب.
+
+   الحيلة في نقطة الأصل: وهو ساكن أصلها جهة *الخروج*، وعند المرور
+   تنتقل إلى جهة *الدخول*. فالمسحة تدخل من جهة القراءة وتخرج من
+   الجهة المقابلة — ولا ترجع أدراجها كشريط يُلَفّ للخلف. */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--btn-fill, var(--color-red));
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-slow) var(--ease-out-quint);
+}
+[dir="rtl"] .btn::before {
+  transform-origin: left center;
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+[dir="rtl"] .btn:hover::before,
+[dir="rtl"] .btn:focus-visible::before {
+  transform-origin: right center;
+}
+
+/* المحتوى فوق المسحة */
+.btn > * {
+  position: relative;
+}
+
+/* ردّ الضغط — يجعل الزرّ جسمًا يُضغط لا صورة تُنقر.
+   الانتقال يشمل اللون أيضًا: هذه القاعدة تأتي خارج طبقات Tailwind
+   فتغلب `transition-colors` عليه، ولو اقتصرت على transform لصار
+   تغيّر لون النص فوريًا بينما المسحة تتحرّك. */
+.btn {
+  transition:
+    transform var(--dur-fast) var(--ease-out-quint),
+    color var(--dur-base) var(--ease-out-quint),
+    border-color var(--dur-base) var(--ease-out-quint);
+}
+.btn:active {
+  transform: scale(0.977);
+}
+
+/* ── السهم المتبدّل ──
+   الأول يخرج إلى الأمام والثاني يدخل من الخلف، فيبدو الزرّ كأنه
+   دفع شيئًا لا كأنه اهتزّ. مكتوب هنا لا بأدوات Tailwind لأن
+   الاتجاه يقلب إشارة الإزاحة، وتركيب rtl مع group-hover يجعل
+   الأسبقية تعتمد على ترتيب الملف. */
+.arrow-swap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  --d: 1;
+}
+[dir="rtl"] .arrow-swap {
+  --d: -1;
+}
+.arrow-swap > * {
+  transition: transform var(--dur-base) var(--ease-out-quint);
+}
+.arrow-swap > :last-child {
+  position: absolute;
+  inset: 0;
+  transform: translateX(calc(var(--d) * -100%));
+}
+.group:hover .arrow-swap > :first-child,
+.group:focus-visible .arrow-swap > :first-child {
+  transform: translateX(calc(var(--d) * 100%));
+}
+.group:hover .arrow-swap > :last-child,
+.group:focus-visible .arrow-swap > :last-child {
+  transform: translateX(0);
+}
+
+/* ═══════════════════════════════════════════════
+   الحركة
+   المحتوى ظاهر افتراضيًا. الحركة تُفعَّل فقط عند إضافة
+   .anim-ready على <html>؛ أي حركة تبدأ من opacity:0 تترك
+   المحتوى مخفيًا للأبد لو لم تُشغَّل (تبويب مخفي مثلًا).
+   ═══════════════════════════════════════════════ */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.anim-ready .marquee-track {
+  animation: marquee var(--marquee-dur, 70s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* كشف عام عند الدخول للشاشة */
+.anim-ready .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-quint),
+    transform var(--dur-reveal) var(--ease-out-quint);
+}
+.anim-ready .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* كشف السطر من خلف قناع — لسطور العنوان الضخم.
+   البنية (block + overflow) غير مشروطة: لو ارتبط التخطيط بفئة
+   الحركة لانهار العنوان إلى سطر واحد حين لا تُفعَّل الحركة. */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.mask > span {
+  display: block;
+}
+.anim-ready .mask > span {
+  transform: translateY(110%);
+  transition: transform var(--dur-hero) var(--ease-out-quint);
+}
+.anim-ready .in .mask > span {
+  transform: none;
+}
+
+/* ── لحظة الدخول ──
+   ستارة بلون الصفحة نفسه فوق المحتوى، ثم تنزلق لأعلى.
+   المحتوى موجود في DOM طوال الوقت — الستارة طبقة فوقه لا بديل
+   عنه، فلا يتأثر الزحف ولا القراءة الآلية. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--color-paper);
+  transition: transform var(--dur-slow) var(--ease-out-quint);
+}
+.intro[data-leaving="true"] {
+  transform: translateY(-101%);
+}
+
+/* الشيفرونات تدخل واحدًا تلو الآخر — تأخير كل واحد من التسلسل */
+.intro-chev {
+  opacity: 0;
+  transform: translateX(-14px);
+  animation: chev-in 520ms var(--ease-out-quint) forwards;
+}
+[dir="rtl"] .intro-chev {
+  transform: translateX(14px);
+}
+
+@keyframes chev-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

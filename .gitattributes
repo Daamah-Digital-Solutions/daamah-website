@@ -1,0 +1,8 @@
+# سطور موحّدة في المستودع مهما كان نظام المحرّر
+* text=auto eol=lf
+
+# ثنائيات — لا تُلمس
+*.png binary
+*.jpg binary
+*.woff2 binary
+*.pdf binary

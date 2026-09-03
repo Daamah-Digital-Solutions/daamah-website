@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>دَعمة للحلول الرقمية | Daamah Digital Solutions</title>
+    <meta name="description" content="دَعمة للحلول الرقمية — منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج وأوروبا: هوية بصرية، مواقع، سوشيال ميديا، وتسويق رقمي يحقق نتائج." />
+    <meta name="theme-color" content="#fbfaf8" />
+    <!--
+      اللغة والسمة تُطبَّقان قبل أول رسم — قبل الـ CSS وقبل React.
+      بدونهما يومض الاتجاه من RTL إلى LTR، وتومض الخلفية البيضاء قبل
+      الوضع الداكن.
+
+      اللغة تُقرأ من المسار لا من التخزين: `/en/...` إنجليزية وما عداها
+      عربية. هذا هو مصدر الحقيقة نفسه الذي يستعمله i18n.tsx.
+    -->
+    <script>
+      (function () {
+        var el = document.documentElement;
+        var p = location.pathname;
+        var en = p === "/en" || p.indexOf("/en/") === 0;
+        el.lang = en ? "en" : "ar";
+        el.dir = en ? "ltr" : "rtl";
+        try {
+          var saved = localStorage.getItem("daamah:theme");
+          var dark =
+            saved === "dark" ||
+            (!saved && matchMedia("(prefers-color-scheme: dark)").matches);
+          el.dataset.theme = dark ? "dark" : "light";
+          if (dark) {
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute("content", "#0c0c0e");
+          }
+        } catch (e) {
+          el.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="دَعمة للحلول الرقمية" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

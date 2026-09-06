@@ -24,3 +24,13 @@ interface ImportMeta {
 
 /** سنة البناء — تحقنها `vite.config.ts`، فلا تتبع ساعة الزائر. */
 declare const __BUILD_YEAR__: number;
+
+/**
+ * دقائق قراءة كل مقال، مفتاحها `<slug>/<lang>`.
+ * تُحسب وقت البناء في `vite.config.ts` كي لا تُستورد نصوص المقالات
+ * كلها لعدّ كلماتها.
+ */
+declare module "virtual:blog-stats" {
+  const stats: Record<string, number>;
+  export default stats;
+}

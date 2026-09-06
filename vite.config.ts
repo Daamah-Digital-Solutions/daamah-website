@@ -1,9 +1,11 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import mdx from "@mdx-js/rollup";
+import remarkGfm from "remark-gfm";
 
 const LANGS = ["ar", "en"] as const;
 type Lang = (typeof LANGS)[number];
@@ -39,6 +41,46 @@ function verification(): Plugin {
         attrs: { name: t.name, content: t.content },
         injectTo: "head" as const,
       }));
+    },
+  };
+}
+
+/**
+ * وحدة افتراضية تحمل عدد كلمات كل مقال.
+ *
+ * زمن القراءة يجب أن يظهر في قائمة المقالات، لكن حسابه يقتضي قراءة
+ * النصّ — واستيراد النصوص كلها لتُعدّ كلماتها يُدخل المدوّنة بأكملها
+ * في أول حزمة. تُعدّ هنا وقت البناء، فيصل الرقم وحده.
+ */
+function blogStats(): Plugin {
+  const ID = "virtual:blog-stats";
+  const RESOLVED = `\0${ID}`;
+  const dir = resolve("src/content/blog");
+
+  /* ~180 كلمة في الدقيقة — العربية أبطأ من اللاتينية لكثافة حروفها */
+  const minutes = (src: string) => {
+    const body = src.replace(/```[\s\S]*?```/g, "").replace(/<[^>]+>/g, " ");
+    const words = body.trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.round(words / 180));
+  };
+
+  return {
+    name: "daamah:blog-stats",
+    resolveId: (id) => (id === ID ? RESOLVED : undefined),
+    load(id) {
+      if (id !== RESOLVED) return;
+      const out: Record<string, number> = {};
+      for (const slug of readdirSync(dir, { withFileTypes: true })) {
+        if (!slug.isDirectory()) continue;
+        for (const file of readdirSync(join(dir, slug.name))) {
+          if (!file.endsWith(".mdx")) continue;
+          const lang = file.replace(/\.mdx$/, "");
+          out[`${slug.name}/${lang}`] = minutes(
+            readFileSync(join(dir, slug.name, file), "utf8"),
+          );
+        }
+      }
+      return `export default ${JSON.stringify(out)}`;
     },
   };
 }
@@ -100,8 +142,23 @@ function prerender(): Plugin {
         const desc = route.description[lang];
         const image = `${SITE_URL}${route.image ?? OG_IMAGE}`;
 
+        /* React 19 يرفع وسوم الموارد (preload للصور مثلًا) إلى مقدّمة
+           ما يرسمه. وهي في المتصفح تذهب إلى `<head>` لا إلى الجذر،
+           فلو تُركت في الجسم لاختلف أول عنصر عمّا يرسمه العميل
+           وسقط الترطيب كلّه. ننقلها إلى مكانها الصحيح — وهي مفيدة
+           هناك على أي حال. */
+        const hoisted: string[] = [];
+        const body: string = (await ssr.render(localized)).replace(
+          /<link\b[^>]*>/g,
+          (tag: string) => {
+            if (!hoisted.includes(tag)) hoisted.push(tag);
+            return "";
+          },
+        );
+
         const head = [
           `<title>${esc(title)}</title>`,
+          ...hoisted,
           `<meta name="description" content="${esc(desc)}" />`,
           opts.noindex ? `<meta name="robots" content="noindex,follow" />` : null,
           `<link rel="canonical" href="${url}" />`,
@@ -131,8 +188,6 @@ function prerender(): Plugin {
         ]
           .filter(Boolean)
           .join("\n    ");
-
-        const body: string = await ssr.render(localized);
 
         return template
           // العنوان والوصف الافتراضيان في القالب يُستبدلان لا يُضاعفان
@@ -218,6 +273,46 @@ function prerender(): Plugin {
         writeFileSync(join(outDir, lang === "ar" ? "404.html" : "en/404.html"), html, "utf8");
       }
 
+      /* خلاصة RSS لكل لغة — القرّاء المهنيّون وأدوات المتابعة
+         تشترك بها، وهي كذلك إشارة تحديثٍ منتظم */
+      for (const lang of LANGS) {
+        const items = ssr
+          .postsIn(lang)
+          .slice(0, 20)
+          .map((p: { slug: string; title: string; description: string; date: string }) => {
+            const link = `${SITE_URL}${withLang(`/blog/${p.slug}`, lang)}`;
+            return [
+              "    <item>",
+              `      <title>${esc(p.title)}</title>`,
+              `      <link>${link}</link>`,
+              `      <guid isPermaLink="true">${link}</guid>`,
+              `      <description>${esc(p.description)}</description>`,
+              `      <pubDate>${new Date(`${p.date}T00:00:00Z`).toUTCString()}</pubDate>`,
+              "    </item>",
+            ].join("\n");
+          });
+
+        const home = `${SITE_URL}${withLang("/blog", lang)}`;
+        const feed = [
+          '<?xml version="1.0" encoding="UTF-8"?>',
+          '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+          "  <channel>",
+          `    <title>${esc(lang === "ar" ? "مدوّنة دَعمة" : "Daamah Journal")}</title>`,
+          `    <link>${home}</link>`,
+          `    <description>${esc(lang === "ar" ? "مقالات عن الهوية والمواقع والتسويق الرقمي في السوق السعودي والخليجي." : "Notes on branding, websites, and digital marketing in the Saudi and Gulf markets.")}</description>`,
+          `    <language>${lang}</language>`,
+          `    <atom:link href="${SITE_URL}${lang === "ar" ? "" : "/en"}/feed.xml" rel="self" type="application/rss+xml"/>`,
+          ...items,
+          "  </channel>",
+          "</rss>",
+          "",
+        ].join("\n");
+
+        const file = join(outDir, lang === "ar" ? "feed.xml" : "en/feed.xml");
+        mkdirSync(dirname(file), { recursive: true });
+        writeFileSync(file, feed, "utf8");
+      }
+
       writeFileSync(
         join(outDir, "sitemap.xml"),
         `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join("\n")}\n</urlset>\n`,
@@ -246,7 +341,19 @@ function prerender(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), verification(), prerender()],
+  plugins: [
+    /* قبل إضافة React: هذه تحوّل MDX إلى JSX، وتلك تحوّل JSX إلى
+       جافاسكربت. العكس يعني أن React يرى نصًّا لا يفهمه.
+       بيانات المقال تُصدَّر من داخله (`export const meta`) لا في
+       ترويسة YAML: قارئ الترويسة يجرّ معه محلّل TOML بثغرة معلومة
+       بلا إصلاح، ولا حاجة إليه أصلًا. */
+    { enforce: "pre", ...mdx({ remarkPlugins: [remarkGfm], providerImportSource: "@mdx-js/react" }) },
+    react(),
+    tailwindcss(),
+    blogStats(),
+    verification(),
+    prerender(),
+  ],
   define: {
     /* سنة البناء لا سنة جهاز الزائر — ساعته قد تخالف، فيختلف ما
        يرسمه المتصفح عمّا وُلِّد وقت البناء */

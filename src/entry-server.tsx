@@ -34,6 +34,7 @@ export async function render(url: string): Promise<string> {
 /* تُقرأ من إضافة البناء — فلا تستورد `src/content` مباشرةً، وتبقى
    قادرةً لاحقًا على قراءة مسارات تُكتشف بـ `import.meta.glob` */
 export { routes, SITE_URL, OG_IMAGE, findRoute } from "./content/seo";
+export { postsIn } from "./content/blog";
 export { graphFor } from "./seo/schema";
 export { withLang } from "./i18n";
 export type { Lang } from "./i18n";

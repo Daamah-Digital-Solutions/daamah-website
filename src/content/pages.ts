@@ -600,6 +600,43 @@ export const privacyPage = {
   } as Bi,
 };
 
+/* ── المدوّنة ── */
+export const blogPage = {
+  label: { ar: "المدوّنة", en: "Journal" } as Bi,
+  title: {
+    ar: ["ما تعلّمناه،", "مكتوبًا."],
+    en: ["What we've learned,", "written down."],
+  } as Bi<string[]>,
+  intro: {
+    ar: "مقالات عن الهوية والمواقع والتسويق الرقمي في السوق السعودي والخليجي — بأرقام وأمثلة من مشاريع فعلية، لا نصائح عامّة.",
+    en: "Notes on branding, websites, and digital marketing in the Saudi and Gulf markets — with numbers and examples from real projects rather than general advice.",
+  } as Bi,
+  allTags: { ar: "كل المواضيع", en: "All topics" } as Bi,
+  readingTime: { ar: "دقائق قراءة", en: "min read" } as Bi,
+  publishedOn: { ar: "نُشر في", en: "Published" } as Bi,
+  updatedOn: { ar: "حُدّث في", en: "Updated" } as Bi,
+  related: { ar: "اقرأ أيضًا", en: "Read next" } as Bi,
+  backToBlog: { ar: "كل المقالات", en: "All articles" } as Bi,
+  tagTitle: { ar: "مقالات عن", en: "Articles on" } as Bi,
+  empty: {
+    ar: "لا مقالات في هذا الموضوع بعد.",
+    en: "Nothing on this topic yet.",
+  } as Bi,
+  /* المقال المتاح بلغة واحدة: نقول ذلك بدل أن نصمت */
+  onlyInArabic: {
+    ar: "",
+    en: "This article is available in Arabic only.",
+  } as Bi,
+  onlyInEnglish: {
+    ar: "هذا المقال متاح بالإنجليزية فقط.",
+    en: "",
+  } as Bi,
+  ctaLines: {
+    ar: ["عندك مشروع", "يشبه هذا؟"],
+    en: ["Have a project", "like this one?"],
+  } as Bi<string[]>,
+};
+
 /* ── 404 ── */
 export const notFound = {
   label: { ar: "خطأ 404", en: "Error 404" } as Bi,

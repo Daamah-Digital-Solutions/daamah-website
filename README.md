@@ -6,9 +6,10 @@ Marketing site for Daamah Digital Solutions — bilingual (Arabic RTL / English 
 
 ```bash
 npm install
-npm run dev      # http://localhost:4100
-npm run build    # type-check, bundle, prerender 60 pages + sitemap
-npm run preview
+npm run dev       # http://localhost:4100
+npm run build     # type-check, SSR bundle, client bundle, prerender every page
+npm run preview   # serves dist/ the way Vercel does — not vite preview
+npm run new-post <slug> [--en]
 ```
 
 ## How it is put together
@@ -35,7 +36,10 @@ contain no hard-coded strings.**
 | `content/pages.ts` | Inner-page copy, plus per-work and per-service detail text |
 | `content/work.ts` | Work taxonomy, the work items themselves, and client stories |
 | `content/form.ts` | Quote-form labels, validation messages, WhatsApp message template |
-| `content/seo.ts` | Route index — title and description per page |
+| `content/faq.ts` | Questions — general and per service; read by the page *and* by `FAQPage` markup |
+| `content/blog/` | One folder per article: `meta.ts` + `ar.mdx` / `en.mdx` |
+| `content/seo.ts` | Route index — title, description, kind, and parent per page |
+| `seo/schema.ts` | The JSON-LD graph each page declares |
 
 ### Work is classified by keys, not free text
 
@@ -54,12 +58,44 @@ Filters are derived from the data — a filter appears only once at least one it
 
 ### Search engines see finished pages
 
-`vite.config.ts` runs a build plugin that writes a static HTML file for every route × language
-with a correct `<head>`, plus `sitemap.xml` and `robots.txt`.
+The build runs twice. First `src/entry-server.tsx` is bundled; then the client build's
+`closeBundle` imports it and renders **every route × language** with `prerenderToNodeStream`
+inside a `StaticRouter`, writing a complete HTML file — head *and* body — plus `sitemap.xml`,
+`robots.txt`, `feed.xml`, and a real `404.html`.
 
-The body stays the app shell — React renders the content — but social crawlers (WhatsApp,
-Facebook, LinkedIn) **do not run JavaScript at all**. Without this step every shared link
-would carry the home page's title and no preview image.
+The tree rendered on the server is `Shell`, the same one the browser mounts; only the router
+differs. Two trees would drift apart at the first edit.
+
+Prerendering the head alone was not enough. Social crawlers (WhatsApp, Facebook, LinkedIn) and
+the crawlers behind language models **do not run JavaScript at all**, so an empty
+`<div id="root">` was a site with no text as far as they were concerned.
+
+Two things this requires, both easy to undo by accident:
+
+- **Nothing may render differently on the first client paint than it did at build time**, or
+  React discards the finished page and redraws it. That is why the theme starts light and is
+  read from `data-theme` in an effect, why the logo is chosen by CSS rather than by state, and
+  why `Counter` starts at its final value. See *Rules worth keeping*.
+- **React 19 hoists resource `<link>` tags to the front of what it renders.** In the browser
+  those belong in `<head>`; left in the body they become the root's first child and hydration
+  fails. The build plugin moves them.
+
+`npm run preview` serves `dist/` with Vercel's own resolution rules — `/about` →
+`dist/about/index.html`, unknown paths → `404.html` with a 404 status. `vite preview` answers
+every unknown path with `index.html`, so each inner page arrives as the home page and then gets
+overwritten client-side; it cannot be used to check this.
+
+### The blog
+
+`src/content/blog/<slug>/` holds `meta.ts` (bilingual title, description, date, tags) beside
+`ar.mdx` and/or `en.mdx`. `npm run new-post <slug>` creates all three.
+
+Metadata sits *next to* the prose rather than inside it so the index can list every article
+without importing any of them — article bodies are lazy, one chunk each. Reading time is
+counted at build time and reaches the browser as a number (`virtual:blog-stats`).
+
+A folder with only `ar.mdx` is an Arabic-only article: no `/en/` page is written and no
+`hreflang` is emitted, so Google is never promised a translation that does not exist.
 
 ### Analytics stay silent unless configured
 

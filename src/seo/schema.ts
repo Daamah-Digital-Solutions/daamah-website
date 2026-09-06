@@ -2,6 +2,7 @@ import { withLang, type Bi, type Lang } from "../i18n";
 import { brand, phoneFor, saudi, services } from "../content/home";
 import { faqItemsFor } from "../content/faq";
 import { markets, sectorMeta, workItems } from "../content/work";
+import { findPost, posts } from "../content/blog";
 import { serviceDetails } from "../content/pages";
 import { OG_IMAGE, SITE_URL, findRoute, type RouteMeta } from "./../content/seo";
 
@@ -168,6 +169,29 @@ function creativeWork(slug: string, lang: Lang): Json | null {
   };
 }
 
+/** مقال — مربوطًا بناشره وبصفحته. */
+function blogPosting(slug: string, lang: Lang): Json | null {
+  const post = findPost(slug, lang) ?? posts.find((p) => p.slug === slug);
+  if (!post) return null;
+  const url = abs(withLang(`/blog/${slug}`, post.lang));
+  return {
+    "@type": "BlogPosting",
+    "@id": `${url}#post`,
+    headline: post.title,
+    description: post.description,
+    inLanguage: post.lang,
+    datePublished: post.date,
+    dateModified: post.updated ?? post.date,
+    author: { "@id": ORG },
+    publisher: { "@id": ORG },
+    isPartOf: { "@id": SITE },
+    mainEntityOfPage: url,
+    keywords: post.tags.join(", "),
+    wordCount: post.readingTime * 180,
+    image: abs(post.cover ?? OG_IMAGE),
+  };
+}
+
 /** أسئلة الصفحة — نفس ما يُعرض حرفيًا، لا نسخة موازية. */
 function faqPage(bare: string, lang: Lang): Json | null {
   const items = faqItemsFor(bare);
@@ -210,6 +234,11 @@ export function graphFor(bare: string, lang: Lang): Json {
     case "workItem": {
       const w = creativeWork(bare.replace("/work/", ""), lang);
       if (w) graph.push(w);
+      break;
+    }
+    case "post": {
+      const p = blogPosting(bare.replace("/blog/", ""), lang);
+      if (p) graph.push(p);
       break;
     }
   }

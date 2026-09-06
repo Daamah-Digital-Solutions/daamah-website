@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build --ssr src/entry-server.tsx --outDir .ssr && vite build",
-    "preview": "vite preview",
-    "icons": "node scripts/icons.mjs"
+    "preview": "node scripts/serve.mjs",
+    "icons": "node scripts/icons.mjs",
+    "new-post": "node scripts/new-post.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",
@@ -15,11 +16,15 @@
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "@tailwindcss/vite": "^4.1.0",
+    "@types/mdx": "^2.0.14",
     "@types/node": "^26.4.1",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "remark-gfm": "^4.0.1",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.9.0",

@@ -10,7 +10,7 @@
     {
       "name": "daamah-preview",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "preview", "--", "--port", "4200"],
+      "runtimeArgs": ["run", "preview", "--", "4200"],
       "port": 4200
     }
   ]

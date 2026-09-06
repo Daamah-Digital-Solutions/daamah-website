@@ -1,0 +1,20 @@
+import type { Bi } from "../../i18n";
+
+/**
+ * تسميات الوسوم — المقال يحمل المفتاح، والعرض يأخذ اسمه من هنا.
+ *
+ * الوسم الذي لا تسمية له يُعرض بمفتاحه، فلا ينكسر شيء إن نُسي —
+ * لكن صفحة الوسم تبقى موجودة، ولهذا يُفضَّل ألّا يُنسى.
+ */
+export const tagLabels: Record<string, Bi> = {
+  seo: { ar: "تحسين محركات البحث", en: "SEO" },
+  branding: { ar: "الهوية البصرية", en: "Branding" },
+  web: { ar: "المواقع", en: "Websites" },
+  ecommerce: { ar: "التجارة الإلكترونية", en: "E-commerce" },
+  marketing: { ar: "التسويق الرقمي", en: "Digital marketing" },
+  saudi: { ar: "السوق السعودي", en: "Saudi market" },
+  pricing: { ar: "التكلفة", en: "Pricing" },
+};
+
+export const tagLabel = (tag: string): Bi =>
+  tagLabels[tag] ?? { ar: tag, en: tag };

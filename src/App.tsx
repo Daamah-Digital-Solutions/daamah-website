@@ -17,6 +17,9 @@ import { ClientStoryPage } from "./pages/ClientStoryPage";
 import { ProcessPage } from "./pages/ProcessPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ContactPage } from "./pages/ContactPage";
+import { BlogPage } from "./pages/BlogPage";
+import { BlogPostPage } from "./pages/BlogPostPage";
+import { BlogTagPage } from "./pages/BlogTagPage";
 import { PrivacyPage } from "./pages/PrivacyPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -41,6 +44,10 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-process`} path={at("process")} element={<ProcessPage />} />,
     <Route key={`${prefix}-packages`} path={at("packages")} element={<PackagesPage />} />,
     <Route key={`${prefix}-contact`} path={at("contact")} element={<ContactPage />} />,
+    <Route key={`${prefix}-blog`} path={at("blog")} element={<BlogPage />} />,
+    /* الوسم قبل المقال: لولا ذلك لالتقط `:slug` كلمة «tag» */
+    <Route key={`${prefix}-blogtag`} path={at("blog/tag/:tag")} element={<BlogTagPage />} />,
+    <Route key={`${prefix}-blogpost`} path={at("blog/:slug")} element={<BlogPostPage />} />,
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
   ];
 }

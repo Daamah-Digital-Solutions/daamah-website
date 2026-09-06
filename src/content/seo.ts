@@ -3,6 +3,7 @@ import { brand, services } from "./home";
 import { clientStories, sectorMeta, workItems } from "./work";
 import {
   aboutPage,
+  blogPage,
   contactPage,
   packagesPage,
   privacyPage,
@@ -12,6 +13,8 @@ import {
   workDetails,
   workPage,
 } from "./pages";
+import { allTags, langsOf, posts } from "./blog";
+import { tagLabel } from "./blog/tags";
 
 /**
  * فهرس المسارات وبيانات رأس كل صفحة.
@@ -35,6 +38,9 @@ export type RouteKind =
   | "work"
   | "workItem"
   | "client"
+  | "blog"
+  | "post"
+  | "tag"
   | "legal";
 
 export type RouteMeta = {
@@ -73,6 +79,58 @@ const home: RouteMeta = {
 function titled(label: Bi): Bi {
   return { ar: `${label.ar} — ${brand.name.ar}`, en: `${label.en} — ${brand.name.en}` };
 }
+
+/**
+ * مسارات المدوّنة — تُشتقّ من الملفات لا تُكتب.
+ *
+ * المقال المكتوب بلغة واحدة يحمل `langs` بها وحدها، فلا يُولَّد له
+ * `hreflang` يَعِد جوجل بنسخةٍ غير موجودة، ولا صفحة فارغة باللغة
+ * الأخرى. عنوان صفحة المقال هو عنوان المقال نفسه لا اسمه ملحقًا
+ * باسم الشركة: العنوان الطويل يُقتطع في النتائج.
+ */
+const blogRoutes: RouteMeta[] = [
+  ...[...new Set(posts.map((p) => p.slug))].map<RouteMeta>((slug) => {
+    const langs = langsOf(slug);
+    const ar = posts.find((p) => p.slug === slug && p.lang === "ar");
+    const en = posts.find((p) => p.slug === slug && p.lang === "en");
+    /* اللغة الغائبة تأخذ نصّ الموجودة: الصفحة لا تُولَّد لها أصلًا،
+       لكن النوع يطلب الوجهين */
+    const any = (ar ?? en)!;
+    return {
+      path: `/blog/${slug}`,
+      title: { ar: (ar ?? any).title, en: (en ?? any).title },
+      description: { ar: (ar ?? any).description, en: (en ?? any).description },
+      priority: 0.7,
+      kind: "post",
+      parent: "/blog",
+      langs,
+      lastmod: any.updated ?? any.date,
+      image: any.cover,
+    };
+  }),
+  /* صفحات الوسوم: تُولَّد للغة التي فيها مقال بذلك الوسم فقط */
+  ...[...new Set(posts.flatMap((p) => p.tags))].map<RouteMeta>((tag) => {
+    const langs = (["ar", "en"] as Lang[]).filter((l) =>
+      allTags(l).some((x) => x.tag === tag),
+    );
+    const label = tagLabel(tag);
+    return {
+      path: `/blog/tag/${tag}`,
+      title: {
+        ar: `${blogPage.tagTitle.ar} ${label.ar} — ${brand.name.ar}`,
+        en: `${blogPage.tagTitle.en} ${label.en} — ${brand.name.en}`,
+      },
+      description: {
+        ar: `مقالات دَعمة عن ${label.ar} — تجربة عملية من مشاريع في السعودية والخليج ومصر.`,
+        en: `Daamah articles on ${label.en} — practical experience from projects across Saudi Arabia, the Gulf, and Egypt.`,
+      },
+      priority: 0.4,
+      kind: "tag",
+      parent: "/blog",
+      langs,
+    };
+  }),
+];
 
 export const routes: RouteMeta[] = [
   home,
@@ -144,6 +202,14 @@ export const routes: RouteMeta[] = [
     priority: 0.9,
     kind: "page",
   },
+  {
+    path: "/blog",
+    title: titled(blogPage.label),
+    description: blogPage.intro,
+    priority: 0.9,
+    kind: "blog",
+  },
+  ...blogRoutes,
   {
     path: "/privacy",
     title: titled(privacyPage.label),

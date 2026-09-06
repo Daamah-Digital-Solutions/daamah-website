@@ -438,6 +438,141 @@ html[lang="ar"] .tag {
   transform: none;
 }
 
+/* ═══════════════════════════════════════════════
+   المقال
+   مكتوب هنا لا بأدوات Tailwind: نصّ MDX يصل بلا فئات، فالتنسيق
+   يجب أن يعلَّق على الوسوم نفسها. والقياسات تتبع نظام الموقع
+   (`.body` و`.h2`) لا نظامًا ثانيًا موازيًا.
+   ═══════════════════════════════════════════════ */
+.article {
+  max-width: 68ch;
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: var(--muted);
+}
+.article[lang="ar"] {
+  line-height: 2.1;
+  font-size: 17px;
+}
+
+.article > * + * {
+  margin-top: 1.35em;
+}
+
+.article h2,
+.article h3 {
+  color: var(--color-ink);
+  font-weight: 500;
+  line-height: 1.35;
+  margin-top: 2.4em;
+  margin-bottom: -0.35em;
+}
+.article[lang="ar"] h2,
+.article[lang="ar"] h3 {
+  font-weight: 600;
+}
+.article h2 {
+  font-size: 1.6em;
+}
+.article h3 {
+  font-size: 1.22em;
+}
+
+.article strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.article a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out-quint);
+}
+.article a:hover {
+  text-decoration-color: var(--color-red);
+}
+
+.article ul,
+.article ol {
+  padding-inline-start: 1.4em;
+}
+.article ul {
+  list-style: disc;
+}
+.article ol {
+  list-style: decimal;
+}
+.article li + li {
+  margin-top: 0.55em;
+}
+.article li::marker {
+  color: var(--color-ink);
+  opacity: 0.35;
+}
+
+.article blockquote {
+  border-inline-start: 2px solid var(--color-red);
+  padding-inline-start: 1.2em;
+  color: var(--color-ink);
+}
+
+/* الجدول يتجاوز عرض النصّ على الشاشات الضيّقة — يمرّر داخل نفسه
+   لا يدفع الصفحة كلّها أفقيًا */
+.article table {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94em;
+}
+.article th,
+.article td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.85em 1em;
+  text-align: start;
+  vertical-align: top;
+}
+.article th {
+  color: var(--color-ink);
+  font-weight: 600;
+  border-bottom-color: var(--line-strong);
+  white-space: nowrap;
+}
+
+/* الشيفرة تُقرأ يسارًا-يمينًا مهما كان اتجاه المقال */
+.article code {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.88em;
+  background: var(--color-paper-2);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.article pre {
+  direction: ltr;
+  overflow-x: auto;
+  background: var(--color-paper-2);
+  padding: 1.2em 1.4em;
+  border-radius: 8px;
+}
+.article pre code {
+  background: none;
+  padding: 0;
+}
+
+.article hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: 2.6em;
+}
+
+.article img {
+  border-radius: 8px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

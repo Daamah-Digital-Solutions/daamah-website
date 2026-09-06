@@ -75,6 +75,7 @@ export const navItems: { href: string; label: Bi }[] = [
   { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
   { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
   { href: "/packages", label: { ar: "باقاتنا", en: "Packages" } },
+  { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
 ];
 
 export const ui = {

@@ -63,22 +63,24 @@ export function phoneFor(market: Phone["market"] = "sa"): Phone {
 export const saudi = {
   since: 2019,
   note: {
-    ar: "نعمل مع شركات سعودية منذ 2019 — عن بُعد بالكامل، وبتسليم يلتزم بتوقيت الرياض.",
-    en: "We have worked with Saudi companies since 2019 — fully remote, delivering on Riyadh time.",
+    ar: "نعمل مع شركات سعودية منذ 2019 — بمواعيد وتسليم على توقيت الرياض.",
+    en: "We have worked with Saudi companies since 2019 — scheduled and delivered on Riyadh time.",
   } as Bi,
 };
 
 export const navItems: { href: string; label: Bi }[] = [
-  { href: "/about", label: { ar: "من نحن", en: "About" } },
-  { href: "/services", label: { ar: "خدماتنا", en: "Services" } },
-  { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
-  { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
+  /* أربعة عناصر: بابا الدخول أوّلًا (الحلول لصاحب المشكلة، الخدمات
+     لمن يعرف خدمته)، ثم الدليل، ثم الناس. «كيف نعمل» اندمجت في
+     «من نحن»، والمدوّنة في الفوتر حتى تبلغ عشرة مقالات. */
   { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
-  { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
+  { href: "/services", label: { ar: "الخدمات", en: "Services" } },
+  { href: "/work", label: { ar: "الأعمال", en: "Work" } },
+  { href: "/about", label: { ar: "من نحن", en: "About" } },
 ];
 
 export const ui = {
-  navCta: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
+  /* النداء يسمّي القناة: «ابدأ مشروعك» لا يقول ما سيحدث عند النقر */
+  navCta: { ar: "تحدّث معنا على واتساب", en: "Message us on WhatsApp" } as Bi,
   menu: { ar: "القائمة", en: "Menu" } as Bi,
   close: { ar: "إغلاق", en: "Close" } as Bi,
   langLabel: { ar: "تغيير اللغة", en: "Change language" } as Bi,
@@ -88,24 +90,36 @@ export const ui = {
   whatsappFab: { ar: "تواصل معنا", en: "Chat with us" } as Bi,
 };
 
+/**
+ * الهيرو: وعدٌ بصيغة النتيجة، لا تعليمة ولا شعار.
+ *
+ * العنوان يحمل العوامل الثلاثة في صيغة ما يحصل عليه العميل — «بحجم
+ * شركتك» ظهور، «يجلب الفرص» وصول، «ولا يُضيّعها» تشغيل — ويفترض أن
+ * الشركة كبيرة، فلا تكلفة كبرياء في قراءته.
+ *
+ * والمُرشد ليس هنا: طلب تشخيص ذاتي من غريب قبل أي مصداقية يقلب
+ * الاختيار مرآةً لا تشخيصًا. الهيرو يعد ويثبت ويفتح الباب، والوضع
+ * يأتي قسمًا ثانيًا برابط «أين تقفون؟».
+ */
 export const hero = {
   status: { ar: "نعمل منذ 2018", en: "Working since 2018" } as Bi,
-  /* السطور مفصولة يدويًا — الكسر جزء من التصميم لا نتيجة له */
   headline: {
-    ar: ["نبني حضورًا رقميًا", "يُرى، ويُفهم،", "ويُختار."],
-    en: ["Presence that gets", "seen, understood,", "and chosen."],
+    ar: ["حضور بحجم شركتك،", "يجلب الفرص ولا يُضيّعها."],
+    en: ["Presence the size of your company —", "that brings opportunities and doesn't lose them."],
   } as Bi<string[]>,
-  /* السطر الأخير يحمل النقطة الحمراء — الأحمر الوحيد في الهيرو */
+  /* الحجّة في سطرين — التفصيل في قسم الحجّة أسفل */
   intro: {
-    ar: "حضور يليق بشركتك، ووصول إلى العملاء المناسبين، ونظام يمسك الفرص قبل أن تضيع — منظومة واحدة تُبنى على فهم سوقك، لا على التخمين.",
-    en: "A presence worthy of your company, reach to the right clients, and a system that holds opportunities before they slip — one system, built on understanding your market rather than guessing at it.",
+    ar: "ثلاثة أجزاء تتضاعف ولا تُجمع: إعلان في موقع ضعيف إنفاقٌ مهدور، وحضور بلا وصول لا يراه أحد، وفرص بلا نظام تضيع. لهذا نبنيها كلّها.",
+    en: "Three parts that multiply rather than add: ads into a weak site are wasted spend, a presence nobody reaches produces nothing, and opportunities with no system are lost. So we build all three.",
   } as Bi,
-  primary: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
-  secondary: { ar: "شاهد أعمالنا", en: "See our work" } as Bi,
-  markets: {
-    ar: "السعودية · الإمارات · مصر · أوروبا",
-    en: "Saudi Arabia · UAE · Egypt · Europe",
+  /* سطر المصداقية — أرقام الشركة الفعلية، بلا تجميل */
+  proof: {
+    ar: "منذ 2018 · أكثر من 150 مشروعًا · أكثر من 100 عميل · السعودية والخليج ومصر وأوروبا",
+    en: "Since 2018 · 150+ projects · 100+ clients · Saudi Arabia, the Gulf, Egypt and Europe",
   } as Bi,
+  primary: { ar: "تحدّث معنا على واتساب", en: "Message us on WhatsApp" } as Bi,
+  /* رابط نصّي إلى المُرشد — الوضع يأتي بعد الوعد لا قبله */
+  secondary: { ar: "أين تقفون اليوم؟", en: "Where do you stand today?" } as Bi,
 };
 
 /** شريط الأعمال أسفل الهيرو — إثبات بصري قبل أي كلام. */
@@ -276,9 +290,10 @@ export const services = {
 export const work = {
   index: "03",
   label: { ar: "أعمالنا", en: "Work" } as Bi,
+  /* ثلاثة مختارة، واحد لكل جزء — والرقم الكامل في صفحة الأعمال */
   lede: {
-    ar: ["أكثر من 150 مشروعًا", "في 10 قطاعات."],
-    en: ["More than 150 projects", "across 10 sectors."],
+    ar: ["ثلاثة أعمال،", "واحد لكل جزء."],
+    en: ["Three pieces of work,", "one for each part."],
   } as Bi<string[]>,
 
   /* المرشِّحان: القطاع أوّلًا — «أفهم مجالك» تسبق «أتقن هذه الخدمة» */
@@ -388,6 +403,9 @@ export const contact = {
 export const footer = {
   tagline: { ar: "الحلول الرقمية وتمكين العلامات", en: "Digital Solutions & Empowering Brands" } as Bi,
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
+  /* المدوّنة في الفوتر لا الملاحة — حتى تبلغ عشرة مقالات */
+  blogTitle: { ar: "المدوّنة", en: "Journal" } as Bi,
+  processTitle: { ar: "كيف نعمل", en: "How we work" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
   saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,

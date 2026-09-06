@@ -24,6 +24,7 @@ export function PageCta({
   placement = "page_cta",
   secondary,
   secondaryHref,
+  offer,
 }: {
   lines?: Bi<string[]>;
   primary?: Bi;
@@ -31,9 +32,12 @@ export function PageCta({
   placement?: string;
   secondary?: Bi;
   secondaryHref?: string;
+  /** العرض الخفيف: نصّ رابط ثانٍ يفتح واتساب برسالة «رابط موقعنا» */
+  offer?: Bi;
 }) {
   const { t } = useLang();
   const href = waHref(t(wa ?? waMessage.general));
+  const offerHref = waHref(t(waMessage.review));
 
   return (
     <section className="bg-ink py-24 text-paper sm:py-32">
@@ -56,6 +60,16 @@ export function PageCta({
           {secondary && secondaryHref && (
             <TextLink href={secondaryHref} className="text-paper/70 hover:text-paper">
               {t(secondary)}
+            </TextLink>
+          )}
+          {offer && (
+            <TextLink
+              href={offerHref}
+              external
+              className="text-paper/70 hover:text-paper"
+              onClick={() => track("whatsapp_click", { placement: `${placement}_review` })}
+            >
+              {t(offer)}
             </TextLink>
           )}
         </Reveal>

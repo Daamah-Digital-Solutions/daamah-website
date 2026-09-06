@@ -36,12 +36,12 @@ export const general: FaqItem[] = [
   },
   {
     q: {
-      ar: "أنا في السعودية وأنتم خارجها — كيف نعمل معًا؟",
-      en: "I'm in Saudi Arabia and you're not — how does that work?",
+      ar: "كيف يتم العمل معكم خطوةً بخطوة؟",
+      en: "How does working with you actually run?",
     },
     a: {
-      ar: "نعمل مع شركات سعودية منذ 2019، والتواصل والتسليم يتمّان عن بُعد بالكامل: اجتماعات بتوقيت الرياض، ومراجعات مكتوبة في كل مرحلة، وملفات تُسلَّم مباشرةً إليك. التعاقد والدفع يتمّان بالتحويل البنكي أو عبر منصّات الدفع المعتادة.",
-      en: "We've worked with Saudi companies since 2019, fully remote: meetings on Riyadh time, written review at every stage, and files delivered straight to you. Contracting and payment go through bank transfer or the usual payment platforms.",
+      ar: "نعمل مع شركات سعودية منذ 2019. اجتماع بداية، ثم مراجعة مكتوبة عند كل مرحلة، ثم تسليم وتدريب — بمواعيد على توقيت الرياض. التعاقد والدفع بالتحويل البنكي أو عبر منصّات الدفع المعتادة.",
+      en: "We've worked with Saudi companies since 2019. A kickoff meeting, written review at every stage, then handover and training — scheduled on Riyadh time. Contracting and payment go through bank transfer or the usual payment platforms.",
     },
   },
   {

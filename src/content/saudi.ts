@@ -136,12 +136,12 @@ export const cityPages: CityPage[] = [
       },
       {
         q: {
-          ar: "أنتم خارج السعودية — كيف تتم الاجتماعات؟",
-          en: "You're outside Saudi Arabia — how do meetings work?",
+          ar: "كيف تتم الاجتماعات والمتابعة؟",
+          en: "How do meetings and follow-up work?",
         },
         a: {
-          ar: "عن بُعد وبتوقيت الرياض. اجتماع بداية، ثم مراجعة مكتوبة عند كل مرحلة، ثم تسليم وتدريب مسجّل. عملنا بهذه الطريقة مع شركات سعودية منذ 2019، والتعاقد والدفع يتمّان بالتحويل البنكي أو عبر منصّات الدفع المعتادة.",
-          en: "Remotely, on Riyadh time. A kickoff call, written review at each stage, then handover with a recorded training session. We've worked this way with Saudi companies since 2019; contracting and payment go by bank transfer or the usual payment platforms.",
+          ar: "على توقيت الرياض. اجتماع بداية، ثم مراجعة مكتوبة عند كل مرحلة، ثم تسليم وتدريب مسجّل. عملنا بهذه الطريقة مع شركات سعودية منذ 2019، والتعاقد والدفع يتمّان بالتحويل البنكي أو عبر منصّات الدفع المعتادة.",
+          en: "On Riyadh time. A kickoff meeting, written review at each stage, then handover with a recorded training session. We've worked this way with Saudi companies since 2019; contracting and payment go by bank transfer or the usual payment platforms.",
         },
       },
       {
@@ -730,8 +730,8 @@ export const saudiHub = {
     en: ["Working with Saudi companies", "since 2019."],
   } as Bi<string[]>,
   intro: {
-    ar: "شركة إماراتية-مصرية، وأغلب عملائنا في السعودية. نعمل عن بُعد بالكامل وبتوقيت الرياض: اجتماع بداية، ومراجعة مكتوبة عند كل مرحلة، وتسليم بملفات مفتوحة وحسابات باسمك. هذه الصفحة تجمع ما نقدّمه للسوق السعودي وأين نعرف تفاصيله.",
-    en: "A UAE–Egyptian company with most of its clients in Saudi Arabia. We work fully remotely on Riyadh time: a kickoff call, written review at every stage, and handover with open files and accounts in your name. This page gathers what we do for the Saudi market and where we know its details.",
+    ar: "شركة عالمية أغلب عملائها في السعودية. نعمل بمواعيد على توقيت الرياض: اجتماع بداية، ومراجعة مكتوبة عند كل مرحلة، وتسليم بملفات مفتوحة وحسابات باسمك. هذه الصفحة تجمع ما نقدّمه للسوق السعودي وأين نعرف تفاصيله.",
+    en: "A global company with most of its clients in Saudi Arabia. We schedule on Riyadh time: a kickoff meeting, written review at every stage, and handover with open files and accounts in your name. This page gathers what we do for the Saudi market and where we know its details.",
   } as Bi,
   trustLabel: { ar: "ما يمكن الاعتماد عليه", en: "What you can rely on" } as Bi,
   trust: [

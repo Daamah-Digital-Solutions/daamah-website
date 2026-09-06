@@ -1,27 +1,40 @@
 import { Hero } from "../sections/Hero";
-import { About } from "../sections/About";
-import { Services } from "../sections/Services";
+import { Selector } from "../sections/Selector";
+import { Argument } from "../sections/Argument";
 import { Work } from "../sections/Work";
-import { Process } from "../sections/Process";
-import { Packages } from "../sections/Packages";
+import { Clients } from "../sections/Clients";
 import { Faq } from "../sections/Faq";
-import { Contact } from "../sections/Contact";
+import { PageCta } from "../components/PageCta";
 
 /**
- * الرئيسية = عرض مختصر لكل قسم، وكل قسم ينتهي برابط إلى صفحته
- * الكاملة. الأقسام هنا ملخّصات لا نسخ من الصفحات.
+ * الرئيسية: وعد ← تشخيص ← حجّة ← دليل ← ناس ← اعتراضات ← باب.
+ *
+ * كانت ثمانية أقسام بترتيب صفحات الملف التعريفي — بروشورًا يعرّف
+ * بالشركة. صارت سبعة أقصر تشخّص الزائر: يفهم الوعد في ثوانٍ، يجد
+ * نفسه في المُرشد، يرى لماذا شركة واحدة، ثم دليلًا، ثم بابين.
+ *
+ * «من نحن» و«كيف نعمل» والعدّادات انتقلت إلى صفحاتها.
  */
 export function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <Services />
+      <Selector />
+      <Argument />
       <Work />
-      <Process />
-      <Packages />
+      <Clients />
       <Faq />
-      <Contact />
+      <PageCta
+        lines={{
+          ar: ["لستم جاهزين", "للكلام بعد؟"],
+          en: ["Not ready", "to talk yet?"],
+        }}
+        placement="home"
+        offer={{
+          ar: "أرسلوا رابط موقعكم أو حسابكم — نرد برأي في سطرين خلال يوم.",
+          en: "Send us your site or account link — we reply with a two-line view within a day.",
+        }}
+      />
     </>
   );
 }

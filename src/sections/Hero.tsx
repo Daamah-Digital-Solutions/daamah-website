@@ -23,13 +23,18 @@ function GridLines() {
   );
 }
 
-/** شريط الأعمال — إثبات بصري متحرّك يغلق الهيرو. */
+/**
+ * شريط الأعمال — إثبات بصري متحرّك يغلق الهيرو.
+ *
+ * بالألوان افتراضيًا: وكالة تصميم تُخفي ألوان شغلها حتى المرور تُخفي
+ * الشغل. والشريط قريب من الطيّة حتى يُرى مع الوعد لا بعده.
+ */
 function WorkStrip() {
   const { t } = useLang();
   const items = [...strip, ...strip]; // نسختان تصنعان حلقة بلا قطع
 
   return (
-    <div className="marquee relative mt-20 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-24">
+    <div className="marquee relative mt-12 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-16">
       {/* تلاشٍ عند الحافتين حتى لا ينقطع الشريط بحدّة */}
       <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent rtl:bg-gradient-to-l" />
       <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent rtl:bg-gradient-to-r" />
@@ -56,7 +61,7 @@ function WorkStrip() {
               priority={i < 2}
               /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
                  بيضاء وتشتعل على خلفية شبه سوداء */
-              className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] group-hover:grayscale-0 dark:brightness-[0.72] dark:group-hover:brightness-100"
+              className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.8] dark:group-hover:brightness-100"
             />
             <figcaption className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
               {t(item.label)}
@@ -68,6 +73,12 @@ function WorkStrip() {
   );
 }
 
+/**
+ * الهيرو: وعد ← سطر مصداقية ← باب واحد ← رابط إلى التشخيص.
+ *
+ * على الموبايل شاشة واحدة: الوعد، والأرقام، وزرّ واتساب، و«أين
+ * تقفون؟» — بلا سكرول للوصول إلى الباب.
+ */
 export function Hero() {
   const { t } = useLang();
 
@@ -88,30 +99,28 @@ export function Hero() {
           </span>
         </div>
 
-        <div className="pt-14 sm:pt-20">
+        <div className="pt-10 sm:pt-16">
           {/* ── سطر الحالة ── */}
-          <Reveal
-            eager
-            className="flex flex-wrap items-center justify-between gap-4 pb-12 sm:pb-16"
-          >
-            <span className="flex items-center gap-2.5">
-              <span className="relative flex size-[7px]">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-red opacity-60" />
-                <span className="relative inline-flex size-full rounded-full bg-red" />
-              </span>
-              <span className="tag text-ink/70">{t(hero.status)}</span>
+          <Reveal eager className="flex items-center gap-2.5 pb-10 sm:pb-14">
+            <span className="relative flex size-[7px]">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-red opacity-60" />
+              <span className="relative inline-flex size-full rounded-full bg-red" />
             </span>
-            <span className="tag text-ink/35">{t(hero.markets)}</span>
+            <span className="tag text-ink/70">{t(hero.status)}</span>
           </Reveal>
 
-          {/* ── العنوان ── */}
+          {/* ── الوعد ── */}
           <MaskLines lines={t(hero.headline)} className="display" accentDot eager />
 
-          {/* ── الخط الفاصل ثم الفقرة والأزرار ── */}
-          <Reveal delay={200} eager className="mt-14 sm:mt-20">
+          {/* ── الخط الفاصل ثم الحجّة في سطرين، والمصداقية، والباب ── */}
+          <Reveal delay={200} eager className="mt-10 sm:mt-16">
             <div className="rule" />
-            <div className="flex flex-col gap-10 pt-8 md:flex-row md:items-start md:justify-between md:gap-16">
-              <p className="body max-w-[52ch] md:flex-1">{t(hero.intro)}</p>
+            <div className="flex flex-col gap-8 pt-7 md:flex-row md:items-start md:justify-between md:gap-16">
+              <div className="md:flex-1">
+                <p className="body max-w-[52ch]">{t(hero.intro)}</p>
+                {/* أرقام الشركة الفعلية — يسار/يمين حسب الاتجاه، بلا عدّاد */}
+                <p className="tag mt-5 text-ink/45">{t(hero.proof)}</p>
+              </div>
 
               <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:shrink-0 md:pt-1">
                 <Btn
@@ -121,7 +130,7 @@ export function Hero() {
                 >
                   {t(hero.primary)}
                 </Btn>
-                <TextLink href="#work">{t(hero.secondary)}</TextLink>
+                <TextLink href="#situations">{t(hero.secondary)}</TextLink>
               </div>
             </div>
           </Reveal>

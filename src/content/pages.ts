@@ -280,13 +280,15 @@ export const serviceDetails: Record<
 /* ── /work ── */
 export const workPage = {
   label: { ar: "أعمالنا", en: "Work" } as Bi,
+  /* العنوان يصالح الرقم مع المعروض: 150+ مشروعًا حقيقة، و16 نموذجًا
+     مختارًا منها — لا «150» فوق عدّاد يقول 16 */
   title: {
-    ar: ["أعمال تتكلّم", "عن نفسها."],
-    en: ["Work that speaks", "for itself."],
+    ar: ["نماذج مختارة", "من أكثر من 150 مشروعًا."],
+    en: ["Selected work", "from over 150 projects."],
   } as Bi<string[]>,
   intro: {
-    ar: "أكثر من 150 مشروعًا في 10 قطاعات منذ 2018 — من المقاولات والعقارات إلى التعليم والتجارة الإلكترونية. هذه نماذج مختارة.",
-    en: "More than 150 projects across 10 sectors since 2018 — from construction and real estate to education and e-commerce. A selection follows.",
+    ar: "منذ 2018، في 10 قطاعات — من المقاولات والعقارات إلى التعليم والتجارة الإلكترونية. اختر مجالك لترى الأقرب إلى شركتك.",
+    en: "Since 2018, across 10 sectors — from construction and real estate to education and e-commerce. Pick your sector to see the closest to your company.",
   } as Bi,
   resultsLabel: { ar: "النتائج", en: "Results" } as Bi,
   sectorLabel: { ar: "القطاع", en: "Sector" } as Bi,
@@ -543,8 +545,8 @@ export const packagesPage = {
     en: ["Start from where you are,", "not from a list of services."],
   } as Bi<string[]>,
   intro: {
-    ar: "أربعة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
-    en: "Four situations we see repeatedly, each with a different answer — read the one closest to yours.",
+    ar: "ثلاثة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
+    en: "Three situations we see repeatedly, each with a different answer — read the one closest to yours.",
   } as Bi,
   ctaLines: {
     ar: ["لستم متأكدين", "أيّها يناسبكم؟"],

@@ -117,6 +117,36 @@ export const waMessage = {
     en: "— our company is in Saudi Arabia and I'd like to know how you could work with us.",
   }),
 
+  /**
+   * العرض الخفيف — لمن ليس جاهزًا للكلام.
+   *
+   * ليس كويزًا ولا نموذجًا: في الخليج الواتساب نفسه هو الخطوة الخفيفة،
+   * والزائر غير الجاهز لا يتجنّب المحادثة بل يسأل صامتًا «هل تستحقّون؟».
+   * رأيٌ في سطرين على موقعه الحالي يجيب ذلك قبل أي التزام.
+   */
+  review: {
+    ar: [
+      "السلام عليكم ورحمة الله وبركاته،",
+      "",
+      "أرغب في رأيكم في حضورنا الحالي قبل أن نقرّر أي شيء.",
+      "",
+      "• رابط الموقع أو الحساب:",
+      "• المجال:",
+      "",
+      "وشكرًا لكم.",
+    ].join("\n"),
+    en: [
+      "Hello,",
+      "",
+      "I'd like your view on our current presence before we decide anything.",
+      "",
+      "• Website or account link:",
+      "• Sector:",
+      "",
+      "Thank you.",
+    ].join("\n"),
+  } as Bi,
+
   /** من صفحة التواصل نفسها */
   contact: compose({
     ar: "وأرغب في التحدّث عن مشروعنا.",

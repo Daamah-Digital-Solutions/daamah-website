@@ -120,16 +120,16 @@ const META: Record<string, Bi> = {
     en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
   },
   "/solutions": {
-    ar: "أربعة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الأساس، الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
-    en: "Four solutions built around your company's situation rather than a service list: Foundation, Presence, Demand, and Operations.",
+    ar: "ثلاثة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
+    en: "Three solutions built around your company's situation rather than a service list: Presence, Demand, and Operations.",
   },
   "/contact": {
     ar: "استشارة أولى مجانية بدون التزام. احكِ لنا عن مشروعك ونرجع لك بخطة واضحة وسعر محدّد — عادةً خلال يوم عمل.",
     en: "A free first consultation, no commitment. Tell us about your project and we'll reply with a clear plan and a firm price — usually within one business day.",
   },
   "/saudi": {
-    ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. عمل عن بُعد بتوقيت الرياض، وتسليم بملفات مفتوحة وحسابات باسمك.",
-    en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Fully remote on Riyadh time, with open files and accounts in your name.",
+    ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. مواعيد على توقيت الرياض، وتسليم بملفات مفتوحة وحسابات باسمك.",
+    en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Riyadh-time scheduling, with open files and accounts in your name.",
   },
   "/clients/adg": {
     ar: "هوية بصرية لشركة عقارات في جورجيا ولبنان، ثم إدارة حضورها على السوشيال — العلامة التي بنيناها هي التي تتكلّم يوميًا.",

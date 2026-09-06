@@ -14,7 +14,15 @@ import type { Bi } from "../i18n";
  * جلسة. عرضه هنا يحوّل الصفحة إلى مقارنة أسعار.
  */
 
-export type SolutionSlug = "foundation" | "presence" | "demand" | "operations";
+/**
+ * ثلاثة حلول = العوامل الثلاثة مصوغةً كأعراض.
+ *
+ * كانت أربعة؛ «الأساس» و«الحضور» تشاركا ثلاثة من أربعة مخرجات (هوية
+ * وملف وموقع) — الفرق سردي لا منتجي، والفصل بينهما هو ما جعل الموقع
+ * يحمل نموذجين (ثلاثة عوامل ≠ أربعة حلول). الدمج يجعل العوامل هي
+ * الأوضاع: وعدٌ في الحجّة، وعَرَضٌ هنا.
+ */
+export type SolutionSlug = "presence" | "demand" | "operations";
 
 /**
  * جزء من محرّك الطلب.
@@ -65,8 +73,8 @@ export const solutions = {
   } as Bi<string[]>,
 
   intro: {
-    ar: "الشركة التي تُبنى من الصفر ليست كالشركة التي يتأخّر حضورها عن سمعتها، ولا كالتي تحتاج أن ينتظم عملها من الداخل. هذه أربعة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
-    en: "A company being built from nothing is not the same as one whose presence lags behind its reputation, nor the same as one that needs its work organised internally. These are four situations we see repeatedly, each with a different answer — read the one closest to yours.",
+    ar: "الشركة التي يتأخّر حضورها عن سمعتها ليست كالتي لا يجلب حضورها فرصًا، ولا كالتي تدخلها الفرص وتضيع. هذه ثلاثة أوضاع نراها متكرّرة في السوق — هي أجزاء الحضور الثلاثة مصوغةً كما يعيشها صاحب الشركة، ولكلٍّ منها حلّ. اقرأ الأقرب إلى وضعكم.",
+    en: "A company whose presence lags behind its reputation is not the same as one whose presence brings no opportunities, nor the same as one where opportunities arrive and get lost. These are three situations we see repeatedly — the three parts of a presence, phrased the way a company owner lives them — each with its own answer. Read the one closest to yours.",
   } as Bi,
 
   /* ── المُرشد ── */
@@ -106,68 +114,21 @@ export const solutions = {
 
   items: [
     {
-      slug: "foundation",
-      no: "01",
-      name: { ar: "الأساس", en: "Foundation" },
-      voice: {
-        ar: "شركتنا في بدايتها، ونريد أن نظهر باحتراف من أول يوم.",
-        en: "We're early, and we want to look established from day one.",
-      },
-      fits: {
-        ar: "شركات في سنتها الأولى أو الثانية، أو شركة قائمة بلا هوية موحّدة.",
-        en: "Companies in their first or second year, or an established one with no coherent identity.",
-      },
-      situation: {
-        ar: "لا يوجد شكل ثابت للشركة: كل عرض سعر بخطّ مختلف، وكل موظّف يرسل ملفًا صمّمه بنفسه. والعميل الأول يحكم عليكم من هذه التفاصيل قبل أن يسمع عرضكم.",
-        en: "There is no fixed look: every quote uses a different typeface, and each employee sends a file they made themselves. Your first client judges you on those details before hearing the offer.",
-      },
-      shift: {
-        ar: "من شركة تبدو مؤقّتة، إلى شركة تبدو مؤسَّسة — قبل أن تكبر فعلًا.",
-        en: "From a company that looks provisional to one that looks established — before it actually grows.",
-      },
-      builds: [
-        {
-          ar: "هوية بصرية متكاملة، بدليل استخدام يمنع اجتهاد كل موظّف.",
-          en: "A complete visual identity, with a usage guide that ends each employee improvising.",
-        },
-        {
-          ar: "ملف تعريفي جاهز للتأهيل وعروض الأسعار.",
-          en: "A company profile ready for qualification files and proposals.",
-        },
-        {
-          ar: "موقع تعريفي يشرح ما تقدّمونه بوضوح، لا أكثر.",
-          en: "A site that explains what you do clearly — and no more than that.",
-        },
-        {
-          ar: "ملفات مفتوحة وحسابات مسجّلة باسم الشركة.",
-          en: "Open source files and accounts registered in the company's name.",
-        },
-      ],
-      outcome: {
-        ar: "شكل واحد ثابت في كل مكان، وملفّ ترسلونه دون أن تعتذروا عنه.",
-        en: "One consistent look everywhere, and a profile you send without apologising for it.",
-      },
-      when: {
-        ar: "لا توجد هوية، أو توجد واحدة لا يلتزم بها أحد.",
-        en: "There is no identity, or one nobody follows.",
-      },
-      services: ["branding", "company-profile", "web-development"],
-    },
-    {
       slug: "presence",
-      no: "02",
+      no: "01",
       name: { ar: "الحضور", en: "Presence" },
+      /* آمنة على الكبرياء: تغطّي الجديد والقائم دون أن يعترف أحد بأنه صغير */
       voice: {
-        ar: "شركتنا قائمة ولها سمعة، لكن حضورها الرقمي لا يعكس حجمها.",
-        en: "We're established with a real reputation, but our digital presence doesn't show it.",
+        ar: "شكلنا أقلّ من حجمنا.",
+        en: "We look smaller than we are.",
       },
       fits: {
-        ar: "شركات لها سجلّ ومشاريع وسمعة، وما يظهر عنها على الإنترنت أقلّ من مستواها.",
-        en: "Companies with a track record and a reputation, whose online presence sits below their level.",
+        ar: "شركات لها سجلّ وسمعة، وما يظهر عنها على الإنترنت أقلّ من مستواها — أو شركة بلا شكل ثابت أصلًا، كل عرض سعر فيها بخطّ مختلف.",
+        en: "Companies with a track record and a reputation whose online presence sits below their level — or one with no fixed look at all, where every quote uses a different typeface.",
       },
       situation: {
-        ar: "السمعة تنتقل بالكلام بين العملاء، ثم يبحث العميل الجديد عن اسمكم فيجد موقعًا قديمًا أو حسابًا متوقّفًا منذ شهور. الفجوة بين الواقع والانطباع تكلّفكم صفقات لا تعرفون أنكم خسرتموها.",
-        en: "Reputation travels by word of mouth, then a new client searches your name and finds a dated site or an account silent for months. The gap between the reality and the impression costs you deals you never knew you lost.",
+        ar: "السمعة تنتقل بالكلام بين العملاء، ثم يبحث العميل الجديد عن اسمكم فيجد موقعًا قديمًا أو حسابًا متوقّفًا منذ شهور، أو ملفًا صمّمه موظّف بنفسه. الفجوة بين الواقع والانطباع تكلّفكم صفقات لا تعرفون أنكم خسرتموها.",
+        en: "Reputation travels by word of mouth, then a new client searches your name and finds a dated site, an account silent for months, or a profile an employee made themselves. The gap between the reality and the impression costs you deals you never knew you lost.",
       },
       shift: {
         ar: "من شركة قويّة على الأرض وضعيفة على الشاشة، إلى حضور يطابق حجمها.",
@@ -175,35 +136,39 @@ export const solutions = {
       },
       builds: [
         {
-          ar: "تحديث الهوية أو إعادة بنائها على أساس السوق لا الذوق.",
-          en: "Refreshing or rebuilding the identity from the market, not from taste.",
+          ar: "هوية تُبنى أو تُحدَّث على أساس السوق لا الذوق، بدليل استخدام يمنع اجتهاد كل موظّف.",
+          en: "An identity built or refreshed from the market rather than taste, with a usage guide that ends each employee improvising.",
         },
         {
           ar: "موقع يعرض المشاريع والسجلّ بالشكل الذي يليق بها.",
           en: "A site that presents the projects and the record as they deserve.",
         },
         {
-          ar: "ملف تعريفي محدّث يصلح للتأهيل والمناقصات.",
-          en: "An updated profile fit for qualification and tenders.",
+          ar: "ملف تعريفي يصلح للتأهيل والمناقصات وعروض الأسعار.",
+          en: "A company profile fit for qualification, tenders and proposals.",
         },
         {
           ar: "حضور منتظم على السوشيال ميديا يثبت أن الشركة تعمل.",
           en: "A steady social presence that proves the company is working.",
         },
+        {
+          ar: "ملفات مفتوحة وحسابات مسجّلة باسم الشركة.",
+          en: "Open source files and accounts registered in the company's name.",
+        },
       ],
       outcome: {
-        ar: "من يبحث عنكم يجد شركة بحجم سمعتها، لا أقلّ.",
-        en: "Whoever searches for you finds a company the size of its reputation.",
+        ar: "من يبحث عنكم يجد شركة بحجم سمعتها، لا أقلّ — وملفًّا ترسلونه دون أن تعتذروا عنه.",
+        en: "Whoever searches for you finds a company the size of its reputation — and a profile you send without apologising for it.",
       },
       when: {
-        ar: "السمعة أكبر ممّا يظهر على الإنترنت.",
-        en: "The reputation is bigger than what shows online.",
+        ar: "السمعة أكبر ممّا يظهر على الإنترنت، أو لا توجد هوية يلتزم بها أحد.",
+        en: "The reputation is bigger than what shows online, or there is no identity anyone follows.",
       },
       services: ["branding", "company-profile", "web-development", "social-media"],
     },
     {
       slug: "demand",
-      no: "03",
+      no: "02",
       name: { ar: "الفرص", en: "Demand" },
       voice: {
         ar: "شكلنا جيّد، لكن الموقع والسوشيال لا يجلبان فرصًا.",
@@ -285,7 +250,7 @@ export const solutions = {
     },
     {
       slug: "operations",
-      no: "04",
+      no: "03",
       name: { ar: "النظام", en: "Operations" },
       voice: {
         ar: "العمل كبر، والمتابعة ما زالت على الواتساب وجداول متفرّقة.",
@@ -373,8 +338,8 @@ export const solutions = {
     colWhen: { ar: "متى تختاره", en: "When to choose it" } as Bi,
     colOutcome: { ar: "ما يتغيّر", en: "What changes" } as Bi,
     note: {
-      ar: "الحلول ليست مراحل متتابعة ولا درجات. شركة عمرها عشرون سنة قد تحتاج «الأساس»، وشركة عمرها سنتان قد تحتاج «النظام». اختر بالوضع لا بالأقدمية.",
-      en: "These are not sequential stages or tiers. A twenty-year-old company may need Foundation; a two-year-old may need Operations. Choose by situation, not seniority.",
+      ar: "الحلول ليست مراحل متتابعة ولا درجات. شركة عمرها عشرون سنة قد تحتاج «الحضور»، وشركة عمرها سنتان قد تحتاج «النظام». اختر بالوضع لا بالأقدمية.",
+      en: "These are not sequential stages or tiers. A twenty-year-old company may need Presence; a two-year-old may need Operations. Choose by situation, not seniority.",
     } as Bi,
   },
 

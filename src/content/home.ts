@@ -62,7 +62,6 @@ export function phoneFor(market: Phone["market"] = "sa"): Phone {
 /** حضورنا في السوق السعودي — إشارات ثقة تتكرّر عبر الصفحات. */
 export const saudi = {
   since: 2019,
-  clients: 40,
   note: {
     ar: "نعمل مع شركات سعودية منذ 2019 — عن بُعد بالكامل، وبتسليم يلتزم بتوقيت الرياض.",
     en: "We have worked with Saudi companies since 2019 — fully remote, delivering on Riyadh time.",
@@ -107,7 +106,6 @@ export const hero = {
     ar: "السعودية · الإمارات · مصر · أوروبا",
     en: "Saudi Arabia · UAE · Egypt · Europe",
   } as Bi,
-  scroll: { ar: "مرّر", en: "Scroll" } as Bi,
 };
 
 /** شريط الأعمال أسفل الهيرو — إثبات بصري قبل أي كلام. */
@@ -174,14 +172,6 @@ export const about = {
 export const services = {
   index: "02",
   label: { ar: "خدماتنا", en: "Services" } as Bi,
-  lede: {
-    ar: ["كل ما تحتاجه شركتك", "تحت سقف واحد."],
-    en: ["Everything your company", "needs, under one roof."],
-  } as Bi<string[]>,
-  body: {
-    ar: "لا نبيع خدمات منفصلة. كل خدمة هنا جزء من منظومة واحدة تخدم هدفًا واحدًا: أن يراك عميلك، ويفهمك، ويختارك.",
-    en: "We don't sell detached services. Each one below is part of a single system serving a single goal: that your customer sees you, understands you, and chooses you.",
-  } as Bi,
   items: [
     {
       no: "01",

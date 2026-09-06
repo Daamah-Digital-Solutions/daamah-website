@@ -1,6 +1,6 @@
 import { useLang } from "../i18n";
 import { solutions } from "../content/solutions";
-import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
+import { Chevron, MaskLines, Reveal, SectionLabel, SmartLink, TextLink, Wrap } from "../components/ui";
 
 /**
  * ملخّص الحلول في الرئيسية.
@@ -28,7 +28,7 @@ export function Packages() {
         <ul className="mt-16 border-t border-[var(--line)] sm:mt-20">
           {solutions.items.map((s, i) => (
             <Reveal key={s.slug} delay={i * 80} as="li" className="group">
-              <a
+              <SmartLink
                 href={`/solutions#${s.slug}`}
                 className="flex flex-col gap-4 border-b border-[var(--line)] py-8 transition-[padding] duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:ps-3 lg:flex-row lg:items-baseline lg:gap-12 lg:py-10"
               >
@@ -44,7 +44,7 @@ export function Packages() {
                 <span className="body max-w-[48ch] lg:flex-1">«{t(s.voice)}»</span>
 
                 <Chevron className="mt-1 hidden h-3 w-auto shrink-0 text-ink/20 transition-colors duration-(--dur-base) group-hover:text-red lg:block" />
-              </a>
+              </SmartLink>
             </Reveal>
           ))}
         </ul>

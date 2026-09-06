@@ -96,13 +96,15 @@ export const aboutPage = {
 /* ── /services ── */
 export const servicesPage = {
   label: { ar: "خدماتنا", en: "Services" } as Bi,
+  /* العدد لا يُكتب في العنوان: كان «سبع» فوق تسع خدمات — كل إضافة
+     خدمة كانت ستكذّبه من جديد */
   title: {
-    ar: ["سبع خدمات،", "منظومة واحدة."],
-    en: ["Seven services,", "one system."],
+    ar: ["شركتك لا تحتاج خدماتٍ أكثر،", "بل أجزاءً تعمل معًا."],
+    en: ["You don't need more services,", "you need parts that work together."],
   } as Bi<string[]>,
   intro: {
-    ar: "لا نبيع خدمات منفصلة. كل خدمة هنا جزء من منظومة تخدم هدفًا واحدًا: أن يراك عميلك، ويفهمك، ويختارك. يمكنك أن تبدأ بواحدة وتوسّع لاحقًا.",
-    en: "We don't sell detached services. Each one is part of a system serving a single goal: that your customer sees you, understands you, and chooses you. Start with one and expand later.",
+    ar: "نبني ما يجعل شركتك تظهر، وتصل، وتعمل بشكل أفضل. كل خدمة هنا جزء من أحد هذه الثلاثة — تبدأ بواحد وتوسّع حين تحتاج.",
+    en: "We build what makes your company appear, reach, and run better. Each service belongs to one of those three — start with one and expand when you need to.",
   } as Bi,
   detailLabel: { ar: "ما يشمله", en: "What's included" } as Bi,
   relatedLabel: { ar: "أعمال من هذه الخدمة", en: "Work from this service" } as Bi,

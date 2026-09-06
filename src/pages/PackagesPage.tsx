@@ -6,7 +6,7 @@ import { track } from "../analytics";
 import { waHref, waMessage } from "../content/whatsapp";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
-import { Btn, Chevron, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
+import { Btn, Chevron, MaskLines, Reveal, SectionLabel, SmartLink, Wrap } from "../components/ui";
 
 /**
  * صفحة الحلول.
@@ -138,12 +138,12 @@ function SolutionBlock({
                 if (!svc) return null;
                 return (
                   <li key={slug}>
-                    <a
+                    <SmartLink
                       href={`/services/${slug}`}
                       className="inline-block rounded-pill border border-[var(--line)] px-3.5 py-1.5 text-[13px] transition-colors duration-(--dur-fast) hover:border-ink"
                     >
                       {t(svc.name)}
-                    </a>
+                    </SmartLink>
                   </li>
                 );
               })}
@@ -207,12 +207,12 @@ function Engine({ parts }: { parts: NonNullable<(typeof solutions.items)[number]
                 if (!svc) return null;
                 return (
                   <li key={slug}>
-                    <a
+                    <SmartLink
                       href={`/services/${slug}`}
                       className="inline-block rounded-pill border border-[var(--line)] px-3 py-1 text-[12.5px] text-ink/70 transition-colors duration-(--dur-fast) hover:border-ink hover:text-ink"
                     >
                       {t(svc.name)}
-                    </a>
+                    </SmartLink>
                   </li>
                 );
               })}

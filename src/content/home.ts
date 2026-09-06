@@ -74,7 +74,7 @@ export const navItems: { href: string; label: Bi }[] = [
   { href: "/services", label: { ar: "خدماتنا", en: "Services" } },
   { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
   { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
-  { href: "/packages", label: { ar: "الحلول", en: "Solutions" } },
+  { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
   { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
 ];
 
@@ -98,8 +98,8 @@ export const hero = {
   } as Bi<string[]>,
   /* السطر الأخير يحمل النقطة الحمراء — الأحمر الوحيد في الهيرو */
   intro: {
-    ar: "هوية بصرية، موقع إلكتروني، ومحتوى يتكلّم عنك — منظومة رقمية واحدة تُبنى على فهم سوقك، لا على التخمين.",
-    en: "Brand identity, websites, and content that speaks for you — one digital system, built on an understanding of your market rather than a guess at it.",
+    ar: "حضور يليق بشركتك، ووصول إلى العملاء المناسبين، ونظام يمسك الفرص قبل أن تضيع — منظومة واحدة تُبنى على فهم سوقك، لا على التخمين.",
+    en: "A presence worthy of your company, reach to the right clients, and a system that holds opportunities before they slip — one system, built on understanding your market rather than guessing at it.",
   } as Bi,
   primary: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
   secondary: { ar: "شاهد أعمالنا", en: "See our work" } as Bi,

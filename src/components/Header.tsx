@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLang, type Lang } from "../i18n";
 import { useTheme } from "../theme";
+import { track } from "../analytics";
+import { waHref, waMessage } from "../content/whatsapp";
 import { brand, navItems, ui } from "../content/home";
 import { Arrow, Btn, Wrap } from "./ui";
 
@@ -182,7 +184,12 @@ export function Header() {
                 وأدوات display في Tailwind تتغلّب بترتيب الملف لا بترتيب
                 الفئات — فـ hidden عليه لا يُخفيه */}
             <span className="hidden md:block">
-              <Btn href="/contact" size="sm">
+              <Btn
+                href={waHref(t(waMessage.general))}
+                external
+                size="sm"
+                onClick={() => track("whatsapp_click", { placement: "header" })}
+              >
                 {t(ui.navCta)}
               </Btn>
             </span>
@@ -234,14 +241,19 @@ export function Header() {
               {t(n.label)}
             </Link>
           ))}
-          <Link
-            to={path("/contact")}
-            onClick={() => setOpen(false)}
+          <a
+            href={waHref(t(waMessage.general))}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              track("whatsapp_click", { placement: "mobile_menu" });
+              setOpen(false);
+            }}
             className="mt-8 inline-flex items-center justify-between rounded-pill bg-ink px-7 py-4 text-[15px] font-medium text-paper"
           >
             {t(ui.navCta)}
             <Arrow className="size-4" />
-          </Link>
+          </a>
         </Wrap>
       </div>
     </>

@@ -93,7 +93,7 @@ export function ServicesPage() {
           en: ["Not sure where", "to begin?"],
         }}
         secondary={{ ar: "اقرأ الحلول", en: "See the solutions" }}
-        secondaryHref="/packages"
+        secondaryHref="/solutions"
       />
     </>
   );

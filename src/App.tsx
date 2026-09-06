@@ -63,7 +63,7 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-workitem`} path={at("work/:slug")} element={<WorkDetailPage />} />,
     <Route key={`${prefix}-client`} path={at("clients/:slug")} element={<ClientStoryPage />} />,
     <Route key={`${prefix}-process`} path={at("process")} element={<ProcessPage />} />,
-    <Route key={`${prefix}-packages`} path={at("packages")} element={<PackagesPage />} />,
+    <Route key={`${prefix}-solutions`} path={at("solutions")} element={<PackagesPage />} />,
     <Route key={`${prefix}-contact`} path={at("contact")} element={<ContactPage />} />,
     <Route key={`${prefix}-blog`} path={at("blog")} element={<BlogPage />} />,
     /* الوسم قبل المقال: لولا ذلك لالتقط `:slug` كلمة «tag» */

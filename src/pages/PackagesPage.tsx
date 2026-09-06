@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLang } from "../i18n";
 import { solutions, type SolutionSlug } from "../content/solutions";
 import { services } from "../content/home";
+import { track } from "../analytics";
+import { waHref, waMessage } from "../content/whatsapp";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { Btn, Chevron, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
@@ -154,7 +156,13 @@ function SolutionBlock({
           </div>
 
           <div className="mt-8">
-            <Btn href={`/contact?package=${s.slug}`}>{t(solutions.cta)}</Btn>
+            <Btn
+              href={waHref(t(waMessage.solution(s.name)))}
+              external
+              onClick={() => track("whatsapp_click", { placement: `solution_${s.slug}` })}
+            >
+              {t(solutions.cta)}
+            </Btn>
           </div>
         </Reveal>
       </div>
@@ -339,6 +347,8 @@ export function PackagesPage() {
       <PageCta
         lines={solutions.closing.lines}
         primary={solutions.closing.primary}
+        wa={waMessage.unsure}
+        placement="solutions_closing"
         secondary={solutions.closing.secondary}
         secondaryHref="/contact"
       />

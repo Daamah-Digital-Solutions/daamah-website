@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { stripLang, useLang } from "../i18n";
-import { phoneFor, ui } from "../content/home";
+import { waHref, waMessage } from "../content/whatsapp";
+import { ui } from "../content/home";
 import { track } from "../analytics";
 
 /** علامة واتساب — مرسومة لا محمّلة، فتتبع لون النص وتبقى حادّة. */
@@ -66,7 +67,7 @@ export function WhatsAppFab() {
 
   return (
     <a
-      href={phoneFor().whatsapp}
+      href={waHref(t(waMessage.general))}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click", { placement: "fab" })}

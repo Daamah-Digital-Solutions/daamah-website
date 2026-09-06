@@ -119,7 +119,7 @@ const META: Record<string, Bi> = {
     ar: "حملات على المنصّات التي يستعملها جمهورك فعلًا، بمتابعة يومية للتكلفة لا شهرية. الاستهداف الدقيق أهمّ من الإنفاق الكبير.",
     en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
   },
-  "/packages": {
+  "/solutions": {
     ar: "أربعة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الأساس، الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
     en: "Four solutions built around your company's situation rather than a service list: Foundation, Presence, Demand, and Operations.",
   },
@@ -249,9 +249,9 @@ export const routes: RouteMeta[] = [
     kind: "page",
   },
   {
-    path: "/packages",
+    path: "/solutions",
     title: titled(packagesPage.label),
-    description: describe("/packages", packagesPage.intro),
+    description: describe("/solutions", packagesPage.intro),
     priority: 0.8,
     kind: "page",
   },

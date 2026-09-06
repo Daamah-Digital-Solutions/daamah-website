@@ -4,6 +4,7 @@ import { workItems } from "../content/work";
 import { cities, citiesForService, cityPages, saudiHub } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { waMessage } from "../content/whatsapp";
 import { WorkCard } from "../components/WorkCard";
 import { Testimonials } from "../sections/Testimonials";
 import {
@@ -134,7 +135,7 @@ export function SaudiHubPage() {
 
       <Testimonials market="sa" />
 
-      <PageCta lines={saudiHub.ctaLines} primaryHref="/contact?market=sa" />
+      <PageCta lines={saudiHub.ctaLines} wa={waMessage.saudi} placement="saudi" />
     </>
   );
 }

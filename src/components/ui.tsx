@@ -255,6 +255,7 @@ export function Btn({
   size = "md",
   external = false,
   className = "",
+  onClick,
 }: {
   href: string;
   children: ReactNode;
@@ -262,6 +263,7 @@ export function Btn({
   size?: "sm" | "md";
   external?: boolean;
   className?: string;
+  onClick?: () => void;
 }) {
   /* النص أبيض صريح فوق الأحمر: `text-paper` ينقلب إلى داكن في
      الوضع الداكن، فيصير نصًّا أسود على أحمر. */
@@ -279,6 +281,7 @@ export function Btn({
     <SmartLink
       href={href}
       external={external}
+      onClick={onClick}
       className={`btn group inline-flex items-center rounded-pill font-medium ${v} ${s} ${className}`}
     >
       <span className="inline-flex items-center gap-2.5">
@@ -295,16 +298,19 @@ export function TextLink({
   children,
   external = false,
   className = "",
+  onClick,
 }: {
   href: string;
   children: ReactNode;
   external?: boolean;
   className?: string;
+  onClick?: () => void;
 }) {
   return (
     <SmartLink
       href={href}
       external={external}
+      onClick={onClick}
       className={`group inline-flex items-center gap-2 text-[14.5px] font-medium ${className}`}
     >
       <span className="ulink">{children}</span>

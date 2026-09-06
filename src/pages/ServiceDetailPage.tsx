@@ -7,6 +7,7 @@ import { workItems, type ServiceKey } from "../content/work";
 import { cityMeta, cityUi, citiesForService } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { waMessage } from "../content/whatsapp";
 import { Chevron, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 import { WorkCard } from "../components/WorkCard";
 
@@ -83,7 +84,7 @@ export function ServiceDetailPage() {
 
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                 <TextLink href="/services">{t(servicesPage.backLabel)}</TextLink>
-                <TextLink href="/packages">
+                <TextLink href="/solutions">
                   {t({ ar: "شاهد الحلول", en: "See the solutions" })}
                 </TextLink>
               </div>
@@ -128,7 +129,8 @@ export function ServiceDetailPage() {
       )}
 
       <PageCta
-        primaryHref={`/contact?service=${slug}`}
+        wa={waMessage.service(service.name)}
+        placement="service"
         secondary={{ ar: "كل الخدمات", en: "All services" }}
         secondaryHref="/services"
       />

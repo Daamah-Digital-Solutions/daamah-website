@@ -1,4 +1,6 @@
 import { useLang } from "../i18n";
+import { track } from "../analytics";
+import { waHref, waMessage } from "../content/whatsapp";
 import { hero, strip } from "../content/home";
 import { Btn, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
@@ -112,7 +114,13 @@ export function Hero() {
               <p className="body max-w-[52ch] md:flex-1">{t(hero.intro)}</p>
 
               <div className="flex flex-wrap items-center gap-x-8 gap-y-4 md:shrink-0 md:pt-1">
-                <Btn href="/contact">{t(hero.primary)}</Btn>
+                <Btn
+                  href={waHref(t(waMessage.general))}
+                  external
+                  onClick={() => track("whatsapp_click", { placement: "hero" })}
+                >
+                  {t(hero.primary)}
+                </Btn>
                 <TextLink href="#work">{t(hero.secondary)}</TextLink>
               </div>
             </div>

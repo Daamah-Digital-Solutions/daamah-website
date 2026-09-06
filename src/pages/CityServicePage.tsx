@@ -12,6 +12,7 @@ import {
 } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { waMessage } from "../content/whatsapp";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { FaqList } from "../components/FaqList";
 import { WorkCard } from "../components/WorkCard";
@@ -156,7 +157,8 @@ export function CityServicePage() {
           en: [`${t(service.name)} ${t(cityInfo.inCity)}?`, "It starts with a call."],
         }}
         primary={cityUi.cta}
-        primaryHref={`/contact?service=${slug}&city=${city}`}
+        wa={waMessage.city(service.name, cityInfo.name)}
+        placement="city"
       />
     </>
   );

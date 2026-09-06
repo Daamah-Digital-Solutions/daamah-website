@@ -1,4 +1,5 @@
 import { useLang } from "../i18n";
+import { waHref, waMessage } from "../content/whatsapp";
 import { brand, contact, phoneFor } from "../content/home";
 import { track } from "../analytics";
 import { Arrow, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
@@ -61,7 +62,7 @@ export function Contact() {
               event="email_click"
             />
             <Channel
-              href={phoneFor().whatsapp}
+              href={waHref(t(waMessage.contact))}
               label={t(contact.whatsappLabel)}
               value={phoneFor().display}
               event="whatsapp_click"

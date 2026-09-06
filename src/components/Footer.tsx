@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n";
+import { waHref, waMessage } from "../content/whatsapp";
 import { brand, footer, navItems, phoneFor } from "../content/home";
 import { Wrap } from "./ui";
 
@@ -90,7 +91,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={tel.whatsapp}
+                  href={waHref(t(waMessage.general))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ltr block text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"

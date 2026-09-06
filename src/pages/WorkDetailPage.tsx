@@ -11,6 +11,7 @@ import {
   workItems,
 } from "../content/work";
 import { PageCta } from "../components/PageCta";
+import { waMessage } from "../content/whatsapp";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
 
@@ -146,11 +147,8 @@ export function WorkDetailPage() {
       {/* النداء يحمل الخدمة، فيصل النموذج وقد اختارها الزائر ضمنًا */}
       <PageCta
         lines={workPage.detailCtaLines}
-        primaryHref={
-          serviceMeta(item.service).page
-            ? `/contact?service=${serviceMeta(item.service).page}`
-            : "/contact"
-        }
+        wa={waMessage.work(item.name)}
+        placement="work_detail"
       />
     </>
   );

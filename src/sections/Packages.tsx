@@ -29,7 +29,7 @@ export function Packages() {
           {solutions.items.map((s, i) => (
             <Reveal key={s.slug} delay={i * 80} as="li" className="group">
               <a
-                href={`/packages#${s.slug}`}
+                href={`/solutions#${s.slug}`}
                 className="flex flex-col gap-4 border-b border-[var(--line)] py-8 transition-[padding] duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:ps-3 lg:flex-row lg:items-baseline lg:gap-12 lg:py-10"
               >
                 <span className="tag ltr nums shrink-0 text-red lg:w-14">{s.no}</span>
@@ -50,7 +50,7 @@ export function Packages() {
         </ul>
 
         <Reveal className="mt-12">
-          <TextLink href="/packages">
+          <TextLink href="/solutions">
             {t({ ar: "اقرأ الحلول كاملةً", en: "Read the solutions in full" })}
           </TextLink>
         </Reveal>

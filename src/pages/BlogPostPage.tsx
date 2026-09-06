@@ -7,6 +7,7 @@ import { findPost, postComponent, posts } from "../content/blog";
 import { tagLabel } from "../content/blog/tags";
 import { services } from "../content/home";
 import { PageCta } from "../components/PageCta";
+import { waMessage } from "../content/whatsapp";
 import { PostList, formatDate } from "../components/PostList";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { NotFoundPage } from "./NotFoundPage";
@@ -119,7 +120,8 @@ export function BlogPostPage() {
 
       <PageCta
         lines={blogPage.ctaLines}
-        primaryHref={service ? `/contact?service=${service.slug}` : "/contact"}
+        wa={service ? waMessage.service(service.name) : waMessage.post({ ar: shown.title, en: shown.title })}
+        placement="blog_post"
         secondary={blogPage.backToBlog}
         secondaryHref="/blog"
       />

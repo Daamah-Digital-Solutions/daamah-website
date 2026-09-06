@@ -112,8 +112,8 @@ const META: Record<string, Bi> = {
     en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
   },
   "/packages": {
-    ar: "نقاط بداية شائعة لا قوالب مغلقة. نبني على حجم مشروعك وسوقك، والسعر يُحدَّد بعد أن نفهم ما تحتاجه.",
-    en: "Common starting points, not closed templates. We build around your project's size and market — the price follows once we understand what you need.",
+    ar: "أربعة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الأساس، الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
+    en: "Four solutions built around your company's situation rather than a service list: Foundation, Presence, Demand, and Operations.",
   },
   "/contact": {
     ar: "استشارة أولى مجانية بدون التزام. احكِ لنا عن مشروعك ونرجع لك بخطة واضحة وسعر محدّد — عادةً خلال يوم عمل.",

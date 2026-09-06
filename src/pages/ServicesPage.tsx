@@ -53,7 +53,7 @@ export function ServicesPage() {
           ar: ["اختر ما يناسبك،", "ودعنا ننفّذ."],
           en: ["Pick what fits,", "we'll handle the rest."],
         }}
-        secondary={{ ar: "شوف الباقات", en: "See packages" }}
+        secondary={{ ar: "اقرأ الحلول", en: "See the solutions" }}
         secondaryHref="/packages"
       />
     </>

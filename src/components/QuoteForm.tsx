@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo, useState, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLang, type Bi } from "../i18n";
-import { brand, packages, phoneFor, services } from "../content/home";
+import { brand, phoneFor, services } from "../content/home";
+import { solutions } from "../content/solutions";
 import { form } from "../content/form";
 import { track } from "../analytics";
 import { sourceLine, utmParams } from "../utm";
@@ -113,7 +114,7 @@ export function QuoteForm() {
     () => [
       {
         label: t(form.fields.interest.packagesGroup),
-        options: packages.items.map((p) => ({ key: p.slug, label: t(p.name) })),
+        options: solutions.items.map((p) => ({ key: p.slug, label: t(p.name) })),
       },
       {
         label: t(form.fields.interest.servicesGroup),

@@ -74,7 +74,7 @@ export const navItems: { href: string; label: Bi }[] = [
   { href: "/services", label: { ar: "خدماتنا", en: "Services" } },
   { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
   { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
-  { href: "/packages", label: { ar: "باقاتنا", en: "Packages" } },
+  { href: "/packages", label: { ar: "الحلول", en: "Solutions" } },
   { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
 ];
 
@@ -348,73 +348,6 @@ export const process = {
    (05) الباقات
    بلا أسعار عمدًا: الباقة تُعرِّف النطاق وتُموضِع الخدمة، والسعر
    يُبنى على المشروع نفسه في المحادثة. `badge` يعلّم الباقة المميّزة.
-   ───────────────────────────────────────────── */
-export const packages = {
-  index: "05",
-  label: { ar: "باقاتنا", en: "Packages" } as Bi,
-  lede: {
-    ar: ["نطاق واضح،", "متّفق عليه قبل البدء."],
-    en: ["A clear scope,", "agreed before we start."],
-  } as Bi<string[]>,
-  body: {
-    ar: "كل باقة تُبنى على حجم مشروعك وسوقك، فالسعر يُحدَّد بعد أن نفهم ما تحتاجه فعلًا. لا بنود مخفية ولا مفاجآت في الفاتورة — كل ما هو داخل الباقة موضّح قبل التوقيع.",
-    en: "Each package is shaped around the size of your project and your market, so the price follows once we understand what you actually need. No hidden line items and no surprises on the invoice.",
-  } as Bi,
-  cta: { ar: "اطلب عرض سعر", en: "Request a quote" } as Bi,
-  note: {
-    ar: "تحتاج شيئًا خارج الباقات؟ احكِ لنا عن مشروعك ونرجع لك بعرض مخصّص.",
-    en: "Need something outside these? Tell us about the project and we'll quote it.",
-  } as Bi,
-  items: [
-    {
-      slug: "identity",
-      no: "01",
-      name: { ar: "الهويــة", en: "Identity" } as Bi,
-      tagline: { ar: "ابدأ شركتك باحتراف", en: "Start out looking established" } as Bi,
-      badge: null as Bi | null,
-      featured: false,
-      features: [
-        { ar: "هوية بصرية كاملة", en: "Full visual identity" } as Bi,
-        { ar: "ملف تعريفي احترافي", en: "Company profile" } as Bi,
-        { ar: "دليل استخدام العلامة", en: "Brand usage guide" } as Bi,
-        { ar: "ملفات مفتوحة Ai + PSD", en: "Open Ai + PSD files" } as Bi,
-      ],
-    },
-    {
-      slug: "full",
-      no: "02",
-      name: { ar: "الباقة المتكاملة", en: "Complete" } as Bi,
-      tagline: { ar: "كل ما تحتاجه شركتك", en: "Everything your company needs" } as Bi,
-      badge: { ar: "الأكثر طلبًا", en: "Most requested" } as Bi | null,
-      featured: true,
-      features: [
-        { ar: "موقع إلكتروني متكامل", en: "Complete website" } as Bi,
-        { ar: "هوية بصرية كاملة", en: "Full visual identity" } as Bi,
-        { ar: "ملف تعريفي احترافي", en: "Company profile" } as Bi,
-        { ar: "شات بوت 24 ساعة", en: "24/7 chatbot" } as Bi,
-      ],
-    },
-    {
-      slug: "website",
-      no: "03",
-      name: { ar: "الموقــع", en: "Website" } as Bi,
-      tagline: { ar: "موقعك الإلكتروني صار ضرورة", en: "A website is no longer optional" } as Bi,
-      badge: null as Bi | null,
-      featured: false,
-      features: [
-        { ar: "موقع إلكتروني متجاوب", en: "Responsive website" } as Bi,
-        { ar: "دومين مجاني", en: "Free domain" } as Bi,
-        { ar: "استضافة مجانية", en: "Free hosting" } as Bi,
-        { ar: "تهيئة أساسية للسيو", en: "Baseline SEO setup" } as Bi,
-      ],
-    },
-  ],
-};
-
-/* ─────────────────────────────────────────────
-   (06) أسئلة متكررة
-   الأسئلة نفسها في `content/faq.ts` — تقرأها الصفحة ومولّد
-   البيانات المنظّمة معًا، فلا يفترق ما يُعرض عمّا يُعلَن.
    ───────────────────────────────────────────── */
 export const faq = {
   index: "06",

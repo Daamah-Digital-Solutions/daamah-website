@@ -34,7 +34,7 @@ export const form = {
       label: { ar: "ما الذي تحتاجه؟", en: "What do you need?" } as Bi,
       placeholder: { ar: "اختر…", en: "Choose…" } as Bi,
       /* مجموعتان في القائمة: باقة جاهزة أو خدمة مفردة */
-      packagesGroup: { ar: "الباقات", en: "Packages" } as Bi,
+      packagesGroup: { ar: "الحلول", en: "Solutions" } as Bi,
       servicesGroup: { ar: "الخدمات", en: "Services" } as Bi,
       other: { ar: "شيء آخر", en: "Something else" } as Bi,
     },

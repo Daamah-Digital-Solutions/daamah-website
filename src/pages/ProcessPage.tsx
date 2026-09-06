@@ -59,7 +59,7 @@ export function ProcessPage() {
           ar: ["خطوات واضحة،", "ونتائج أقوى."],
           en: ["Clear steps,", "stronger results."],
         }}
-        secondary={{ ar: "شوف الباقات", en: "See packages" }}
+        secondary={{ ar: "اقرأ الحلول", en: "See the solutions" }}
         secondaryHref="/packages"
       />
     </>

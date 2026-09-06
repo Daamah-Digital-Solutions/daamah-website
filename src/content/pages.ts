@@ -498,20 +498,20 @@ export const processPage = {
 
 /* ── /packages ── */
 export const packagesPage = {
-  label: { ar: "باقاتنا", en: "Packages" } as Bi,
+  label: { ar: "الحلول", en: "Solutions" } as Bi,
   title: {
-    ar: ["اختر نقطة البداية،", "ووسّع بعدها."],
-    en: ["Pick a starting point,", "expand from there."],
+    ar: ["ابدأ من وضعك،", "لا من قائمة خدمات."],
+    en: ["Start from where you are,", "not from a list of services."],
   } as Bi<string[]>,
   intro: {
-    ar: "الباقات نقاط بداية شائعة لا قوالب مغلقة. نبني على حجم مشروعك وسوقك، والسعر يُحدَّد بعد أن نفهم ما تحتاجه فعلًا.",
-    en: "These are common starting points, not closed templates. We build around the size of your project and your market, and the price follows once we understand what you actually need.",
+    ar: "أربعة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
+    en: "Four situations we see repeatedly, each with a different answer — read the one closest to yours.",
   } as Bi,
   ctaLines: {
-    ar: ["لم تجد ما", "تبحث عنه؟"],
-    en: ["Not finding", "what you need?"],
+    ar: ["لستم متأكدين", "أيّها يناسبكم؟"],
+    en: ["Not sure which", "one fits you?"],
   } as Bi<string[]>,
-  ctaPrimary: { ar: "اطلب عرضًا مخصّصًا", en: "Request a custom quote" } as Bi,
+  ctaPrimary: { ar: "احجز جلسة تحديد النطاق", en: "Book a scoping call" } as Bi,
 };
 
 /* ── /contact ── */

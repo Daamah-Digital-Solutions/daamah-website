@@ -120,8 +120,8 @@ const META: Record<string, Bi> = {
     en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
   },
   "/solutions": {
-    ar: "ثلاثة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
-    en: "Three solutions built around your company's situation rather than a service list: Presence, Demand, and Operations.",
+    ar: "أربعة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الأساس، الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
+    en: "Four solutions built around your company's situation rather than a service list: Foundation, Presence, Demand, and Operations.",
   },
   "/contact": {
     ar: "استشارة أولى مجانية بدون التزام. احكِ لنا عن مشروعك ونرجع لك بخطة واضحة وسعر محدّد — عادةً خلال يوم عمل.",

@@ -69,18 +69,16 @@ export const saudi = {
 };
 
 export const navItems: { href: string; label: Bi }[] = [
-  /* أربعة عناصر: بابا الدخول أوّلًا (الحلول لصاحب المشكلة، الخدمات
-     لمن يعرف خدمته)، ثم الدليل، ثم الناس. «كيف نعمل» اندمجت في
-     «من نحن»، والمدوّنة في الفوتر حتى تبلغ عشرة مقالات. */
-  { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
-  { href: "/services", label: { ar: "الخدمات", en: "Services" } },
-  { href: "/work", label: { ar: "الأعمال", en: "Work" } },
   { href: "/about", label: { ar: "من نحن", en: "About" } },
+  { href: "/services", label: { ar: "خدماتنا", en: "Services" } },
+  { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
+  { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
+  { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
+  { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
 ];
 
 export const ui = {
-  /* النداء يسمّي القناة: «ابدأ مشروعك» لا يقول ما سيحدث عند النقر */
-  navCta: { ar: "تحدّث معنا على واتساب", en: "Message us on WhatsApp" } as Bi,
+  navCta: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
   menu: { ar: "القائمة", en: "Menu" } as Bi,
   close: { ar: "إغلاق", en: "Close" } as Bi,
   langLabel: { ar: "تغيير اللغة", en: "Change language" } as Bi,
@@ -390,9 +388,6 @@ export const contact = {
 export const footer = {
   tagline: { ar: "الحلول الرقمية وتمكين العلامات", en: "Digital Solutions & Empowering Brands" } as Bi,
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
-  /* المدوّنة في الفوتر لا الملاحة — حتى تبلغ عشرة مقالات */
-  blogTitle: { ar: "المدوّنة", en: "Journal" } as Bi,
-  processTitle: { ar: "كيف نعمل", en: "How we work" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
   saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,

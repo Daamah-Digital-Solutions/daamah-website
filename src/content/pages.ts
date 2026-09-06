@@ -545,8 +545,8 @@ export const packagesPage = {
     en: ["Start from where you are,", "not from a list of services."],
   } as Bi<string[]>,
   intro: {
-    ar: "ثلاثة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
-    en: "Three situations we see repeatedly, each with a different answer — read the one closest to yours.",
+    ar: "أربعة أوضاع نراها متكرّرة في السوق، لكلٍّ منها حلّ مختلف — اقرأ الأقرب إلى وضعكم.",
+    en: "Four situations we see repeatedly, each with a different answer — read the one closest to yours.",
   } as Bi,
   ctaLines: {
     ar: ["لستم متأكدين", "أيّها يناسبكم؟"],

@@ -68,22 +68,6 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  to={path("/process")}
-                  className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
-                >
-                  {t(footer.processTitle)}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={path("/blog")}
-                  className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
-                >
-                  {t(footer.blogTitle)}
-                </Link>
-              </li>
-              <li>
-                <Link
                   to={path("/privacy")}
                   className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
                 >

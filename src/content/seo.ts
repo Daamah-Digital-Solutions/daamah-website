@@ -96,12 +96,20 @@ const META: Record<string, Bi> = {
     en: "Since 2018 Daamah has turned companies' ideas into a clear digital presence, working across Egypt, the Gulf, and Europe.",
   },
   "/services": {
-    ar: "هوية بصرية، مواقع، سوشيال ميديا، تسويق رقمي، شراء إعلانات، وسيو — ست خدمات تعمل كمنظومة واحدة.",
-    en: "Branding, websites, social media, digital marketing, media buying, and SEO — six services that work as one system.",
+    ar: "خدمات دَعمة في ثلاثة عوامل: الظهور وبناء الثقة، والوصول وخلق الفرص، وتنظيم العمل والنمو — هوية ومواقع وسيو وإعلانات وأنظمة CRM.",
+    en: "Daamah's services across three factors: appearing and earning trust, reaching and creating demand, and running the work — branding, websites, SEO, ads, and CRM.",
   },
   "/services/branding": {
     ar: "نظام هوية كامل — لون وخطّ وأسلوب صورة ونبرة — مبنيّ على فهم سوقك. يشمل دليل استخدام وملفات مفتوحة.",
     en: "A complete identity system — colour, type, image style, and tone — built from your market. Includes a usage guide and open files.",
+  },
+  "/services/company-profile": {
+    ar: "ملف تعريفي يُقرأ في خمس دقائق ويصلح للتأهيل والعروض — مكتوب ومصمّم على هويّتكم، عربي وإنجليزي.",
+    en: "A company profile read in five minutes that holds up in qualification files — written and designed on your identity, in Arabic and English.",
+  },
+  "/services/crm": {
+    ar: "نظام CRM مهيّأ على طريقة عملكم: مراحل بيع واضحة، ومسؤول لكل مرحلة، وتقارير تقرأها الإدارة بلا وسيط.",
+    en: "A CRM shaped to how you work: clear sales stages, an owner for each, and reports management reads without a middleman.",
   },
   "/services/seo": {
     ar: "تدقيق تقني، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا، ومحتوى عربي يُنشر بانتظام. نتائج تقنية خلال أسابيع، وترتيب خلال 4–9 أشهر.",

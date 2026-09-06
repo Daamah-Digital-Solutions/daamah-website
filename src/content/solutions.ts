@@ -16,6 +16,21 @@ import type { Bi } from "../i18n";
 
 export type SolutionSlug = "foundation" | "presence" | "demand" | "operations";
 
+/**
+ * جزء من محرّك الطلب.
+ *
+ * «الفرص» لا تُعرض قائمةَ خدمات: تُعرض أربعة أسئلة يعرف صاحب الشركة
+ * أيّها يفشل عنده. الخدمة تُذكر بعد سؤالها، فيفهم لماذا يحتاجها —
+ * ولماذا السيو والإعلانات معًا: أحدهما يلتقط طلبًا قائمًا، والآخر
+ * يصنع طلبًا لم يوجد بعد.
+ */
+export type EnginePart = {
+  question: Bi;
+  answer: Bi;
+  /** مفاتيح خدمات — الربط بالمفتاح لا بالنسخ */
+  services: string[];
+};
+
 export type Solution = {
   slug: SolutionSlug;
   no: string;
@@ -35,6 +50,10 @@ export type Solution = {
   outcome: Bi;
   /** متى تختاره — لجدول التوجيه */
   when: Bi;
+  /** خدمات هذا الحلّ — تُربط بصفحاتها */
+  services: string[];
+  /** محرّك الطلب — في «الفرص» وحدها، يحلّ محلّ `builds` في العرض */
+  engine?: EnginePart[];
 };
 
 export const solutions = {
@@ -71,6 +90,19 @@ export const solutions = {
   outcomeLabel: { ar: "النتيجة", en: "The outcome" } as Bi,
 
   cta: { ar: "اطلب نطاق عمل لهذا الحلّ", en: "Request a scope for this" } as Bi,
+
+  /** رأس قسم الخدمات داخل كل حلّ */
+  toolsLabel: { ar: "الخدمات التي نستخدمها", en: "The services we use" } as Bi,
+  engineLabel: { ar: "منظومة الطلب", en: "The demand engine" } as Bi,
+  engineNote: {
+    ar: "الطلب لا يأتي من قناة واحدة. أربعة أسئلة، وأيّها يفشل عندكم هو ما نبدأ به.",
+    en: "Demand doesn't come from one channel. Four questions — whichever fails for you is where we start.",
+  } as Bi,
+  ongoingLabel: { ar: "طور مستمرّ", en: "Ongoing" } as Bi,
+  ongoingNote: {
+    ar: "هذا الحلّ الوحيد الذي لا ينتهي عند التسليم: بعد أن تعمل المنظومة، يبدأ التحسين الشهري على ما تُظهره الأرقام.",
+    en: "This is the one solution that doesn't end at handover: once the engine runs, monthly optimisation starts from what the numbers show.",
+  } as Bi,
 
   items: [
     {
@@ -119,6 +151,7 @@ export const solutions = {
         ar: "لا توجد هوية، أو توجد واحدة لا يلتزم بها أحد.",
         en: "There is no identity, or one nobody follows.",
       },
+      services: ["branding", "company-profile", "web-development"],
     },
     {
       slug: "presence",
@@ -166,6 +199,7 @@ export const solutions = {
         ar: "السمعة أكبر ممّا يظهر على الإنترنت.",
         en: "The reputation is bigger than what shows online.",
       },
+      services: ["branding", "company-profile", "web-development", "social-media"],
     },
     {
       slug: "demand",
@@ -189,20 +223,54 @@ export const solutions = {
       },
       builds: [
         {
-          ar: "إعادة بناء الموقع حول خطوة واحدة يطلبها من الزائر.",
-          en: "Rebuilding the site around a single step it asks the visitor to take.",
+          ar: "منظومة طلب من أربعة أجزاء، نبدأ بالجزء الذي يفشل عندكم.",
+          en: "A four-part demand engine — we start with the part that fails for you.",
+        },
+      ],
+      engine: [
+        {
+          question: {
+            ar: "هل يجدكم من يبحث عنكم الآن؟",
+            en: "Do those searching for you now find you?",
+          },
+          answer: {
+            ar: "طلبٌ قائم بالفعل: أناس يكتبون خدمتكم في جوجل اليوم. إن لم تظهروا لهم، فالمنافس يأخذهم — وهم أرخص عميل ممكن لأنهم يبحثون أصلًا.",
+            en: "Demand that already exists: people typing your service into Google today. If you don't appear, a competitor takes them — and they are the cheapest client possible because they are already looking.",
+          },
+          services: ["seo", "media-buying"],
         },
         {
-          ar: "محتوى سوشيال ميديا يخاطب المشتري لا الجمهور العام.",
-          en: "Social content addressed to the buyer, not to a general audience.",
+          question: {
+            ar: "هل يعرفكم من لم يبحث عنكم بعد؟",
+            en: "Do those who haven't searched yet know you?",
+          },
+          answer: {
+            ar: "أكثر من يحتاجكم لا يبحث اليوم. هؤلاء لا يُلتقَطون، بل يُصنَع طلبهم: محتوى يظهر أمامهم قبل أن ينتبهوا أنهم يحتاجونكم.",
+            en: "Most of those who need you are not searching today. They cannot be captured — their demand is created: content that reaches them before they realise they need you.",
+          },
+          services: ["social-media", "media-buying", "digital-marketing"],
         },
         {
-          ar: "صفحات مخصّصة لكل خدمة أو مدينة تستهدفونها.",
-          en: "Dedicated pages for each service or city you target.",
+          question: {
+            ar: "هل يتحوّل الاهتمام إلى تواصل؟",
+            en: "Does interest turn into contact?",
+          },
+          answer: {
+            ar: "الزيارة التي لا تنتهي بخطوة إنفاقٌ ضائع. الصفحة التي يصل إليها الزائر يجب أن تطلب منه شيئًا واحدًا واضحًا، لا أن تعرض كل شيء.",
+            en: "A visit that ends in nothing is wasted spend. The page a visitor lands on must ask one clear thing of them, not display everything.",
+          },
+          services: ["web-development"],
         },
         {
-          ar: "قياس يصل إلى مصدر كل طلب، لا إلى عدد الزيارات.",
-          en: "Measurement that reaches the source of each enquiry, not the visit count.",
+          question: {
+            ar: "هل تعرفون ما الذي يعمل فعلًا؟",
+            en: "Do you know what is actually working?",
+          },
+          answer: {
+            ar: "بلا قياس يصل إلى مصدر كل طلب، الإنفاق تخمين. ومع القياس تُنقل الميزانية إلى ما يُنتج وتُوقَف عمّا لا يُنتج — وهذا هو الجزء الذي لا ينتهي.",
+            en: "Without measurement that reaches the source of each enquiry, spend is guesswork. With it, budget moves to what produces and stops where it doesn't — and this is the part that never ends.",
+          },
+          services: ["performance-marketing", "digital-marketing"],
         },
       ],
       outcome: {
@@ -213,6 +281,7 @@ export const solutions = {
         ar: "الحضور موجود، والطلبات غائبة.",
         en: "The presence is there; the enquiries are not.",
       },
+      services: ["seo", "social-media", "media-buying", "web-development", "performance-marketing", "digital-marketing"],
     },
     {
       slug: "operations",
@@ -260,6 +329,7 @@ export const solutions = {
         ar: "العملاء أكثر ممّا يُتابَع بالذاكرة.",
         en: "There are more clients than memory can follow.",
       },
+      services: ["crm"],
     },
   ] satisfies Solution[] as Solution[],
 

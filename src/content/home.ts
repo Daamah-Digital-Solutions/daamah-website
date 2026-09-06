@@ -195,6 +195,16 @@ export const services = {
     },
     {
       no: "02",
+      slug: "company-profile",
+      name: { ar: "الملف التعريفي", en: "Company Profile" } as Bi,
+      en: "Company Profile",
+      desc: {
+        ar: "ملف يعرّف شركتك ويصلح للتأهيل والعروض — مكتوب ليُقرأ، لا ليُصفّ فيه كل شيء.",
+        en: "A profile that introduces your company and holds up in qualification files — written to be read, not to list everything.",
+      } as Bi,
+    },
+    {
+      no: "03",
       slug: "web-development",
       name: { ar: "تطوير المواقع", en: "Web Development" } as Bi,
       en: "Web Development",
@@ -204,7 +214,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "03",
+      no: "04",
       slug: "seo",
       name: { ar: "تحسين محركات البحث", en: "SEO" } as Bi,
       en: "SEO",
@@ -214,7 +224,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "04",
+      no: "05",
       slug: "social-media",
       name: { ar: "إدارة السوشيال ميديا", en: "Social Media" } as Bi,
       en: "Social Media",
@@ -224,7 +234,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "05",
+      no: "06",
       slug: "digital-marketing",
       name: { ar: "التسويق الرقمي", en: "Digital Marketing" } as Bi,
       en: "Digital Marketing",
@@ -234,7 +244,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "06",
+      no: "07",
       slug: "media-buying",
       name: { ar: "شراء المساحات الإعلانية", en: "Media Buying" } as Bi,
       en: "Media Buying",
@@ -244,13 +254,23 @@ export const services = {
       } as Bi,
     },
     {
-      no: "07",
+      no: "08",
       slug: "performance-marketing",
       name: { ar: "تسويق الأداء", en: "Performance Marketing" } as Bi,
       en: "Performance Marketing",
       desc: {
         ar: "تحسين مستمر للأداء لتحقيق أعلى عائد ممكن من كل ريال تنفقه.",
         en: "Continuous optimisation to get the highest possible return on every unit you spend.",
+      } as Bi,
+    },
+    {
+      no: "09",
+      slug: "crm",
+      name: { ar: "أنظمة إدارة الشركات", en: "CRM & Internal Systems" } as Bi,
+      en: "CRM & Systems",
+      desc: {
+        ar: "نظام يعرف حالة كل عميل وكل طلب — مهيّأ على طريقة عملكم لا على قالب جاهز.",
+        en: "A system that knows every client and every request — shaped to how you work, not to a template.",
       } as Bi,
     },
   ],

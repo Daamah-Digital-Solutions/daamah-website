@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLang } from "../i18n";
 import { solutions, type SolutionSlug } from "../content/solutions";
+import { services } from "../content/home";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { Btn, Chevron, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
@@ -126,6 +127,27 @@ function SolutionBlock({
             ))}
           </ul>
 
+          {/* الخدمات المستعملة — روابط لا شروح: الشرح يعيش في صفحتها */}
+          <div className="mt-8 border-t border-[var(--line)] pt-6">
+            <p className="tag text-ink/40">{t(solutions.toolsLabel)}</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {s.services.map((slug) => {
+                const svc = services.items.find((x) => x.slug === slug);
+                if (!svc) return null;
+                return (
+                  <li key={slug}>
+                    <a
+                      href={`/services/${slug}`}
+                      className="inline-block rounded-pill border border-[var(--line)] px-3.5 py-1.5 text-[13px] transition-colors duration-(--dur-fast) hover:border-ink"
+                    >
+                      {t(svc.name)}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
           <div className="mt-8 bg-paper-2 p-6">
             <p className="tag text-ink/40">{t(solutions.outcomeLabel)}</p>
             <p className="mt-3 text-[17px] font-medium leading-relaxed">{t(s.outcome)}</p>
@@ -136,7 +158,70 @@ function SolutionBlock({
           </div>
         </Reveal>
       </div>
+
+      {s.engine && <Engine parts={s.engine} />}
     </section>
+  );
+}
+
+/**
+ * منظومة الطلب — أربعة أسئلة لا أربع خدمات.
+ *
+ * السؤال أولًا، ثم سببه، ثم الخدمة التي تجيبه. هكذا يفهم صاحب الشركة
+ * لماذا السيو والإعلانات معًا بدل أن يقرأهما بندين في قائمة.
+ */
+function Engine({ parts }: { parts: NonNullable<(typeof solutions.items)[number]["engine"]> }) {
+  const { t } = useLang();
+
+  return (
+    <div className="mt-16 border-t border-[var(--line)] pt-12">
+      <Reveal>
+        <SectionLabel>{t(solutions.engineLabel)}</SectionLabel>
+        <p className="body mt-5 max-w-[52ch]">{t(solutions.engineNote)}</p>
+      </Reveal>
+
+      <ol className="mt-10 grid border-s border-t border-[var(--line)] lg:grid-cols-2">
+        {parts.map((part, i) => (
+          <Reveal
+            key={part.question.en}
+            delay={(i % 2) * 90}
+            as="li"
+            className="border-b border-e border-[var(--line)] p-7 sm:p-8"
+          >
+            <span className="tag ltr nums text-red">{String(i + 1).padStart(2, "0")}</span>
+            <h3 className="mt-5 max-w-[26ch] text-[19px] font-medium leading-snug sm:text-[21px]">
+              {t(part.question)}
+            </h3>
+            <p className="body mt-4 max-w-[46ch]">{t(part.answer)}</p>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {part.services.map((slug) => {
+                const svc = services.items.find((x) => x.slug === slug);
+                if (!svc) return null;
+                return (
+                  <li key={slug}>
+                    <a
+                      href={`/services/${slug}`}
+                      className="inline-block rounded-pill border border-[var(--line)] px-3 py-1 text-[12.5px] text-ink/70 transition-colors duration-(--dur-fast) hover:border-ink hover:text-ink"
+                    >
+                      {t(svc.name)}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+        ))}
+      </ol>
+
+      {/* الطور المستمرّ — يقال صراحةً لأنه يميّز هذا الحلّ وحده */}
+      <Reveal className="mt-8 flex flex-wrap items-baseline gap-x-4 gap-y-2 bg-paper-2 p-6">
+        <span className="tag flex items-center gap-2 text-red">
+          <Chevron count={2} className="h-2.5 w-auto" />
+          {t(solutions.ongoingLabel)}
+        </span>
+        <p className="body max-w-[62ch] flex-1">{t(solutions.ongoingNote)}</p>
+      </Reveal>
+    </div>
   );
 }
 

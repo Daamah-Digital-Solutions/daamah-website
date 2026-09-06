@@ -112,6 +112,41 @@ export const serviceDetails: Record<
   string,
   { intro: Bi; includes: Bi[]; deliverables: Bi[] }
 > = {
+  "company-profile": {
+    intro: {
+      ar: "الملف التعريفي ليس كتيّبًا يجمع كل ما تفعلونه. هو وثيقة تُقرأ في خمس دقائق قبل اجتماع أو داخل ملف تأهيل، فتترك انطباعًا بأن أمام القارئ شركة منظّمة تعرف ما تقول.",
+      en: "A company profile is not a booklet listing everything you do. It is a document read in five minutes before a meeting or inside a qualification file, leaving the reader with the impression of an organised company that knows what it is saying.",
+    },
+    includes: [
+      { ar: "ترتيب المحتوى بحسب ما يبحث عنه القارئ لا بحسب تاريخكم", en: "Content ordered by what the reader looks for, not by your history" },
+      { ar: "كتابة النصوص: من أنتم، وماذا تقدّمون، ولماذا أنتم", en: "Writing: who you are, what you offer, and why you" },
+      { ar: "عرض المشاريع والسجلّ بأرقام حيث توجد", en: "Projects and record presented with numbers where they exist" },
+      { ar: "تصميم على هويّتكم البصرية، عربي وإنجليزي", en: "Designed on your identity, in Arabic and English" },
+    ],
+    deliverables: [
+      { ar: "نسخة للطباعة ونسخة للإرسال بحجم أخفّ", en: "A print version and a lighter one for sending" },
+      { ar: "نسخة قابلة للتحديث دون العودة إلينا", en: "A version you can update without coming back to us" },
+      { ar: "ملفات مفتوحة", en: "Open source files" },
+    ],
+  },
+  crm: {
+    intro: {
+      ar: "النظام لا يُشترى، يُهيَّأ. نبدأ من طريقة عملكم الحالية — كيف يصل العميل، ومن يتابعه، ومتى يُعتبر الطلب مغلقًا — ثم نبني عليها نظامًا يعرف حالة كل عميل، بدل أن نجبركم على قالب جاهز.",
+      en: "A system isn't bought, it's shaped. We start from how you already work — how a client arrives, who follows up, when a request counts as closed — then build a system that knows every client's state, instead of forcing you into a template.",
+    },
+    includes: [
+      { ar: "قراءة مسار العميل عندكم كما هو اليوم", en: "Reading your client journey exactly as it runs today" },
+      { ar: "مراحل بيع واضحة، ولكل مرحلة مسؤول بالاسم", en: "Clear sales stages, each with an owner by name" },
+      { ar: "نقل بيانات العملاء الحالية من الجداول والمحادثات", en: "Migrating existing client data out of sheets and chats" },
+      { ar: "تنبيهات للمتابعة حتى لا تُنسى صفقة", en: "Follow-up reminders so no deal is forgotten" },
+      { ar: "تقارير تقرأها الإدارة بلا وسيط", en: "Reports management can read without a middleman" },
+    ],
+    deliverables: [
+      { ar: "نظام مهيّأ وجاهز للاستخدام", en: "A configured, working system" },
+      { ar: "تدريب الفريق على استعماله", en: "Team training on how to use it" },
+      { ar: "متابعة معكم في الشهر الأول", en: "We stay with you through the first month" },
+    ],
+  },
   branding: {
     intro: {
       ar: "الهوية ليست لوجو. هي نظام كامل — لون وخطّ وأسلوب صورة ونبرة — يجعل شركتك تُعرَف قبل أن يُقرأ اسمها. نبنيها من فهم سوقك لا من ذوق المصمّم.",

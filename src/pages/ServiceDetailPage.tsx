@@ -2,6 +2,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useLang } from "../i18n";
 import { services } from "../content/home";
 import { servicesPage, serviceDetails, workPage } from "../content/pages";
+import { areaOf, areas } from "../content/areas";
 import { workItems, type ServiceKey } from "../content/work";
 import { cityMeta, cityUi, citiesForService } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
@@ -30,6 +31,7 @@ export function ServiceDetailPage() {
   // مسار غير معروف: تحويل إلى قائمة الخدمات بدل صفحة فارغة
   if (!service || !detail) return <Navigate to={path("/services")} replace />;
 
+  const area = areaOf(slug);
   const key = RELATED[slug];
   const related = key ? workItems.filter((w) => w.service === key).slice(0, 3) : [];
   const inCities = citiesForService(slug);
@@ -37,7 +39,7 @@ export function ServiceDetailPage() {
   return (
     <>
       <PageHero
-        label={`${t(servicesPage.label)} · ${service.en}`}
+        label={`${area ? t(area.name) : t(servicesPage.label)} · ${service.en}`}
         title={[t(service.name)]}
         intro={t(detail.intro)}
       />
@@ -70,8 +72,20 @@ export function ServiceDetailPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-10">
+              {/* الرجوع إلى السردية: هذه الخدمة جزء من عامل، والعامل
+                  جزء من حلّ — الزائر القادم من جوجل يدخل محادثة أوسع */}
+              {area && (
+                <div className="mt-10 border-t border-[var(--line)] pt-6">
+                  <p className="tag text-ink/40">{t(areas.label)}</p>
+                  <p className="mt-3 text-[15.5px] leading-relaxed">{t(area.promise)}</p>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                 <TextLink href="/services">{t(servicesPage.backLabel)}</TextLink>
+                <TextLink href="/packages">
+                  {t({ ar: "شاهد الحلول", en: "See the solutions" })}
+                </TextLink>
               </div>
             </Reveal>
           </div>

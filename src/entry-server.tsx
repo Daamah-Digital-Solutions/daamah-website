@@ -36,6 +36,9 @@ export async function render(url: string): Promise<string> {
 export { routes, SITE_URL, OG_IMAGE, findRoute } from "./content/seo";
 export { postsIn } from "./content/blog";
 export { graphFor } from "./seo/schema";
+/* اسم الموقع بلغته — كان ثابتًا بالعربية في القالب، فيظهر
+   اسمٌ عربي عند مشاركة أي صفحة إنجليزية */
+export { name as siteName } from "./content/brandName";
 export { withLang } from "./i18n";
 export type { Lang } from "./i18n";
 export type { RouteMeta } from "./content/seo";

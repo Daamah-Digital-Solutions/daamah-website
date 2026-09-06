@@ -158,7 +158,7 @@ function prerender(): Plugin {
       const outDir = "dist";
       const entry = pathToFileURL(resolve(".ssr/entry-server.js")).href;
       const ssr = await import(/* @vite-ignore */ entry);
-      const { routes, SITE_URL, OG_IMAGE, graphFor, withLang } = ssr;
+      const { routes, SITE_URL, OG_IMAGE, graphFor, withLang, siteName } = ssr;
 
       const template = readFileSync(join(outDir, "index.html"), "utf8");
       const urls: string[] = [];
@@ -215,6 +215,7 @@ function prerender(): Plugin {
           `<meta property="og:description" content="${esc(desc)}" />`,
           `<meta property="og:url" content="${url}" />`,
           `<meta property="og:locale" content="${lang === "ar" ? "ar_AR" : "en_US"}" />`,
+            `<meta property="og:site_name" content="${esc(siteName[lang])}" />`,
           `<meta property="og:image" content="${image}" />`,
           `<meta property="og:image:width" content="1200" />`,
           `<meta property="og:image:height" content="630" />`,

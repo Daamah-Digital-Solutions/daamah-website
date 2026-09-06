@@ -76,6 +76,7 @@ export function Seo() {
     meta("property", "og:description", desc);
     meta("property", "og:url", url);
     meta("property", "og:locale", lang === "ar" ? "ar_AR" : "en_US");
+    meta("property", "og:site_name", t(brand.name));
     meta("property", "og:image", `${SITE_URL}${OG_IMAGE}`);
     meta("name", "twitter:card", "summary_large_image");
     meta("name", "twitter:title", title);

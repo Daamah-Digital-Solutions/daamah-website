@@ -383,6 +383,41 @@ html[lang="ar"] .tag {
   transform: none;
 }
 
+/* ── ما هو داخل الشاشة أصلًا ──
+   الصفحات تصل مرسومةً من البناء، فالمحتوى الأعلى مرئيّ قبل أن يعمل
+   جافاسكربت. انتظار IntersectionObserver هنا يعني ومضة: يظهر العنوان
+   ثم يختفي ليدخل. الحركة بـ CSS تبدأ مع أول رسم، ولو لم تُفعَّل
+   `.anim-ready` بقي المحتوى ظاهرًا كما هو. */
+/* النهاية مكتوبة صراحةً لا متروكة للقيمة الأصلية: قاعدة القناع
+   أعلاه تضع `translateY(110%)` على كل `.mask > span`، فلو غابت
+   `to` لحُسبت نهاية الحركة من تلك القيمة نفسها — أي حركة من 110%
+   إلى 110%، ويبقى السطر مخفيًا إلى الأبد. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mask-in {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.anim-ready .reveal-eager {
+  animation: reveal-in var(--dur-reveal) var(--ease-out-quint) both;
+}
+.anim-ready .mask-eager .mask > span {
+  animation: mask-in var(--dur-hero) var(--ease-out-quint) both;
+}
+
 /* كشف السطر من خلف قناع — لسطور العنوان الضخم.
    البنية (block + overflow) غير مشروطة: لو ارتبط التخطيط بفئة
    الحركة لانهار العنوان إلى سطر واحد حين لا تُفعَّل الحركة. */
@@ -401,40 +436,6 @@ html[lang="ar"] .tag {
 }
 .anim-ready .in .mask > span {
   transform: none;
-}
-
-/* ── لحظة الدخول ──
-   ستارة بلون الصفحة نفسه فوق المحتوى، ثم تنزلق لأعلى.
-   المحتوى موجود في DOM طوال الوقت — الستارة طبقة فوقه لا بديل
-   عنه، فلا يتأثر الزحف ولا القراءة الآلية. */
-.intro {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  background: var(--color-paper);
-  transition: transform var(--dur-slow) var(--ease-out-quint);
-}
-.intro[data-leaving="true"] {
-  transform: translateY(-101%);
-}
-
-/* الشيفرونات تدخل واحدًا تلو الآخر — تأخير كل واحد من التسلسل */
-.intro-chev {
-  opacity: 0;
-  transform: translateX(-14px);
-  animation: chev-in 520ms var(--ease-out-quint) forwards;
-}
-[dir="rtl"] .intro-chev {
-  transform: translateX(14px);
-}
-
-@keyframes chev-in {
-  to {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

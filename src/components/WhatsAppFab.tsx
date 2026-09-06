@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { stripLang, useLang } from "../i18n";
-import { brand, ui } from "../content/home";
+import { phoneFor, ui } from "../content/home";
 import { track } from "../analytics";
 
 /** علامة واتساب — مرسومة لا محمّلة، فتتبع لون النص وتبقى حادّة. */
@@ -66,7 +66,7 @@ export function WhatsAppFab() {
 
   return (
     <a
-      href={brand.whatsapp}
+      href={phoneFor().whatsapp}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click", { placement: "fab" })}

@@ -1,12 +1,9 @@
-import { useCallback, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EN_PREFIX, LangProvider } from "./i18n";
 import { ThemeProvider } from "./theme";
-import { MotionGate } from "./motion";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { WhatsAppFab } from "./components/WhatsAppFab";
-import { Intro, shouldPlayIntro } from "./components/Intro";
 import { ScrollManager } from "./components/Routing";
 import { Seo } from "./components/Seo";
 import { Analytics } from "./components/Analytics";
@@ -20,6 +17,7 @@ import { ClientStoryPage } from "./pages/ClientStoryPage";
 import { ProcessPage } from "./pages/ProcessPage";
 import { PackagesPage } from "./pages/PackagesPage";
 import { ContactPage } from "./pages/ContactPage";
+import { PrivacyPage } from "./pages/PrivacyPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 /**
@@ -43,38 +41,43 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-process`} path={at("process")} element={<ProcessPage />} />,
     <Route key={`${prefix}-packages`} path={at("packages")} element={<PackagesPage />} />,
     <Route key={`${prefix}-contact`} path={at("contact")} element={<ContactPage />} />,
+    <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
   ];
 }
 
-export default function App() {
-  // يُحسم مرّة عند أول رسم: لو تغيّر لاحقًا لانطلقت اللحظة في منتصف التصفّح
-  const [playIntro] = useState(shouldPlayIntro);
-  const [introDone, setIntroDone] = useState(!playIntro);
-  const onIntroDone = useCallback(() => setIntroDone(true), []);
-
+/**
+ * كل ما داخل الموجّه — بلا `BrowserRouter`.
+ *
+ * مفصولٌ عن `App` لأن التوليد المسبق وقت البناء يلفّ الشجرة نفسها
+ * بـ `StaticRouter` بدل موجّه المتصفح. الشجرة واحدة في الحالتين،
+ * فلا يمكن أن يختلف ما يراه الزاحف عمّا يراه الزائر.
+ */
+export function Shell() {
   return (
     <ThemeProvider>
-      <BrowserRouter>
-        <LangProvider>
-          <ScrollManager />
-          <Seo />
-          <Analytics />
-          {/* الحركة لا تبدأ قبل أن ترتفع الستارة */}
-          <MotionGate started={introDone}>
-            {playIntro && !introDone && <Intro onDone={onIntroDone} />}
-            <Header />
-            <main>
-              <Routes>
-                {pageRoutes(EN_PREFIX)}
-                {pageRoutes("")}
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            </main>
-            <Footer />
-            <WhatsAppFab />
-          </MotionGate>
-        </LangProvider>
-      </BrowserRouter>
+      <LangProvider>
+        <ScrollManager />
+        <Seo />
+        <Analytics />
+        <Header />
+        <main>
+          <Routes>
+            {pageRoutes(EN_PREFIX)}
+            {pageRoutes("")}
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+        <Footer />
+        <WhatsAppFab />
+      </LangProvider>
     </ThemeProvider>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Shell />
+    </BrowserRouter>
   );
 }

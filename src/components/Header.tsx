@@ -83,7 +83,6 @@ function LangSwitch({ compact = false }: { compact?: boolean }) {
 
 export function Header() {
   const { t, path } = useLang();
-  const { theme } = useTheme();
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -127,15 +126,25 @@ export function Header() {
             aria-label={t(brand.name)}
             className="shrink-0 transition-opacity duration-300 hover:opacity-60"
           >
-            {/* الوردمارك أسود مسطّح — يحتاج نسخة فاتحة على خلفية داكنة */}
+            {/* الوردمارك أسود مسطّح — يحتاج نسخة فاتحة على خلفية داكنة.
+                النسختان معًا وCSS يختار: لو اعتمد `src` على حالة الثيم
+                لاختلف ما يرسمه المتصفح عمّا وُلِّد وقت البناء. */}
             <img
-              src={theme === "dark" ? "/assets/logo-wordmark-light.png" : "/assets/logo-wordmark.png"}
+              src="/assets/logo-wordmark.png"
               alt={t(brand.name)}
               /* المقاس الأصلي — منه يحسب المتصفح العرض قبل التحميل
                  فلا يقفز ما بعده في الشريط */
               width={2035}
               height={544}
-              className="h-[19px] w-auto sm:h-[21px]"
+              className="h-[19px] w-auto sm:h-[21px] dark:hidden"
+            />
+            <img
+              src="/assets/logo-wordmark-light.png"
+              alt=""
+              aria-hidden="true"
+              width={2035}
+              height={544}
+              className="hidden h-[19px] w-auto sm:h-[21px] dark:block"
             />
           </Link>
 

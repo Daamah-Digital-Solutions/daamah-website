@@ -1,5 +1,5 @@
 import { useLang } from "../i18n";
-import { brand, contact } from "../content/home";
+import { brand, contact, phoneFor } from "../content/home";
 import { contactPage } from "../content/pages";
 import { form } from "../content/form";
 import { PageHero } from "../components/PageHero";
@@ -81,9 +81,9 @@ export function ContactPage() {
                     event="email_click"
                   />
                   <Channel
-                    href={brand.whatsapp}
+                    href={phoneFor().whatsapp}
                     label={t(contact.whatsappLabel)}
-                    value={brand.phone}
+                    value={phoneFor().display}
                     event="whatsapp_click"
                     external
                   />

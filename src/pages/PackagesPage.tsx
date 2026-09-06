@@ -1,5 +1,6 @@
 import { useLang } from "../i18n";
 import { faq, packages } from "../content/home";
+import { general as generalFaq } from "../content/faq";
 import { packagesPage } from "../content/pages";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
@@ -78,7 +79,7 @@ export function PackagesPage() {
             <SectionLabel>{t(faq.label)}</SectionLabel>
           </Reveal>
           <dl className="mt-12 grid gap-x-16 gap-y-10 lg:grid-cols-2">
-            {faq.items.slice(0, 4).map((item, i) => (
+            {generalFaq.slice(0, 4).map((item, i) => (
               <Reveal key={item.q.en} delay={(i % 2) * 90}>
                 <dt className="text-[17px] font-medium leading-snug">{t(item.q)}</dt>
                 <dd className="body mt-3 max-w-[52ch]">{t(item.a)}</dd>

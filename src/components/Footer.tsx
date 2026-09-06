@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n";
-import { useTheme } from "../theme";
-import { brand, footer, navItems } from "../content/home";
+import { brand, footer, navItems, phoneFor } from "../content/home";
 import { Wrap } from "./ui";
 
 export function Footer() {
   const { t, path } = useLang();
-  const { theme } = useTheme();
+  const tel = phoneFor();
 
   return (
     <footer className="bg-ink text-paper">
@@ -14,17 +13,23 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-10">
           {/* العلامة */}
           <div className="lg:col-span-5">
-            {/* الفوتر يقلب الورق والحبر، فنسخة اللوجو تنعكس مع السمة */}
+            {/* الفوتر يقلب الورق والحبر، فنسخة اللوجو تنعكس مع السمة.
+                النسختان معًا وCSS يختار — لا حالة جافاسكربت في الاختيار،
+                كي يطابق ما يرسمه المتصفح ما وُلِّد وقت البناء. */}
             <img
-              src={
-                theme === "dark"
-                  ? "/assets/logo-wordmark.png"
-                  : "/assets/logo-wordmark-light.png"
-              }
+              src="/assets/logo-wordmark-light.png"
               alt={t(brand.name)}
               width={2035}
               height={544}
-              className="h-[22px] w-auto"
+              className="h-[22px] w-auto dark:hidden"
+            />
+            <img
+              src="/assets/logo-wordmark.png"
+              alt=""
+              aria-hidden="true"
+              width={2035}
+              height={544}
+              className="hidden h-[22px] w-auto dark:block"
             />
             <p className="tag mt-5 text-paper/35">{t(footer.tagline)}</p>
             <p className="body mt-8 max-w-[34ch] !text-paper/45">{t(brand.name)}</p>
@@ -52,6 +57,14 @@ export function Footer() {
                   {t(footer.contactTitle)}
                 </Link>
               </li>
+              <li>
+                <Link
+                  to={path("/privacy")}
+                  className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
+                >
+                  {t(footer.privacyTitle)}
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -69,12 +82,12 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={brand.whatsapp}
+                  href={tel.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ltr block text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
                 >
-                  {brand.phone}
+                  {tel.display}
                 </a>
               </li>
             </ul>
@@ -102,7 +115,9 @@ export function Footer() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-paper/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="tag text-paper/30">
-            © <span className="ltr nums">{new Date().getFullYear()}</span>{" "}
+            {/* سنة البناء لا سنة المتصفح: ساعة الزائر قد تخالف الخادم،
+                فيختلف ما يُرسم عمّا وُلِّد */}
+            © <span className="ltr nums">{__BUILD_YEAR__}</span>{" "}
             {t(brand.short)} — {t(footer.rights)}
           </p>
           <a

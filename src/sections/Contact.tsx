@@ -1,5 +1,5 @@
 import { useLang } from "../i18n";
-import { brand, contact } from "../content/home";
+import { brand, contact, phoneFor } from "../content/home";
 import { track } from "../analytics";
 import { Arrow, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
 
@@ -61,9 +61,9 @@ export function Contact() {
               event="email_click"
             />
             <Channel
-              href={brand.whatsapp}
+              href={phoneFor().whatsapp}
               label={t(contact.whatsappLabel)}
-              value={brand.phone}
+              value={phoneFor().display}
               event="whatsapp_click"
               external
             />

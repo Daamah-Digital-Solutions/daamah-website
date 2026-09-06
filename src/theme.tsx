@@ -37,7 +37,20 @@ function read(): Theme {
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(read);
+  /**
+   * يبدأ فاتحًا على الخادم وعلى العميل معًا، ثم يُقرأ الواقع بعد
+   * أول رسم.
+   *
+   * لا يجوز أن تختلف أول شجرة يرسمها المتصفح عن تلك المرسومة وقت
+   * البناء، وإلا رمى React الصفحة الجاهزة وأعاد رسمها. لا وميض في
+   * ذلك: السكربت المضمّن في `index.html` سبق أن ضبط `data-theme`
+   * قبل أول رسم، والألوان كلها معلّقة عليه لا على هذه الحالة.
+   */
+  const [theme, setThemeState] = useState<Theme>("light");
+
+  useEffect(() => {
+    setThemeState((document.documentElement.dataset.theme as Theme | undefined) ?? read());
+  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;

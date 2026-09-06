@@ -84,7 +84,10 @@ export function Hero() {
 
         <div className="pt-14 sm:pt-20">
           {/* ── سطر الحالة ── */}
-          <Reveal className="flex flex-wrap items-center justify-between gap-4 pb-12 sm:pb-16">
+          <Reveal
+            eager
+            className="flex flex-wrap items-center justify-between gap-4 pb-12 sm:pb-16"
+          >
             <span className="flex items-center gap-2.5">
               <span className="relative flex size-[7px]">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-red opacity-60" />
@@ -96,10 +99,10 @@ export function Hero() {
           </Reveal>
 
           {/* ── العنوان ── */}
-          <MaskLines lines={t(hero.headline)} className="display" accentDot />
+          <MaskLines lines={t(hero.headline)} className="display" accentDot eager />
 
           {/* ── الخط الفاصل ثم الفقرة والأزرار ── */}
-          <Reveal delay={200} className="mt-14 sm:mt-20">
+          <Reveal delay={200} eager className="mt-14 sm:mt-20">
             <div className="rule" />
             <div className="flex flex-col gap-10 pt-8 md:flex-row md:items-start md:justify-between md:gap-16">
               <p className="body max-w-[52ch] md:flex-1">{t(hero.intro)}</p>

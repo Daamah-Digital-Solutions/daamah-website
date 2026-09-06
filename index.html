@@ -4,16 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>دَعمة للحلول الرقمية | Daamah Digital Solutions</title>
     <meta name="description" content="دَعمة للحلول الرقمية — منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج وأوروبا: هوية بصرية، مواقع، سوشيال ميديا، وتسويق رقمي يحقق نتائج." />
     <meta name="theme-color" content="#fbfaf8" />
     <!--
-      اللغة والسمة تُطبَّقان قبل أول رسم — قبل الـ CSS وقبل React.
-      بدونهما يومض الاتجاه من RTL إلى LTR، وتومض الخلفية البيضاء قبل
+      اللغة والسمة والحركة تُطبَّق قبل أول رسم — قبل الـ CSS وقبل React.
+      بدونها يومض الاتجاه من RTL إلى LTR، وتومض الخلفية البيضاء قبل
       الوضع الداكن.
 
       اللغة تُقرأ من المسار لا من التخزين: `/en/...` إنجليزية وما عداها
       عربية. هذا هو مصدر الحقيقة نفسه الذي يستعمله i18n.tsx.
+
+      وبعد أن صارت الصفحات تصل مرسومةً من البناء، صار لا بدّ أن تُفتح
+      بوّابة الحركة هنا لا في main.tsx: المحتوى مرئيّ قبل أن تُحمَّل
+      الحزمة، فلو انتظرنا جافاسكربت لظهر ثم قفز ليدخل.
     -->
     <script>
       (function () {
@@ -35,6 +41,29 @@
           }
         } catch (e) {
           el.dataset.theme = "light";
+        }
+
+        /* المحتوى ظاهر افتراضيًا؛ هذه الفئة هي ما يسمح للحركات بالعمل.
+           لا نفعّلها والصفحة مخفية: الحركات لن تبدأ أصلًا فيبقى ما
+           يعتمد عليها غير مرئي — من يفتح الموقع في تبويب خلفي كان
+           يفقد كل الحركات، فننتظر أول ظهور للصفحة. */
+        try {
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            var on = function () {
+              el.classList.add("anim-ready");
+            };
+            if (document.visibilityState === "visible") {
+              on();
+            } else {
+              document.addEventListener("visibilitychange", function once() {
+                if (document.visibilityState !== "visible") return;
+                document.removeEventListener("visibilitychange", once);
+                on();
+              });
+            }
+          }
+        } catch (e) {
+          /* بلا حركة — المحتوى ظاهر على أي حال */
         }
       })();
     </script>

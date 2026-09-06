@@ -517,6 +517,87 @@ export const contactPage = {
   } as Bi,
   responseLabel: { ar: "زمن الرد", en: "Response time" } as Bi,
   response: { ar: "خلال يوم عمل", en: "Within one business day" } as Bi,
+  /* الأسواق مرتّبة بالأولوية: السعودية أولًا، وبتوقيتها.
+     «أوقات العمل» بلا منطقة زمنية سؤالٌ مفتوح لعميل في الرياض. */
+  regionsLabel: { ar: "أين نعمل", en: "Where we work" } as Bi,
+  regions: [
+    {
+      key: "sa",
+      label: { ar: "السعودية", en: "Saudi Arabia" } as Bi,
+      hours: { ar: "الأحد – الخميس · 9ص – 6م", en: "Sunday – Thursday · 9am – 6pm" } as Bi,
+      tz: { ar: "بتوقيت الرياض", en: "Riyadh time" } as Bi,
+    },
+    {
+      key: "ae",
+      label: { ar: "الإمارات", en: "UAE" } as Bi,
+      hours: { ar: "الأحد – الخميس · 9ص – 6م", en: "Sunday – Thursday · 9am – 6pm" } as Bi,
+      tz: { ar: "بتوقيت دبي", en: "Dubai time" } as Bi,
+    },
+    {
+      key: "eg",
+      label: { ar: "مصر", en: "Egypt" } as Bi,
+      hours: { ar: "الأحد – الخميس · 9ص – 6م", en: "Sunday – Thursday · 9am – 6pm" } as Bi,
+      tz: { ar: "بتوقيت القاهرة", en: "Cairo time" } as Bi,
+    },
+  ],
+};
+
+/* ── سياسة الخصوصية ──
+   صفحة لازمة لا تجميلية: سياسات Google Ads وMeta تشترط رابط خصوصية
+   على أي موقع يشغّل وسومهما، وبدونها تُرفض الحملة. */
+export const privacyPage = {
+  label: { ar: "الخصوصية", en: "Privacy" } as Bi,
+  title: {
+    ar: ["كيف نتعامل", "مع بياناتك."],
+    en: ["How we handle", "your data."],
+  } as Bi<string[]>,
+  intro: {
+    ar: "صفحة قصيرة تشرح ما نجمعه ولماذا. باختصار: لا نبيع بياناتك، ولا نجمع منها إلا ما يلزم للرد عليك وقياس أداء الموقع.",
+    en: "A short page on what we collect and why. In brief: we don't sell your data, and we collect only what's needed to reply to you and measure how the site performs.",
+  } as Bi,
+  updatedLabel: { ar: "آخر تحديث", en: "Last updated" } as Bi,
+  updated: { ar: "سبتمبر 2026", en: "September 2026" } as Bi,
+  sections: [
+    {
+      title: { ar: "ما الذي نجمعه", en: "What we collect" } as Bi,
+      body: {
+        ar: "ما تكتبه بنفسك في نموذج طلب عرض السعر: الاسم، والشركة، ورقم التواصل، ونوع الخدمة، والميزانية التقديرية، ونصّ رسالتك. لا حقول مخفية ولا جمع خارج ما تراه أمامك.",
+        en: "Whatever you type into the quote form yourself: name, company, contact number, service type, estimated budget, and your message. No hidden fields and nothing collected beyond what you see.",
+      } as Bi,
+    },
+    {
+      title: { ar: "إلى أين يذهب", en: "Where it goes" } as Bi,
+      body: {
+        ar: "النموذج لا يمرّ بخادم لنا: يفتح واتساب برسالة جاهزة ترسلها أنت إلى الرقم المعلن. أي بيانات ترسلها تخضع بعدها لسياسة خصوصية واتساب أيضًا.",
+        en: "The form doesn't pass through a server of ours: it opens WhatsApp with a prepared message that you send to the published number. Anything you send is then also covered by WhatsApp's own privacy policy.",
+      } as Bi,
+    },
+    {
+      title: { ar: "القياس والكوكيز", en: "Analytics and cookies" } as Bi,
+      body: {
+        ar: "نستخدم Google Analytics و Meta Pixel لقياس عدد الزيارات ومصادرها وأي الصفحات تُقرأ. القياس لا يعمل إطلاقًا إذا كان متصفحك يرسل إشارة «عدم التتبّع» أو Global Privacy Control — نفحصها قبل تحميل أي وسم.",
+        en: "We use Google Analytics and the Meta Pixel to measure visits, their sources, and which pages get read. None of it loads at all if your browser sends Do Not Track or Global Privacy Control — we check before loading any tag.",
+      } as Bi,
+    },
+    {
+      title: { ar: "حقوقك", en: "Your rights" } as Bi,
+      body: {
+        ar: "يمكنك أن تطلب حذف أي بيانات أرسلتها إلينا، أو نسخةً منها، برسالة إلى بريدنا. نستجيب خلال أسبوع على الأكثر ولا نطلب سببًا.",
+        en: "You can ask us to delete anything you've sent, or for a copy of it, by emailing us. We respond within a week at most and don't ask for a reason.",
+      } as Bi,
+    },
+    {
+      title: { ar: "روابط خارجية", en: "External links" } as Bi,
+      body: {
+        ar: "الموقع يشير إلى حساباتنا على إنستجرام وفيسبوك وإلى واتساب. ما يحدث بعد مغادرتك الموقع تحكمه سياسات تلك المنصّات لا سياستنا.",
+        en: "The site links to our Instagram and Facebook accounts and to WhatsApp. What happens after you leave the site is governed by those platforms' policies, not ours.",
+      } as Bi,
+    },
+  ],
+  contactNote: {
+    ar: "لأي سؤال عن الخصوصية أو طلب حذف بيانات، راسلنا على:",
+    en: "For any privacy question or a deletion request, email us at:",
+  } as Bi,
 };
 
 /* ── 404 ── */

@@ -127,6 +127,11 @@ function prerenderMeta(): Plugin {
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), verification(), prerenderMeta()],
+  define: {
+    /* سنة البناء لا سنة جهاز الزائر — ساعته قد تخالف، فيختلف ما
+       يرسمه المتصفح عمّا وُلِّد وقت البناء */
+    __BUILD_YEAR__: new Date().getFullYear(),
+  },
   resolve: {
     alias: { "@": new URL("./src/", import.meta.url).pathname },
   },

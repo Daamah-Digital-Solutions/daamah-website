@@ -9,7 +9,6 @@ import {
 } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n";
-import { useMotionStarted } from "../motion";
 
 /** مسار داخلي في الموقع — لا مِرساة ولا رابط خارجي. */
 function isRoute(href: string) {
@@ -73,11 +72,10 @@ export function Wrap({
   );
 }
 
-/** يبلّغ متى دخل العنصر الشاشة — مرّة واحدة، وبعد أن تُفتح بوّابة الحركة. */
+/** يبلّغ متى دخل العنصر الشاشة — مرّة واحدة. */
 function useInView<T extends HTMLElement>(threshold = 0.15) {
   const ref = useRef<T | null>(null);
   const [seen, setSeen] = useState(false);
-  const started = useMotionStarted();
 
   useEffect(() => {
     const el = ref.current;
@@ -99,22 +97,38 @@ function useInView<T extends HTMLElement>(threshold = 0.15) {
     return () => io.disconnect();
   }, [threshold]);
 
-  return [ref, seen && started] as const;
+  return [ref, seen] as const;
 }
 
-/** يكشف المحتوى عند دخوله الشاشة. */
+/**
+ * يكشف المحتوى عند دخوله الشاشة.
+ *
+ * `eager` لما هو داخل الشاشة أصلًا عند التحميل: يتحرّك بـ CSS فور
+ * الرسم بدل انتظار IntersectionObserver — وهو الذي لا يبلّغ إلا بعد
+ * أن يعمل جافاسكربت. مع التوليد المسبق يصل المحتوى مرسومًا قبل ذلك،
+ * فانتظار المراقب يعني ومضة يظهر فيها الهيرو ثم يختفي ليدخل.
+ */
 export function Reveal({
   children,
   delay = 0,
   className = "",
   as = "div",
+  eager = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: ElementType;
+  eager?: boolean;
 }) {
   const [ref, seen] = useInView<HTMLElement>();
+  if (eager) {
+    return createElement(
+      as,
+      { className: `reveal-eager ${className}`, style: { animationDelay: `${delay}ms` } },
+      children,
+    );
+  }
   return createElement(
     as,
     {
@@ -136,24 +150,30 @@ export function MaskLines({
   className = "",
   stagger = 95,
   accentDot = false,
+  eager = false,
 }: {
   lines: readonly string[];
   as?: ElementType;
   className?: string;
   stagger?: number;
   accentDot?: boolean;
+  /** لعناوين أعلى الطية — تصعد بـ CSS فور الرسم. */
+  eager?: boolean;
 }) {
   const [ref, seen] = useInView<HTMLElement>(0.2);
 
   return createElement(
     as,
-    { ref, className: `${seen ? "in" : ""} ${className}` },
+    eager
+      ? { className: `mask-eager ${className}` }
+      : { ref, className: `${seen ? "in" : ""} ${className}` },
     lines.map((line, i) => {
       const last = i === lines.length - 1;
       const dot = accentDot && last && line.endsWith(".");
+      const delay = `${i * stagger}ms`;
       return (
         <span key={line} className="mask">
-          <span style={{ transitionDelay: `${i * stagger}ms` }}>
+          <span style={eager ? { animationDelay: delay } : { transitionDelay: delay }}>
             {dot ? (
               <>
                 {line.slice(0, -1)}
@@ -325,7 +345,10 @@ export function Counter({
   className?: string;
 }) {
   const [ref, seen] = useInView<HTMLSpanElement>(0.5);
-  const [n, setN] = useState(0);
+  /* يبدأ من القيمة النهائية لا من الصفر: هذا ما يُرسم على الخادم،
+     فيقرأ الزاحف «150+» لا «0+». التصفير يحدث في المتصفح وحده،
+     لحظةَ بدء العدّ. */
+  const [n, setN] = useState(to);
 
   useEffect(() => {
     if (!seen) return;

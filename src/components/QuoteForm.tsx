@@ -1,7 +1,7 @@
-import { useId, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useState, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLang, type Bi } from "../i18n";
-import { brand, packages, services } from "../content/home";
+import { brand, packages, phoneFor, services } from "../content/home";
 import { form } from "../content/form";
 import { track } from "../analytics";
 import { Arrow } from "./ui";
@@ -80,10 +80,17 @@ export function QuoteForm() {
   const uid = useId();
 
   const preselect = params.get("package") ?? params.get("service") ?? "";
-  const [values, setValues] = useState<Values>({ ...EMPTY, interest: preselect });
+  const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [waUrl, setWaUrl] = useState<string | null>(null);
   const [engaged, setEngaged] = useState(false);
+
+  /* الاختيار المسبق يُطبَّق بعد أول رسم لا فيه: الصفحة تُولَّد وقت
+     البناء بلا سلسلة استعلام، فلو قرأناها في الحالة الابتدائية
+     لاختلفت قيمة القائمة عمّا رُسم. */
+  useEffect(() => {
+    if (preselect) setValues((s) => ({ ...s, interest: preselect }));
+  }, [preselect]);
 
   const set = (k: keyof Values) => (v: string) => {
     setValues((s) => ({ ...s, [k]: v }));
@@ -163,7 +170,7 @@ export function QuoteForm() {
       return;
     }
 
-    const url = `https://wa.me/${brand.phoneRaw.replace(/\D/g, "")}?text=${encodeURIComponent(
+    const url = `https://wa.me/${phoneFor().raw.replace(/\D/g, "")}?text=${encodeURIComponent(
       compose(values),
     )}`;
 

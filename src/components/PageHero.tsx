@@ -19,15 +19,22 @@ export function PageHero({
 }) {
   return (
     <section className="relative pt-[calc(var(--header-h)+3.5rem)] sm:pt-[calc(var(--header-h)+5rem)]">
+      {/* رأس الصفحة داخل الشاشة دائمًا — يتحرّك بـ CSS فور الرسم
+          بدل انتظار المراقب، فلا يومض بعد وصوله مرسومًا */}
       <Wrap>
-        <Reveal>
+        <Reveal eager>
           <SectionLabel>{label}</SectionLabel>
         </Reveal>
 
-        <MaskLines lines={title} className="display mt-8 max-w-[18ch] sm:mt-12" accentDot />
+        <MaskLines
+          lines={title}
+          className="display mt-8 max-w-[18ch] sm:mt-12"
+          accentDot
+          eager
+        />
 
         {intro && (
-          <Reveal delay={180}>
+          <Reveal delay={180} eager>
             <p className="body mt-10 max-w-[56ch] sm:mt-12">{intro}</p>
           </Reveal>
         )}

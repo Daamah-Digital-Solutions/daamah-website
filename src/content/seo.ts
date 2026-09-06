@@ -5,6 +5,7 @@ import {
   aboutPage,
   contactPage,
   packagesPage,
+  privacyPage,
   processPage,
   serviceDetails,
   servicesPage,
@@ -108,6 +109,12 @@ export const routes: RouteMeta[] = [
     title: titled(contactPage.label),
     description: contactPage.intro,
     priority: 0.9,
+  },
+  {
+    path: "/privacy",
+    title: titled(privacyPage.label),
+    description: privacyPage.intro,
+    priority: 0.2,
   },
 ];
 

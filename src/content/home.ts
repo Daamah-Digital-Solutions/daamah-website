@@ -6,16 +6,68 @@ import type { Bi } from "../i18n";
  * المكوّنات لا تحتوي أي نصّ ثابت — كل شيء يمرّ من هنا.
  */
 
+/**
+ * رقم منشور، موسومٌ بسوقه.
+ *
+ * الأرقام قائمة لا حقلًا واحدًا: الرقم المحلي يرفع الثقة والردّ في
+ * سوقه، فحين يُضاف رقم سعودي يظهر للسوق السعودي وحده دون أن يتغيّر
+ * شيء في المكوّنات.
+ */
+export type Phone = {
+  market: "sa" | "ae" | "eg" | "intl";
+  display: string;
+  raw: string;
+  whatsapp: string;
+};
+
 export const brand = {
   name: { ar: "دَعمة للحلول الرقمية", en: "Daamah Digital Solutions" } as Bi,
   short: { ar: "دَعمة", en: "Daamah" } as Bi,
   founded: 2018,
   domain: "daamah.net",
   email: "info@daamah.net",
-  phone: "+971 56 605 1140",
-  phoneRaw: "+971566051140",
-  whatsapp: "https://wa.me/971566051140",
+  /** وصف واحد للعلامة — يُقرأ في البيانات المنظّمة وفي وسوم المشاركة */
+  description: {
+    ar: "منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج ومصر وأوروبا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
+    en: "Since 2018 we have built complete digital presence for companies across Saudi Arabia, the Gulf, Egypt, and Europe: brand identity, websites, social media, and marketing that performs.",
+  } as Bi,
+  phones: [
+    {
+      market: "intl",
+      display: "+971 56 605 1140",
+      raw: "+971566051140",
+      whatsapp: "https://wa.me/971566051140",
+    },
+  ] as Phone[],
+  social: [
+    "https://instagram.com/daamah.digital.solutions",
+    "https://facebook.com/daamah.digital.solutions",
+  ],
 } as const;
+
+/**
+ * الرقم المناسب لسوق — وإلا الدولي.
+ *
+ * السوق السعودي هو الافتراضي لأنه وجهة التوسّع؛ حين يُضاف رقم سعودي
+ * إلى `brand.phones` يلتقطه الموقع كلّه من هنا.
+ */
+export function phoneFor(market: Phone["market"] = "sa"): Phone {
+  return (
+    brand.phones.find((p) => p.market === market) ??
+    brand.phones.find((p) => p.market === "intl") ??
+    brand.phones[0]
+  );
+}
+
+/** حضورنا في السوق السعودي — إشارات ثقة تتكرّر عبر الصفحات. */
+export const saudi = {
+  since: 2019,
+  clients: 40,
+  note: {
+    ar: "نعمل مع شركات سعودية منذ 2019 — عن بُعد بالكامل، وبتسليم يلتزم بتوقيت الرياض.",
+    en: "We have worked with Saudi companies since 2019 — fully remote, delivering on Riyadh time.",
+  } as Bi,
+};
 
 export const navItems: { href: string; label: Bi }[] = [
   { href: "/about", label: { ar: "من نحن", en: "About" } },
@@ -350,6 +402,8 @@ export const packages = {
 
 /* ─────────────────────────────────────────────
    (06) أسئلة متكررة
+   الأسئلة نفسها في `content/faq.ts` — تقرأها الصفحة ومولّد
+   البيانات المنظّمة معًا، فلا يفترق ما يُعرض عمّا يُعلَن.
    ───────────────────────────────────────────── */
 export const faq = {
   index: "06",
@@ -358,50 +412,6 @@ export const faq = {
     ar: ["أسئلة،", "وإجاباتها."],
     en: ["Questions,", "answered."],
   } as Bi<string[]>,
-  items: [
-    {
-      q: { ar: "كم يستغرق تنفيذ المشروع؟", en: "How long does a project take?" } as Bi,
-      a: {
-        ar: "الهوية البصرية من أسبوعين إلى ثلاثة، والموقع من ثلاثة إلى خمسة أسابيع حسب حجم المحتوى وعدد الصفحات. نضع جدولًا زمنيًا واضحًا قبل البدء ونلتزم به.",
-        en: "Brand identity takes two to three weeks; a website three to five, depending on content volume and page count. We agree a clear timeline before starting and hold to it.",
-      } as Bi,
-    },
-    {
-      q: { ar: "هل أحصل على الملفات المفتوحة؟", en: "Do I get the source files?" } as Bi,
-      a: {
-        ar: "نعم. تستلم كل ملفات الهوية مفتوحة بصيغتَي Ai و PSD، مع دليل استخدام يشرح الألوان والخطوط وطريقة التطبيق.",
-        en: "Yes. You receive every identity file open in Ai and PSD, plus a usage guide covering colours, type, and application.",
-      } as Bi,
-    },
-    {
-      q: { ar: "ماذا لو كان لديّ هوية بالفعل؟", en: "What if I already have an identity?" } as Bi,
-      a: {
-        ar: "نشتغل عليها كما هي. نطوّر الموقع والمحتوى بما يتماشى مع هويتك الحالية، ولو احتاجت تحديثًا نقترح ما يلزم قبل أن نبدأ.",
-        en: "We work with it as it stands. We build the site and content to match your current identity, and if it needs updating we'll say so before we start.",
-      } as Bi,
-    },
-    {
-      q: { ar: "هل تعملون خارج السعودية؟", en: "Do you work outside Saudi Arabia?" } as Bi,
-      a: {
-        ar: "نعم. نعمل منذ 2018 مع شركات في السعودية والإمارات ومصر وأوروبا وجورجيا، والتواصل والتسليم يتمّان عن بُعد بالكامل.",
-        en: "Yes. Since 2018 we've worked with companies in Saudi Arabia, the UAE, Egypt, Europe, and Georgia. Communication and delivery are fully remote.",
-      } as Bi,
-    },
-    {
-      q: { ar: "كيف تتم عملية الدفع؟", en: "How does payment work?" } as Bi,
-      a: {
-        ar: "دفعة أولى عند بدء المشروع والباقي عند التسليم. لا رسوم مخفية — كل ما هو داخل الباقة موضّح قبل التوقيع.",
-        en: "A deposit at kickoff and the balance on delivery. No hidden fees — everything included is documented before you sign.",
-      } as Bi,
-    },
-    {
-      q: { ar: "ماذا بعد التسليم؟", en: "What happens after delivery?" } as Bi,
-      a: {
-        ar: "نتابع معك بعد الإطلاق: نراقب الأداء ونقترح تحسينات. الشراكة المستمرة جزء أساسي من طريقة عملنا.",
-        en: "We stay with you after launch: tracking performance and proposing improvements. Ongoing partnership is core to how we work.",
-      } as Bi,
-    },
-  ],
 };
 
 /* ─────────────────────────────────────────────
@@ -425,6 +435,7 @@ export const footer = {
   tagline: { ar: "الحلول الرقمية وتمكين العلامات", en: "Digital Solutions & Empowering Brands" } as Bi,
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
+  privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,
   socialTitle: { ar: "تابعنا", en: "Follow" } as Bi,
   rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" } as Bi,
   social: [

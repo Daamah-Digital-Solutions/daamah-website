@@ -157,7 +157,7 @@ function SolutionBlock({
 
           <div className="mt-8">
             <Btn
-              href={waHref(t(waMessage.solution(s.name)))}
+              href={waHref(t(waMessage.solution(s.name, s.voice)))}
               external
               onClick={() => track("whatsapp_click", { placement: `solution_${s.slug}` })}
             >

@@ -73,7 +73,7 @@ export const cityPages: CityPage[] = [
     },
     description: {
       ar: "مواقع شركات في الرياض تصمد أمام لجنة مشتريات: عربية أولًا، سريعة على الجوال، وفيها ما تسأل عنه الجهات قبل التعاقد. نعمل مع عملاء سعوديين منذ 2019.",
-      en: "Company websites in Riyadh built to survive a procurement committee: Arabic-first, fast on mobile, and carrying what entities ask for before contracting. Working with Saudi clients since 2019.",
+      en: "Company websites in Riyadh built to survive a procurement committee: Arabic-first, fast on mobile, and carrying what entities ask for before contracting.",
     },
     h1: {
       ar: ["موقع شركتك في الرياض", "يُقرأ قبل أن يُقيَّم."],
@@ -164,7 +164,7 @@ export const cityPages: CityPage[] = [
     },
     description: {
       ar: "مواقع ومتاجر إلكترونية لشركات جدة: كتالوج يُتصفَّح من الجوال، طلب عبر واتساب، ومحتوى عربي يبيع. خبرة مع عملاء سعوديين منذ 2019.",
-      en: "Websites and stores for Jeddah businesses: a catalogue that browses on a phone, ordering over WhatsApp, and Arabic content that sells. Working with Saudi clients since 2019.",
+      en: "Websites and stores for Jeddah businesses: a catalogue that browses on a phone, ordering over WhatsApp, and Arabic content that sells.",
     },
     h1: {
       ar: ["متجرك في جدة", "يبيع من الجوال."],
@@ -246,7 +246,7 @@ export const cityPages: CityPage[] = [
     title: { ar: "تصميم هوية بصرية لشركات الرياض", en: "Brand identity for Riyadh companies" },
     description: {
       ar: "هوية بصرية لشركات الرياض تُقرأ مؤسّسيةً لا ناشئة: لوجو عربي-إنجليزي متّزن، ودليل استخدام، وملف تعريفي جاهز للتأهيل.",
-      en: "Brand identity for Riyadh companies that reads established rather than new: a balanced Arabic–English mark, a usage guide, and a profile ready for qualification files.",
+      en: "Brand identity for Riyadh companies that reads established, not new: a balanced Arabic–English mark, a usage guide, and a profile for qualification files.",
     },
     h1: {
       ar: ["هوية تُقرأ", "بحجم شركتك."],
@@ -483,7 +483,7 @@ export const cityPages: CityPage[] = [
     title: { ar: "التسويق الرقمي للمتاجر والمطاعم في جدة", en: "Digital marketing for Jeddah retail and food" },
     description: {
       ar: "تسويق رقمي لتجزئة ومطاعم جدة: حملات تتبع الموسم، ومحتوى بلهجة جمهورك، وقياس يصل إلى الطلب لا إلى الإعجاب.",
-      en: "Digital marketing for Jeddah retail and restaurants: campaigns that follow the season, content in your audience's voice, and measurement that reaches the order rather than the like.",
+      en: "Digital marketing for Jeddah retail and restaurants: campaigns that follow the season, content in your audience's voice, and measurement that reaches the order.",
     },
     h1: {
       ar: ["حملات تعرف", "موسمها."],
@@ -562,7 +562,7 @@ export const cityPages: CityPage[] = [
     title: { ar: "خدمات السيو وتحسين محركات البحث في الرياض", en: "SEO services in Riyadh" },
     description: {
       ar: "سيو لشركات الرياض: تدقيق تقني، وبحث كلمات عربية حقيقي، ومحتوى يُنشر بانتظام. بلا وعود بالمركز الأول ولا تقارير بلا رقم.",
-      en: "SEO for Riyadh companies: a technical audit, genuine Arabic keyword research, and content published consistently. No promises of page one, no reports without numbers.",
+      en: "SEO for Riyadh companies: a technical audit, real Arabic keyword research, and content published consistently. No promises of page one, no empty reports.",
     },
     h1: {
       ar: ["أن يجدك", "من يبحث عنك."],

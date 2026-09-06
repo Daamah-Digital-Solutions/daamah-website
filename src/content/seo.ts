@@ -65,11 +65,11 @@ const home: RouteMeta = {
   path: "/",
   title: {
     ar: "دَعمة للحلول الرقمية | هوية بصرية ومواقع وتسويق رقمي",
-    en: "Daamah Digital Solutions | Branding, Websites & Digital Marketing",
+    en: "Daamah Digital Solutions | Branding, Websites & Marketing",
   },
   description: {
     ar: "منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج ومصر وأوروبا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
-    en: "Since 2018 we have built complete digital presence for companies across Saudi Arabia, the Gulf, Egypt, and Europe: brand identity, websites, social media, and marketing that performs.",
+    en: "Brand identity, websites, social media, and marketing for companies in Saudi Arabia, the Gulf, Egypt, and Europe. Building digital presence since 2018.",
   },
   priority: 1,
   kind: "home",
@@ -79,6 +79,58 @@ const home: RouteMeta = {
 function titled(label: Bi): Bi {
   return { ar: `${label.ar} — ${brand.name.ar}`, en: `${label.en} — ${brand.name.en}` };
 }
+
+/**
+ * وصفٌ مكتوب للنتائج، لمن مقدّمته أطول ممّا يُعرض.
+ *
+ * الوصف الافتراضي هو مقدّمة الصفحة الظاهرة — وهي مكتوبة لتُقرأ على
+ * الصفحة لا لتُختصر في سطرين. جوجل يقتطع بعد نحو 160 حرفًا، فوصف
+ * من 287 حرفًا ينتهي مبتورًا في منتصف جملة. هنا نسخة مختصرة تحلّ
+ * محلّها في الرأس وحده؛ نصّ الصفحة لا يتغيّر.
+ *
+ * المفتاح هو المسار المجرّد. ما لا مفتاح له يبقى على مقدّمته.
+ */
+const META: Record<string, Bi> = {
+  "/about": {
+    ar: "منذ 2018 ودَعمة تحوّل أفكار الشركات إلى حضور رقمي واضح — نعمل مع عملاء في مصر والخليج وأوروبا.",
+    en: "Since 2018 Daamah has turned companies' ideas into a clear digital presence, working across Egypt, the Gulf, and Europe.",
+  },
+  "/services": {
+    ar: "هوية بصرية، مواقع، سوشيال ميديا، تسويق رقمي، شراء إعلانات، وسيو — ست خدمات تعمل كمنظومة واحدة.",
+    en: "Branding, websites, social media, digital marketing, media buying, and SEO — six services that work as one system.",
+  },
+  "/services/branding": {
+    ar: "نظام هوية كامل — لون وخطّ وأسلوب صورة ونبرة — مبنيّ على فهم سوقك. يشمل دليل استخدام وملفات مفتوحة.",
+    en: "A complete identity system — colour, type, image style, and tone — built from your market. Includes a usage guide and open files.",
+  },
+  "/services/seo": {
+    ar: "تدقيق تقني، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا، ومحتوى عربي يُنشر بانتظام. نتائج تقنية خلال أسابيع، وترتيب خلال 4–9 أشهر.",
+    en: "Technical audit, Arabic keyword research based on how Saudis really search, and content published consistently. Technical gains in weeks, rankings in 4–9 months.",
+  },
+  "/services/media-buying": {
+    ar: "حملات على المنصّات التي يستعملها جمهورك فعلًا، بمتابعة يومية للتكلفة لا شهرية. الاستهداف الدقيق أهمّ من الإنفاق الكبير.",
+    en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
+  },
+  "/packages": {
+    ar: "نقاط بداية شائعة لا قوالب مغلقة. نبني على حجم مشروعك وسوقك، والسعر يُحدَّد بعد أن نفهم ما تحتاجه.",
+    en: "Common starting points, not closed templates. We build around your project's size and market — the price follows once we understand what you need.",
+  },
+  "/contact": {
+    ar: "استشارة أولى مجانية بدون التزام. احكِ لنا عن مشروعك ونرجع لك بخطة واضحة وسعر محدّد — عادةً خلال يوم عمل.",
+    en: "A free first consultation, no commitment. Tell us about your project and we'll reply with a clear plan and a firm price — usually within one business day.",
+  },
+  "/saudi": {
+    ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. عمل عن بُعد بتوقيت الرياض، وتسليم بملفات مفتوحة وحسابات باسمك.",
+    en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Fully remote on Riyadh time, with open files and accounts in your name.",
+  },
+  "/clients/adg": {
+    ar: "هوية بصرية لشركة عقارات في جورجيا ولبنان، ثم إدارة حضورها على السوشيال — العلامة التي بنيناها هي التي تتكلّم يوميًا.",
+    en: "Identity for a real estate company across Georgia and Lebanon, then its social presence — the brand we built is the one that speaks daily.",
+  },
+};
+
+/** الوصف المكتوب للنتائج إن وُجد، وإلا مقدّمة الصفحة. */
+const describe = (path: string, fallback: Bi): Bi => META[path] ?? fallback;
 
 /**
  * مسارات المدوّنة — تُشتقّ من الملفات لا تُكتب.
@@ -137,21 +189,21 @@ export const routes: RouteMeta[] = [
   {
     path: "/about",
     title: titled(aboutPage.label),
-    description: aboutPage.intro,
+    description: describe("/about", aboutPage.intro),
     priority: 0.8,
     kind: "page",
   },
   {
     path: "/services",
     title: titled(servicesPage.label),
-    description: servicesPage.intro,
+    description: describe("/services", servicesPage.intro),
     priority: 0.9,
     kind: "services",
   },
   ...services.items.map<RouteMeta>((s) => ({
     path: `/services/${s.slug}`,
     title: titled(s.name),
-    description: serviceDetails[s.slug]?.intro ?? s.desc,
+    description: describe(`/services/${s.slug}`, serviceDetails[s.slug]?.intro ?? s.desc),
     priority: 0.8,
     kind: "service" as const,
     parent: "/services",
@@ -176,7 +228,7 @@ export const routes: RouteMeta[] = [
   ...clientStories.map<RouteMeta>((c) => ({
     path: `/clients/${c.slug}`,
     title: titled(c.name),
-    description: c.lede,
+    description: describe(`/clients/${c.slug}`, c.lede),
     priority: 0.7,
     kind: "client" as const,
     parent: "/work",
@@ -191,14 +243,14 @@ export const routes: RouteMeta[] = [
   {
     path: "/packages",
     title: titled(packagesPage.label),
-    description: packagesPage.intro,
+    description: describe("/packages", packagesPage.intro),
     priority: 0.8,
     kind: "page",
   },
   {
     path: "/contact",
     title: titled(contactPage.label),
-    description: contactPage.intro,
+    description: describe("/contact", contactPage.intro),
     priority: 0.9,
     kind: "page",
   },
@@ -208,7 +260,7 @@ export const routes: RouteMeta[] = [
       ar: `خدماتنا في السعودية — ${brand.name.ar}`,
       en: `Our services in Saudi Arabia — ${brand.name.en}`,
     },
-    description: saudiHub.intro,
+    description: describe("/saudi", saudiHub.intro),
     priority: 0.9,
     kind: "saudi",
   },

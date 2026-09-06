@@ -3,8 +3,11 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import "./styles/globals.css";
 import App from "./App";
 import { initAnalytics } from "./analytics";
+import { captureUtm } from "./utm";
 
 initAnalytics();
+/* قبل أي تنقّل: سلسلة الاستعلام تُفقد عند أول انتقال داخلي */
+captureUtm();
 
 const root = document.getElementById("root")!;
 const tree = (

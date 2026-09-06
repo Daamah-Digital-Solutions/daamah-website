@@ -3,6 +3,7 @@ import { useLang } from "../i18n";
 import { services } from "../content/home";
 import { servicesPage, serviceDetails, workPage } from "../content/pages";
 import { workItems, type ServiceKey } from "../content/work";
+import { cityMeta, cityUi, citiesForService } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { Chevron, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
@@ -31,6 +32,7 @@ export function ServiceDetailPage() {
 
   const key = RELATED[slug];
   const related = key ? workItems.filter((w) => w.service === key).slice(0, 3) : [];
+  const inCities = citiesForService(slug);
 
   return (
     <>
@@ -89,6 +91,23 @@ export function ServiceDetailPage() {
             </div>
             <Reveal className="mt-12">
               <TextLink href="/work">{t(workPage.backLabel)}</TextLink>
+            </Reveal>
+          </Wrap>
+        </section>
+      )}
+
+      {/* الروابط إلى صفحات المدن — منها تصل قوّة الصفحة الأمّ إليها،
+          وبها يجد الباحث المحلّي مدخله */}
+      {inCities.length > 0 && (
+        <section className="py-16 sm:py-20">
+          <Wrap>
+            <Reveal className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <SectionLabel>{t(cityUi.otherCities)}</SectionLabel>
+              {inCities.map((c) => (
+                <TextLink key={c} href={`/services/${slug}/${c}`}>
+                  {`${t(service.name)} ${t(cityMeta(c).inCity)}`}
+                </TextLink>
+              ))}
             </Reveal>
           </Wrap>
         </section>

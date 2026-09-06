@@ -95,8 +95,8 @@ export const aboutPage = {
 export const servicesPage = {
   label: { ar: "خدماتنا", en: "Services" } as Bi,
   title: {
-    ar: ["ست خدمات،", "منظومة واحدة."],
-    en: ["Six services,", "one system."],
+    ar: ["سبع خدمات،", "منظومة واحدة."],
+    en: ["Seven services,", "one system."],
   } as Bi<string[]>,
   intro: {
     ar: "لا نبيع خدمات منفصلة. كل خدمة هنا جزء من منظومة تخدم هدفًا واحدًا: أن يراك عميلك، ويفهمك، ويختارك. يمكنك أن تبدأ بواحدة وتوسّع لاحقًا.",
@@ -146,6 +146,25 @@ export const serviceDetails: Record<
       { ar: "موقع متجاوب على كل المقاسات", en: "A site responsive at every size" },
       { ar: "لوحة تحكّم للمحتوى", en: "Content management access" },
       { ar: "تدريب على الاستخدام", en: "Handover and training" },
+    ],
+  },
+  seo: {
+    intro: {
+      ar: "السيو ليس وعدًا بالمركز الأول، بل عملٌ متّصل: تدقيق تقني يُصلح ما يمنع الفهرسة، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا لا على ترجمة قائمة إنجليزية، ومحتوى عربي مكتوب يُنشر بانتظام. النتائج التقنية تظهر خلال أسابيع، والترتيب على الكلمات التي تجلب عملاء يحتاج من أربعة إلى تسعة أشهر — نقولها قبل أن نبدأ لا بعدها.",
+      en: "SEO is not a promise of the top spot; it is connected work: a technical audit that fixes what blocks indexing, keyword research built on how Saudis actually search rather than a translated English list, and Arabic content written and published consistently. Technical gains show within weeks; ranking for terms that bring clients takes four to nine months — we say so before we start, not after.",
+    },
+    includes: [
+      { ar: "تدقيق تقني كامل للموقع", en: "Full technical site audit" },
+      { ar: "بحث كلمات عربية للسوق السعودي", en: "Arabic keyword research for the Saudi market" },
+      { ar: "تحسين الصفحات والبنية الداخلية", en: "On-page and internal structure work" },
+      { ar: "بيانات منظّمة وخريطة موقع", en: "Structured data and sitemap" },
+      { ar: "خطة محتوى شهرية", en: "A monthly content plan" },
+      { ar: "ضبط نشاطك على خرائط جوجل", en: "Google Business Profile setup" },
+    ],
+    deliverables: [
+      { ar: "تقرير التدقيق بأولويات واضحة", en: "An audit report with clear priorities" },
+      { ar: "خطة كلمات مفتاحية بنيّة البحث", en: "A keyword plan mapped to search intent" },
+      { ar: "تقرير شهري بما تحرّك وما لم يتحرّك", en: "A monthly report on what moved and what didn't" },
     ],
   },
   "social-media": {

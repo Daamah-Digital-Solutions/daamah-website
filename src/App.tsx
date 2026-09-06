@@ -11,6 +11,8 @@ import { Home } from "./pages/Home";
 import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { ServiceDetailPage } from "./pages/ServiceDetailPage";
+import { CityServicePage } from "./pages/CityServicePage";
+import { SaudiHubPage } from "./pages/SaudiHubPage";
 import { WorkPage } from "./pages/WorkPage";
 import { WorkDetailPage } from "./pages/WorkDetailPage";
 import { ClientStoryPage } from "./pages/ClientStoryPage";
@@ -33,11 +35,18 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-home`} path={prefix || "/"} element={<Home />} />,
     <Route key={`${prefix}-about`} path={at("about")} element={<AboutPage />} />,
     <Route key={`${prefix}-services`} path={at("services")} element={<ServicesPage />} />,
+    /* المدينة قبل الخدمة المفردة: المسار أطول فيلتقطه أولًا */
+    <Route
+      key={`${prefix}-cityservice`}
+      path={at("services/:slug/:city")}
+      element={<CityServicePage />}
+    />,
     <Route
       key={`${prefix}-service`}
       path={at("services/:slug")}
       element={<ServiceDetailPage />}
     />,
+    <Route key={`${prefix}-saudi`} path={at("saudi")} element={<SaudiHubPage />} />,
     <Route key={`${prefix}-work`} path={at("work")} element={<WorkPage />} />,
     <Route key={`${prefix}-workitem`} path={at("work/:slug")} element={<WorkDetailPage />} />,
     <Route key={`${prefix}-client`} path={at("clients/:slug")} element={<ClientStoryPage />} />,

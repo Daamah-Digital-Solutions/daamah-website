@@ -205,6 +205,16 @@ export const services = {
     },
     {
       no: "03",
+      slug: "seo",
+      name: { ar: "تحسين محركات البحث", en: "SEO" } as Bi,
+      en: "SEO",
+      desc: {
+        ar: "أن يجدك من يبحث عن خدمتك في جوجل — ببحث كلمات عربية حقيقي، ومحتوى يُنشر بانتظام.",
+        en: "Being found by people searching for what you do — real Arabic keyword research and content published consistently.",
+      } as Bi,
+    },
+    {
+      no: "04",
       slug: "social-media",
       name: { ar: "إدارة السوشيال ميديا", en: "Social Media" } as Bi,
       en: "Social Media",
@@ -214,7 +224,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "04",
+      no: "05",
       slug: "digital-marketing",
       name: { ar: "التسويق الرقمي", en: "Digital Marketing" } as Bi,
       en: "Digital Marketing",
@@ -224,7 +234,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "05",
+      no: "06",
       slug: "media-buying",
       name: { ar: "شراء المساحات الإعلانية", en: "Media Buying" } as Bi,
       en: "Media Buying",
@@ -234,7 +244,7 @@ export const services = {
       } as Bi,
     },
     {
-      no: "06",
+      no: "07",
       slug: "performance-marketing",
       name: { ar: "تسويق الأداء", en: "Performance Marketing" } as Bi,
       en: "Performance Marketing",
@@ -436,6 +446,7 @@ export const footer = {
   tagline: { ar: "الحلول الرقمية وتمكين العلامات", en: "Digital Solutions & Empowering Brands" } as Bi,
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
+  saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,
   socialTitle: { ar: "تابعنا", en: "Follow" } as Bi,
   rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" } as Bi,

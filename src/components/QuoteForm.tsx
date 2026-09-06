@@ -4,6 +4,8 @@ import { useLang, type Bi } from "../i18n";
 import { brand, packages, phoneFor, services } from "../content/home";
 import { form } from "../content/form";
 import { track } from "../analytics";
+import { sourceLine, utmParams } from "../utm";
+import { cities } from "../content/saudi";
 import { Arrow } from "./ui";
 
 /* ── الحقول ─────────────────────────────────────────────── */
@@ -80,6 +82,10 @@ export function QuoteForm() {
   const uid = useId();
 
   const preselect = params.get("package") ?? params.get("service") ?? "";
+  const city = params.get("city") ?? "";
+  /* مدينة غير معروفة في الرابط تُتجاهل: `?city=` يأتي من الخارج */
+  const cityLabel = city ? (cities.find((c) => c.key === city)?.name ?? null) : null;
+  const campaign = sourceLine();
   const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [waUrl, setWaUrl] = useState<string | null>(null);
@@ -148,12 +154,15 @@ export function QuoteForm() {
       line(w.company, v.company.trim()),
       line(w.phone, v.phone.trim()),
       line(w.interest, interestLabel),
+      cityLabel ? `${t(w.city)}: ${t(cityLabel)}` : null,
       budget ? `${t(w.budget)}: ${t(budget.label)}` : null,
       "",
       `*${t(w.message)}*`,
       v.message.trim(),
       "",
       `${t(w.source)}: ${window.location.origin}${window.location.pathname}`,
+      /* الحملة تصل مع الطلب: لا خادم عندنا يربط الطلب بمصدره لاحقًا */
+      campaign ? `${t(w.campaign)}: ${campaign}` : null,
     ]
       .filter((l) => l !== null)
       .join("\n");
@@ -178,6 +187,8 @@ export function QuoteForm() {
       interest: values.interest || "unspecified",
       budget: values.budget || "unspecified",
       lang,
+      ...(city ? { city } : {}),
+      ...utmParams(),
     });
 
     setWaUrl(url);

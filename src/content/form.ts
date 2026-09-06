@@ -95,7 +95,9 @@ export const form = {
     interest: { ar: "المطلوب", en: "Needs" } as Bi,
     budget: { ar: "الميزانية", en: "Budget" } as Bi,
     message: { ar: "التفاصيل", en: "Details" } as Bi,
+    city: { ar: "المدينة", en: "City" } as Bi,
     source: { ar: "المصدر", en: "Source" } as Bi,
+    campaign: { ar: "الحملة", en: "Campaign" } as Bi,
   },
 
   optionalTag: { ar: "اختياري", en: "optional" } as Bi,

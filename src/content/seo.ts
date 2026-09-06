@@ -15,6 +15,7 @@ import {
 } from "./pages";
 import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
+import { cityPages, saudiHub } from "./saudi";
 
 /**
  * فهرس المسارات وبيانات رأس كل صفحة.
@@ -41,6 +42,8 @@ export type RouteKind =
   | "blog"
   | "post"
   | "tag"
+  | "saudi"
+  | "city"
   | "legal";
 
 export type RouteMeta = {
@@ -202,6 +205,29 @@ export const routes: RouteMeta[] = [
     priority: 0.9,
     kind: "page",
   },
+  {
+    path: "/saudi",
+    title: {
+      ar: `خدماتنا في السعودية — ${brand.name.ar}`,
+      en: `Our services in Saudi Arabia — ${brand.name.en}`,
+    },
+    description: saudiHub.intro,
+    priority: 0.9,
+    kind: "saudi",
+  },
+  /* صفحات (خدمة × مدينة) — عنوانها ووصفها مكتوبان لكل زوج على حدة
+     في `saudi.ts`؛ حارس البناء يرفض تكرار وصف بين صفحتين */
+  ...cityPages.map<RouteMeta>((p) => ({
+    path: `/services/${p.service}/${p.city}`,
+    title: {
+      ar: `${p.title.ar} — ${brand.short.ar}`,
+      en: `${p.title.en} — ${brand.short.en}`,
+    },
+    description: p.description,
+    priority: 0.8,
+    kind: "city" as const,
+    parent: `/services/${p.service}`,
+  })),
   {
     path: "/blog",
     title: titled(blogPage.label),

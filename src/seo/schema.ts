@@ -3,6 +3,7 @@ import { brand, phoneFor, saudi, services } from "../content/home";
 import { faqItemsFor } from "../content/faq";
 import { markets, sectorMeta, workItems } from "../content/work";
 import { findPost, posts } from "../content/blog";
+import { cityMeta, findCityPage } from "../content/saudi";
 import { serviceDetails } from "../content/pages";
 import { OG_IMAGE, SITE_URL, findRoute, type RouteMeta } from "./../content/seo";
 
@@ -193,8 +194,7 @@ function blogPosting(slug: string, lang: Lang): Json | null {
 }
 
 /** أسئلة الصفحة — نفس ما يُعرض حرفيًا، لا نسخة موازية. */
-function faqPage(bare: string, lang: Lang): Json | null {
-  const items = faqItemsFor(bare);
+function faqPage(bare: string, lang: Lang, items = faqItemsFor(bare)): Json | null {
   if (!items.length) return null;
   return {
     "@type": "FAQPage",
@@ -205,6 +205,42 @@ function faqPage(bare: string, lang: Lang): Json | null {
       acceptedAnswer: { "@type": "Answer", text: pick(f.a, lang) },
     })),
   };
+}
+
+/**
+ * خدمة مقدَّمة في مدينة بعينها.
+ *
+ * `areaServed` مدينةٌ لا دولة: هذا هو الفرق الذي يجعل الصفحة تظهر
+ * لمن يبحث من الرياض. ولا نصرّح بـ `address`: لا مكتب لنا هناك،
+ * وادّعاء عنوان يُسقط البطاقة كلّها لا هذا الحقل وحده.
+ */
+function cityService(bare: string, lang: Lang): Json[] {
+  const [, , slug, city] = bare.split("/");
+  const page = findCityPage(slug, city);
+  const item = services.items.find((s) => s.slug === slug);
+  if (!page || !item) return [];
+
+  const info = cityMeta(page.city);
+  const out: Json[] = [
+    {
+      "@type": "Service",
+      "@id": abs(`${bare}#service`),
+      name: `${pick(item.name, lang)} — ${pick(info.name, lang)}`,
+      serviceType: item.en,
+      description: pick(page.description, lang),
+      provider: { "@id": ORG },
+      areaServed: {
+        "@type": "City",
+        name: pick(info.name, lang),
+        containedInPlace: { "@type": "Country", name: pick(markets.sa, lang) },
+      },
+      availableLanguage: ["ar", "en"],
+    },
+  ];
+
+  const faq = faqPage(bare, lang, page.faq);
+  if (faq) out.push(faq);
+  return out;
 }
 
 /**
@@ -241,6 +277,11 @@ export function graphFor(bare: string, lang: Lang): Json {
       if (p) graph.push(p);
       break;
     }
+    case "city":
+      graph.push(...cityService(bare, lang));
+      break;
+    /* `/saudi` بلا `FAQPage`: لا أسئلة معروضة عليها، والتصريح بما
+       لا يُعرض هو بالضبط ما تُسحب البطاقة بسببه */
   }
 
   return { "@context": "https://schema.org", "@graph": graph.filter(Boolean) };

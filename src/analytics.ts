@@ -120,7 +120,12 @@ export type EventName =
   | "lead"
   | "quote_form_open"
   | "whatsapp_click"
-  | "email_click";
+  | "email_click"
+  /** نداء إجراء نُقر عليه — يحمل موضعه وخدمته ومدينته */
+  | "cta_click"
+  /** بلغ القارئ نصف المقال — أدقّ من «زيارة» في قياس المحتوى */
+  | "blog_read"
+  | "lang_switch";
 
 /** الحدث المقابل في Meta — ما لا مقابل له يُرسل كحدث مخصّص. */
 const META_STANDARD: Partial<Record<EventName, string>> = {

@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { EN_PREFIX, LangProvider } from "./i18n";
 import { ThemeProvider } from "./theme";
@@ -8,22 +9,33 @@ import { ScrollManager } from "./components/Routing";
 import { Seo } from "./components/Seo";
 import { Analytics } from "./components/Analytics";
 import { Home } from "./pages/Home";
-import { AboutPage } from "./pages/AboutPage";
-import { ServicesPage } from "./pages/ServicesPage";
-import { ServiceDetailPage } from "./pages/ServiceDetailPage";
-import { CityServicePage } from "./pages/CityServicePage";
-import { SaudiHubPage } from "./pages/SaudiHubPage";
-import { WorkPage } from "./pages/WorkPage";
-import { WorkDetailPage } from "./pages/WorkDetailPage";
-import { ClientStoryPage } from "./pages/ClientStoryPage";
-import { ProcessPage } from "./pages/ProcessPage";
-import { PackagesPage } from "./pages/PackagesPage";
-import { ContactPage } from "./pages/ContactPage";
-import { BlogPage } from "./pages/BlogPage";
-import { BlogPostPage } from "./pages/BlogPostPage";
-import { BlogTagPage } from "./pages/BlogTagPage";
-import { PrivacyPage } from "./pages/PrivacyPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
+
+/**
+ * الصفحات الداخلية تُحمَّل عند طلبها.
+ *
+ * `prerenderToNodeStream` ينتظر ما يتعلّق، فتصل كل صفحة مرسومةً
+ * كاملةً في ملفها الثابت رغم الكسل — والكسل يخصّ المتصفح وحده:
+ * من يفتح الرئيسية لا يحمّل نموذج عرض السعر ولا صفحات المدن.
+ *
+ * والرئيسية تبقى مستوردةً استيرادًا ساكنًا: هي أكثر الصفحات فتحًا،
+ * وتأجيلها يضيف رحلة شبكة إلى أهمّ مسار في الموقع.
+ */
+const AboutPage = lazy(() => import("./pages/AboutPage").then((m) => ({ default: m.AboutPage })));
+const ServicesPage = lazy(() => import("./pages/ServicesPage").then((m) => ({ default: m.ServicesPage })));
+const ServiceDetailPage = lazy(() => import("./pages/ServiceDetailPage").then((m) => ({ default: m.ServiceDetailPage })));
+const CityServicePage = lazy(() => import("./pages/CityServicePage").then((m) => ({ default: m.CityServicePage })));
+const SaudiHubPage = lazy(() => import("./pages/SaudiHubPage").then((m) => ({ default: m.SaudiHubPage })));
+const WorkPage = lazy(() => import("./pages/WorkPage").then((m) => ({ default: m.WorkPage })));
+const WorkDetailPage = lazy(() => import("./pages/WorkDetailPage").then((m) => ({ default: m.WorkDetailPage })));
+const ClientStoryPage = lazy(() => import("./pages/ClientStoryPage").then((m) => ({ default: m.ClientStoryPage })));
+const ProcessPage = lazy(() => import("./pages/ProcessPage").then((m) => ({ default: m.ProcessPage })));
+const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
+const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
+const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
+const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
+const PrivacyPage = lazy(() => import("./pages/PrivacyPage").then((m) => ({ default: m.PrivacyPage })));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })));
 
 /**
  * نفس شجرة الصفحات تحت بادئتين: الجذر للعربية و`/en` للإنجليزية.
@@ -77,11 +89,15 @@ export function Shell() {
         <Analytics />
         <Header />
         <main>
-          <Routes>
-            {pageRoutes(EN_PREFIX)}
-            {pageRoutes("")}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+          {/* بلا واجهة انتظار: الصفحة المرسومة تبقى ظاهرة حتى تصل
+              حزمتها، ووضع مؤشّر تحميل مكانها يومض بلا داعٍ */}
+          <Suspense fallback={null}>
+            <Routes>
+              {pageRoutes(EN_PREFIX)}
+              {pageRoutes("")}
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppFab />

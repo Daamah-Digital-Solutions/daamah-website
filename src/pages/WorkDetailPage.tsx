@@ -12,6 +12,7 @@ import {
 } from "../content/work";
 import { PageCta } from "../components/PageCta";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
+import { Img } from "../components/Img";
 
 export function WorkDetailPage() {
   const { slug = "" } = useParams();
@@ -93,12 +94,15 @@ export function WorkDetailPage() {
             {/* نسبة ثابتة كبطاقة العمل: بدونها لا يُعرف ارتفاع الصورة
                 قبل تحميلها، فيقفز نصف الصفحة حين تصل */}
             <div className="aspect-[3/2] overflow-hidden bg-paper-2">
-              <img
+              {/* صورة الغلاف هي أكبر عنصر مرئي في الصفحة — تُحمَّل
+                  بأولوية لا كسولًا، فهي ما يقيسه LCP */}
+              <Img
                 src={item.image}
                 alt={t(item.name)}
                 width={1400}
                 height={933}
-                decoding="async"
+                sizes="(min-width: 1320px) 1320px, 100vw"
+                priority
                 className="size-full object-cover dark:brightness-[0.85]"
               />
             </div>

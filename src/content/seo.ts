@@ -25,10 +25,7 @@ import { cityPages, saudiHub } from "./saudi";
  * مصدر واحد يمنع اختلاف ما يراه الزائر عمّا يراه الزاحف.
  */
 
-export const SITE_URL = `https://${brand.domain}`;
-
-/** صورة المعاينة الافتراضية عند مشاركة رابط. */
-export const OG_IMAGE = "/assets/og-default.png";
+export { SITE_URL, OG_IMAGE } from "../seo/site";
 
 /** نوع الصفحة — منه يعرف مولّد البيانات المنظّمة ما يُصرّح به. */
 export type RouteKind =

@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { defineConfig, type Plugin } from "vite";
@@ -81,6 +81,45 @@ function blogStats(): Plugin {
         }
       }
       return `export default ${JSON.stringify(out)}`;
+    },
+  };
+}
+
+/**
+ * فهرس المسارات المضغوط — العنوان والوصف لكل صفحة، بلا نصوصها.
+ *
+ * `Seo.tsx` يعيش داخل الغلاف، فهو في أول حزمة يحمّلها كل زائر.
+ * واستيراده `content/seo.ts` كان يجرّ معه المحتوى كلّه — نصوص
+ * صفحات المدن الثمانية وتفاصيل الخدمات والأسئلة — أي 177 ك.ب لا
+ * يحتاجها من فتح الرئيسية.
+ *
+ * هنا يُقرأ الفهرس من حزمة الرسم المبنيّة قبل حزمة العميل، ويُكتب
+ * حقولًا ستّة لا أكثر. وفي التطوير يُعاد تصديره من المصدر مباشرةً.
+ */
+function routeIndex(): Plugin {
+  const ID = "virtual:routes";
+  const RESOLVED = `\0${ID}`;
+  const KEEP = ["path", "title", "description", "kind", "parent", "langs"] as const;
+
+  return {
+    name: "daamah:route-index",
+    resolveId: (id) => (id === ID ? RESOLVED : undefined),
+    async load(id) {
+      if (id !== RESOLVED) return;
+
+      const entry = resolve(".ssr/entry-server.js");
+      if (!existsSync(entry)) {
+        // خادم التطوير، أو بناء بلا خطوة الرسم — الحجم لا يهمّ هنا
+        return `export { routes as default } from "/src/content/seo";`;
+      }
+
+      const ssr = await import(/* @vite-ignore */ pathToFileURL(entry).href);
+      const compact = ssr.routes.map((r: Record<string, unknown>) =>
+        Object.fromEntries(
+          KEEP.filter((k) => r[k] !== undefined).map((k) => [k, r[k]]),
+        ),
+      );
+      return `export default ${JSON.stringify(compact)}`;
     },
   };
 }
@@ -351,6 +390,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     blogStats(),
+    routeIndex(),
     verification(),
     prerender(),
   ],

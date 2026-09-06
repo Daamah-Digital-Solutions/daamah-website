@@ -1,6 +1,7 @@
 import { useLang } from "../i18n";
 import { hero, strip } from "../content/home";
 import { Btn, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
+import { Img } from "../components/Img";
 
 /** شبكة خطوط شعرية رأسية — تُقرأ كأثر مسطرة، وتوحي بالدقّة. */
 function GridLines() {
@@ -41,13 +42,16 @@ function WorkStrip() {
             key={`${item.src}-${i}`}
             className="group relative h-[190px] w-[280px] shrink-0 overflow-hidden border-e border-[var(--line)] sm:h-[230px] sm:w-[340px]"
           >
-            <img
+            {/* الشريط قرب الطية: أول نسختين تُحمَّلان فورًا لأنهما
+                مرئيّتان، والباقي كسولًا. `sizes` ثابت لأن عرض
+                البطاقة ثابت لا نسبة من الشاشة */}
+            <Img
               src={item.src}
               alt={t(item.label)}
               width={1400}
               height={933}
-              loading="lazy"
-              decoding="async"
+              sizes="340px"
+              priority={i < 2}
               /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
                  بيضاء وتشتعل على خلفية شبه سوداء */
               className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] group-hover:grayscale-0 dark:brightness-[0.72] dark:group-hover:brightness-100"

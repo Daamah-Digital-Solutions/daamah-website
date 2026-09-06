@@ -10,6 +10,7 @@ import {
 } from "../content/work";
 import { PageCta } from "../components/PageCta";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
+import { Img } from "../components/Img";
 
 /**
  * قصّة عميل — تجميعة فوق الأعمال، لا مخزنٌ ثانٍ لها.
@@ -111,13 +112,12 @@ export function ClientStoryPage() {
 
                     <div className="lg:col-span-3">
                       <div className="aspect-[4/3] overflow-hidden bg-paper-2">
-                        <img
+                        <Img
                           src={c.image}
                           alt={t(c.name)}
                           width={1400}
                           height={933}
-                          loading="lazy"
-                          decoding="async"
+                          sizes="(min-width: 1024px) 50vw, 100vw"
                           className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04] group-hover:grayscale-0 dark:brightness-[0.78] dark:group-hover:brightness-100"
                         />
                       </div>

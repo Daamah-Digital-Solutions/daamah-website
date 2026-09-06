@@ -9,6 +9,7 @@ import {
   type WorkItem,
 } from "../content/work";
 import { Reveal } from "./ui";
+import { Img } from "./Img";
 
 /**
  * بطاقة عمل — تُستعمل في الرئيسية وصفحة الأعمال وصفحة الخدمة.
@@ -45,13 +46,13 @@ export function WorkCard({
     <Reveal delay={delay} as="article" className="group">
       <Link to={path(`/work/${item.slug}`)} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
-          <img
+          <Img
             src={item.image}
             alt={t(item.name)}
             width={1400}
             height={933}
-            loading="lazy"
-            decoding="async"
+            /* ثلث الشاشة على الديسكتوب، نصفها على اللوح، كاملةً على الجوال */
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04] group-hover:grayscale-0 dark:brightness-[0.78] dark:group-hover:brightness-100"
           />
 

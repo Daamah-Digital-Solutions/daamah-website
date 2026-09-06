@@ -34,3 +34,20 @@ declare module "virtual:blog-stats" {
   const stats: Record<string, number>;
   export default stats;
 }
+
+/**
+ * فهرس المسارات المضغوط — عنوان ووصف كل صفحة بلا نصوصها.
+ * يولّده `vite.config.ts` كي لا يجرّ `Seo.tsx` المحتوى كلّه إلى
+ * أول حزمة يحمّلها كل زائر.
+ */
+declare module "virtual:routes" {
+  const routes: {
+    path: string;
+    title: { ar: string; en: string };
+    description: { ar: string; en: string };
+    kind: string;
+    parent?: string;
+    langs?: ("ar" | "en")[];
+  }[];
+  export default routes;
+}

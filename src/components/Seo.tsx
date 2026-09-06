@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { stripLang, useLang, withLang } from "../i18n";
-import { OG_IMAGE, SITE_URL, findRoute } from "../content/seo";
-import { graphFor } from "../seo/schema";
+import routes from "virtual:routes";
+import { OG_IMAGE, SITE_URL } from "../seo/site";
 import { brand } from "../content/home";
+
+const findRoute = (path: string) => routes.find((r) => r.path === path);
 
 /** يضبط وسمًا في الرأس أو ينشئه إن لم يوجد. */
 function meta(attr: "name" | "property", key: string, content: string) {
@@ -82,15 +84,24 @@ export function Seo() {
     meta("property", "og:image:width", "1200");
     meta("property", "og:image:height", "630");
 
-    if (route) {
+    /* المقال المكتوب بلغة واحدة لا نسخة له بالأخرى — إعلان
+       `hreflang` إليها وعدٌ بصفحة غير موجودة */
+    if (route && (route.langs ?? ["ar", "en"]).length > 1) {
       link("alternate", `${SITE_URL}${withLang(bare, "ar")}`, "ar");
       link("alternate", `${SITE_URL}${withLang(bare, "en")}`, "en");
       link("alternate", `${SITE_URL}${withLang(bare, "ar")}`, "x-default");
     }
 
-    /* نفس الرسم الذي كُتب في HTML الثابت — يُحدَّث عند التنقّل
-       بالعميل، وإلا بقيت بيانات الصفحة الأولى معلّقة على كل ما بعدها */
-    structured(graphFor(bare, lang));
+    /* البيانات المنظّمة مكتوبة سلفًا في HTML الثابت، فلا داعي لأن
+       يحمل بانيها أول حزمة — هو يستورد المحتوى كلّه. تُحمَّل عند
+       أول تنقّل داخلي، وهو وحده ما يحتاج تحديثها. */
+    let stale = false;
+    void import("../seo/schema").then(({ graphFor }) => {
+      if (!stale) structured(graphFor(bare, lang));
+    });
+    return () => {
+      stale = true;
+    };
   }, [pathname, lang, t]);
 
   return null;

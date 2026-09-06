@@ -90,36 +90,24 @@ export const ui = {
   whatsappFab: { ar: "تواصل معنا", en: "Chat with us" } as Bi,
 };
 
-/**
- * الهيرو: وعدٌ بصيغة النتيجة، لا تعليمة ولا شعار.
- *
- * العنوان يحمل العوامل الثلاثة في صيغة ما يحصل عليه العميل — «بحجم
- * شركتك» ظهور، «يجلب الفرص» وصول، «ولا يُضيّعها» تشغيل — ويفترض أن
- * الشركة كبيرة، فلا تكلفة كبرياء في قراءته.
- *
- * والمُرشد ليس هنا: طلب تشخيص ذاتي من غريب قبل أي مصداقية يقلب
- * الاختيار مرآةً لا تشخيصًا. الهيرو يعد ويثبت ويفتح الباب، والوضع
- * يأتي قسمًا ثانيًا برابط «أين تقفون؟».
- */
 export const hero = {
   status: { ar: "نعمل منذ 2018", en: "Working since 2018" } as Bi,
+  /* السطور مفصولة يدويًا — الكسر جزء من التصميم لا نتيجة له */
   headline: {
-    ar: ["حضور بحجم شركتك،", "يجلب الفرص ولا يُضيّعها."],
-    en: ["Presence the size of your company —", "that brings opportunities and doesn't lose them."],
+    ar: ["نبني حضورًا رقميًا", "يُرى، ويُفهم،", "ويُختار."],
+    en: ["Presence that gets", "seen, understood,", "and chosen."],
   } as Bi<string[]>,
-  /* الحجّة في سطرين — التفصيل في قسم الحجّة أسفل */
+  /* السطر الأخير يحمل النقطة الحمراء — الأحمر الوحيد في الهيرو */
   intro: {
-    ar: "ثلاثة أجزاء تتضاعف ولا تُجمع: إعلان في موقع ضعيف إنفاقٌ مهدور، وحضور بلا وصول لا يراه أحد، وفرص بلا نظام تضيع. لهذا نبنيها كلّها.",
-    en: "Three parts that multiply rather than add: ads into a weak site are wasted spend, a presence nobody reaches produces nothing, and opportunities with no system are lost. So we build all three.",
+    ar: "حضور يليق بشركتك، ووصول إلى العملاء المناسبين، ونظام يمسك الفرص قبل أن تضيع — منظومة واحدة تُبنى على فهم سوقك، لا على التخمين.",
+    en: "A presence worthy of your company, reach to the right clients, and a system that holds opportunities before they slip — one system, built on understanding your market rather than guessing at it.",
   } as Bi,
-  /* سطر المصداقية — أرقام الشركة الفعلية، بلا تجميل */
-  proof: {
-    ar: "منذ 2018 · أكثر من 150 مشروعًا · أكثر من 100 عميل · السعودية والخليج ومصر وأوروبا",
-    en: "Since 2018 · 150+ projects · 100+ clients · Saudi Arabia, the Gulf, Egypt and Europe",
+  primary: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
+  secondary: { ar: "شاهد أعمالنا", en: "See our work" } as Bi,
+  markets: {
+    ar: "السعودية · الإمارات · مصر · أوروبا",
+    en: "Saudi Arabia · UAE · Egypt · Europe",
   } as Bi,
-  primary: { ar: "تحدّث معنا على واتساب", en: "Message us on WhatsApp" } as Bi,
-  /* رابط نصّي إلى المُرشد — الوضع يأتي بعد الوعد لا قبله */
-  secondary: { ar: "أين تقفون اليوم؟", en: "Where do you stand today?" } as Bi,
 };
 
 /** شريط الأعمال أسفل الهيرو — إثبات بصري قبل أي كلام. */
@@ -290,10 +278,9 @@ export const services = {
 export const work = {
   index: "03",
   label: { ar: "أعمالنا", en: "Work" } as Bi,
-  /* ثلاثة مختارة، واحد لكل جزء — والرقم الكامل في صفحة الأعمال */
   lede: {
-    ar: ["ثلاثة أعمال،", "واحد لكل جزء."],
-    en: ["Three pieces of work,", "one for each part."],
+    ar: ["أكثر من 150 مشروعًا", "في 10 قطاعات."],
+    en: ["More than 150 projects", "across 10 sectors."],
   } as Bi<string[]>,
 
   /* المرشِّحان: القطاع أوّلًا — «أفهم مجالك» تسبق «أتقن هذه الخدمة» */

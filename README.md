@@ -141,11 +141,23 @@ build never depends on a network font host.
 ## Rules worth keeping
 
 **1. Motion never hides content.** Content is visible by default. Animations are enabled only
-through the `.anim-ready` class that `main.tsx` puts on `<html>` **before first paint**, and
-only when the page is visible and the user has not asked for reduced motion. Any animation
-starting from `opacity: 0` would otherwise leave content hidden forever if it never ran — a
-background tab, or an engine not compositing frames. `Reveal` likewise shows its content
-immediately when `IntersectionObserver` is unavailable.
+through the `.anim-ready` class that the inline script in `index.html` puts on `<html>`
+**before first paint**, and only when the page is visible and the user has not asked for
+reduced motion. Any animation starting from `opacity: 0` would otherwise leave content hidden
+forever if it never ran — a background tab, or an engine not compositing frames. `Reveal`
+likewise shows its content immediately when `IntersectionObserver` is unavailable.
+
+Anything already on screen at load takes `eager` (`Reveal`, `MaskLines`) and animates from CSS
+instead of waiting for `IntersectionObserver` — pages now arrive drawn, so waiting for JS would
+show the hero and then hide it to animate it in. Those keyframes write their `to` state
+explicitly: the mask rule sets `translateY(110%)` on every line, so an implicit end would
+resolve back to it and animate 110% → 110%.
+
+**1b. Nothing may render differently on the first client paint than it did at build time.**
+React discards the whole prerendered tree over one mismatch. This is why the theme starts light
+and is read from `data-theme` in an effect, why both logos render and CSS picks one, why
+`Counter` starts at its final value, why the footer year is `__BUILD_YEAR__`, and why the quote
+form reads `?service=` in an effect. Verify with `npm run preview` — never `vite preview`.
 
 **2. `overflow-x: clip` on `html` and `body` — never `hidden`.** With `hidden` the element
 becomes a scroll container, which shifts the paint origin in RTL and renders the page blank on
@@ -156,20 +168,58 @@ mobile. Large decorative elements must be constrained by width, not height.
 **4. No hard-coded copy in components.** Every string belongs in `src/content/`. Adding text
 directly to a component silently breaks the English side.
 
-**5. Images carry `width` and `height`.** Their intrinsic size is how the browser reserves
-space before the file arrives; without it the page jumps as images load.
+**5. Images go through `Img`, and carry `width` and `height`.** Intrinsic size is how the
+browser reserves space before the file arrives; without it the page jumps as images load. `Img`
+adds the AVIF/WebP `srcset` — run `npm run images` after adding a picture, and commit what it
+generates.
+
+**6. Structured data must match what the page shows.** `FAQPage` markup is built from the same
+`content/faq.ts` entries the page renders. Declaring questions a visitor cannot see is what
+gets a rich result pulled. For the same reason there is no `LocalBusiness`, no `address`, and no
+self-authored `Review` anywhere.
+
+## The Saudi layer
+
+`content/saudi.ts` holds one page per (service × city) — currently four services × Riyadh and
+Jeddah. Every field is written for that pairing: a Riyadh buyer's problems are not a Jeddah
+trader's, and their questions differ.
+
+Pages that repeat one text with the city name swapped are doorway pages, and they cost the
+whole site rather than the page. The build fails on two routes sharing a description, so
+duplication surfaces at build time rather than a month into indexing.
+
+Proof is derived, never written twice: work comes from `work.ts` filtered to the `sa` market,
+testimonials from `testimonials.ts`. `/saudi` gathers the set so internal link strength reaches
+all of them.
 
 ## Deployment
 
-Vercel, with `vercel.json` rewriting all paths to `index.html` for client-side routing
-(`public/_redirects` does the same on Netlify). Build output is `dist/`, which is not tracked.
+Vercel. `vercel.json` sets `cleanUrls` and `trailingSlash: false` and adds cache headers — no
+catch-all rewrite, so unknown paths reach `404.html` with a real 404 instead of returning 200.
+`public/_redirects` keeps Netlify parity. Build output is `dist/`, untracked.
+
+Optional environment variables (the site works fully without them):
+
+```
+VITE_GA_ID               # G-XXXXXXXXXX
+VITE_META_PIXEL_ID       # digits only
+VITE_GSC_VERIFICATION    # Search Console HTML-tag value
+VITE_BING_VERIFICATION   # Bing Webmaster msvalidate.01 value
+```
 
 ## Open items
 
+- **Testimonials are empty on purpose.** `content/testimonials.ts` has the shape and no
+  entries; the section stays hidden until real quotes arrive. Never invent one.
+- **A Saudi WhatsApp number** would raise conversion more than anything else here. Add it to
+  `brand.phones` with `market: "sa"` and `phoneFor()` picks it up site-wide.
+- `saudi.since` and `saudi.clients` in `content/home.ts` are estimates — confirm them.
 - Package prices in `content/home.ts` came from social campaigns and **need confirming**.
 - Work images were extracted from the company profile PDF — originals would be better.
 - Logo assets are PNG; SVG from the source Illustrator file would be sharper.
 - Client stories carry an optional `since` year and work items an optional `year`; both are
   currently unset, and the timeline reads better once they are filled in.
-- No work items exist yet for the `profile` and `crm` services — their filters appear
-  automatically once the first item is added.
+- No work items exist yet for the `profile`, `crm`, and `seo` services — their filters and
+  related-work sections appear automatically once the first item is added.
+- City pages exist for Riyadh and Jeddah. Dammam needs only its copy written into
+  `cityPages`; the routes, sitemap, and schema follow from the data.

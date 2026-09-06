@@ -3,6 +3,8 @@
 
 # build output
 /dist
+# حزمة الرسم وقت البناء — وسيطة، تُبنى قبل حزمة العميل
+/.ssr
 
 # editor / OS
 .DS_Store

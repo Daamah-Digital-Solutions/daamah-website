@@ -1,4 +1,4 @@
-import type { Bi } from "../i18n";
+import type { Bi, Lang } from "../i18n";
 import { brand, services } from "./home";
 import { clientStories, sectorMeta, workItems } from "./work";
 import {
@@ -26,6 +26,17 @@ export const SITE_URL = `https://${brand.domain}`;
 /** صورة المعاينة الافتراضية عند مشاركة رابط. */
 export const OG_IMAGE = "/assets/og-default.png";
 
+/** نوع الصفحة — منه يعرف مولّد البيانات المنظّمة ما يُصرّح به. */
+export type RouteKind =
+  | "home"
+  | "page"
+  | "services"
+  | "service"
+  | "work"
+  | "workItem"
+  | "client"
+  | "legal";
+
 export type RouteMeta = {
   /** المسار المجرّد بلا بادئة لغة */
   path: string;
@@ -33,6 +44,15 @@ export type RouteMeta = {
   description: Bi;
   /** أولوية المسار في خريطة الموقع */
   priority: number;
+  kind: RouteKind;
+  /** المسار الأب — منه يُبنى مسار فتات الخبز */
+  parent?: string;
+  /** اللغات المتاحة. الغياب يعني الاثنتين معًا. */
+  langs?: Lang[];
+  /** آخر تعديل — يدخل خريطة الموقع حين يوجد */
+  lastmod?: string;
+  /** صورة تمثّل الصفحة — لخريطة الموقع ولوسوم المشاركة */
+  image?: string;
 };
 
 const home: RouteMeta = {
@@ -46,6 +66,7 @@ const home: RouteMeta = {
     en: "Since 2018 we have built complete digital presence for companies across Saudi Arabia, the Gulf, Egypt, and Europe: brand identity, websites, social media, and marketing that performs.",
   },
   priority: 1,
+  kind: "home",
 };
 
 /** يبني عنوانًا موحّدًا: «اسم الصفحة — اسم الشركة» */
@@ -60,30 +81,38 @@ export const routes: RouteMeta[] = [
     title: titled(aboutPage.label),
     description: aboutPage.intro,
     priority: 0.8,
+    kind: "page",
   },
   {
     path: "/services",
     title: titled(servicesPage.label),
     description: servicesPage.intro,
     priority: 0.9,
+    kind: "services",
   },
   ...services.items.map<RouteMeta>((s) => ({
     path: `/services/${s.slug}`,
     title: titled(s.name),
     description: serviceDetails[s.slug]?.intro ?? s.desc,
     priority: 0.8,
+    kind: "service" as const,
+    parent: "/services",
   })),
   {
     path: "/work",
     title: titled(workPage.label),
     description: workPage.intro,
     priority: 0.9,
+    kind: "work",
   },
   ...workItems.map<RouteMeta>((w) => ({
     path: `/work/${w.slug}`,
     title: titled(w.name),
     description: workDetails[w.slug]?.desc ?? sectorMeta(w.sector).label,
     priority: 0.6,
+    kind: "workItem" as const,
+    parent: "/work",
+    image: w.image,
   })),
   /* قصص العملاء أعلى أولويةً من العمل المفرد: هي ما نريد أن يُقرأ */
   ...clientStories.map<RouteMeta>((c) => ({
@@ -91,30 +120,36 @@ export const routes: RouteMeta[] = [
     title: titled(c.name),
     description: c.lede,
     priority: 0.7,
+    kind: "client" as const,
+    parent: "/work",
   })),
   {
     path: "/process",
     title: titled(processPage.label),
     description: processPage.intro,
     priority: 0.7,
+    kind: "page",
   },
   {
     path: "/packages",
     title: titled(packagesPage.label),
     description: packagesPage.intro,
     priority: 0.8,
+    kind: "page",
   },
   {
     path: "/contact",
     title: titled(contactPage.label),
     description: contactPage.intro,
     priority: 0.9,
+    kind: "page",
   },
   {
     path: "/privacy",
     title: titled(privacyPage.label),
     description: privacyPage.intro,
     priority: 0.2,
+    kind: "legal",
   },
 ];
 

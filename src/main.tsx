@@ -1,13 +1,27 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import "./styles/globals.css";
 import App from "./App";
 import { initAnalytics } from "./analytics";
 
 initAnalytics();
 
-createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root")!;
+const tree = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+
+/**
+ * الترطيب حين تصل الصفحة مرسومةً، والرسم من الصفر حين لا تصل.
+ *
+ * ملفات الإنتاج يكتبها البناء وفيها الشجرة كاملة، فنُلحق بها
+ * المستمعات ولا نعيد رسمها. أمّا خادم التطوير فيقدّم `index.html`
+ * بجذر فارغ — و`hydrateRoot` على جذر فارغ يرمي كل شيء ويُحذّر.
+ */
+if (root.hasChildNodes()) {
+  hydrateRoot(root, tree);
+} else {
+  createRoot(root).render(tree);
+}

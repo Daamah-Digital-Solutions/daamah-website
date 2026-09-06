@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "tsc -b && vite build --ssr src/entry-server.tsx --outDir .ssr && vite build",
+    "preview": "vite preview",
+    "icons": "node scripts/icons.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

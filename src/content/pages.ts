@@ -323,6 +323,39 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "sara-younis-brand": {
+    desc: {
+      ar: "علامة أزياء نسائية طلبت الاقتصاد والرقيّ معًا. بنينا الشعار على حرفين داخل شكل بيضاوي بلا زخرفة — علامة تحتمل أن تُطبع على البطاقة واللافتة والعبوة وتظلّ هي نفسها.",
+      en: "A womenswear label that asked for restraint and refinement at once. We built the mark on two letters inside an oval with no ornament — a mark that can be printed on a card, a sign, and a package and stay itself.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تطبيقات المتجر والعبوات", en: "Store and packaging applications" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+    ],
+  },
+  "expert-estate": {
+    desc: {
+      ar: "شركة استثمار عقاري. بنينا الشعار على حرف E مكرّرًا ومعكوسًا حتى يُقرأ مبنى — فيقول مجال الشركة قبل أن يُقرأ اسمها، بذهبٍ على داكن يليق بحجم الصفقة.",
+      en: "A property investment firm. We built the mark on the letter E, repeated and mirrored until it reads as a building — stating the line of business before the name is read, in gold on dark to match the size of the deal.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تطبيقات وموك-أب", en: "Applications and mockups" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+    ],
+  },
+  "hennawy-brand": {
+    desc: {
+      ar: "شركة ورق وصناعات كيماوية. جمعنا في الشعار حرف H وأنبوب اختبار وورقة نبات: الحرف للاسم، والأنبوب للكيمياء، والورقة للبيئة التي يقوم عليها ادّعاء الشركة — ثلاث إشارات في شكل واحد.",
+      en: "A paper and chemical company. We folded the letter H, a test tube, and a leaf into one mark: the letter for the name, the tube for the chemistry, the leaf for the environmental claim the company rests on — three signals in one shape.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تطبيقات صناعية وعبوات", en: "Industrial and packaging applications" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+    ],
+  },
   "adg-profile": {
     desc: {
       ar: "شركة عقارات تربط المستثمر الخليجي بالسوق الجورجي. الملف يُرسَل إلى مستثمر يزن قراره بمئات الآلاف، فبُني على ما يسأل عنه: من أنتم، ولماذا جورجيا، وبأي أرقام — لا على سرد إنجازات. الهوية التي بنيناها للشركة هي نفسها التي يتكلّم بها الملف.",
@@ -620,7 +653,7 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
       { ar: "نماذج تواصل", en: "Contact forms" },
     ],
   },
-  "sara-younis": {
+  "sara-younis-web": {
     desc: {
       ar: "علامة أزياء نسائية. بنينا متجرًا بتصميم مينيمال أبيض وأسود يترك الصورة تتكلّم، ويقصّر الطريق من التصفّح إلى الشراء بدل أن يزيّن الصفحة.",
       en: "A womenswear label. We built a store in a minimal black-and-white design that lets the photography speak, and shortens the path from browsing to buying rather than decorating the page.",

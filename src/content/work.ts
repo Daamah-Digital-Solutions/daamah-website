@@ -224,6 +224,33 @@ export const workItems: WorkItem[] = [
     image: "/assets/work/brand-daughters.jpg",
   },
   {
+    slug: "sara-younis-brand",
+    service: "brand",
+    name: { ar: "سارة يونس — الهوية", en: "Sara Younis — Identity" },
+    sector: "ecommerce",
+    markets: [],
+    note: { ar: "أزياء", en: "Fashion" },
+    image: "/assets/work/brand-sarayounis.jpg",
+    client: "sara-younis",
+  },
+  {
+    slug: "expert-estate",
+    service: "brand",
+    name: { ar: "إكسبرت إستيت", en: "Expert Estate" },
+    sector: "realestate",
+    markets: [],
+    image: "/assets/work/brand-expertestate.jpg",
+  },
+  {
+    slug: "hennawy-brand",
+    service: "brand",
+    name: { ar: "الحناوي للورق والكيماويات", en: "Al Hennawy Co." },
+    sector: "energy",
+    markets: [],
+    note: { ar: "ورق وكيماويات", en: "Paper & chemicals" },
+    image: "/assets/work/brand-hennawy.jpg",
+  },
+  {
     slug: "fragancia",
     service: "web",
     name: { ar: "فراجانسيا", en: "Fragancia" },
@@ -257,7 +284,7 @@ export const workItems: WorkItem[] = [
     image: "/assets/work/web-insurance.jpg",
   },
   {
-    slug: "sara-younis",
+    slug: "sara-younis-web",
     service: "web",
     name: { ar: "سارة يونس", en: "SY — Sara Younis" },
     sector: "ecommerce",
@@ -399,6 +426,21 @@ export type ClientStory = {
  * فلا يوجد وصف في مكانين ولا خطر أن يفترقا.
  */
 export const clientStories: ClientStory[] = [
+  {
+    slug: "sara-younis",
+    name: { ar: "سارة يونس", en: "Sara Younis" },
+    sector: "ecommerce",
+    markets: [],
+    lede: {
+      ar: "علامة أزياء نسائية أرادت أن تبدو مقتصدة وراقية في آنٍ. بنينا الهوية على هذا القيد — حرفان وشكل بيضاوي ولا زخرفة — ثم بنينا المتجر على القاعدة نفسها: الصورة تتكلّم والواجهة تصمت.",
+      en: "A womenswear label that wanted to look restrained and premium at once. We built the identity on that constraint — two letters, an oval, no ornament — then built the store on the same rule: the photography speaks and the interface keeps quiet.",
+    },
+    results: [
+      { ar: "هوية مقتصدة تحتمل التكرار اليومي", en: "A restrained identity that survives daily repetition" },
+      { ar: "متجر يقصّر الطريق من التصفّح إلى الشراء", en: "A store that shortens the path from browsing to buying" },
+      { ar: "العلامة نفسها على المتجر والعبوة", en: "The same brand on the store and the packaging" },
+    ],
+  },
   {
     slug: "profitmax",
     name: { ar: "بروفيت ماكس للاستثمار", en: "Profit Max Investments" },

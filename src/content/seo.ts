@@ -97,13 +97,25 @@ const META: Record<string, Bi> = {
     ar: "موقع مؤسسي لشركة تأمين دولية مقرّها لندن، على رسالة الثقة والقوة المالية عبر خمسة عقود.",
     en: "A corporate site for a London-based international insurer, on a message of trust and financial strength.",
   },
-  "/work/sara-younis": {
+  "/work/sara-younis-web": {
     ar: "متجر علامة أزياء نسائية بتصميم مينيمال يترك الصورة تتكلّم ويقصّر الطريق إلى الشراء.",
     en: "A womenswear store in a minimal design that lets the photography speak and shortens the path to buying.",
   },
   "/work/adg-profile": {
     ar: "ملف تعريفي عربي لشركة عقارات تربط المستثمر الخليجي بالسوق الجورجي — مبنيّ على ما يسأل عنه المستثمر لا على سرد الإنجازات.",
     en: "An Arabic company profile for a firm connecting Gulf investors to the Georgian market — built on what an investor asks.",
+  },
+  "/work/sara-younis-brand": {
+    ar: "هوية علامة أزياء نسائية — حرفان داخل شكل بيضاوي بلا زخرفة، تحتمل البطاقة واللافتة والعبوة.",
+    en: "Identity for a womenswear label — two letters inside an oval, no ornament, built to survive every application.",
+  },
+  "/work/expert-estate": {
+    ar: "هوية شركة استثمار عقاري — حرف E مكرّرًا ومعكوسًا حتى يُقرأ مبنى، ذهبٌ على داكن.",
+    en: "Identity for a property investment firm — the letter E mirrored until it reads as a building, gold on dark.",
+  },
+  "/work/hennawy-brand": {
+    ar: "هوية شركة ورق وكيماويات — حرف H وأنبوب اختبار وورقة نبات في شكل واحد.",
+    en: "Identity for a paper and chemical company — the letter H, a test tube, and a leaf folded into one mark.",
   },
   "/work/profitmax-brand": {
     ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
@@ -168,6 +180,10 @@ const META: Record<string, Bi> = {
   "/work/daughters": {
     ar: "هوية شركة تجارة عامة — صندوق شحن يُقرأ حرف الاسم الأول، فيقول المجال في لمحة.",
     en: "Identity for a general trading company — a shipping crate that reads as the initial.",
+  },
+  "/clients/sara-younis": {
+    ar: "هوية ثم متجر لعلامة أزياء نسائية — قاعدة واحدة: الصورة تتكلّم والواجهة تصمت.",
+    en: "Identity then store for a womenswear label — one rule: the photography speaks, the interface keeps quiet.",
   },
   "/clients/profitmax": {
     ar: "هوية ثم موقع لشركة استثمار تعمل من بريطانيا والإمارات — علاقة امتدّت من العلامة إلى حضورها الكامل.",

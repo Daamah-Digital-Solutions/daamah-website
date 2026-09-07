@@ -29,6 +29,7 @@ const WorkPage = lazy(() => import("./pages/WorkPage").then((m) => ({ default: m
 const WorkDetailPage = lazy(() => import("./pages/WorkDetailPage").then((m) => ({ default: m.WorkDetailPage })));
 const ClientStoryPage = lazy(() => import("./pages/ClientStoryPage").then((m) => ({ default: m.ClientStoryPage })));
 const ProcessPage = lazy(() => import("./pages/ProcessPage").then((m) => ({ default: m.ProcessPage })));
+const ProfilePage = lazy(() => import("./pages/ProfilePage").then((m) => ({ default: m.ProfilePage })));
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
@@ -63,6 +64,7 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-workitem`} path={at("work/:slug")} element={<WorkDetailPage />} />,
     <Route key={`${prefix}-client`} path={at("clients/:slug")} element={<ClientStoryPage />} />,
     <Route key={`${prefix}-process`} path={at("process")} element={<ProcessPage />} />,
+    <Route key={`${prefix}-profile`} path={at("profile")} element={<ProfilePage />} />,
     <Route key={`${prefix}-solutions`} path={at("solutions")} element={<PackagesPage />} />,
     <Route key={`${prefix}-contact`} path={at("contact")} element={<ContactPage />} />,
     <Route key={`${prefix}-blog`} path={at("blog")} element={<BlogPage />} />,

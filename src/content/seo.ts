@@ -8,6 +8,7 @@ import {
   packagesPage,
   privacyPage,
   processPage,
+  profilePage,
   serviceDetails,
   servicesPage,
   workDetails,
@@ -343,6 +344,16 @@ export const routes: RouteMeta[] = [
     kind: "client" as const,
     parent: "/work",
   })),
+  {
+    path: "/profile",
+    title: titled(profilePage.label),
+    description: {
+      ar: "ملف دَعمة التعريفي وبورتفوليو السوشيال ميديا كاملين — اقرأهما كما يقرأهما عميل يزن قراره.",
+      en: "Daamah's own company profile and social media portfolio in full — read them the way a client weighing a decision would.",
+    },
+    priority: 0.7,
+    kind: "page",
+  },
   {
     path: "/process",
     title: titled(processPage.label),

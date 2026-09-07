@@ -60,6 +60,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  to={path("/profile")}
+                  className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
+                >
+                  {t(footer.profileTitle)}
+                </Link>
+              </li>
+              <li>
+                <Link
                   to={path("/saudi")}
                   className="text-[15px] text-paper/70 transition-colors duration-(--dur-fast) hover:text-paper"
                 >

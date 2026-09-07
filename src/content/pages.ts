@@ -93,6 +93,35 @@ export const aboutPage = {
   },
 };
 
+/* ── /profile ── */
+/**
+ * ملفّنا نحن.
+ *
+ * الملف التعريفي خدمةٌ نبيعها، وأقوى إثبات عليها أن نُري ملفّنا:
+ * من يبيع ملفات تعريفية ولا يملك واحدًا يقول عن نفسه ما لا يريد.
+ */
+export const profilePage = {
+  label: { ar: "ملفنا التعريفي", en: "Our profile" } as Bi,
+  title: {
+    ar: ["نبيع ملفات تعريفية،", "فهذا ملفّنا."],
+    en: ["We build company profiles,", "so here is ours."],
+  } as Bi<string[]>,
+  intro: {
+    ar: "الملف التعريفي وثيقة تُقرأ في خمس دقائق قبل اجتماع أو داخل ملف تأهيل. هذا ملفّنا كاملًا كما نرسله — اقرأه كما يقرأه عميلٌ يزن قراره.",
+    en: "A company profile is a document read in five minutes before a meeting or inside a qualification file. This is ours in full, exactly as we send it — read it the way a client weighing a decision reads it.",
+  } as Bi,
+  deckLabel: { ar: "الملف التعريفي", en: "The company profile" } as Bi,
+  socialLabel: { ar: "بورتفوليو السوشيال ميديا", en: "Social media portfolio" } as Bi,
+  socialNote: {
+    ar: "تصاميم منشورة لعملاء في قطاعات مختلفة — عيّنة مما نسلّمه شهريًا، لا مختارات.",
+    en: "Published designs for clients across sectors — a sample of what we deliver monthly, not a highlight reel.",
+  } as Bi,
+  ctaLines: {
+    ar: ["ملفّكم يستحقّ", "أن يُرسَل دون اعتذار."],
+    en: ["Your profile deserves", "to be sent without apology."],
+  } as Bi<string[]>,
+};
+
 /* ── /services ── */
 export const servicesPage = {
   label: { ar: "خدماتنا", en: "Services" } as Bi,

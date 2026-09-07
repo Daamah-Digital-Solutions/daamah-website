@@ -396,6 +396,7 @@ export const contact = {
 export const footer = {
   tagline: { ar: "الحلول الرقمية وتمكين العلامات", en: "Digital Solutions & Empowering Brands" } as Bi,
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
+  profileTitle: { ar: "ملفنا التعريفي", en: "Our profile" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
   saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,

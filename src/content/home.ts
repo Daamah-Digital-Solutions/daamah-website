@@ -108,16 +108,22 @@ export const hero = {
   } as Bi,
 };
 
-/** شريط الأعمال أسفل الهيرو — إثبات بصري قبل أي كلام. */
-export const strip: { src: string; label: Bi }[] = [
-  { src: "/assets/work/brand-buildingline.jpg", label: { ar: "بيلدنج لاين", en: "Building Line" } },
-  { src: "/assets/work/web-fragancia.jpg", label: { ar: "فراجانسيا", en: "Fragancia" } },
-  { src: "/assets/work/social-ecovista.jpg", label: { ar: "إيكو فيستا", en: "Eco Vista" } },
-  { src: "/assets/work/brand-amlak.jpg", label: { ar: "أملاك العقارية", en: "Amlak" } },
-  { src: "/assets/work/web-vibrant.jpg", label: { ar: "فايبرانت ديزاين", en: "Vibrant Design" } },
-  { src: "/assets/work/brand-elitegate.jpg", label: { ar: "إيليت جيت", en: "Elitegate" } },
-  { src: "/assets/work/social-skyshooter.jpg", label: { ar: "سكاي شوتر", en: "Sky Shooter" } },
-  { src: "/assets/work/brand-basmat.jpg", label: { ar: "بصمة العمران", en: "Basmat Alomran" } },
+/**
+ * شريط الأعمال أسفل الهيرو — إثبات بصري قبل أي كلام.
+ *
+ * مفاتيح لا صور: الصورة والاسم يأتيان من `workItems`، فلا يبقى
+ * وصف العمل في مكانين يفترقان — وكل بطاقة تعرف صفحتها فتُفتح
+ * بالضغط بدل أن تمرّ أمام العين بلا وجهة.
+ */
+export const stripSlugs = [
+  "building-line",
+  "fragancia",
+  "eco-vista",
+  "amlak",
+  "vibrant-design",
+  "elitegate",
+  "sky-shooter",
+  "basmat-alomran",
 ];
 
 export const about = {

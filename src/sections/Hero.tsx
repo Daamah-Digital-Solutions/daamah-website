@@ -1,7 +1,10 @@
 import { useLang } from "../i18n";
 import { track } from "../analytics";
 import { waHref, waMessage } from "../content/whatsapp";
-import { hero, strip } from "../content/home";
+import { hero, stripSlugs } from "../content/home";
+import { coverSize } from "../content/gallery";
+import { workItems } from "../content/work";
+import { Link } from "react-router-dom";
 import { Btn, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
 
@@ -31,8 +34,11 @@ function GridLines() {
  * رماديًا إلى آخره.
  */
 function WorkStrip() {
-  const { t } = useLang();
-  const items = [...strip, ...strip]; // نسختان تصنعان حلقة بلا قطع
+  const { t, path } = useLang();
+  const picks = stripSlugs
+    .map((slug) => workItems.find((w) => w.slug === slug))
+    .filter((w): w is (typeof workItems)[number] => Boolean(w));
+  const items = [...picks, ...picks]; // نسختان تصنعان حلقة بلا قطع
 
   return (
     <div className="marquee relative mt-20 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-24">
@@ -45,30 +51,38 @@ function WorkStrip() {
         style={{ ["--marquee-dur" as string]: "80s" }}
         dir="ltr"
       >
-        {items.map((item, i) => (
-          <figure
-            key={`${item.src}-${i}`}
-            className="group relative h-[190px] w-[280px] shrink-0 overflow-hidden border-e border-[var(--line)] sm:h-[230px] sm:w-[340px]"
-          >
-            {/* الشريط قرب الطية: أول نسختين تُحمَّلان فورًا لأنهما
-                مرئيّتان، والباقي كسولًا. `sizes` ثابت لأن عرض
-                البطاقة ثابت لا نسبة من الشاشة */}
-            <Img
-              src={item.src}
-              alt={t(item.label)}
-              width={1400}
-              height={933}
-              sizes="340px"
-              priority={i < 2}
-              /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
-                 بيضاء وتشتعل على خلفية شبه سوداء */
-              className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
-            />
-            <figcaption className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
-              {t(item.label)}
-            </figcaption>
-          </figure>
-        ))}
+        {items.map((item, i) => {
+          const size = coverSize[item.image] ?? { w: 1400, h: 933 };
+          return (
+            <Link
+              key={`${item.slug}-${i}`}
+              to={path(`/work/${item.slug}`)}
+              /* النسخة الثانية تكرارٌ بصري: تُخفى عن القارئ الآلي
+                 وعن مسار المفاتيح حتى لا يمرّ على العمل مرّتين */
+              aria-hidden={i >= picks.length}
+              tabIndex={i >= picks.length ? -1 : undefined}
+              className="group relative block h-[190px] w-[280px] shrink-0 overflow-hidden border-e border-[var(--line)] sm:h-[230px] sm:w-[340px]"
+            >
+              {/* الشريط قرب الطية: أول نسختين تُحمَّلان فورًا لأنهما
+                  مرئيّتان، والباقي كسولًا. `sizes` ثابت لأن عرض
+                  البطاقة ثابت لا نسبة من الشاشة */}
+              <Img
+                src={item.image}
+                alt={t(item.name)}
+                width={size.w}
+                height={size.h}
+                sizes="340px"
+                priority={i < 2}
+                /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
+                   بيضاء وتشتعل على خلفية شبه سوداء */
+                className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
+              />
+              <span className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
+                {t(item.name)}
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

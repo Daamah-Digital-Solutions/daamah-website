@@ -45,7 +45,8 @@ export type SectorKey =
   | "food"
   | "business"
   | "health"
-  | "auto";
+  | "auto"
+  | "events";
 
 export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "construction", label: { ar: "مقاولات", en: "Construction" } },
@@ -60,6 +61,7 @@ export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "business", label: { ar: "تجارة وخدمات أعمال", en: "Trade & business services" } },
   { key: "health", label: { ar: "رعاية صحية", en: "Healthcare" } },
   { key: "auto", label: { ar: "سيارات ونقل", en: "Automotive & transport" } },
+  { key: "events", label: { ar: "معارض وفعاليات", en: "Events & exhibitions" } },
 ];
 
 /* ── الأسواق ── */
@@ -249,6 +251,7 @@ export const workItems: WorkItem[] = [
     markets: [],
     note: { ar: "ورق وكيماويات", en: "Paper & chemicals" },
     image: "/assets/work/brand-hennawy.jpg",
+    client: "hennawy",
   },
   {
     slug: "fragancia",
@@ -268,12 +271,13 @@ export const workItems: WorkItem[] = [
     image: "/assets/work/web-vibrant.jpg",
   },
   {
-    slug: "web-contracting",
+    slug: "trustech-web",
     service: "web",
-    name: { ar: "مجموعة مقاولات", en: "Contracting Group" },
+    name: { ar: "تراستك للمقاولات", en: "Trustech Building Contracting" },
     sector: "construction",
-    markets: ["ae"],
+    markets: ["ae", "eu"],
     image: "/assets/work/web-contracting.jpg",
+    client: "trustech",
   },
   {
     slug: "hcc-insurance",
@@ -282,6 +286,7 @@ export const workItems: WorkItem[] = [
     sector: "finance",
     markets: ["eu"],
     image: "/assets/work/web-insurance.jpg",
+    client: "hcc",
   },
   {
     slug: "sara-younis-web",
@@ -378,6 +383,67 @@ export const workItems: WorkItem[] = [
     client: "adg",
   },
   {
+    slug: "profitmax-profile",
+    service: "profile",
+    name: { ar: "بروفيت ماكس — الملف التعريفي", en: "Profit Max — Company Profile" },
+    sector: "finance",
+    markets: ["eu", "ae"],
+    image: "/assets/work/profile-profitmax.jpg",
+    client: "profitmax",
+  },
+  {
+    slug: "hcc-profile",
+    service: "profile",
+    name: { ar: "إتش سي سي — الملف التعريفي", en: "HCC — Company Profile" },
+    sector: "finance",
+    markets: ["eu"],
+    image: "/assets/work/profile-hcc.jpg",
+    client: "hcc",
+  },
+  {
+    slug: "trustech-profile",
+    service: "profile",
+    name: { ar: "تراستك — ملف مشروع سكاي فيو", en: "Trustech — Sky View Project" },
+    sector: "construction",
+    markets: ["ae", "eu"],
+    image: "/assets/work/profile-trustech.jpg",
+    client: "trustech",
+  },
+  {
+    slug: "tdh-profile",
+    service: "profile",
+    name: { ar: "تي دي إتش — سكاي فيو ريزيدنس", en: "TDH — Sky View Residence" },
+    sector: "realestate",
+    markets: ["ae"],
+    image: "/assets/work/profile-tdh.jpg",
+  },
+  {
+    slug: "hennawy-profile",
+    service: "profile",
+    name: { ar: "الحناوي — الملف التعريفي", en: "Al Hennawy — Company Profile" },
+    sector: "energy",
+    markets: ["eg"],
+    image: "/assets/work/profile-hennawy.jpg",
+    client: "hennawy",
+  },
+  {
+    slug: "alamein-profile",
+    service: "profile",
+    name: { ar: "مصنع هياكل العلمين", en: "Alamein Trailers" },
+    sector: "energy",
+    markets: ["sa"],
+    note: { ar: "مقطورات", en: "Trailers" },
+    image: "/assets/work/profile-alamein.jpg",
+  },
+  {
+    slug: "connect-profile",
+    service: "profile",
+    name: { ar: "كونكت لأجنحة المعارض", en: "Connect Exhibition Stands" },
+    sector: "events",
+    markets: ["sa"],
+    image: "/assets/work/profile-connect.jpg",
+  },
+  {
     slug: "greenmark",
     service: "social",
     name: { ar: "جرين مارك", en: "Green Mark" },
@@ -427,6 +493,51 @@ export type ClientStory = {
  */
 export const clientStories: ClientStory[] = [
   {
+    slug: "hcc",
+    name: { ar: "إتش سي سي للتأمين الدولي", en: "HCC International Insurance" },
+    sector: "finance",
+    markets: ["eu"],
+    lede: {
+      ar: "شركة تأمين دولية مقرّها لندن، تبيع ضمانات وسندات لشركات تتعامل بعقود كبيرة. القارئ هنا لا يشتري بالانطباع بل بالتفصيل — فبُني الموقع والملف على القاعدة نفسها: اشرح ما تغطّيه بالضبط، ثم اترك الثقة تُبنى من الوضوح.",
+      en: "A London-based international insurer selling bonds and guarantees to companies working on large contracts. This reader does not buy on impression but on detail — so the site and the profile were built on one rule: explain exactly what is covered, then let the trust build from the clarity.",
+    },
+    results: [
+      { ar: "موقع مؤسسي بصفحة لكل نوع تغطية", en: "A corporate site with a page per line of cover" },
+      { ar: "ملف تعريفي يشرح السندات بلغة المشتري", en: "A profile explaining bonds in the buyer's language" },
+      { ar: "رسالة واحدة على الشاشة وفي الورق", en: "One message on screen and on paper" },
+    ],
+  },
+  {
+    slug: "trustech",
+    name: { ar: "تراستك للمقاولات", en: "Trustech Building Contracting" },
+    sector: "construction",
+    markets: ["ae", "eu"],
+    lede: {
+      ar: "مجموعة مقاولات وتطوير عقاري بين الإمارات وبريطانيا، سجلّها يمتدّ منذ 1982. بنينا موقعها الذي يعرض هذا السجلّ، ثم ملف مشروع «سكاي فيو» الذي يُرسَل إلى المستثمر — الموقع يقول من هم، والملف يقول ما يعرضونه الآن.",
+      en: "A contracting and property development group between the UAE and the UK, with a record going back to 1982. We built the site that presents that record, then the Sky View project profile sent to investors — the site says who they are, the profile says what they are offering now.",
+    },
+    results: [
+      { ar: "موقع يعرض سجلًّا يمتدّ أربعة عقود", en: "A site presenting a four-decade record" },
+      { ar: "ملف مشروع بالشركاء والمخططات والوحدات", en: "A project profile with partners, plans, and unit types" },
+      { ar: "مادة تصلح للمستثمر لا للزائر العابر", en: "Material fit for an investor, not a passing visitor" },
+    ],
+  },
+  {
+    slug: "hennawy",
+    name: { ar: "شركة الحناوي", en: "Al Hennawy Co." },
+    sector: "energy",
+    markets: ["eg"],
+    lede: {
+      ar: "شركة تصنيع مناديل ورقية وكيماويات تبيع لشركات لا لأفراد. بنينا هويتها على ثلاث إشارات في شكل واحد — حرف الاسم وأنبوب اختبار وورقة نبات — ثم ملفًّا تعريفيًا يمشي بالمشتري من المصنع إلى المنتج إلى الشراكات.",
+      en: "A tissue-paper and chemicals manufacturer selling to businesses, not consumers. We built its identity on three signals in one shape — the initial, a test tube, a leaf — then a profile that walks a buyer from the plant to the product to the partnerships.",
+    },
+    results: [
+      { ar: "علامة تحمل الصناعة والبيئة معًا", en: "A mark carrying both the industry and the environment" },
+      { ar: "ملف تعريفي موجّه لمشترٍ صناعي", en: "A profile written for an industrial buyer" },
+      { ar: "العلامة نفسها على المصنع والورق", en: "The same brand on the plant and on paper" },
+    ],
+  },
+  {
     slug: "sara-younis",
     name: { ar: "سارة يونس", en: "Sara Younis" },
     sector: "ecommerce",
@@ -447,11 +558,11 @@ export const clientStories: ClientStory[] = [
     sector: "finance",
     markets: ["eu", "ae"],
     lede: {
-      ar: "شركة استثمار تعمل من بريطانيا والإمارات. بدأ العمل من الهوية — شعارٌ يجمع حرف الاسم بسهم صاعد يقول تخصّصها دون شرح — ثم امتدّ إلى موقع ثنائي اللغة يعرض خدماتها ويفتح باب الاستشارة.",
-      en: "An investment firm operating out of the UK and the UAE. It began with the identity — a mark folding the initial into a rising arrow that states the specialism without explaining it — then extended into a bilingual site presenting the services and opening the consultation door.",
+      ar: "شركة استثمار تعمل من بريطانيا والإمارات. بدأ العمل من الهوية — شعارٌ يجمع حرف الاسم بسهم صاعد يقول تخصّصها دون شرح — ثم امتدّ إلى موقع ثنائي اللغة، ثم إلى ملف تعريفي يُرسَل إلى المستثمر. ثلاثة مخرجات، وعلامة واحدة تتكلّم فيها كلّها.",
+      en: "An investment firm operating out of the UK and the UAE. It began with the identity — a mark folding the initial into a rising arrow that states the specialism without explaining it — then extended into a bilingual site, then into a profile sent to investors. Three outputs, one brand speaking in all of them.",
     },
     results: [
-      { ar: "هوية وموقع بنَفَس واحد", en: "One identity carried into the site" },
+      { ar: "هوية وموقع وملف بنَفَس واحد", en: "Identity, site, and profile in one breath" },
       { ar: "حضور يخاطب سوقين بلغتين", en: "A presence addressing two markets in two languages" },
       { ar: "مسار واضح من الزيارة إلى الاستشارة", en: "A clear path from visit to consultation" },
     ],

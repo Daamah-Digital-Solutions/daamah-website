@@ -352,6 +352,83 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "profitmax-profile": {
+    desc: {
+      ar: "شركة استثمار تعمل من بريطانيا والإمارات. الملف يشرح عقود الاستثمار وضماناتها بلغة المستثمر لا بلغة النشرة — مدّة العقد، والعائد، وما الذي يضمنه، صفحةً بعد صفحة.",
+      en: "An investment firm operating out of the UK and the UAE. The profile explains the investment contracts and their guarantees in the investor's language rather than a brochure's — contract term, return, and what backs it, page after page.",
+    },
+    results: [
+      { ar: "ملف من ثلاث عشرة صفحة", en: "A thirteen-page profile" },
+      { ar: "شرح عقود الاستثمار وضماناتها", en: "The investment contracts and their guarantees explained" },
+      { ar: "بنَفَس الهوية والموقع نفسه", en: "In the same breath as the identity and the site" },
+    ],
+  },
+  "hcc-profile": {
+    desc: {
+      ar: "شركة تأمين دولية مقرّها لندن. الملف يشرح السندات والضمانات لمشترٍ محترف يقرأ التفاصيل قبل أن يقرّر — أنواع التغطية، ونطاقها القانوني، وما يجعلها معترفًا بها دوليًا.",
+      en: "A London-based international insurer. The profile explains bonds and guarantees to a professional buyer who reads the detail before deciding — types of cover, legal scope, and what makes them internationally recognised.",
+    },
+    results: [
+      { ar: "ملف من سبع عشرة صفحة", en: "A seventeen-page profile" },
+      { ar: "شرح كل نوع تغطية على حدة", en: "Each line of cover explained on its own" },
+      { ar: "امتداد لموقعها بالرسالة نفسها", en: "An extension of the site, with the same message" },
+    ],
+  },
+  "trustech-profile": {
+    desc: {
+      ar: "مجموعة مقاولات وتطوير بين الإمارات وبريطانيا. ملف مشروع «سكاي فيو» يُرسَل إلى المستثمر: الشركاء المنفّذون، والموقع ومسافاته، ومميزات الوحدة، والمخططات، والشهادات — ما يسأل عنه من يضع ماله لا من يتفرّج.",
+      en: "A contracting and development group between the UAE and the UK. The Sky View project profile goes to an investor: the delivery partners, the location and its distances, the unit features, the plans, the certificates — what someone putting money in asks, not someone browsing.",
+    },
+    results: [
+      { ar: "ملف مشروع من سبع عشرة صفحة", en: "A seventeen-page project profile" },
+      { ar: "الشركاء والمخططات والشهادات", en: "Partners, plans, and certificates" },
+      { ar: "عربي وإنجليزي لسوقين", en: "Arabic and English for two markets" },
+    ],
+  },
+  "tdh-profile": {
+    desc: {
+      ar: "مشروع سكني في عجمان من ثلاث وثلاثين صفحة. الملف يمشي بالمستثمر من الشركاء العالميين إلى موقع المشروع إلى كل نمط وحدة بمخططاته ومساحاته — حتى يقرّر وهو يعرف ما يشتريه بالمتر.",
+      en: "A thirty-three-page residential project in Ajman. The profile walks an investor from the international partners to the site to every unit type with its plans and areas — so the decision is made knowing what is bought, to the square metre.",
+    },
+    results: [
+      { ar: "ملف مشروع من ثلاث وثلاثين صفحة", en: "A thirty-three-page project profile" },
+      { ar: "مخططات ومساحات لكل نمط وحدة", en: "Plans and areas for every unit type" },
+      { ar: "ماستر بلان ومميزات المجمّع", en: "A master plan and the compound's features" },
+    ],
+  },
+  "hennawy-profile": {
+    desc: {
+      ar: "شركة تصنيع مناديل ورقية وكيماويات. الملف موجّه لمشترٍ صناعي: خطوط الإنتاج، والمنتجات، ومعايير الجودة، والشراكات — لا صور مصنع بلا معنى.",
+      en: "A tissue-paper and chemicals manufacturer. The profile is written for an industrial buyer: production lines, products, quality standards, partnerships — not factory photography without meaning.",
+    },
+    results: [
+      { ar: "ملف من اثنتي عشرة صفحة", en: "A twelve-page profile" },
+      { ar: "خطوط الإنتاج والمنتجات ومعايير الجودة", en: "Production lines, products, and quality standards" },
+      { ar: "بهوية الشركة التي بنيناها", en: "In the identity we built for the company" },
+    ],
+  },
+  "alamein-profile": {
+    desc: {
+      ar: "مصنع هياكل ومقطورات في السعودية. الملف كتالوج بقدر ما هو تعريف: كل نوع مقطورة بصوره ومواصفاته، لأن المشتري هنا يقارن بالمواصفة لا بالكلام.",
+      en: "A trailer and truck-body plant in Saudi Arabia. The profile is as much a catalogue as an introduction: every trailer type with its photographs and specification, because this buyer compares on spec, not on prose.",
+    },
+    results: [
+      { ar: "ملف من ثمانٍ وعشرين صفحة", en: "A twenty-eight-page profile" },
+      { ar: "كل نوع مقطورة بصوره ومواصفاته", en: "Every trailer type with photographs and specification" },
+      { ar: "قالب ثابت يحتمل إضافة منتجات", en: "A fixed template that absorbs new products" },
+    ],
+  },
+  "connect-profile": {
+    desc: {
+      ar: "شركة سعودية لتصميم وتنفيذ أجنحة المعارض. الملف نصفه تعريف ونصفه معرض أعمال: ثمانية عشر جناحًا منفّذًا لعلامات معروفة — لأن هذا القطاع يُشترى بالعين لا بالوصف.",
+      en: "A Saudi exhibition-stand design and build company. Half the profile introduces, half of it shows: eighteen delivered stands for recognised brands — because this category is bought with the eye, not from a description.",
+    },
+    results: [
+      { ar: "ملف من ثمانٍ وعشرين صفحة", en: "A twenty-eight-page profile" },
+      { ar: "ثمانية عشر جناحًا منفّذًا بصورها", en: "Eighteen delivered stands, photographed" },
+      { ar: "ربط الشركة برؤية السعودية 2030", en: "The company tied to Saudi Vision 2030" },
+    ],
+  },
   "sara-younis-brand": {
     desc: {
       ar: "علامة أزياء نسائية طلبت الاقتصاد والرقيّ معًا. بنينا الشعار على حرفين داخل شكل بيضاوي بلا زخرفة — علامة تحتمل أن تُطبع على البطاقة واللافتة والعبوة وتظلّ هي نفسها.",
@@ -660,7 +737,7 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
       { ar: "تصميم متجاوب", en: "Responsive design" },
     ],
   },
-  "web-contracting": {
+  "trustech-web": {
     desc: {
       ar: "موقع مؤسسي يبرز إرث 42 عامًا من الخبرة في المقاولات والتطوير العقاري داخل الإمارات.",
       en: "A corporate site carrying 42 years of experience in contracting and property development in the UAE.",

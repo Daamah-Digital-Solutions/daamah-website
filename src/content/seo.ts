@@ -118,6 +118,46 @@ const META: Record<string, Bi> = {
     ar: "هوية شركة ورق وكيماويات — حرف H وأنبوب اختبار وورقة نبات في شكل واحد.",
     en: "Identity for a paper and chemical company — the letter H, a test tube, and a leaf folded into one mark.",
   },
+  "/work/profitmax-profile": {
+    ar: "ملف تعريفي لشركة استثمار بين بريطانيا والإمارات — عقود الاستثمار وضماناتها بلغة المستثمر.",
+    en: "A profile for an investment firm between the UK and the UAE — contracts and guarantees in the investor's language.",
+  },
+  "/work/hcc-profile": {
+    ar: "ملف تعريفي لشركة تأمين دولية مقرّها لندن — السندات والضمانات لمشترٍ يقرأ التفاصيل قبل أن يقرّر.",
+    en: "A profile for a London-based international insurer — bonds and guarantees for a buyer who reads the detail.",
+  },
+  "/work/trustech-profile": {
+    ar: "ملف مشروع «سكاي فيو» لمجموعة مقاولات بين الإمارات وبريطانيا — الشركاء والمخططات والوحدات.",
+    en: "The Sky View project profile for a contracting group between the UAE and the UK — partners, plans, and units.",
+  },
+  "/work/tdh-profile": {
+    ar: "ملف مشروع سكني في عجمان — من الشركاء العالميين إلى مخططات كل نمط وحدة ومساحاته.",
+    en: "A residential project profile in Ajman — from the international partners to the plans and areas of every unit type.",
+  },
+  "/work/hennawy-profile": {
+    ar: "ملف تعريفي لشركة مناديل ورقية وكيماويات — خطوط الإنتاج والمنتجات ومعايير الجودة.",
+    en: "A profile for a tissue-paper and chemicals manufacturer — production lines, products, and quality standards.",
+  },
+  "/work/alamein-profile": {
+    ar: "ملف تعريفي لمصنع مقطورات في السعودية — كل نوع بصوره ومواصفاته، كتالوج بقدر ما هو تعريف.",
+    en: "A profile for a Saudi trailer plant — every type with photographs and specification, as much catalogue as introduction.",
+  },
+  "/work/connect-profile": {
+    ar: "ملف تعريفي لشركة أجنحة معارض سعودية — ثمانية عشر جناحًا منفّذًا لعلامات معروفة.",
+    en: "A profile for a Saudi exhibition-stand company — eighteen delivered stands for recognised brands.",
+  },
+  "/clients/hcc": {
+    ar: "موقع ثم ملف تعريفي لشركة تأمين دولية في لندن — رسالة واحدة على الشاشة وفي الورق.",
+    en: "A site then a profile for a London international insurer — one message on screen and on paper.",
+  },
+  "/clients/trustech": {
+    ar: "موقع ثم ملف مشروع لمجموعة مقاولات بين الإمارات وبريطانيا، سجلّها يمتدّ منذ 1982.",
+    en: "A site then a project profile for a contracting group between the UAE and the UK, going back to 1982.",
+  },
+  "/clients/hennawy": {
+    ar: "هوية ثم ملف تعريفي لشركة مناديل ورقية وكيماويات تبيع لشركات لا لأفراد.",
+    en: "Identity then profile for a tissue-paper and chemicals manufacturer selling to businesses.",
+  },
   "/work/profitmax-brand": {
     ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
     en: "Identity for an investment firm in the UK and the UAE — a mark folding the initial into a rising arrow.",

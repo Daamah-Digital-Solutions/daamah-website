@@ -30,6 +30,7 @@ function Lightbox({
 }) {
   const { lang } = useLang();
   const shot = shots[at];
+  const tall = shot.h / shot.w > 2;
 
   /* الاتجاه منطقي لا فيزيائي: في العربية السهم الأيسر يتقدّم */
   const step = useCallback(
@@ -93,16 +94,23 @@ function Lightbox({
       {shots.length > 1 && arrow(-1, "start-4 sm:start-8")}
       {shots.length > 1 && arrow(1, "end-4 sm:end-8")}
 
-      {/* الصورة بحجمها الأصلي — هنا وحدها تُقرأ الشريحة */}
-      <img
-        key={shot.src}
-        src={shot.src}
-        alt={name}
-        width={shot.w}
-        height={shot.h}
+      {/* الصورة بحجمها الأصلي — هنا وحدها تُقرأ الشريحة.
+          والصفحة الطويلة (بعض ملفات الـPDF صفحةٌ واحدة تُمرَّر)
+          تُعرض بعرضها كاملًا وتُمرَّر رأسيًا: احتواؤها في الشاشة
+          يردّها إلى شريط بعرض 230px لا يُقرأ منه حرف. */}
+      <div
         onClick={(e) => e.stopPropagation()}
-        className="max-h-full max-w-full object-contain"
-      />
+        className={tall ? "max-h-full w-full max-w-4xl overflow-y-auto" : "contents"}
+      >
+        <img
+          key={shot.src}
+          src={shot.src}
+          alt={name}
+          width={shot.w}
+          height={shot.h}
+          className={tall ? "w-full" : "max-h-full max-w-full object-contain"}
+        />
+      </div>
 
       <span className="tag ltr nums absolute bottom-4 start-1/2 -translate-x-1/2 text-paper/60 sm:bottom-8">
         {at + 1} / {shots.length}
@@ -143,26 +151,36 @@ export function Gallery({ slug, name }: { slug: string; name: Bi }) {
       </Reveal>
 
       <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
-        {ordered.map((s, i) => (
-          <button
-            key={s.src}
-            type="button"
-            onClick={() => setOpen(i)}
-            className="group mb-4 block w-full break-inside-avoid overflow-hidden bg-paper-2 text-start"
-          >
-            <Img
-              src={s.src}
-              alt={`${t(name)} — ${i + 1}`}
-              width={s.w}
-              height={s.h}
-              widths={WIDTHS}
-              /* لم يعد فوق المعرض غلاف، فأولى صوره هي ما يقيسه LCP */
-              priority={i === 0}
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="w-full transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
-            />
-          </button>
-        ))}
+        {ordered.map((s, i) => {
+          /* صفحة طويلة: تُقصّ من أسفل في الشبكة حتى لا يصير العمود
+             شريطًا واحدًا، وتُقرأ كاملةً في العارض */
+          const tall = s.h / s.w > 2;
+          return (
+            <button
+              key={s.src}
+              type="button"
+              onClick={() => setOpen(i)}
+              className={`group relative mb-4 block w-full break-inside-avoid overflow-hidden bg-paper-2 text-start ${
+                tall ? "max-h-[520px]" : ""
+              }`}
+            >
+              <Img
+                src={s.src}
+                alt={`${t(name)} — ${i + 1}`}
+                width={s.w}
+                height={s.h}
+                widths={WIDTHS}
+                /* لم يعد فوق المعرض غلاف، فأولى صوره هي ما يقيسه LCP */
+                priority={i === 0}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="w-full transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
+              />
+              {tall && (
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-paper-2 to-transparent" />
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {open !== null && (

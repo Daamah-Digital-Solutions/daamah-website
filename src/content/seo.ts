@@ -101,6 +101,10 @@ const META: Record<string, Bi> = {
     ar: "متجر علامة أزياء نسائية بتصميم مينيمال يترك الصورة تتكلّم ويقصّر الطريق إلى الشراء.",
     en: "A womenswear store in a minimal design that lets the photography speak and shortens the path to buying.",
   },
+  "/work/adg-profile": {
+    ar: "ملف تعريفي عربي لشركة عقارات تربط المستثمر الخليجي بالسوق الجورجي — مبنيّ على ما يسأل عنه المستثمر لا على سرد الإنجازات.",
+    en: "An Arabic company profile for a firm connecting Gulf investors to the Georgian market — built on what an investor asks.",
+  },
   "/work/profitmax-brand": {
     ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
     en: "Identity for an investment firm in the UK and the UAE — a mark folding the initial into a rising arrow.",

@@ -323,6 +323,17 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "adg-profile": {
+    desc: {
+      ar: "شركة عقارات تربط المستثمر الخليجي بالسوق الجورجي. الملف يُرسَل إلى مستثمر يزن قراره بمئات الآلاف، فبُني على ما يسأل عنه: من أنتم، ولماذا جورجيا، وبأي أرقام — لا على سرد إنجازات. الهوية التي بنيناها للشركة هي نفسها التي يتكلّم بها الملف.",
+      en: "A real estate firm connecting Gulf investors to the Georgian market. The profile goes to an investor weighing a decision worth hundreds of thousands, so it is built on what they ask — who you are, why Georgia, and on what numbers — rather than on a list of achievements. The identity we built for the company is the one the profile speaks in.",
+    },
+    results: [
+      { ar: "ملف تعريفي من ثماني صفحات، عربي", en: "An eight-page company profile, in Arabic" },
+      { ar: "قسم سوق بأرقام ومصادر معلنة", en: "A market section with figures and named sources" },
+      { ar: "نسخة جاهزة للإرسال ونسخة للطباعة", en: "A version to send and a version to print" },
+    ],
+  },
   "profitmax-brand": {
     desc: {
       ar: "شركة استثمار تعمل من بريطانيا والإمارات. بنينا هوية تجمع حرف الاسم بسهم صاعد، فيقول الشعار تخصّص الشركة قبل أن يُقرأ اسمها، بلوحة ألوان تفصلها عن رمادية القطاع المالي.",

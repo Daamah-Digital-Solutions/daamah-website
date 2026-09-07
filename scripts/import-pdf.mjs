@@ -1,7 +1,7 @@
 /**
  * يحوّل بريزنتيشن العمل (PDF) إلى معرض صفحات.
  *
- *   node scripts/import-pdf.mjs <slug> <ملف.pdf> [--pages 1-6,9,12] [--dry مجلّد]
+ *   node scripts/import-pdf.mjs <slug> <ملف.pdf> [--pages 1-6,9] [--cover اسم] [--dry مجلّد]
  *   npm run images        # بعده، ليولّد النسخ والفهرس
  *
  * الهوية البصرية والملف التعريفي كلاهما بريزنتيشن متسلسلة، وقراءتها
@@ -44,6 +44,7 @@ if (!slug || !file) {
 /** عرض الترميز — يكفي أوسع عمود على شاشة مضاعفة الكثافة، ويكفي القراءة في العارض */
 const WIDTH = Number(flag("width") ?? 1400);
 const dry = flag("dry");
+const cover = flag("cover");
 const out = dry ? resolve(dry) : join(root, "public/assets/work/gallery", slug);
 
 /** «1-6,9,12» ← [1,2,3,4,5,6,9,12] */
@@ -83,6 +84,14 @@ for (const p of pages) {
     .toFile(join(out, name));
 
   console.log(`  ص${String(p).padStart(2)} → ${name}  ${info.width}×${info.height}  ${(info.size / 1024).toFixed(0)}KB`);
+
+  /* الغلاف هو أوّل صفحة منشورة — وتبقى في المعرض أيضًا: هي صفحة
+     من البريزنتيشن لا بطاقة عنوان مصنوعة للواجهة */
+  if (n === 1 && cover && !dry) {
+    const at = join(root, "public/assets/work", `${cover}.jpg`);
+    await sharp(Buffer.from(pix.asPNG())).jpeg({ quality: 88, mozjpeg: true }).toFile(at);
+    console.log(`  الغلاف → assets/work/${cover}.jpg`);
+  }
 }
 
 console.log(`\n${n} صفحة في ${dry ? out : `معرض «${slug}»`}.`);

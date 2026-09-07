@@ -32,6 +32,7 @@ export const coverSize: Record<string, { w: number; h: number }> = {
   "/assets/work/brand-sedra.jpg": { w: 1200, h: 1200 },
   "/assets/work/brand-techcare.jpg": { w: 1200, h: 1200 },
   "/assets/work/brand-viplimo.jpg": { w: 1200, h: 1200 },
+  "/assets/work/profile-adg.jpg": { w: 1400, h: 939 },
   "/assets/work/social-adg.jpg": { w: 1400, h: 868 },
   "/assets/work/social-ahlalquran.jpg": { w: 1400, h: 868 },
   "/assets/work/social-ecovista.jpg": { w: 1400, h: 868 },
@@ -52,6 +53,16 @@ export const coverSize: Record<string, { w: number; h: number }> = {
 };
 
 export const galleries: Record<string, Shot[]> = {
+  "adg-profile": [
+    { src: "/assets/work/gallery/adg-profile/01.jpg", w: 1400, h: 939 },
+    { src: "/assets/work/gallery/adg-profile/02.jpg", w: 1400, h: 1079 },
+    { src: "/assets/work/gallery/adg-profile/03.jpg", w: 1400, h: 1739 },
+    { src: "/assets/work/gallery/adg-profile/04.jpg", w: 1400, h: 2618 },
+    { src: "/assets/work/gallery/adg-profile/05.jpg", w: 1400, h: 5400 },
+    { src: "/assets/work/gallery/adg-profile/06.jpg", w: 1400, h: 1463 },
+    { src: "/assets/work/gallery/adg-profile/07.jpg", w: 1400, h: 1985 },
+    { src: "/assets/work/gallery/adg-profile/08.jpg", w: 1400, h: 1322 },
+  ],
   "alhayat-brand": [
     { src: "/assets/work/gallery/alhayat-brand/01.jpg", w: 1200, h: 800 },
     { src: "/assets/work/gallery/alhayat-brand/02.jpg", w: 1200, h: 800 },

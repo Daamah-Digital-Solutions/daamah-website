@@ -25,7 +25,7 @@ export const services: {
   page?: string;
 }[] = [
   { key: "brand", label: { ar: "هوية بصرية", en: "Brand identity" }, page: "branding" },
-  { key: "profile", label: { ar: "ملف تعريفي", en: "Company profile" } },
+  { key: "profile", label: { ar: "ملف تعريفي", en: "Company profile" }, page: "company-profile" },
   { key: "web", label: { ar: "مواقع إلكترونية", en: "Websites" }, page: "web-development" },
   { key: "social", label: { ar: "سوشيال ميديا", en: "Social media" }, page: "social-media" },
   { key: "crm", label: { ar: "أنظمة إدارة", en: "Management systems" } },
@@ -342,6 +342,15 @@ export const workItems: WorkItem[] = [
     client: "adg",
   },
   {
+    slug: "adg-profile",
+    service: "profile",
+    name: { ar: "إيه دي جي — الملف التعريفي", en: "ADG — Company Profile" },
+    sector: "realestate",
+    markets: ["ge", "lb"],
+    image: "/assets/work/profile-adg.jpg",
+    client: "adg",
+  },
+  {
     slug: "greenmark",
     service: "social",
     name: { ar: "جرين مارك", en: "Green Mark" },
@@ -426,13 +435,13 @@ export const clientStories: ClientStory[] = [
     sector: "realestate",
     markets: ["ge", "lb"],
     lede: {
-      ar: "بدأ التعاون بهوية بصرية لشركة عقارات تعمل في جورجيا ولبنان، ثم امتدّ إلى إدارة حضورها على السوشيال ميديا — العلامة نفسها التي بنيناها هي التي تتكلّم في المحتوى اليومي.",
-      en: "The relationship began with an identity for a real estate company working across Georgia and Lebanon, then extended into running its social presence — the same brand we built is the one that speaks in the daily content.",
+      ar: "بدأ التعاون بهوية بصرية لشركة عقارات تعمل في جورجيا ولبنان، ثم امتدّ إلى ملف تعريفي يُرسَل إلى المستثمرين، ثم إلى إدارة حضورها على السوشيال ميديا. العلامة التي بنيناها هي التي تتكلّم في الملف وفي المحتوى اليومي — ولهذا تُقرأ الثلاثة كصوت واحد.",
+      en: "The relationship began with an identity for a real estate company working across Georgia and Lebanon, then extended into a company profile sent to investors, then into running its social presence. The brand we built is the one that speaks in the profile and in the daily content — which is why the three read as one voice.",
     },
     results: [
       { ar: "هوية موحّدة عبر سوقين", en: "One identity across two markets" },
+      { ar: "ملف تعريفي يُرسَل إلى المستثمر دون اعتذار", en: "A profile sent to an investor without apology" },
       { ar: "محتوى يبرز الفرص الاستثمارية بوضوح", en: "Content that presents investment opportunities clearly" },
-      { ar: "استفسارات من عملاء مهتمين", en: "Enquiries from qualified prospects" },
     ],
   },
 ];

@@ -3,7 +3,7 @@ import { useLang } from "../i18n";
 import { services } from "../content/home";
 import { servicesPage, serviceDetails, workPage } from "../content/pages";
 import { areaOf, areas } from "../content/areas";
-import { workItems, type ServiceKey } from "../content/work";
+import { services as workServices, workItems, type ServiceKey } from "../content/work";
 import { cityMeta, cityUi, citiesForService } from "../content/saudi";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
@@ -15,11 +15,11 @@ import { WorkCard } from "../components/WorkCard";
  * صفحة الخدمة ← مفتاح الخدمة في الأعمال.
  * ما لا أعمال له بعد يبقى خارج الخريطة، فلا يُعرض قسمٌ فارغ.
  */
-const RELATED: Record<string, ServiceKey | undefined> = {
-  branding: "brand",
-  "web-development": "web",
-  "social-media": "social",
-};
+/* الربط يُشتقّ من `services` في `work.ts` عبر حقل `page`: خريطة
+   ثانية مكتوبة يدويًا تفترق عند أوّل خدمة تُضاف — كما حدث فعلًا مع
+   الملف التعريفي، فبقيت صفحته بلا عمل واحد يثبتها. */
+const relatedKey = (slug: string): ServiceKey | undefined =>
+  workServices.find((s) => s.page === slug)?.key;
 
 export function ServiceDetailPage() {
   const { slug = "" } = useParams();
@@ -33,7 +33,7 @@ export function ServiceDetailPage() {
   if (!service || !detail) return <Navigate to={path("/services")} replace />;
 
   const area = areaOf(slug);
-  const key = RELATED[slug];
+  const key = relatedKey(slug);
   const related = key ? workItems.filter((w) => w.service === key).slice(0, 3) : [];
   const inCities = citiesForService(slug);
 

@@ -34,7 +34,7 @@ export function Work() {
 
         <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, i) => (
-            <WorkCard key={item.slug} item={item} index={i} delay={(i % 3) * 90} />
+            <WorkCard key={item.slug} item={item} delay={(i % 3) * 90} />
           ))}
         </div>
       </Wrap>

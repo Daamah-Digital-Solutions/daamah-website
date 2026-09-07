@@ -29,12 +29,10 @@ import { Img } from "./Img";
 export function WorkCard({
   item,
   delay = 0,
-  index,
   natural = false,
 }: {
   item: WorkItem;
   delay?: number;
-  index?: number;
   natural?: boolean;
 }) {
   const { t, path } = useLang();
@@ -88,16 +86,12 @@ export function WorkCard({
           )}
         </div>
 
-        <div className="mt-4 flex items-start justify-between gap-4 border-t border-[var(--line)] pt-3.5 transition-transform duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-          <div>
-            <h3 className="text-[17px] font-medium leading-snug">{t(item.name)}</h3>
-            <p className="tag mt-2 text-ink/40">{meta.join(" · ")}</p>
-          </div>
-          {index !== undefined && (
-            <span className="tag ltr mt-1 shrink-0 text-red opacity-0 transition-opacity duration-(--dur-base) group-hover:opacity-100">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          )}
+        {/* لا رقم ترتيب: كان يقول «هذه البطاقة الثالثة والعشرون» ولا
+            شيء غير ذلك، ومع أعمدة الشبكة — تُملأ من أعلى العمود إلى
+            أسفله لا سطرًا بسطر — صار أوّل صفٍّ يُقرأ 01 · 16 · 30. */}
+        <div className="mt-4 border-t border-[var(--line)] pt-3.5 transition-transform duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
+          <h3 className="text-[17px] font-medium leading-snug">{t(item.name)}</h3>
+          <p className="tag mt-2 text-ink/40">{meta.join(" · ")}</p>
         </div>
       </Link>
     </Reveal>

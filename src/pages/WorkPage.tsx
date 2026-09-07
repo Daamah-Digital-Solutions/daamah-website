@@ -137,7 +137,7 @@ export function WorkPage() {
               /* المفتاح يحمل الاختيار: تغييره يعيد تركيب البطاقات
                  فتُكشف من جديد بدل أن تظهر دفعةً واحدة */
               <div key={`${key}-${item.slug}`} className="mb-12 break-inside-avoid">
-                <WorkCard item={item} index={i} delay={(i % 3) * 90} natural />
+                <WorkCard item={item} delay={(i % 3) * 90} natural />
               </div>
             ))}
           </div>

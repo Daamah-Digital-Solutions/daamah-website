@@ -4,7 +4,8 @@ import { waHref, waMessage } from "../content/whatsapp";
 import { hero, stripSlugs } from "../content/home";
 import { coverSize } from "../content/gallery";
 import { workItems } from "../content/work";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Lightbox } from "../components/Lightbox";
 import { Btn, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
 
@@ -32,13 +33,26 @@ function GridLines() {
  * بالألوان. كان رماديًا يتلوّن عند المرور، وهو ما يجعل أول ما يراه
  * الزائر من شغلنا بلا لون — وعلى شاشة اللمس لا مرور أصلًا، فيبقى
  * رماديًا إلى آخره.
+ *
+ * والضغط يفتح الصور نفسها في عارض ملء الشاشة لا صفحة المشروع:
+ * الزائر هنا يتفرّج لا يبحث، فمن أوقفه عملٌ أراد أن يراه أكبر
+ * ويكمّل — لا أن يُنقل إلى صفحة ويعود ليجد الشريط قد مضى.
  */
 function WorkStrip() {
-  const { t, path } = useLang();
+  const { t } = useLang();
+  const [open, setOpen] = useState<number | null>(null);
   const picks = stripSlugs
     .map((slug) => workItems.find((w) => w.slug === slug))
     .filter((w): w is (typeof workItems)[number] => Boolean(w));
   const items = [...picks, ...picks]; // نسختان تصنعان حلقة بلا قطع
+
+  /* العارض يأخذ النسخة الواحدة: التكرار بصريٌّ لصنع الحلقة، وعدّه
+     مرّتين يجعل «1 / 16» وفيها ثمانية أعمال */
+  const shots = picks.map((w) => ({
+    src: w.image,
+    ...(coverSize[w.image] ?? { w: 1400, h: 933 }),
+    label: t(w.name),
+  }));
 
   return (
     <div className="marquee relative mt-20 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-24">
@@ -54,9 +68,10 @@ function WorkStrip() {
         {items.map((item, i) => {
           const size = coverSize[item.image] ?? { w: 1400, h: 933 };
           return (
-            <Link
+            <button
               key={`${item.slug}-${i}`}
-              to={path(`/work/${item.slug}`)}
+              type="button"
+              onClick={() => setOpen(i % picks.length)}
               /* النسخة الثانية تكرارٌ بصري: تُخفى عن القارئ الآلي
                  وعن مسار المفاتيح حتى لا يمرّ على العمل مرّتين */
               aria-hidden={i >= picks.length}
@@ -80,10 +95,20 @@ function WorkStrip() {
               <span className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
                 {t(item.name)}
               </span>
-            </Link>
+            </button>
           );
         })}
       </div>
+
+      {open !== null && (
+        <Lightbox
+          shots={shots}
+          at={open}
+          name={t(hero.status)}
+          onMove={setOpen}
+          onClose={() => setOpen(null)}
+        />
+      )}
     </div>
   );
 }

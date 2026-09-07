@@ -1,7 +1,7 @@
 /**
  * يحوّل بريزنتيشن العمل (PDF) إلى معرض صفحات.
  *
- *   node scripts/import-pdf.mjs <slug> <ملف.pdf> [--pages 1-6,9] [--cover اسم] [--dry مجلّد]
+ *   node scripts/import-pdf.mjs <slug> <ملف.pdf> [--pages 1-6,9] [--cover اسم] [--slides] [--dry مجلّد]
  *   npm run images        # بعده، ليولّد النسخ والفهرس
  *
  * الهوية البصرية والملف التعريفي كلاهما بريزنتيشن متسلسلة، وقراءتها
@@ -47,7 +47,15 @@ const dry = flag("dry");
 const cover = flag("cover");
 const out = dry ? resolve(dry) : join(root, "public/assets/work/gallery", slug);
 
-/** فوق هذه النسبة تُعامَل الصفحة على أنها شرائح مكدَّسة لا صفحة */
+/**
+ * `--slides`: الصفحة الطويلة شرائح مكدَّسة لا صفحة واحدة.
+ *
+ * لا يُفعَّل تلقائيًا: من الملفات ما صفحته الطويلة صفحةٌ متّصلة
+ * فعلًا — جدول سوق وفقرات تحته — وتقطيعها يقطع محتوى. الأصل أن
+ * تبقى الصفحة كما هي، والتقطيع قرارٌ يُتَّخذ لملفٍ يُعرف أنه
+ * تصدير «صفحة واحدة» لديك شرائح.
+ */
+const slides = argv.includes("--slides");
 const STACKED = 2.5;
 
 /** «1-6,9,12» ← [1,2,3,4,5,6,9,12] */
@@ -154,7 +162,7 @@ for (const p of pages) {
   const buf = Buffer.from(pix.asPNG());
   const meta = await sharp(buf).metadata();
 
-  if (meta.height / meta.width > STACKED) {
+  if (slides && meta.height / meta.width > STACKED) {
     const cuts = await slideCuts(buf, meta.height);
     console.log(`  ص${String(p).padStart(2)} — ${meta.width}×${meta.height}، ${cuts.length - 1} شريحة مكدَّسة`);
     for (let i = 0; i < cuts.length - 1; i++) {

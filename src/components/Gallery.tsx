@@ -152,17 +152,12 @@ export function Gallery({ slug, name }: { slug: string; name: Bi }) {
 
       <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
         {ordered.map((s, i) => {
-          /* صفحة طويلة: تُقصّ من أسفل في الشبكة حتى لا يصير العمود
-             شريطًا واحدًا، وتُقرأ كاملةً في العارض */
-          const tall = s.h / s.w > 2;
           return (
             <button
               key={s.src}
               type="button"
               onClick={() => setOpen(i)}
-              className={`group relative mb-4 block w-full break-inside-avoid overflow-hidden bg-paper-2 text-start ${
-                tall ? "max-h-[520px]" : ""
-              }`}
+              className="group relative mb-4 block w-full break-inside-avoid overflow-hidden bg-paper-2 text-start"
             >
               <Img
                 src={s.src}
@@ -175,9 +170,6 @@ export function Gallery({ slug, name }: { slug: string; name: Bi }) {
                 sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                 className="w-full transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
               />
-              {tall && (
-                <span className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-paper-2 to-transparent" />
-              )}
             </button>
           );
         })}

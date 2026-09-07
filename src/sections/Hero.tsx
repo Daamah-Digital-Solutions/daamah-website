@@ -23,7 +23,13 @@ function GridLines() {
   );
 }
 
-/** شريط الأعمال — إثبات بصري متحرّك يغلق الهيرو. */
+/**
+ * شريط الأعمال — إثبات بصري متحرّك يغلق الهيرو.
+ *
+ * بالألوان. كان رماديًا يتلوّن عند المرور، وهو ما يجعل أول ما يراه
+ * الزائر من شغلنا بلا لون — وعلى شاشة اللمس لا مرور أصلًا، فيبقى
+ * رماديًا إلى آخره.
+ */
 function WorkStrip() {
   const { t } = useLang();
   const items = [...strip, ...strip]; // نسختان تصنعان حلقة بلا قطع
@@ -56,7 +62,7 @@ function WorkStrip() {
               priority={i < 2}
               /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
                  بيضاء وتشتعل على خلفية شبه سوداء */
-              className="size-full object-cover grayscale transition-[filter,transform] duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] group-hover:grayscale-0 dark:brightness-[0.72] dark:group-hover:brightness-100"
+              className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
             />
             <figcaption className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
               {t(item.label)}

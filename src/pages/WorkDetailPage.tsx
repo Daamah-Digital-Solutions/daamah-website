@@ -11,6 +11,7 @@ import {
   workItems,
 } from "../content/work";
 import { PageCta } from "../components/PageCta";
+import { Gallery } from "../components/Gallery";
 import { waMessage } from "../content/whatsapp";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
@@ -143,6 +144,11 @@ export function WorkDetailPage() {
           </div>
         </Wrap>
       </section>
+
+      {/* المعرض: ما سُلِّم كاملًا — بعد النتائج لأنه دليلها لا مقدّمتها */}
+      <Wrap>
+        <Gallery slug={item.slug} label={workPage.galleryLabel} name={item.name} />
+      </Wrap>
 
       {/* النداء يحمل الخدمة، فيصل النموذج وقد اختارها الزائر ضمنًا */}
       <PageCta

@@ -93,6 +93,14 @@ function titled(label: Bi): Bi {
 const META: Record<string, Bi> = {
   /* أوصاف الأعمال الجديدة: نصّ الصفحة يشرح، والوصف هنا يُقتطع في
      نتائج البحث إن طال — فيُكتب قصيرًا بدل أن يُبتر */
+  "/work/hcc-insurance": {
+    ar: "موقع مؤسسي لشركة تأمين دولية مقرّها لندن، على رسالة الثقة والقوة المالية عبر خمسة عقود.",
+    en: "A corporate site for a London-based international insurer, on a message of trust and financial strength.",
+  },
+  "/work/sara-younis": {
+    ar: "متجر علامة أزياء نسائية بتصميم مينيمال يترك الصورة تتكلّم ويقصّر الطريق إلى الشراء.",
+    en: "A womenswear store in a minimal design that lets the photography speak and shortens the path to buying.",
+  },
   "/work/profitmax-brand": {
     ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
     en: "Identity for an investment firm in the UK and the UAE — a mark folding the initial into a rising arrow.",

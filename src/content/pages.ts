@@ -291,6 +291,7 @@ export const workPage = {
     en: "Since 2018, across 10 sectors — from construction and real estate to education and e-commerce. Pick your sector to see the closest to your company.",
   } as Bi,
   resultsLabel: { ar: "النتائج", en: "Results" } as Bi,
+  galleryLabel: { ar: "من المشروع", en: "From the project" } as Bi,
   sectorLabel: { ar: "القطاع", en: "Sector" } as Bi,
   serviceLabel: { ar: "الخدمة", en: "Service" } as Bi,
   backLabel: { ar: "كل الأعمال", en: "All work" } as Bi,
@@ -597,10 +598,10 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
       { ar: "تصميم متجاوب", en: "Responsive design" },
     ],
   },
-  insurance: {
+  "hcc-insurance": {
     desc: {
-      ar: "موقع مؤسسي لشركة تأمين يقوم على رسالة الثقة والقوة المالية عبر خمسة عقود من الخبرة.",
-      en: "A corporate site for an insurance group built on a message of trust and financial strength across five decades.",
+      ar: "شركة تأمين دولية مقرّها لندن. بنينا موقعًا مؤسسيًا يقوم على رسالة الثقة والقوة المالية عبر خمسة عقود من الخبرة، بصفحات خدمات تشرح كل نوع تأمين على حدة.",
+      en: "An international insurance company based in London. We built a corporate site on a message of trust and financial strength across five decades, with service pages explaining each line of cover on its own.",
     },
     results: [
       { ar: "موقع مؤسسي", en: "Corporate site" },
@@ -608,10 +609,10 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
       { ar: "نماذج تواصل", en: "Contact forms" },
     ],
   },
-  "fashion-store": {
+  "sara-younis": {
     desc: {
-      ar: "متجر أزياء بتصميم مينيمال أبيض وأسود يركّز على المنتج وتجربة الشراء.",
-      en: "A fashion store in a minimal black-and-white design focused on the product and the buying experience.",
+      ar: "علامة أزياء نسائية. بنينا متجرًا بتصميم مينيمال أبيض وأسود يترك الصورة تتكلّم، ويقصّر الطريق من التصفّح إلى الشراء بدل أن يزيّن الصفحة.",
+      en: "A womenswear label. We built a store in a minimal black-and-white design that lets the photography speak, and shortens the path from browsing to buying rather than decorating the page.",
     },
     results: [
       { ar: "متجر إلكتروني", en: "Online store" },

@@ -23,6 +23,7 @@ export function Img({
   sizes,
   className = "",
   priority = false,
+  widths = WIDTHS,
 }: {
   /** المسار الأصلي: `/assets/work/x.jpg` */
   src: string;
@@ -34,15 +35,26 @@ export function Img({
   className?: string;
   /** لصورة أعلى الصفحة: تُحمَّل فورًا وبأولوية */
   priority?: boolean;
+  /** العروض المولّدة لهذه الصورة — يجب أن تطابق ما ولّده السكربت،
+      وإلا حمل `srcset` مسارات غير موجودة. صور المعرض أضيق. */
+  widths?: number[];
 }) {
   const base = src.replace(/\.(jpe?g|png)$/i, "");
+  /* السكربت لا يكبّر ما هو أصغر من العرض المطلوب، فلا نَعِد المتصفح
+     بنسخة لم تُولَّد: لقطة جوّال عرضها 264px ليس لها 480 ولا 960،
+     وذكرها في `srcset` طلبٌ ينتهي بـ404 */
+  const avail = widths.filter((w) => w <= width);
   const set = (ext: string) =>
-    WIDTHS.map((w) => `${base}-${w}.${ext} ${w}w`).join(", ");
+    avail.map((w) => `${base}-${w}.${ext} ${w}w`).join(", ");
 
   return (
     <picture>
-      <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
-      <source type="image/webp" srcSet={set("webp")} sizes={sizes} />
+      {avail.length > 0 && (
+        <>
+          <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
+          <source type="image/webp" srcSet={set("webp")} sizes={sizes} />
+        </>
+      )}
       <img
         src={src}
         alt={alt}

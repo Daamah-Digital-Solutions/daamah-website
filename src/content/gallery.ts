@@ -9,6 +9,48 @@
 
 export type Shot = { src: string; w: number; h: number };
 
+/**
+ * مقاس كل غلاف — الأغلفة لم تعد بنسبة واحدة.
+ *
+ * كانت كلّها مقصوصة إلى 3:2 فبدت الشبكة صفًّا مكرّرًا؛ والمادة
+ * نفسها متنوّعة: منشور سوشيال مربّع وشريحة عرض عريضة. الشبكة
+ * تحترم نسبة كل عمل، فتحتاج مقاسه قبل تحميله.
+ */
+export const coverSize: Record<string, { w: number; h: number }> = {
+  "/assets/work/brand-adg.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-alhayat.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-alraghad.jpg": { w: 1400, h: 935 },
+  "/assets/work/brand-amlak.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-autocrazycar.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-basmat.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-buildingline.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-caffeinekiss.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-daughters.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-elitegate.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-inmaa.jpg": { w: 1400, h: 933 },
+  "/assets/work/brand-profitmax.jpg": { w: 1400, h: 940 },
+  "/assets/work/brand-sedra.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-techcare.jpg": { w: 1200, h: 1200 },
+  "/assets/work/brand-viplimo.jpg": { w: 1200, h: 1200 },
+  "/assets/work/social-adg.jpg": { w: 1400, h: 868 },
+  "/assets/work/social-ahlalquran.jpg": { w: 1400, h: 868 },
+  "/assets/work/social-ecovista.jpg": { w: 1400, h: 868 },
+  "/assets/work/social-greenflash.jpg": { w: 1400, h: 868 },
+  "/assets/work/social-greenmark.jpg": { w: 1200, h: 1200 },
+  "/assets/work/social-rahiq.jpg": { w: 1200, h: 1200 },
+  "/assets/work/social-satleaders.jpg": { w: 1200, h: 1200 },
+  "/assets/work/social-skyshooter.jpg": { w: 1400, h: 868 },
+  "/assets/work/web-alhayat.jpg": { w: 1200, h: 1200 },
+  "/assets/work/web-contracting.jpg": { w: 1400, h: 933 },
+  "/assets/work/web-fashion.jpg": { w: 1400, h: 933 },
+  "/assets/work/web-fragancia.jpg": { w: 1400, h: 933 },
+  "/assets/work/web-futureaxis.jpg": { w: 1200, h: 1200 },
+  "/assets/work/web-insurance.jpg": { w: 1400, h: 933 },
+  "/assets/work/web-profitmax.jpg": { w: 1200, h: 1200 },
+  "/assets/work/web-utilityvision.jpg": { w: 1200, h: 1200 },
+  "/assets/work/web-vibrant.jpg": { w: 1400, h: 933 },
+};
+
 export const galleries: Record<string, Shot[]> = {
   "alhayat-brand": [
     { src: "/assets/work/gallery/alhayat-brand/01.jpg", w: 1200, h: 800 },

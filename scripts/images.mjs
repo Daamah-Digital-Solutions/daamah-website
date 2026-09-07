@@ -71,10 +71,17 @@ const sources = (dir) =>
     .sort();
 
 /* ── صور الصفحات ── */
+const covers = {};
+
 for (const { dir: rel, widths } of TARGETS) {
   const dir = join(root, rel);
   if (!existsSync(dir)) continue;
-  for (const file of sources(dir)) await variants(dir, file, widths);
+  for (const file of sources(dir)) {
+    const { width, height } = await variants(dir, file, widths);
+    if (rel === "public/assets/work") {
+      covers[`/assets/work/${file}`] = { w: width, h: height };
+    }
+  }
 }
 
 /* ── المعرض: مجلّد لكل عمل، والفهرس يُشتقّ من القرص لا يُكتب يدويًا ── */
@@ -94,6 +101,11 @@ if (existsSync(galleryDir)) {
     if (shots.length) index[slug] = shots;
   }
 }
+
+const coverBody = Object.entries(covers)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([src, { w, h }]) => `  "${src}": { w: ${w}, h: ${h} },`)
+  .join("\n");
 
 const body = Object.entries(index)
   .map(
@@ -118,6 +130,17 @@ writeFileSync(
  */
 
 export type Shot = { src: string; w: number; h: number };
+
+/**
+ * مقاس كل غلاف — الأغلفة لم تعد بنسبة واحدة.
+ *
+ * كانت كلّها مقصوصة إلى 3:2 فبدت الشبكة صفًّا مكرّرًا؛ والمادة
+ * نفسها متنوّعة: منشور سوشيال مربّع وشريحة عرض عريضة. الشبكة
+ * تحترم نسبة كل عمل، فتحتاج مقاسه قبل تحميله.
+ */
+export const coverSize: Record<string, { w: number; h: number }> = {
+${coverBody}
+};
 
 export const galleries: Record<string, Shot[]> = {
 ${body}

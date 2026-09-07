@@ -2,6 +2,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useLang } from "../i18n";
 import { work } from "../content/home";
 import { workDetails, workPage } from "../content/pages";
+import { coverSize } from "../content/gallery";
 import {
   markets as marketLabels,
   sectorMeta,
@@ -30,6 +31,9 @@ export function WorkDetailPage() {
   const next = workItems[(index + 1) % workItems.length];
   const story = item.client ? storyBySlug(item.client) : undefined;
   const storyServices = item.client ? servicesOf(item.client) : [];
+
+  const cover = coverSize[item.image] ?? { w: 1400, h: 933 };
+  const wideCover = cover.w / cover.h >= 1.3;
 
   const facts = [
     { label: t(workPage.sectorLabel), value: t(sectorMeta(item.sector).label) },
@@ -89,26 +93,34 @@ export function WorkDetailPage() {
         </Wrap>
       </section>
 
-      {/* الصورة الرئيسية — بحجمها الكامل هنا، لا مقصوصة كما في البطاقة */}
-      <section className="mt-14 sm:mt-20">
+      {/* الغلاف بنسبته لا مقصوصًا: صار في الأعمال مربّعٌ وعريض،
+          وقصّهما إلى نسبة واحدة يقطع نصف المنشور المربّع. والمربّع
+          يُحصر في عمود أضيق حتى لا يبتلع الشاشة وحده. */}
+      <section className="mt-12 sm:mt-16">
         <Wrap>
-          <Reveal>
-            {/* نسبة ثابتة كبطاقة العمل: بدونها لا يُعرف ارتفاع الصورة
-                قبل تحميلها، فيقفز نصف الصفحة حين تصل */}
-            <div className="aspect-[3/2] overflow-hidden bg-paper-2">
+          <Reveal className={wideCover ? "" : "mx-auto max-w-3xl"}>
+            <div className="overflow-hidden bg-paper-2">
               {/* صورة الغلاف هي أكبر عنصر مرئي في الصفحة — تُحمَّل
                   بأولوية لا كسولًا، فهي ما يقيسه LCP */}
               <Img
                 src={item.image}
                 alt={t(item.name)}
-                width={1400}
-                height={933}
-                sizes="(min-width: 1320px) 1320px, 100vw"
+                width={cover.w}
+                height={cover.h}
+                sizes={wideCover ? "(min-width: 1320px) 1320px, 100vw" : "(min-width: 768px) 768px, 100vw"}
                 priority
-                className="size-full object-cover dark:brightness-[0.85]"
+                className="w-full dark:brightness-[0.9]"
               />
             </div>
           </Reveal>
+        </Wrap>
+      </section>
+
+      {/* المعرض مباشرةً بعد الغلاف: هو الشغل نفسه، وكان في ذيل
+          الصفحة تحت الكلام — يصل إليه من قرأ حتى النهاية وحده */}
+      <section className="mt-4 sm:mt-6">
+        <Wrap>
+          <Gallery slug={item.slug} name={item.name} />
         </Wrap>
       </section>
 
@@ -144,11 +156,6 @@ export function WorkDetailPage() {
           </div>
         </Wrap>
       </section>
-
-      {/* المعرض: ما سُلِّم كاملًا — بعد النتائج لأنه دليلها لا مقدّمتها */}
-      <Wrap>
-        <Gallery slug={item.slug} label={workPage.galleryLabel} name={item.name} />
-      </Wrap>
 
       {/* النداء يحمل الخدمة، فيصل النموذج وقد اختارها الزائر ضمنًا */}
       <PageCta

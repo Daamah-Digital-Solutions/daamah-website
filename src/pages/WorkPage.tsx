@@ -129,11 +129,16 @@ export function WorkPage() {
 
       <section className="py-16 sm:py-24">
         <Wrap>
-          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {/* أعمدة CSS لا شبكة: كل عمل بنسبته — منشور مربّع وشريحة
+              عريضة وموك-أب طولي — والشبكة ذات النسبة الواحدة كانت
+              تقصّها كلّها إلى مقاس واحد فتمحو تنوّع الشغل نفسه */}
+          <div className="columns-1 gap-x-6 sm:columns-2 lg:columns-3">
             {items.map((item, i) => (
               /* المفتاح يحمل الاختيار: تغييره يعيد تركيب البطاقات
                  فتُكشف من جديد بدل أن تظهر دفعةً واحدة */
-              <WorkCard key={`${key}-${item.slug}`} item={item} index={i} delay={(i % 3) * 90} />
+              <div key={`${key}-${item.slug}`} className="mb-12 break-inside-avoid">
+                <WorkCard item={item} index={i} delay={(i % 3) * 90} natural />
+              </div>
             ))}
           </div>
 

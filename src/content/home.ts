@@ -291,6 +291,8 @@ export const work = {
   /* شارة العمل الذي هو فصل من قصّة أطول */
   storyOf: { ar: "من قصة", en: "Part of" } as Bi,
   storyServices: { ar: "خدمات", en: "services" } as Bi,
+  /* عدد صور المشروع على البطاقة — يَعِد بما وراءها فيصير للنقر سبب */
+  shots: { ar: "صورة", en: "images" } as Bi,
   storyRead: { ar: "اقرأ القصّة كاملة", en: "Read the full story" } as Bi,
 
   empty: {

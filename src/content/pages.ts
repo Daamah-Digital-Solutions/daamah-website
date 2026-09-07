@@ -322,6 +322,182 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "profitmax-brand": {
+    desc: {
+      ar: "شركة استثمار تعمل من بريطانيا والإمارات. بنينا هوية تجمع حرف الاسم بسهم صاعد، فيقول الشعار تخصّص الشركة قبل أن يُقرأ اسمها، بلوحة ألوان تفصلها عن رمادية القطاع المالي.",
+      en: "An investment firm operating out of the UK and the UAE. We built an identity folding the initial into a rising arrow, so the mark states the specialism before the name is read — with a palette that separates it from the greyness of the sector.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+      { ar: "تطبيقات ومطبوعات", en: "Applications and print" },
+    ],
+  },
+  "alhayat-brand": {
+    desc: {
+      ar: "مزرعة دواجن في الرياض. بنينا الهوية من عناصر المزرعة نفسها — شمس وسنبلة قمح وأرض زراعية — لتقول جودة المنتج ونقاء بيئته دون ادّعاء مكتوب.",
+      en: "A poultry farm in Riyadh. We built the identity from the farm's own elements — a sun, a wheat spike, cultivated land — so it states the quality of the product and the purity of its environment without a written claim.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تصميم العبوات والتغليف", en: "Packaging design" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+    ],
+  },
+  sedra: {
+    desc: {
+      ar: "علامة إكسسوارات فاخرة. بنينا الشعار على خطّ عربي مخصّص لكلمة «سدرة» — انسياب الحروف نفسه هو ما يقول رقّة المنتج، فلا يحتاج شرحًا.",
+      en: "A luxury accessories brand. We built the mark on custom Arabic lettering of the word «Sedra» — the flow of the script itself carries the delicacy of the product, so it needs no explaining.",
+    },
+    results: [
+      { ar: "شعار بخطّ عربي مخصّص", en: "A logo in custom Arabic lettering" },
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تطبيقات وموك-أب", en: "Applications and mockups" },
+    ],
+  },
+  alraghad: {
+    desc: {
+      ar: "علامة مجوهرات. جمعنا حرفي الاسم في شكل خاتم داخل إطار مقوّس، بلمسة ذهبية على خلفية داكنة — لغة القطاع نفسها، لكن بعلامة تُميَّز لا تُشبَّه.",
+      en: "A jewellery brand. We folded the two initials into the shape of a ring inside an arched frame, gold on a dark ground — the language of the category, but a mark that is recognised rather than merely resembling.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+      { ar: "تطبيقات ومطبوعات", en: "Applications and print" },
+    ],
+  },
+  "tech-care": {
+    desc: {
+      ar: "معامل تحاليل طبية. المطلوب شعار يقول الثقة والراحة معًا، فبنيناه على قطرة داخل حرف C وجزيئات تحليل، بأزرق طبّي يفصله عن حِدّة القطاع.",
+      en: "A medical laboratory. The brief asked for a mark carrying both trust and reassurance, so we built it on a droplet inside the letter C with analysis particles, in a medical blue that softens the edge of the category.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+      { ar: "تطبيقات وموك-أب", en: "Applications and mockups" },
+    ],
+  },
+  "vip-limo": {
+    desc: {
+      ar: "خدمة ليموزين في شيكاغو. بنينا الهوية على حرفي الاسم في صيغة شخصٍ واقف، ثم امتدّ العمل إلى واجهات التطبيق نفسه — الهوية والاستخدام من مصدر واحد.",
+      en: "A limousine service in Chicago. We built the identity on the two initials read as a standing figure, then the work extended into the screens of the app itself — identity and use from one source.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "واجهات التطبيق (UI/UX)", en: "App interface design (UI/UX)" },
+      { ar: "تطبيقات وموك-أب", en: "Applications and mockups" },
+    ],
+  },
+  "auto-crazy-car": {
+    desc: {
+      ar: "خدمات سيارات. هوية عالية التباين تحمل حركةً وسرعة — الحرف المشقوق في الوسط يقول الطاقة قبل أن يُقرأ الاسم.",
+      en: "An automotive service. A high-contrast identity carrying movement and speed — the split letter at its centre states the energy before the name is read.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+      { ar: "تطبيقات وموك-أب", en: "Applications and mockups" },
+    ],
+  },
+  "caffeine-kiss": {
+    desc: {
+      ar: "علامة قهوة. الشعار فنجانٌ يُقرأ ابتسامةً في آنٍ واحد — فكرة واحدة تحمل اسم العلامة ومزاجها معًا، بلا زخرفة زائدة.",
+      en: "A coffee brand. The mark is a cup that reads as a smile at the same time — one idea carrying both the name and the mood, with no decoration to spare.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "تطبيقات المقهى والعبوات", en: "Café and packaging applications" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+    ],
+  },
+  daughters: {
+    desc: {
+      ar: "شركة تجارة عامة. بنينا الشعار على صندوق شحن يُقرأ حرف الاسم الأول، فيقول مجال الشركة في لمحة واحدة دون سطر تعريفي.",
+      en: "A general trading company. We built the mark on a shipping crate that reads as the initial, so it states the line of business at a glance without a descriptor line.",
+    },
+    results: [
+      { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
+      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
+      { ar: "تطبيقات ومطبوعات", en: "Applications and print" },
+    ],
+  },
+  "profitmax-web": {
+    desc: {
+      ar: "موقع شركة استثمار تعمل من بريطانيا والإمارات. بنيناه ثنائي اللغة يعرض الخدمات وعقود التأمين، ويقود الزائر إلى حجز استشارة بدل أن يتركه يقرأ ويغادر.",
+      en: "A site for an investment firm operating out of the UK and the UAE. We built it bilingual, presenting the services and contract insurance, and leading the visitor to book a consultation rather than read and leave.",
+    },
+    results: [
+      { ar: "موقع ثنائي اللغة", en: "A bilingual site" },
+      { ar: "صفحات خدمات مفصّلة", en: "Detailed service pages" },
+      { ar: "مسار واضح لحجز الاستشارة", en: "A clear path to booking a consultation" },
+    ],
+  },
+  "utility-vision": {
+    desc: {
+      ar: "شركة مقاولات في جدة. بنينا موقعًا يعرض المشاريع والخدمات بلغة القطاع، مع مسار «اطلب عرض سعر» ظاهر في كل صفحة لا في صفحة التواصل وحدها.",
+      en: "A contracting company in Jeddah. We built a site presenting the projects and services in the language of the sector, with a request-a-quote path visible on every page rather than on the contact page alone.",
+    },
+    results: [
+      { ar: "موقع يعرض المشاريع والخدمات", en: "A site presenting projects and services" },
+      { ar: "نسخة جوّال مبنيّة لا مصغّرة", en: "A mobile version built, not shrunk" },
+      { ar: "مسار طلب عرض السعر في كل صفحة", en: "A quote-request path on every page" },
+    ],
+  },
+  "future-axis": {
+    desc: {
+      ar: "شركة مقاولات في السعودية. الموقع يعرض السجلّ والموردين والمشاريع الأخيرة — ما يسأل عنه المقاول الباحث عن شريك تنفيذ، لا ما يبدو جميلًا في العرض.",
+      en: "A Saudi contracting company. The site presents the record, the suppliers, and the latest projects — what a contractor looking for a delivery partner asks about, not what looks good in a showreel.",
+    },
+    results: [
+      { ar: "موقع بسجلّ مشاريع ومورّدين", en: "A site with a project and supplier record" },
+      { ar: "صفحات خدمات مفصّلة", en: "Detailed service pages" },
+      { ar: "نموذج استشارة مجانية", en: "A free-consultation form" },
+    ],
+  },
+  "alhayat-web": {
+    desc: {
+      ar: "مزرعة دواجن في الرياض. بنينا متجرًا إلكترونيًا يعرض المنتجات ويستقبل الطلبات، بالهوية نفسها التي بنيناها للمزرعة — فما على العبوة هو ما على الشاشة.",
+      en: "A poultry farm in Riyadh. We built an online store that presents the products and takes orders, in the same identity we built for the farm — so what is on the pack is what is on screen.",
+    },
+    results: [
+      { ar: "متجر إلكتروني يستقبل الطلبات", en: "An online store taking orders" },
+      { ar: "صفحات منتجات ومعرض", en: "Product pages and a gallery" },
+      { ar: "امتداد للهوية لا نسخة منها", en: "An extension of the identity, not a copy of it" },
+    ],
+  },
+  greenmark: {
+    desc: {
+      ar: "شركة تأسيس شركات وتخليص أوراق في دبي. أدرنا حضورها على السوشيال بمحتوى يجيب أسئلة العميل الفعلية — كم تستغرق؟ ما التراخيص؟ كيف تُستخرج التأشيرة؟ — بدل إعلانات عامّة.",
+      en: "A company-formation and document-clearing firm in Dubai. We ran its social presence on content answering the questions clients actually ask — how long it takes, which licences, how a visa is issued — instead of generic advertising.",
+    },
+    results: [
+      { ar: "محتوى شهري بالعربية والإنجليزية", en: "Monthly content in Arabic and English" },
+      { ar: "تصاميم تجيب أسئلة العميل مباشرةً", en: "Designs answering client questions directly" },
+      { ar: "حضور منتظم على المنصّات", en: "A steady presence across the platforms" },
+    ],
+  },
+  rahiq: {
+    desc: {
+      ar: "علامة عسل ومنتجات طبيعية في مصر. بنينا محتوى شهريًا يربط المنتج بمناسبات السنة وفوائده الغذائية، فصار المنشور سببًا للشراء لا صورةً للمنتج.",
+      en: "A honey and natural-products brand in Egypt. We built monthly content tying the product to the occasions of the year and to its nutritional value, so a post became a reason to buy rather than a picture of the product.",
+    },
+    results: [
+      { ar: "محتوى شهري متّصل بمناسبات السنة", en: "Monthly content tied to the occasions of the year" },
+      { ar: "قالب بصري ثابت للعلامة", en: "A consistent visual template for the brand" },
+      { ar: "حضور منتظم على المنصّات", en: "A steady presence across the platforms" },
+    ],
+  },
+  "sat-leaders": {
+    desc: {
+      ar: "أكاديمية تحضير لاختبارات SAT وACT وEST في مصر. بنينا محتوى يخاطب قلق الطالب وولي الأمر معًا — الدرجة والمدّة والطريقة — بلغة واضحة لا بشعارات تعليمية.",
+      en: "An academy preparing students for the SAT, ACT and EST in Egypt. We built content addressing the anxiety of both student and parent — the score, the timeline, the method — in plain language rather than educational slogans.",
+    },
+    results: [
+      { ar: "محتوى شهري لمواسم الاختبارات", en: "Monthly content across the exam seasons" },
+      { ar: "قالب بصري ثابت للأكاديمية", en: "A consistent visual template for the academy" },
+      { ar: "حضور منتظم على المنصّات", en: "A steady presence across the platforms" },
+    ],
+  },
   "building-line": {
     desc: {
       ar: "شركة مقاولات في السعودية. طوّرنا هوية بصرية تعكس الاحترافية والصلابة والثقة، بما يتماشى مع طبيعة القطاع الإنشائي.",

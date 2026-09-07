@@ -91,6 +91,80 @@ function titled(label: Bi): Bi {
  * المفتاح هو المسار المجرّد. ما لا مفتاح له يبقى على مقدّمته.
  */
 const META: Record<string, Bi> = {
+  /* أوصاف الأعمال الجديدة: نصّ الصفحة يشرح، والوصف هنا يُقتطع في
+     نتائج البحث إن طال — فيُكتب قصيرًا بدل أن يُبتر */
+  "/work/profitmax-brand": {
+    ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
+    en: "Identity for an investment firm in the UK and the UAE — a mark folding the initial into a rising arrow.",
+  },
+  "/work/profitmax-web": {
+    ar: "موقع ثنائي اللغة لشركة استثمار تعمل من بريطانيا والإمارات، يعرض الخدمات ويقود الزائر إلى حجز استشارة.",
+    en: "A bilingual site for an investment firm in the UK and the UAE, leading visitors to book a consultation.",
+  },
+  "/work/alhayat-brand": {
+    ar: "هوية مزرعة دواجن في الرياض، مبنيّة من عناصر المزرعة نفسها: شمس وسنبلة قمح وأرض زراعية.",
+    en: "Identity for a poultry farm in Riyadh, built from the farm's own elements: sun, wheat spike, and land.",
+  },
+  "/work/alhayat-web": {
+    ar: "متجر إلكتروني لمزرعة دواجن في الرياض يعرض المنتجات ويستقبل الطلبات، بامتداد هويّتها لا بنسخة منها.",
+    en: "An online store for a poultry farm in Riyadh, presenting products and taking orders in its own identity.",
+  },
+  "/work/utility-vision": {
+    ar: "موقع شركة مقاولات في جدة يعرض المشاريع والخدمات، بمسار طلب عرض سعر ظاهر في كل صفحة.",
+    en: "A site for a contracting company in Jeddah presenting projects and services, with a quote path on every page.",
+  },
+  "/work/future-axis": {
+    ar: "موقع شركة مقاولات سعودية يعرض السجلّ والمورّدين والمشاريع الأخيرة، لا صور عرض فقط.",
+    en: "A site for a Saudi contracting company showing the record, the suppliers, and the latest projects.",
+  },
+  "/work/greenmark": {
+    ar: "إدارة حضور شركة تأسيس شركات وتخليص أوراق في دبي، بمحتوى يجيب أسئلة العميل الفعلية.",
+    en: "Social presence for a company-formation firm in Dubai, on content that answers real client questions.",
+  },
+  "/work/rahiq": {
+    ar: "محتوى شهري لعلامة عسل ومنتجات طبيعية في مصر، يربط المنتج بمناسبات السنة وفوائده الغذائية.",
+    en: "Monthly content for an Egyptian honey brand, tying the product to the year's occasions and its benefits.",
+  },
+  "/work/sat-leaders": {
+    ar: "محتوى شهري لأكاديمية تحضير اختبارات SAT وACT وEST في مصر، يخاطب قلق الطالب وولي الأمر معًا.",
+    en: "Monthly content for a SAT, ACT and EST prep academy in Egypt, addressing student and parent alike.",
+  },
+  "/work/sedra": {
+    ar: "هوية علامة إكسسوارات فاخرة، مبنيّة على خطّ عربي مخصّص لكلمة «سدرة».",
+    en: "Identity for a luxury accessories brand, built on custom Arabic lettering of the word Sedra.",
+  },
+  "/work/alraghad": {
+    ar: "هوية علامة مجوهرات — حرفان يجتمعان في شكل خاتم داخل إطار مقوّس، ذهبٌ على خلفية داكنة.",
+    en: "Identity for a jewellery brand — two initials folded into a ring inside an arched frame.",
+  },
+  "/work/tech-care": {
+    ar: "هوية معامل تحاليل طبية — قطرة داخل حرف C وجزيئات تحليل، بأزرق طبّي يقول الثقة والراحة.",
+    en: "Identity for a medical laboratory — a droplet inside the letter C, in a blue that carries reassurance.",
+  },
+  "/work/vip-limo": {
+    ar: "هوية خدمة ليموزين في شيكاغو، وواجهات تطبيقها — الهوية والاستخدام من مصدر واحد.",
+    en: "Identity and app interface design for a limousine service in Chicago.",
+  },
+  "/work/auto-crazy-car": {
+    ar: "هوية خدمات سيارات، عالية التباين تحمل حركةً وسرعة قبل أن يُقرأ الاسم.",
+    en: "Identity for an automotive service — high contrast, carrying movement before the name is read.",
+  },
+  "/work/caffeine-kiss": {
+    ar: "هوية علامة قهوة — فنجانٌ يُقرأ ابتسامةً في آنٍ واحد، فكرة واحدة تحمل الاسم والمزاج.",
+    en: "Identity for a coffee brand — a cup that reads as a smile, one idea carrying name and mood.",
+  },
+  "/work/daughters": {
+    ar: "هوية شركة تجارة عامة — صندوق شحن يُقرأ حرف الاسم الأول، فيقول المجال في لمحة.",
+    en: "Identity for a general trading company — a shipping crate that reads as the initial.",
+  },
+  "/clients/profitmax": {
+    ar: "هوية ثم موقع لشركة استثمار تعمل من بريطانيا والإمارات — علاقة امتدّت من العلامة إلى حضورها الكامل.",
+    en: "Identity then website for an investment firm in the UK and the UAE — from the mark to the full presence.",
+  },
+  "/clients/alhayat": {
+    ar: "هوية ثم متجر إلكتروني لمزرعة دواجن في الرياض — ما يراه العميل على العبوة هو ما يراه على الشاشة.",
+    en: "Identity then online store for a poultry farm in Riyadh — the pack and the screen say the same thing.",
+  },
   "/about": {
     ar: "منذ 2018 ودَعمة تحوّل أفكار الشركات إلى حضور رقمي واضح — نعمل مع عملاء في مصر والخليج وأوروبا.",
     en: "Since 2018 Daamah has turned companies' ideas into a clear digital presence, working across Egypt, the Gulf, and Europe.",
@@ -226,7 +300,7 @@ export const routes: RouteMeta[] = [
   ...workItems.map<RouteMeta>((w) => ({
     path: `/work/${w.slug}`,
     title: titled(w.name),
-    description: workDetails[w.slug]?.desc ?? sectorMeta(w.sector).label,
+    description: describe(`/work/${w.slug}`, workDetails[w.slug]?.desc ?? sectorMeta(w.sector).label),
     priority: 0.6,
     kind: "workItem" as const,
     parent: "/work",

@@ -41,7 +41,11 @@ export type SectorKey =
   | "finance"
   | "energy"
   | "media"
-  | "education";
+  | "education"
+  | "food"
+  | "business"
+  | "health"
+  | "auto";
 
 export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "construction", label: { ar: "مقاولات", en: "Construction" } },
@@ -52,6 +56,10 @@ export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "energy", label: { ar: "صناعة وطاقة", en: "Industrial & energy" } },
   { key: "media", label: { ar: "إنتاج وتصوير", en: "Production & filming" } },
   { key: "education", label: { ar: "تعليم", en: "Education" } },
+  { key: "food", label: { ar: "أغذية ومزارع", en: "Food & farming" } },
+  { key: "business", label: { ar: "تجارة وخدمات أعمال", en: "Trade & business services" } },
+  { key: "health", label: { ar: "رعاية صحية", en: "Healthcare" } },
+  { key: "auto", label: { ar: "سيارات ونقل", en: "Automotive & transport" } },
 ];
 
 /* ── الأسواق ── */
@@ -137,6 +145,85 @@ export const workItems: WorkItem[] = [
     client: "adg",
   },
   {
+    slug: "profitmax-brand",
+    service: "brand",
+    name: { ar: "بروفيت ماكس للاستثمار", en: "Profit Max Investments" },
+    sector: "finance",
+    markets: ["eu", "ae"],
+    image: "/assets/work/brand-profitmax.jpg",
+    client: "profitmax",
+  },
+  {
+    slug: "alhayat-brand",
+    service: "brand",
+    name: { ar: "مزرعة الحياة للدواجن", en: "Alhayat Poultry Farm" },
+    sector: "food",
+    markets: ["sa"],
+    image: "/assets/work/brand-alhayat.jpg",
+    client: "alhayat",
+  },
+  {
+    slug: "sedra",
+    service: "brand",
+    name: { ar: "سدرة", en: "Sedra" },
+    sector: "ecommerce",
+    markets: [],
+    note: { ar: "إكسسوارات", en: "Accessories" },
+    image: "/assets/work/brand-sedra.jpg",
+  },
+  {
+    slug: "alraghad",
+    service: "brand",
+    name: { ar: "الرغد", en: "Al Raghad" },
+    sector: "ecommerce",
+    markets: [],
+    note: { ar: "مجوهرات", en: "Jewellery" },
+    image: "/assets/work/brand-alraghad.jpg",
+  },
+  {
+    slug: "tech-care",
+    service: "brand",
+    name: { ar: "معامل تك كير", en: "Tech Care Labs" },
+    sector: "health",
+    markets: [],
+    note: { ar: "تحاليل طبية", en: "Medical labs" },
+    image: "/assets/work/brand-techcare.jpg",
+  },
+  {
+    slug: "vip-limo",
+    service: "brand",
+    name: { ar: "في آي بي ليمو", en: "VIP Limo" },
+    sector: "auto",
+    markets: ["us"],
+    note: { ar: "ليموزين", en: "Limousine" },
+    image: "/assets/work/brand-viplimo.jpg",
+  },
+  {
+    slug: "auto-crazy-car",
+    service: "brand",
+    name: { ar: "أوتو كريزي كار", en: "Auto Crazy Car" },
+    sector: "auto",
+    markets: [],
+    image: "/assets/work/brand-autocrazycar.jpg",
+  },
+  {
+    slug: "caffeine-kiss",
+    service: "brand",
+    name: { ar: "كافيين كيس", en: "A Caffeine Kiss" },
+    sector: "food",
+    markets: [],
+    note: { ar: "قهوة", en: "Coffee" },
+    image: "/assets/work/brand-caffeinekiss.jpg",
+  },
+  {
+    slug: "daughters",
+    service: "brand",
+    name: { ar: "دوترز للتجارة", en: "Daughters Trading" },
+    sector: "business",
+    markets: [],
+    image: "/assets/work/brand-daughters.jpg",
+  },
+  {
     slug: "fragancia",
     service: "web",
     name: { ar: "فراجانسيا", en: "Fragancia" },
@@ -179,6 +266,41 @@ export const workItems: WorkItem[] = [
     image: "/assets/work/web-fashion.jpg",
   },
   {
+    slug: "profitmax-web",
+    service: "web",
+    name: { ar: "بروفيت ماكس للاستثمار", en: "Profit Max Investments" },
+    sector: "finance",
+    markets: ["eu", "ae"],
+    image: "/assets/work/web-profitmax.jpg",
+    client: "profitmax",
+  },
+  {
+    slug: "utility-vision",
+    service: "web",
+    name: { ar: "يوتيليتي فيجن للمقاولات", en: "Utility Vision Contracting" },
+    sector: "construction",
+    markets: ["sa"],
+    image: "/assets/work/web-utilityvision.jpg",
+  },
+  {
+    slug: "future-axis",
+    service: "web",
+    name: { ar: "فيوتشر أكسس للمقاولات", en: "Future Axis Contracting" },
+    sector: "construction",
+    markets: ["sa"],
+    image: "/assets/work/web-futureaxis.jpg",
+  },
+  {
+    slug: "alhayat-web",
+    service: "web",
+    name: { ar: "مزرعة الحياة للدواجن", en: "Alhayat Poultry Farm" },
+    sector: "food",
+    markets: ["sa"],
+    note: { ar: "متجر إلكتروني", en: "Online store" },
+    image: "/assets/work/web-alhayat.jpg",
+    client: "alhayat",
+  },
+  {
     slug: "eco-vista",
     service: "social",
     name: { ar: "إيكو فيستا", en: "Eco Vista" },
@@ -219,6 +341,32 @@ export const workItems: WorkItem[] = [
     image: "/assets/work/social-adg.jpg",
     client: "adg",
   },
+  {
+    slug: "greenmark",
+    service: "social",
+    name: { ar: "جرين مارك", en: "Green Mark" },
+    sector: "business",
+    markets: ["ae"],
+    note: { ar: "تأسيس شركات", en: "Company setup" },
+    image: "/assets/work/social-greenmark.jpg",
+  },
+  {
+    slug: "rahiq",
+    service: "social",
+    name: { ar: "رحيق", en: "Rahiq" },
+    sector: "food",
+    markets: ["eg"],
+    note: { ar: "عسل", en: "Honey" },
+    image: "/assets/work/social-rahiq.jpg",
+  },
+  {
+    slug: "sat-leaders",
+    service: "social",
+    name: { ar: "أكاديمية سات ليدرز", en: "SAT Leaders Academy" },
+    sector: "education",
+    markets: ["eg"],
+    image: "/assets/work/social-satleaders.jpg",
+  },
 ];
 
 /* ── قصص العملاء ── */
@@ -242,6 +390,36 @@ export type ClientStory = {
  * فلا يوجد وصف في مكانين ولا خطر أن يفترقا.
  */
 export const clientStories: ClientStory[] = [
+  {
+    slug: "profitmax",
+    name: { ar: "بروفيت ماكس للاستثمار", en: "Profit Max Investments" },
+    sector: "finance",
+    markets: ["eu", "ae"],
+    lede: {
+      ar: "شركة استثمار تعمل من بريطانيا والإمارات. بدأ العمل من الهوية — شعارٌ يجمع حرف الاسم بسهم صاعد يقول تخصّصها دون شرح — ثم امتدّ إلى موقع ثنائي اللغة يعرض خدماتها ويفتح باب الاستشارة.",
+      en: "An investment firm operating out of the UK and the UAE. It began with the identity — a mark folding the initial into a rising arrow that states the specialism without explaining it — then extended into a bilingual site presenting the services and opening the consultation door.",
+    },
+    results: [
+      { ar: "هوية وموقع بنَفَس واحد", en: "One identity carried into the site" },
+      { ar: "حضور يخاطب سوقين بلغتين", en: "A presence addressing two markets in two languages" },
+      { ar: "مسار واضح من الزيارة إلى الاستشارة", en: "A clear path from visit to consultation" },
+    ],
+  },
+  {
+    slug: "alhayat",
+    name: { ar: "مزرعة الحياة للدواجن", en: "Alhayat Poultry Farm" },
+    sector: "food",
+    markets: ["sa"],
+    lede: {
+      ar: "مزرعة دواجن في الرياض. بنينا الهوية من عناصر المزرعة نفسها — شمس وسنبلة وأرض زراعية — ثم متجرًا إلكترونيًا يعرض المنتجات ويستقبل الطلبات، فصار ما يراه العميل على العبوة هو نفسه ما يراه على الشاشة.",
+      en: "A poultry farm in Riyadh. We built the identity from the farm's own elements — sun, wheat spike, cultivated land — then an online store that presents the products and takes orders, so what a customer sees on the pack is what they see on screen.",
+    },
+    results: [
+      { ar: "هوية مبنيّة على طبيعة المزرعة لا على قوالب", en: "An identity built from the farm, not from templates" },
+      { ar: "متجر يستقبل الطلبات مباشرةً", en: "A store that takes orders directly" },
+      { ar: "علامة واحدة على العبوة والشاشة", en: "One brand on the pack and on screen" },
+    ],
+  },
   {
     slug: "adg",
     name: { ar: "إيه دي جي", en: "ADG Real Estate" },

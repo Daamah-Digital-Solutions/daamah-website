@@ -2,7 +2,6 @@ import { Navigate, useParams } from "react-router-dom";
 import { useLang } from "../i18n";
 import { work } from "../content/home";
 import { workDetails, workPage } from "../content/pages";
-import { coverSize } from "../content/gallery";
 import {
   markets as marketLabels,
   sectorMeta,
@@ -15,7 +14,6 @@ import { PageCta } from "../components/PageCta";
 import { Gallery } from "../components/Gallery";
 import { waMessage } from "../content/whatsapp";
 import { Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
-import { Img } from "../components/Img";
 
 export function WorkDetailPage() {
   const { slug = "" } = useParams();
@@ -31,9 +29,6 @@ export function WorkDetailPage() {
   const next = workItems[(index + 1) % workItems.length];
   const story = item.client ? storyBySlug(item.client) : undefined;
   const storyServices = item.client ? servicesOf(item.client) : [];
-
-  const cover = coverSize[item.image] ?? { w: 1400, h: 933 };
-  const wideCover = cover.w / cover.h >= 1.3;
 
   const facts = [
     { label: t(workPage.sectorLabel), value: t(sectorMeta(item.sector).label) },
@@ -93,32 +88,11 @@ export function WorkDetailPage() {
         </Wrap>
       </section>
 
-      {/* الغلاف بنسبته لا مقصوصًا: صار في الأعمال مربّعٌ وعريض،
-          وقصّهما إلى نسبة واحدة يقطع نصف المنشور المربّع. والمربّع
-          يُحصر في عمود أضيق حتى لا يبتلع الشاشة وحده. */}
+      {/* الشغل نفسه أوّل ما يُرى — بلا غلاف يسبقه.
+          الغلاف هو الصورة التي ضغطها الزائر في البطاقة، فعرضها
+          مكبّرةً هنا يعيد ما رآه للتوّ ويؤخّر ما جاء من أجله.
+          الغلاف يبقى حيث ينفع: البطاقة ووسوم المشاركة. */}
       <section className="mt-12 sm:mt-16">
-        <Wrap>
-          <Reveal className={wideCover ? "" : "mx-auto max-w-3xl"}>
-            <div className="overflow-hidden bg-paper-2">
-              {/* صورة الغلاف هي أكبر عنصر مرئي في الصفحة — تُحمَّل
-                  بأولوية لا كسولًا، فهي ما يقيسه LCP */}
-              <Img
-                src={item.image}
-                alt={t(item.name)}
-                width={cover.w}
-                height={cover.h}
-                sizes={wideCover ? "(min-width: 1320px) 1320px, 100vw" : "(min-width: 768px) 768px, 100vw"}
-                priority
-                className="w-full dark:brightness-[0.9]"
-              />
-            </div>
-          </Reveal>
-        </Wrap>
-      </section>
-
-      {/* المعرض مباشرةً بعد الغلاف: هو الشغل نفسه، وكان في ذيل
-          الصفحة تحت الكلام — يصل إليه من قرأ حتى النهاية وحده */}
-      <section className="mt-4 sm:mt-6">
         <Wrap>
           <Gallery slug={item.slug} name={item.name} />
         </Wrap>

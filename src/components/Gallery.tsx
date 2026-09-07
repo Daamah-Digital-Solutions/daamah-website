@@ -156,6 +156,8 @@ export function Gallery({ slug, name }: { slug: string; name: Bi }) {
               width={s.w}
               height={s.h}
               widths={WIDTHS}
+              /* لم يعد فوق المعرض غلاف، فأولى صوره هي ما يقيسه LCP */
+              priority={i === 0}
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="w-full transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
             />

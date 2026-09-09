@@ -158,6 +158,54 @@ const META: Record<string, Bi> = {
     ar: "هوية ثم ملف تعريفي لشركة مناديل ورقية وكيماويات تبيع لشركات لا لأفراد.",
     en: "Identity then profile for a tissue-paper and chemicals manufacturer selling to businesses.",
   },
+  "/work/xtreme-blue": {
+    ar: "خمسة وعشرون شهرًا من المحتوى للموزّع الحصري لزيوت IFF العطرية في مصر — عبوة صناعية وعطر فاخر في منشور واحد.",
+    en: "Twenty-five months of content for the exclusive Egyptian distributor of IFF fragrance oils — the industrial drum and the luxury bottle in one post.",
+  },
+  "/work/muri": {
+    ar: "تسعة عشر شهرًا من المحتوى لمطوّر عقاري في مصر — رسالة واحدة: من يؤجّر يدفع، ومن يشتري يبني.",
+    en: "Nineteen months of content for an Egyptian developer — one message: renting pays, buying builds.",
+  },
+  "/work/swissroll": {
+    ar: "سبعة عشر شهرًا من المحتوى لمحلّ حلويات — تصوير قبل أن يكون تصميمًا، وتقويم مبنيّ على مواسم البيع.",
+    en: "Seventeen months of content for a patisserie — photography before design, on a calendar built from selling seasons.",
+  },
+  "/work/vida": {
+    ar: "ستّة عشر شهرًا من المحتوى لنادٍ رياضي — محتوى يزيل عذرًا لا يبيع اشتراكًا.",
+    en: "Sixteen months of content for a fitness club — content that removes an excuse rather than selling a membership.",
+  },
+  "/work/atm-realestate": {
+    ar: "ستّة عشر شهرًا من المحتوى لمطوّر عقاري — «نبني ذكرياتك» لا «نبيع وحدات»، والفرق يظهر في الصورة.",
+    en: "Sixteen months of content for a developer — building memories, not selling units, and the difference shows in the image.",
+  },
+  "/work/nasea": {
+    ar: "ثلاثة عشر شهرًا من المحتوى لمصنّع منظّفات يبيع للموزّعين — الصورة كرتونة وبالتة لا زجاجة على رفّ.",
+    en: "Thirteen months of content for a cleaning-products maker selling to distributors — cartons and pallets, not a bottle on a shelf.",
+  },
+  "/work/godran": {
+    ar: "أربعة عشر شهرًا من المحتوى لاستشارات عقارية — بناء ثقة يسبق عرض الوحدة.",
+    en: "Fourteen months of content for a property consultancy — trust built ahead of the unit being shown.",
+  },
+  "/work/alawael": {
+    ar: "أحد عشر شهرًا من المحتوى لشركة تربط المستثمر الخليجي بالعقار الجورجي — طمأنة على القانون والموقع والعائد.",
+    en: "Eleven months of content for a firm linking Gulf investors to Georgian property — reassurance on law, location and return.",
+  },
+  "/work/royal-consultant": {
+    ar: "سبعة أشهر من المحتوى لبيت استشارات وشريك أودو في السوق السعودي — يبدأ بالمشكلة لا بالنظام.",
+    en: "Seven months of content for a consultancy and Odoo partner in Saudi Arabia — opening on the problem, not the system.",
+  },
+  "/work/alhaitham": {
+    ar: "محتوى لمكتب استشارات قانونية وهندسية — الموضوع نفسه هو الإعلان، فيجيب سؤالًا يُبحَث عنه فعلًا.",
+    en: "Content for a legal and engineering consultancy — the subject is the advertising, answering a question people actually search.",
+  },
+  "/work/almuttahida": {
+    ar: "محتوى لشركة تخليص جمركي وشحن — يبيع زوال القلق من التعطيل لا الخدمة نفسها.",
+    en: "Content for a customs clearance and freight firm — selling the end of the worry about delay, not the service.",
+  },
+  "/work/corpenta": {
+    ar: "محتوى لشركة تأسيس أعمال تدخل بالمستثمر الأجنبي إلى السوق السعودي — مبنيّ على التوقيت لا على الإجراء.",
+    en: "Content for a business-formation firm taking foreign investors into Saudi Arabia — built on the timing, not the paperwork.",
+  },
   "/work/amlak-social": {
     ar: "ثمانية وعشرون شهرًا متّصلة من المحتوى لشركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة — عشرة مشاريع مسمّاة.",
     en: "Twenty-eight unbroken months of content for a firm selling Batumi property to investors who have never visited — ten named developments.",

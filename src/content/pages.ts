@@ -353,6 +353,138 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "xtreme-blue": {
+    desc: {
+      ar: "الموزّع الحصري لشركة IFF العالمية للزيوت العطرية في مصر — يبيع لمصانع لا لأفراد. فالمنشور يوازن بين اثنين: عبوة صناعية بملصق مواصفات يقرأه المشتري الفنّي، وصورة عطر فاخر تقول ما تصير إليه هذه العبوة. خمسة وعشرون شهرًا على هذا التوازن.",
+      en: "The exclusive Egyptian distributor for IFF fragrance oils — selling to factories, not consumers. So each post balances two things: an industrial drum with a specification label the technical buyer reads, and a luxury fragrance shot saying what that drum becomes. Twenty-five months holding that balance.",
+    },
+    results: [
+      { ar: "خمسة وعشرون شهرًا متّصلة من المحتوى", en: "Twenty-five unbroken months of content" },
+      { ar: "لغة تخاطب المشتري الصناعي والعلامة معًا", en: "A language addressing the industrial buyer and the brand at once" },
+      { ar: "حضور منتظم في قطاع يندر فيه المحتوى", en: "A steady presence in a category that rarely publishes" },
+    ],
+  },
+  muri: {
+    desc: {
+      ar: "شركة تطوير عقاري في مصر. المحتوى يشتغل على ما قبل القرار: من يؤجّر يدفع ولا يملك، ومن يشتري يبني. تسعة عشر شهرًا من المنشورات التي تقول ذلك بصورة واحدة لا بفقرة.",
+      en: "An Egyptian property developer. The content works on what comes before the decision: renting pays and owns nothing; buying builds. Nineteen months of posts saying that in one image rather than a paragraph.",
+    },
+    results: [
+      { ar: "تسعة عشر شهرًا متّصلة من المحتوى", en: "Nineteen unbroken months of content" },
+      { ar: "رسالة واحدة تتكرّر بصور مختلفة", en: "One message repeated through different images" },
+      { ar: "حضور منتظم عبر مواسم السوق", en: "A steady presence across the market's seasons" },
+    ],
+  },
+  swissroll: {
+    desc: {
+      ar: "محلّ حلويات في شبين الكوم. الحلوى تُشترى بالعين، فالمنشور تصويرٌ قبل أن يكون تصميمًا: الطبقة والقوام والانسكاب. سبعة عشر شهرًا، والمناسبات — رمضان والأعياد — عمود التقويم لأنها موسم البيع.",
+      en: "A patisserie in Shibin El Kom. Sweets are bought with the eye, so a post here is photography before it is design: the layer, the texture, the pour. Seventeen months, with the occasions — Ramadan and the Eids — as the calendar's spine, because they are the selling season.",
+    },
+    results: [
+      { ar: "سبعة عشر شهرًا متّصلة من المحتوى", en: "Seventeen unbroken months of content" },
+      { ar: "تقويم مبنيّ على مواسم البيع لا على الأسبوع", en: "A calendar built on selling seasons rather than weeks" },
+      { ar: "لغة بصرية واحدة عبر عشرات المنتجات", en: "One visual language across dozens of products" },
+    ],
+  },
+  vida: {
+    desc: {
+      ar: "نادٍ رياضي في مصر. المحتوى لا يبيع اشتراكًا بل يزيل عذرًا: «اتخلّص من السيلوليت في 20 دقيقة»، «فرصتك لتحقيق هدفك في رمضان». وشركاء التقسيط ظاهرون في كل منشور لأن السعر هو الاعتراض الأخير. ستّة عشر شهرًا على هذا النسق.",
+      en: "An Egyptian fitness club. The content does not sell a membership, it removes an excuse: twenty minutes against cellulite, a Ramadan window to hit your goal. The instalment partners sit on every post because price is the last objection. Sixteen months in that register.",
+    },
+    results: [
+      { ar: "ستّة عشر شهرًا متّصلة من المحتوى", en: "Sixteen unbroken months of content" },
+      { ar: "محتوى مبنيّ على الاعتراض لا على العرض", en: "Content built on the objection rather than the offer" },
+      { ar: "شركاء التقسيط في كل منشور", en: "Instalment partners present on every post" },
+    ],
+  },
+  "atm-realestate": {
+    desc: {
+      ar: "شركة تطوير عقاري في مصر. الوعد المكرّر «بنبني ذكرياتك» لا «بنبيع وحدات» — والفارق يظهر في الصورة: بيتٌ في يد، لا مخطّط ولا واجهة. ستّة عشر شهرًا على هذه النبرة.",
+      en: "An Egyptian property developer. The repeated promise is building memories, not selling units — and the difference shows in the image: a house held in a hand, not a floor plan or a façade. Sixteen months in that voice.",
+    },
+    results: [
+      { ar: "ستّة عشر شهرًا متّصلة من المحتوى", en: "Sixteen unbroken months of content" },
+      { ar: "وعد واحد يتكرّر حتى يُحفظ", en: "One promise repeated until it sticks" },
+      { ar: "لغة بصرية تفصله عن إعلانات القطاع", en: "A visual language that separates it from the category's advertising" },
+    ],
+  },
+  nasea: {
+    desc: {
+      ar: "مصنّع منظّفات يبيع للموزّعين والمخازن لا للمستهلك. فالمنشور موجَّه إلى تاجر: «شريكك في النجاح»، «ناصع أساسي في كل مخزن» — والصورة كرتونة وبالتة لا زجاجة على رفّ. ثلاثة عشر شهرًا على هذا الخطاب.",
+      en: "A cleaning-products manufacturer selling to distributors and warehouses, not to consumers. So a post addresses a trader — a partner in the business, a line every warehouse stocks — and the image is a carton and a pallet, not a bottle on a shelf. Thirteen months in that address.",
+    },
+    results: [
+      { ar: "ثلاثة عشر شهرًا متّصلة من المحتوى", en: "Thirteen unbroken months of content" },
+      { ar: "خطاب موجَّه إلى الموزّع لا إلى المستهلك", en: "Content addressed to the distributor, not the consumer" },
+      { ar: "عرض المنتجات كخطّ لا كأصناف متفرّقة", en: "The range presented as a line rather than scattered items" },
+    ],
+  },
+  godran: {
+    desc: {
+      ar: "استشارات عقارية في مصر. المحتوى يبيع الطمأنينة قبل العقار: «عيش في مكان كله أمان»، وفريق عمل «على أعلى مستوى من الخبرة». أربعة عشر شهرًا من بناء الثقة قبل المعاينة.",
+      en: "Property consultancy in Egypt. The content sells reassurance before it sells property: living somewhere entirely safe, a team at the top of its experience. Fourteen months of building trust before the viewing.",
+    },
+    results: [
+      { ar: "أربعة عشر شهرًا متّصلة من المحتوى", en: "Fourteen unbroken months of content" },
+      { ar: "بناء ثقة يسبق عرض الوحدة", en: "Trust built ahead of the unit being shown" },
+      { ar: "حضور منتظم عبر موسمين كاملين", en: "A steady presence across two full seasons" },
+    ],
+  },
+  alawael: {
+    desc: {
+      ar: "شركة تربط المستثمر الخليجي بالعقار الجورجي. المحتوى يطمئن على ثلاثة محاور معًا — القانون والموقع والعائد — لأن المشتري هنا لا يعاين بنفسه. أحد عشر شهرًا على هذا الثالوث.",
+      en: "A firm connecting Gulf investors to Georgian property. The content reassures on three fronts at once — the legal, the location, the return — because this buyer never views in person. Eleven months on that triad.",
+    },
+    results: [
+      { ar: "أحد عشر شهرًا متّصلة من المحتوى", en: "Eleven unbroken months of content" },
+      { ar: "طمأنة على القانون والموقع والعائد معًا", en: "Reassurance on the legal, the location and the return together" },
+      { ar: "محتوى يخاطب مشتريًا لا يعاين بنفسه", en: "Content for a buyer who never views in person" },
+    ],
+  },
+  "royal-consultant": {
+    desc: {
+      ar: "بيت استشارات وشريك معتمد لأودو في السوق السعودي. المحتوى يخاطب صاحب شركة تعب من الجداول: «تعبت من الطرق التقليدية لإدارة شركتك؟». سبعة أشهر تقول المشكلة قبل النظام.",
+      en: "A consultancy and certified Odoo partner in the Saudi market. The content addresses an owner tired of spreadsheets — asking whether the traditional way of running the company has worn thin. Seven months naming the problem before the system.",
+    },
+    results: [
+      { ar: "سبعة أشهر من المحتوى المنتظم", en: "Seven months of steady content" },
+      { ar: "خطاب يبدأ بالمشكلة لا بالمنتج", en: "Content that opens on the problem, not the product" },
+      { ar: "هوية موحّدة عبر مناسبات السنة", en: "One consistent identity across the year's occasions" },
+    ],
+  },
+  alhaitham: {
+    desc: {
+      ar: "مكتب استشارات قانونية وهندسية. الموضوعات نفسها هي الإعلان: التخلّف عن الخدمة العسكرية، تأسيس شركات الاستيراد والتصدير، القضايا العسكرية. المحتوى يجيب سؤالًا يبحث عنه القارئ فعلًا بدل أن يعرّف بالمكتب.",
+      en: "A legal and engineering consultancy. The subjects are the advertising: military service default, forming import-export companies, military cases. The content answers a question the reader is actually searching for rather than introducing the practice.",
+    },
+    results: [
+      { ar: "محتوى مبنيّ على سؤال يُبحَث عنه", en: "Content built on a question people search for" },
+      { ar: "لغة بصرية جادّة تناسب القطاع", en: "A serious visual language fit for the category" },
+      { ar: "تخصّصات معروضة كلٌّ على حدة", en: "Each specialism presented on its own" },
+    ],
+  },
+  almuttahida: {
+    desc: {
+      ar: "شركة تخليص جمركي وشحن. المشتري هنا يخاف التعطيل لا السعر، فالمحتوى يبيع زوال القلق: «خلّص واخلص»، «التخليص لعبة وإحنا أبطالها». والصور سفن وشاحنات ومواني — لغة من يعرف الطريق.",
+      en: "A customs clearance and freight company. This buyer fears delay more than cost, so the content sells the end of that worry — clear it and be done, clearance as a game they play best. The images are ships, trucks and ports: the language of someone who knows the route.",
+    },
+    results: [
+      { ar: "محتوى يبيع زوال القلق لا الخدمة", en: "Content selling the end of the worry, not the service" },
+      { ar: "لغة بصرية من عالم الشحن نفسه", en: "A visual language taken from freight itself" },
+      { ar: "حضور في قطاع يعتمد على العلاقات لا الإعلان", en: "A presence in a category that runs on relationships, not advertising" },
+    ],
+  },
+  corpenta: {
+    desc: {
+      ar: "شركة تأسيس أعمال تدخل بالمستثمر الأجنبي إلى السوق السعودي. المحتوى مبنيّ على رؤية 2030 لا على الخدمة: «ابنِ عملك في السعودية متوافقًا مع 2030» — لأن المستثمر يشتري التوقيت قبل أن يشتري الإجراء.",
+      en: "A business-formation firm taking foreign investors into the Saudi market. The content is built on Vision 2030 rather than on the service — build your business in Saudi Arabia aligned with 2030 — because this investor buys the timing before the paperwork.",
+    },
+    results: [
+      { ar: "محتوى مبنيّ على التوقيت لا على الإجراء", en: "Content built on the timing rather than the procedure" },
+      { ar: "لغة إنجليزية تخاطب المستثمر الأجنبي", en: "English written for the foreign investor" },
+      { ar: "هوية بصرية بمستوى القرار الذي تطلبه", en: "A visual language matching the size of the decision it asks for" },
+    ],
+  },
   "amlak-social": {
     desc: {
       ar: "شركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة. فالمنشور هنا ليس إعلانًا بل جولةً: يقول أين المشروع، وماذا يطلّ عليه، ولماذا جورجيا أصلًا. ثمانية وعشرون شهرًا متّصلة عبر عشرة مشاريع مسمّاة — بانوراما، سي فيو، جرين تاون، ماردي أكوا بارك، نوفوتيل باتومي وغيرها — لكلٍّ لغته البصرية داخل هوية واحدة.",

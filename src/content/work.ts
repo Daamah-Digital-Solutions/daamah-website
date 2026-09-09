@@ -121,6 +121,7 @@ export const workItems: WorkItem[] = [
     sector: "realestate",
     markets: ["ge", "sa"],
     image: "/assets/work/brand-amlak.jpg",
+    client: "amlak",
   },
   {
     slug: "elitegate",
@@ -385,6 +386,17 @@ export const workItems: WorkItem[] = [
     client: "adg",
   },
   {
+    slug: "amlak-social",
+    service: "social",
+    name: { ar: "أملاك العقارية — المحتوى", en: "Amlak Real Estate — Content" },
+    sector: "realestate",
+    markets: ["ge", "sa", "eg"],
+    note: { ar: "استثمار عقاري", en: "Property investment" },
+    image: "/assets/work/social-amlak.jpg",
+    client: "amlak",
+    months: 35,
+  },
+  {
     slug: "adg-profile",
     service: "profile",
     name: { ar: "إيه دي جي — الملف التعريفي", en: "ADG — Company Profile" },
@@ -504,6 +516,22 @@ export type ClientStory = {
  * فلا يوجد وصف في مكانين ولا خطر أن يفترقا.
  */
 export const clientStories: ClientStory[] = [
+  {
+    slug: "amlak",
+    name: { ar: "أملاك العقارية", en: "Amlak Real Estate" },
+    sector: "realestate",
+    markets: ["ge", "sa", "eg"],
+    since: 2023,
+    lede: {
+      ar: "شركة تبيع عقارًا في جورجيا لمستثمر خليجي ومصري — أي أن كل منشور يخاطب من لم يرَ المدينة ولا المشروع. بدأ العمل بهوية، ثم امتدّ إلى خمسة وثلاثين شهرًا متّصلة من المحتوى الشهري عبر عشرة مشاريع مسمّاة، ثم إلى تجديد الهوية نفسها حين كبرت الشركة على شكلها الأول.",
+      en: "A company selling property in Georgia to Gulf and Egyptian investors — meaning every post addresses someone who has seen neither the city nor the project. It began with an identity, extended into thirty-five unbroken months of monthly content across ten named developments, then into rebuilding the identity itself once the company outgrew its first look.",
+    },
+    results: [
+      { ar: "خمسة وثلاثون شهرًا متّصلة، بلا شهر منقطع", en: "Thirty-five unbroken months, with no month missed" },
+      { ar: "عشرة مشاريع مسمّاة، لكلٍّ لغته البصرية داخل الهوية", en: "Ten named developments, each with its own visual line inside the identity" },
+      { ar: "هوية أولى ثم تجديدها حين كبرت الشركة عليها", en: "A first identity, then a rebuild once the company outgrew it" },
+    ],
+  },
   {
     slug: "hcc",
     name: { ar: "إتش سي سي للتأمين الدولي", en: "HCC International Insurance" },

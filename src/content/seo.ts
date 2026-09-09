@@ -69,8 +69,8 @@ const home: RouteMeta = {
     en: "Daamah Digital Solutions | Branding, Websites & Marketing",
   },
   description: {
-    ar: "منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج ومصر وأوروبا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
-    en: "Brand identity, websites, social media, and marketing for companies in Saudi Arabia, the Gulf, Egypt, and Europe. Building digital presence since 2018.",
+    ar: "شركة عالمية تبني منذ 2018 حضورًا رقميًا متكاملًا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج — للشركات في الخليج ومصر وأوروبا.",
+    en: "A global company building complete digital presence since 2018 — brand identity, websites, social media, and marketing that performs."
   },
   priority: 1,
   kind: "home",
@@ -157,6 +157,14 @@ const META: Record<string, Bi> = {
   "/clients/hennawy": {
     ar: "هوية ثم ملف تعريفي لشركة مناديل ورقية وكيماويات تبيع لشركات لا لأفراد.",
     en: "Identity then profile for a tissue-paper and chemicals manufacturer selling to businesses.",
+  },
+  "/work/amlak-social": {
+    ar: "خمسة وثلاثون شهرًا متّصلة من المحتوى لشركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة — عشرة مشاريع مسمّاة.",
+    en: "Thirty-five unbroken months of content for a firm selling Batumi property to investors who have never visited — ten named developments.",
+  },
+  "/clients/amlak": {
+    ar: "هوية، ثم خمسة وثلاثون شهرًا من المحتوى، ثم تجديد الهوية — علاقة كاملة مع شركة استثمار عقاري في جورجيا.",
+    en: "An identity, thirty-five months of content, then a rebrand — a full relationship with a Georgian property investment firm.",
   },
   "/work/profitmax-brand": {
     ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",

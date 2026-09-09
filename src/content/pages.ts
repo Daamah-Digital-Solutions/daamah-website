@@ -353,6 +353,17 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  "amlak-social": {
+    desc: {
+      ar: "شركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة. فالمنشور هنا ليس إعلانًا بل جولةً: يقول أين المشروع، وماذا يطلّ عليه، ولماذا جورجيا أصلًا. خمسة وثلاثون شهرًا متّصلة عبر عشرة مشاريع مسمّاة — بانوراما، سي فيو، جرين تاون، ماردي أكوا بارك، نوفوتيل باتومي وغيرها — لكلٍّ لغته البصرية داخل هوية واحدة.",
+      en: "A company selling property in Batumi to investors who have never visited the city. So a post here is not an advert but a tour: where the project sits, what it looks onto, and why Georgia at all. Thirty-five unbroken months across ten named developments — Panorama, Sea View, Green Town, Mardi Aqua Park, Novotel Batumi and others — each with its own visual line inside one identity.",
+    },
+    results: [
+      { ar: "خمسة وثلاثون شهرًا متّصلة من المحتوى", en: "Thirty-five unbroken months of content" },
+      { ar: "عشرة مشاريع مسمّاة بلغة بصرية لكلٍّ منها", en: "Ten named developments, each with its own visual line" },
+      { ar: "محتوى بثلاثة أرقام تواصل لثلاثة أسواق", en: "Content carrying three contact numbers for three markets" },
+    ],
+  },
   "profitmax-profile": {
     desc: {
       ar: "شركة استثمار تعمل من بريطانيا والإمارات. الملف يشرح عقود الاستثمار وضماناتها بلغة المستثمر لا بلغة النشرة — مدّة العقد، والعائد، وما الذي يضمنه، صفحةً بعد صفحة.",

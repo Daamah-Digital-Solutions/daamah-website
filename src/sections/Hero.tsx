@@ -62,7 +62,8 @@ function WorkStrip() {
 
       <div
         className="marquee-track flex w-max"
-        style={{ ["--marquee-dur" as string]: "80s" }}
+        /* أبطأ من هذا يُقرأ ساكنًا: ثمانون ثانية تعني 28px في الثانية */
+        style={{ ["--marquee-dur" as string]: "44s" }}
         dir="ltr"
       >
         {items.map((item, i) => {

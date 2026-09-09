@@ -455,8 +455,8 @@ export const cityPages: CityPage[] = [
       {
         q: { ar: "ما أقل ميزانية إعلانية معقولة؟", en: "What's a sensible minimum ad budget?" },
         a: {
-          ar: "في السوق السعودي تبدأ الحملة الجادّة من نحو 2,000 ريال شهريًا إنفاقًا إعلانيًا. أقلّ من ذلك لا يجمع بيانات تكفي للتحسين، فتبقى تدفع بلا أن تتعلّم. أتعاب الإدارة تُحسب منفصلةً.",
-          en: "In the Saudi market a serious campaign starts around 2,000 SAR a month in ad spend. Below that there isn't enough data to optimise on, so you pay without learning. Management is billed separately.",
+          ar: "لا رقم واحد يصلح للجميع: الحدّ يتغيّر بالقطاع وبالمنافسة على الكلمة نفسها. والقاعدة ثابتة — الميزانية تكفي حين تجمع بيانات تسمح بالتحسين، وأقلّ من ذلك دفعٌ بلا تعلّم. نحدّدها لحالتك في جلسة النطاق، وأتعاب الإدارة تُحسب منفصلةً عن الإنفاق الإعلاني.",
+          en: "No single figure fits everyone: the floor moves with the sector and with how contested the keyword is. The rule holds either way — a budget is enough when it gathers data you can optimise on, and below that you pay without learning. We set it for your case in the scoping call, and management is billed separately from the spend.",
         },
       },
       {

@@ -289,7 +289,7 @@ export const serviceDetails: Record<
   },
   "performance-marketing": {
     intro: {
-      ar: "بعد الإطلاق يبدأ الشغل الحقيقي: نقرأ الأرقام، ونجرّب نسخًا مختلفة، ونتخلّص ممّا لا يعمل — حتى يصير كل ريال منفق أعلى عائدًا من سابقه.",
+      ar: "بعد الإطلاق يبدأ الشغل الحقيقي: نقرأ الأرقام، ونجرّب نسخًا مختلفة، ونتخلّص ممّا لا يعمل — حتى يصير كل ما يُنفق أعلى عائدًا ممّا سبقه.",
       en: "The real work starts after launch: reading the numbers, testing variants, and cutting what doesn't work — until every unit spent returns more than the last.",
     },
     includes: [
@@ -904,8 +904,8 @@ export const contactPage = {
   } as Bi,
   responseLabel: { ar: "زمن الرد", en: "Response time" } as Bi,
   response: { ar: "خلال يوم عمل", en: "Within one business day" } as Bi,
-  /* الأسواق مرتّبة بالأولوية: السعودية أولًا، وبتوقيتها.
-     «أوقات العمل» بلا منطقة زمنية سؤالٌ مفتوح لعميل في الرياض. */
+  /* لكل سوق توقيته: «أوقات العمل» بلا منطقة زمنية سؤالٌ مفتوح على
+     من يقرأ من مدينة أخرى — ونحن نُجدوِل على توقيت العميل لا توقيتنا. */
   regionsLabel: { ar: "أين نعمل", en: "Where we work" } as Bi,
   regions: [
     {
@@ -995,8 +995,8 @@ export const blogPage = {
     en: ["What we've learned,", "written down."],
   } as Bi<string[]>,
   intro: {
-    ar: "مقالات عن الهوية والمواقع والتسويق الرقمي في السوق السعودي والخليجي — بأرقام وأمثلة من مشاريع فعلية، لا نصائح عامّة.",
-    en: "Notes on branding, websites, and digital marketing in the Saudi and Gulf markets — with numbers and examples from real projects rather than general advice.",
+    ar: "مقالات عن الهوية والمواقع والتسويق الرقمي — بأرقام وأمثلة من مشاريع فعلية في الخليج ومصر وأوروبا، لا نصائح عامّة.",
+    en: "Notes on branding, websites, and digital marketing — with numbers and examples from real projects across the Gulf, Egypt and Europe, rather than general advice.",
   } as Bi,
   allTags: { ar: "كل المواضيع", en: "All topics" } as Bi,
   readingTime: { ar: "دقائق قراءة", en: "min read" } as Bi,

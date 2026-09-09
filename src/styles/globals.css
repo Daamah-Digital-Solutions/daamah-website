@@ -363,11 +363,16 @@ html[lang="ar"] .tag {
   }
 }
 
-.anim-ready .marquee-track {
-  animation: marquee var(--marquee-dur, 70s) linear infinite;
-}
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
+/* الشريط لا يتوقّف.
+   ولا يُعلَّق على `.anim-ready`: تلك الفئة تنتظر أوّل ظهور للصفحة
+   ليُكشف ما يبدأ مخفيًا، والشريط ليس منها — هو ظاهر من أول إطار،
+   وتعليقه عليها كان يجعله ساكنًا في كل حال لا تُضاف فيه.
+   والوقوف عليه لم يعد يوقفه: الضغط يفتح العارض، فمن أراد التأمّل
+   يفتحه ويقلّب فيه — ولا حاجة إلى تجميد الشريط تحت المؤشّر. */
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee var(--marquee-dur, 70s) linear infinite;
+  }
 }
 
 /* كشف عام عند الدخول للشاشة */

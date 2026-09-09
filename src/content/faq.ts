@@ -16,8 +16,8 @@ export const general: FaqItem[] = [
   {
     q: { ar: "كم يستغرق تنفيذ المشروع؟", en: "How long does a project take?" },
     a: {
-      ar: "الهوية البصرية من أسبوعين إلى ثلاثة، والموقع من ثلاثة إلى خمسة أسابيع حسب حجم المحتوى وعدد الصفحات. نضع جدولًا زمنيًا واضحًا قبل البدء ونلتزم به.",
-      en: "Brand identity takes two to three weeks; a website three to five, depending on content volume and page count. We agree a clear timeline before starting and hold to it.",
+      ar: "الهوية البصرية في أسبوعين، والموقع من أسبوعين إلى ثلاثة حسب حجم المحتوى وعدد الصفحات. نضع جدولًا زمنيًا واضحًا قبل البدء ونلتزم به.",
+      en: "Brand identity in two weeks; a website in two to three, depending on content volume and page count. We agree a clear timeline before starting and hold to it.",
     },
   },
   {
@@ -40,8 +40,8 @@ export const general: FaqItem[] = [
       en: "How does working with you actually run?",
     },
     a: {
-      ar: "نعمل مع شركات سعودية منذ 2019. اجتماع بداية، ثم مراجعة مكتوبة عند كل مرحلة، ثم تسليم وتدريب — بمواعيد على توقيت الرياض. التعاقد والدفع بالتحويل البنكي أو عبر منصّات الدفع المعتادة.",
-      en: "We've worked with Saudi companies since 2019. A kickoff meeting, written review at every stage, then handover and training — scheduled on Riyadh time. Contracting and payment go through bank transfer or the usual payment platforms.",
+      ar: "اجتماع بداية نفهم فيه شركتك وسوقك، ثم مراجعة مكتوبة عند كل مرحلة، ثم تسليم وتدريب. نعمل مع شركات في الخليج ومصر وأوروبا، والاجتماعات تُجدوَل على توقيتك أنت. التعاقد والدفع بالتحويل البنكي أو عبر منصّات الدفع الدولية.",
+      en: "A kickoff meeting where we learn your business and your market, a written review at every stage, then handover and training. We work with companies across the Gulf, Egypt and Europe, and meetings are scheduled in your time zone. Contracting and payment go by bank transfer or the usual international platforms.",
     },
   },
   {
@@ -125,8 +125,8 @@ export const byService: Record<string, FaqItem[]> = {
         en: "Do you guarantee the number one spot?",
       },
       a: {
-        ar: "لا، ولا يستطيع أحد — جوجل نفسه يقول ذلك. ما نضمنه هو العمل نفسه: تدقيق تقني، وخطة كلمات مبنية على بحث فعلي في السوق السعودي، ومحتوى منشور، وتقرير شهري يوضّح ما تحرّك وما لم يتحرّك.",
-        en: "No, and nobody can — Google says so itself. What we guarantee is the work: a technical audit, a keyword plan built on real Saudi-market research, published content, and a monthly report showing what moved and what didn't.",
+        ar: "لا، ولا يستطيع أحد — جوجل نفسه يقول ذلك. ما نضمنه هو العمل نفسه: تدقيق تقني، وخطة كلمات مبنية على بحث فعلي في سوقك أنت، ومحتوى منشور، وتقرير شهري يوضّح ما تحرّك وما لم يتحرّك.",
+        en: "No, and nobody can — Google says so itself. What we guarantee is the work: a technical audit, a keyword plan built on real research in your own market, published content, and a monthly report showing what moved and what didn't.",
       },
     },
     {
@@ -163,8 +163,8 @@ export const byService: Record<string, FaqItem[]> = {
     {
       q: { ar: "ما أقل ميزانية إعلانية معقولة؟", en: "What's a sensible minimum ad budget?" },
       a: {
-        ar: "في السوق السعودي تبدأ الحملة الجادّة من ألفَي ريال شهريًا للإعلان نفسه — أقل من ذلك لا يكفي لجمع بيانات تسمح بالتحسين. إدارة الحملة تُحسب منفصلةً عن الإنفاق الإعلاني.",
-        en: "In the Saudi market a serious campaign starts around 2,000 SAR a month in ad spend — below that there isn't enough data to optimise on. Management is billed separately from the spend itself.",
+        ar: "الحدّ المعقول يختلف بين سوق وسوق وبين قطاع وقطاع: ما يكفي في سوق لا يكفي في آخر، والعقار غير التجارة الإلكترونية. والقاعدة واحدة — الميزانية تكفي حين تجمع بيانات تسمح بالتحسين، وأقل من ذلك إنفاقٌ بلا تعلّم. نحدّدها لسوقك في جلسة النطاق، وإدارة الحملة تُحسب منفصلةً عن الإنفاق الإعلاني.",
+        en: "The sensible floor differs by market and by sector: what is enough in one market is not in another, and real estate is not e-commerce. The rule holds either way — a budget is enough when it gathers data you can optimise on, and below that it is spending without learning. We set it for your market in the scoping call, and management is billed separately from the spend itself.",
       },
     },
     {

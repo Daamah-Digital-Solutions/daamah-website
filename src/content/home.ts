@@ -28,8 +28,8 @@ export const brand = {
   email: "info@daamah.net",
   /** وصف واحد للعلامة — يُقرأ في البيانات المنظّمة وفي وسوم المشاركة */
   description: {
-    ar: "منذ 2018 نبني حضورًا رقميًا متكاملًا للشركات في السعودية والخليج ومصر وأوروبا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
-    en: "Since 2018 we have built complete digital presence for companies across Saudi Arabia, the Gulf, Egypt, and Europe: brand identity, websites, social media, and marketing that performs.",
+    ar: "شركة عالمية تبني منذ 2018 حضورًا رقميًا متكاملًا للشركات في الخليج ومصر وأوروبا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
+    en: "A global company building complete digital presence since 2018 for companies across the Gulf, Egypt, and Europe: brand identity, websites, social media, and marketing that performs.",
   } as Bi,
   phones: [
     {
@@ -48,10 +48,10 @@ export const brand = {
 /**
  * الرقم المناسب لسوق — وإلا الدولي.
  *
- * السوق السعودي هو الافتراضي لأنه وجهة التوسّع؛ حين يُضاف رقم سعودي
- * إلى `brand.phones` يلتقطه الموقع كلّه من هنا.
+ * الافتراضي دولي لا محلّي: الشركة عالمية، والرقم المحلّي يظهر في
+ * صفحة سوقه حين يُضاف إلى `brand.phones` — دون أن يصير هو الوجه.
  */
-export function phoneFor(market: Phone["market"] = "sa"): Phone {
+export function phoneFor(market: Phone["market"] = "intl"): Phone {
   return (
     brand.phones.find((p) => p.market === market) ??
     brand.phones.find((p) => p.market === "intl") ??
@@ -59,12 +59,18 @@ export function phoneFor(market: Phone["market"] = "sa"): Phone {
   );
 }
 
-/** حضورنا في السوق السعودي — إشارات ثقة تتكرّر عبر الصفحات. */
+/**
+ * إشارة السوق — لصفحات السوق وحدها لا للمتن.
+ *
+ * دَعمة شركة عالمية، وصفحات السوق أبوابُ دخولٍ لا تعريفٌ بها: تقول
+ * إننا نخدم هذا السوق، لا إننا منه. والقول الثاني يضعنا في منافسة
+ * محليّة أضيق من حجم الشركة، ويُخسرنا كل سوق سواها.
+ */
 export const saudi = {
   since: 2019,
   note: {
-    ar: "نعمل مع شركات سعودية منذ 2019 — بمواعيد وتسليم على توقيت الرياض.",
-    en: "We have worked with Saudi companies since 2019 — scheduled and delivered on Riyadh time.",
+    ar: "نخدم شركات في السعودية والخليج منذ 2019، والاجتماعات تُجدوَل على توقيتك.",
+    en: "Serving companies in Saudi Arabia and the Gulf since 2019, with meetings scheduled in your time zone.",
   } as Bi,
 };
 
@@ -255,7 +261,7 @@ export const services = {
       name: { ar: "تسويق الأداء", en: "Performance Marketing" } as Bi,
       en: "Performance Marketing",
       desc: {
-        ar: "تحسين مستمر للأداء لتحقيق أعلى عائد ممكن من كل ريال تنفقه.",
+        ar: "تحسين مستمر للأداء لتحقيق أعلى عائد ممكن من كل ما تنفقه.",
         en: "Continuous optimisation to get the highest possible return on every unit you spend.",
       } as Bi,
     },

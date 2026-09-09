@@ -394,7 +394,18 @@ export const workItems: WorkItem[] = [
     note: { ar: "استثمار عقاري", en: "Property investment" },
     image: "/assets/work/social-amlak.jpg",
     client: "amlak",
-    months: 35,
+    months: 28,
+  },
+  {
+    slug: "amlak-revamp",
+    service: "social",
+    name: { ar: "أملاك العقارية — بعد التجديد", en: "Amlak Real Estate — After the rebrand" },
+    sector: "realestate",
+    markets: ["ge", "sa"],
+    note: { ar: "هوية جديدة", en: "New identity" },
+    image: "/assets/work/social-amlak-revamp.jpg",
+    client: "amlak",
+    months: 7,
   },
   {
     slug: "adg-profile",
@@ -523,13 +534,13 @@ export const clientStories: ClientStory[] = [
     markets: ["ge", "sa", "eg"],
     since: 2023,
     lede: {
-      ar: "شركة تبيع عقارًا في جورجيا لمستثمر خليجي ومصري — أي أن كل منشور يخاطب من لم يرَ المدينة ولا المشروع. بدأ العمل بهوية، ثم امتدّ إلى خمسة وثلاثين شهرًا متّصلة من المحتوى الشهري عبر عشرة مشاريع مسمّاة، ثم إلى تجديد الهوية نفسها حين كبرت الشركة على شكلها الأول.",
-      en: "A company selling property in Georgia to Gulf and Egyptian investors — meaning every post addresses someone who has seen neither the city nor the project. It began with an identity, extended into thirty-five unbroken months of monthly content across ten named developments, then into rebuilding the identity itself once the company outgrew its first look.",
+      ar: "شركة تبيع عقارًا في جورجيا لمستثمر خليجي ومصري — أي أن كل منشور يخاطب من لم يرَ المدينة ولا المشروع. بدأ العمل بهوية، ثم ثمانية وعشرين شهرًا متّصلة من المحتوى عبر عشرة مشاريع مسمّاة. ثم كبرت الشركة على شكلها الأول، فبُنيت لها هوية أخرى واستأنف المحتوى بها — وهذان مشروعان لا مشروع بشقّين: العميل واحد والعلامة اثنتان.",
+      en: "A company selling property in Georgia to Gulf and Egyptian investors — meaning every post addresses someone who has seen neither the city nor the project. It began with an identity, then twenty-eight unbroken months of content across ten named developments. Then the company outgrew its first look, a second identity was built, and the content resumed inside it — two projects rather than one in two halves: one client, two brands.",
     },
     results: [
       { ar: "خمسة وثلاثون شهرًا متّصلة، بلا شهر منقطع", en: "Thirty-five unbroken months, with no month missed" },
       { ar: "عشرة مشاريع مسمّاة، لكلٍّ لغته البصرية داخل الهوية", en: "Ten named developments, each with its own visual line inside the identity" },
-      { ar: "هوية أولى ثم تجديدها حين كبرت الشركة عليها", en: "A first identity, then a rebuild once the company outgrew it" },
+      { ar: "علامة ثانية حين كبرت الشركة على الأولى — والمحتوى لم ينقطع", en: "A second brand once the company outgrew the first — and the content never paused" },
     ],
   },
   {

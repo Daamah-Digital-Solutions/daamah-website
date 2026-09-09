@@ -355,13 +355,24 @@ export const clientPage = {
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   "amlak-social": {
     desc: {
-      ar: "شركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة. فالمنشور هنا ليس إعلانًا بل جولةً: يقول أين المشروع، وماذا يطلّ عليه، ولماذا جورجيا أصلًا. خمسة وثلاثون شهرًا متّصلة عبر عشرة مشاريع مسمّاة — بانوراما، سي فيو، جرين تاون، ماردي أكوا بارك، نوفوتيل باتومي وغيرها — لكلٍّ لغته البصرية داخل هوية واحدة.",
-      en: "A company selling property in Batumi to investors who have never visited the city. So a post here is not an advert but a tour: where the project sits, what it looks onto, and why Georgia at all. Thirty-five unbroken months across ten named developments — Panorama, Sea View, Green Town, Mardi Aqua Park, Novotel Batumi and others — each with its own visual line inside one identity.",
+      ar: "شركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة. فالمنشور هنا ليس إعلانًا بل جولةً: يقول أين المشروع، وماذا يطلّ عليه، ولماذا جورجيا أصلًا. ثمانية وعشرون شهرًا متّصلة عبر عشرة مشاريع مسمّاة — بانوراما، سي فيو، جرين تاون، ماردي أكوا بارك، نوفوتيل باتومي وغيرها — لكلٍّ لغته البصرية داخل هوية واحدة.",
+      en: "A company selling property in Batumi to investors who have never visited the city. So a post here is not an advert but a tour: where the project sits, what it looks onto, and why Georgia at all. Twenty-eight unbroken months across ten named developments — Panorama, Sea View, Green Town, Mardi Aqua Park, Novotel Batumi and others — each with its own visual line inside one identity.",
     },
     results: [
-      { ar: "خمسة وثلاثون شهرًا متّصلة من المحتوى", en: "Thirty-five unbroken months of content" },
+      { ar: "ثمانية وعشرون شهرًا متّصلة من المحتوى", en: "Twenty-eight unbroken months of content" },
       { ar: "عشرة مشاريع مسمّاة بلغة بصرية لكلٍّ منها", en: "Ten named developments, each with its own visual line" },
       { ar: "محتوى بثلاثة أرقام تواصل لثلاثة أسواق", en: "Content carrying three contact numbers for three markets" },
+    ],
+  },
+  "amlak-revamp": {
+    desc: {
+      ar: "بعد ثمانية وعشرين شهرًا، كبرت الشركة على علامتها الأولى فبُنيت لها أخرى: من السداسي الذهبي إلى علامة زرقاء أهدأ تحتمل مشاريع أكبر. سبعة أشهر من المحتوى داخل العلامة الجديدة — رمادا ريزيدنسيز، ماردي أكوا بارك، ويندام، أركي — بنَفَس واحد يثبت أن التجديد شكلٌ جديد لا شركة جديدة.",
+      en: "After twenty-eight months the company outgrew its first mark, so a second was built: from the gold hexagon to a quieter blue mark able to carry larger developments. Seven months of content inside the new brand — Ramada Residences, Mardi Aqua Park, Wyndham, Archi — in one voice, proving a rebrand is a new look and not a new company.",
+    },
+    results: [
+      { ar: "سبعة أشهر من المحتوى داخل العلامة الجديدة", en: "Seven months of content inside the new brand" },
+      { ar: "انتقال بلا انقطاع: لا شهر بين العلامتين", en: "A handover with no gap: not one month between the two brands" },
+      { ar: "لغة بصرية أهدأ تحتمل مشاريع أكبر", en: "A quieter visual language able to carry larger developments" },
     ],
   },
   "profitmax-profile": {

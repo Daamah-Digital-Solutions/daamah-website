@@ -159,8 +159,12 @@ const META: Record<string, Bi> = {
     en: "Identity then profile for a tissue-paper and chemicals manufacturer selling to businesses.",
   },
   "/work/amlak-social": {
-    ar: "خمسة وثلاثون شهرًا متّصلة من المحتوى لشركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة — عشرة مشاريع مسمّاة.",
-    en: "Thirty-five unbroken months of content for a firm selling Batumi property to investors who have never visited — ten named developments.",
+    ar: "ثمانية وعشرون شهرًا متّصلة من المحتوى لشركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة — عشرة مشاريع مسمّاة.",
+    en: "Twenty-eight unbroken months of content for a firm selling Batumi property to investors who have never visited — ten named developments.",
+  },
+  "/work/amlak-revamp": {
+    ar: "علامة ثانية لشركة كبرت على أولاها، وسبعة أشهر من المحتوى داخلها — تجديدٌ بلا انقطاع شهر واحد.",
+    en: "A second brand for a company that outgrew its first, and seven months of content inside it — a rebrand without a single month's gap.",
   },
   "/clients/amlak": {
     ar: "هوية، ثم خمسة وثلاثون شهرًا من المحتوى، ثم تجديد الهوية — علاقة كاملة مع شركة استثمار عقاري في جورجيا.",

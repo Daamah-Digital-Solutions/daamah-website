@@ -94,6 +94,15 @@ export type WorkItem = {
   client?: string;
   /** سنة التنفيذ — منها يُرتَّب خطّ القصّة الزمني */
   year?: number;
+  /**
+   * شهور المحتوى المنشور — لأعمال السوشيال وحدها.
+   *
+   * هنا وحدها يكون للعدد معنى واحد لا يلتبس: شهرٌ من المحتوى
+   * المنشور. ووضعه على هوية أو موقع يجعله مدّة تنفيذٍ تُقرأ بطئًا
+   * لا التزامًا. وهو أصدق ما نملك: «عميل نفّذنا له» يقولها الجميع،
+   * و«ثمانية وأربعون شهرًا معه» لا تُدَّعى.
+   */
+  months?: number;
 };
 
 export const workItems: WorkItem[] = [
@@ -359,6 +368,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "ahl-alquran",
     service: "social",
+    months: 13,
     name: { ar: "أكاديمية أهل القرآن", en: "Ahl Alquran Academy" },
     sector: "education",
     markets: ["us", "eu"],
@@ -367,6 +377,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "adg-social",
     service: "social",
+    months: 9,
     name: { ar: "إيه دي جي العقارية", en: "ADG Realestate" },
     sector: "realestate",
     markets: ["ge"],
@@ -455,6 +466,7 @@ export const workItems: WorkItem[] = [
   {
     slug: "rahiq",
     service: "social",
+    months: 48,
     name: { ar: "رحيق", en: "Rahiq" },
     sector: "food",
     markets: ["eg"],

@@ -305,6 +305,8 @@ export const work = {
   storyServices: { ar: "خدمات", en: "services" } as Bi,
   /* عدد صور المشروع على البطاقة — يَعِد بما وراءها فيصير للنقر سبب */
   shots: { ar: "صورة", en: "images" } as Bi,
+  /* شهور المحتوى المتواصل — ما لا يستطيع أحد ادّعاءه بلا سجلّ */
+  months: { ar: "شهرًا متواصلة", en: "months running" } as Bi,
   storyRead: { ar: "اقرأ القصّة كاملة", en: "Read the full story" } as Bi,
 
   empty: {

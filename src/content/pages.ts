@@ -321,6 +321,7 @@ export const workPage = {
   } as Bi,
   resultsLabel: { ar: "النتائج", en: "Results" } as Bi,
   galleryLabel: { ar: "من المشروع", en: "From the project" } as Bi,
+  monthsLabel: { ar: "المدّة", en: "Running" } as Bi,
   sectorLabel: { ar: "القطاع", en: "Sector" } as Bi,
   serviceLabel: { ar: "الخدمة", en: "Service" } as Bi,
   backLabel: { ar: "كل الأعمال", en: "All work" } as Bi,

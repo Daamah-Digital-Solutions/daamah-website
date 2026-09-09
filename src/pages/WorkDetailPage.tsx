@@ -41,6 +41,10 @@ export function WorkDetailPage() {
           },
         ]
       : []),
+    /* المدّة حقيقةٌ من سجلّ العمل لا ادّعاء — فتقف بين الحقائق */
+    ...(item.months
+      ? [{ label: t(workPage.monthsLabel), value: `${item.months} ${t(work.months)}` }]
+      : []),
   ];
 
   return (

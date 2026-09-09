@@ -72,7 +72,15 @@ export function WorkCard({
             {t(serviceMeta(item.service).label)}
           </span>
 
-          {story && storyServices > 1 && (
+          {/* المدّة قبل عدد الخدمات: «ثمانية وأربعون شهرًا» أثقل من
+              «خدمتان»، وهي وحدها ما لا يُقال بلا سجلّ يسنده */}
+          {item.months && item.months >= 6 && (
+            <span className="tag absolute bottom-3 start-3 rounded-pill bg-red px-3 py-1.5 text-paper">
+              <span className="nums ltr">{item.months}</span> {t(work.months)}
+            </span>
+          )}
+
+          {!item.months && story && storyServices > 1 && (
             <span className="tag absolute bottom-3 start-3 rounded-pill bg-ink/90 px-3 py-1.5 text-paper backdrop-blur-sm">
               <span className="nums ltr">{storyServices}</span> {t(work.storyServices)}
             </span>

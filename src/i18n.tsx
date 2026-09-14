@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import routes from "virtual:routes";
 
 export type Lang = "ar" | "en";
 
@@ -61,7 +62,12 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const setLang = useCallback(
     (l: Lang) => {
       if (l === lang) return;
-      navigate(withLang(stripLang(pathname), l));
+      /* صفحة بلغة واحدة (مقال، صفحة حملة) لا نسخة لها باللغة الأخرى:
+         الانتقال إليها ينتهي بـ404، فيذهب الزائر إلى رئيسية اللغة */
+      const bare = stripLang(pathname);
+      const meta = routes.find((r) => r.path === bare);
+      const exists = !meta?.langs || meta.langs.includes(l);
+      navigate(withLang(exists ? bare : "/", l));
     },
     [lang, navigate, pathname],
   );

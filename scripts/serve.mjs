@@ -33,6 +33,7 @@ const TYPES = {
   ".webp": "image/webp",
   ".avif": "image/avif",
   ".woff2": "font/woff2",
+  ".mp4": "video/mp4",
   ".webmanifest": "application/manifest+json",
 };
 

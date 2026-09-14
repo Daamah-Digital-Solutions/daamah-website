@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { EN_PREFIX, LangProvider } from "./i18n";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
+import { barePaths } from "./content/nationalDay";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -32,6 +33,7 @@ const ProcessPage = lazy(() => import("./pages/ProcessPage").then((m) => ({ defa
 const ProfilePage = lazy(() => import("./pages/ProfilePage").then((m) => ({ default: m.ProfilePage })));
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
+const NationalDayPage = lazy(() => import("./pages/NationalDayPage").then((m) => ({ default: m.NationalDayPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
@@ -72,6 +74,10 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-blogtag`} path={at("blog/tag/:tag")} element={<BlogTagPage />} />,
     <Route key={`${prefix}-blogpost`} path={at("blog/:slug")} element={<BlogPostPage />} />,
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
+    /* صفحة حملة عربية فقط: لا نسخة إنجليزية لها، فلا مسار تحت `/en` */
+    ...(prefix === ""
+      ? [<Route key="national-day" path="/national-day" element={<NationalDayPage />} />]
+      : []),
   ];
 }
 
@@ -83,13 +89,16 @@ function pageRoutes(prefix: string) {
  * فلا يمكن أن يختلف ما يراه الزاحف عمّا يراه الزائر.
  */
 export function Shell() {
+  /* صفحات الإعلانات بلا هيدر ولا فوتر: كل رابط تنقّل فيها بابٌ يخرج
+     منه زائرٌ دُفع ثمن وصوله قبل أن يحجز */
+  const bare = barePaths.includes(stripLang(useLocation().pathname));
   return (
     <ThemeProvider>
       <LangProvider>
         <ScrollManager />
         <Seo />
         <Analytics />
-        <Header />
+        {!bare && <Header />}
         <main>
           {/* بلا واجهة انتظار: الصفحة المرسومة تبقى ظاهرة حتى تصل
               حزمتها، ووضع مؤشّر تحميل مكانها يومض بلا داعٍ */}
@@ -101,8 +110,8 @@ export function Shell() {
             </Routes>
           </Suspense>
         </main>
-        <Footer />
-        <WhatsAppFab />
+        {!bare && <Footer />}
+        {!bare && <WhatsAppFab />}
       </LangProvider>
     </ThemeProvider>
   );

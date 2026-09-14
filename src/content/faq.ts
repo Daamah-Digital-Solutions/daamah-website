@@ -1,4 +1,5 @@
 import type { Bi } from "../i18n";
+import { nationalDay, offerPath } from "./nationalDay";
 
 /**
  * الأسئلة المتكررة — مصدر واحد للصفحة وللبيانات المنظّمة.
@@ -182,6 +183,8 @@ export const byService: Record<string, FaqItem[]> = {
  * تقرأها الصفحة وقارئ البيانات المنظّمة معًا.
  */
 export function faqItemsFor(barePath: string): FaqItem[] {
+  /* صفحة العرض تعرض أسئلتها هي — فتُعلَن هي لا العامّة */
+  if (barePath === offerPath) return nationalDay.faq;
   const service = barePath.match(/^\/services\/([^/]+)/)?.[1];
   if (service && byService[service]) return byService[service];
   return general;

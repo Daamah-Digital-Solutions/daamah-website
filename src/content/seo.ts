@@ -17,6 +17,7 @@ import {
 import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
+import { nationalDay, offerPath } from "./nationalDay";
 
 /**
  * فهرس المسارات وبيانات رأس كل صفحة.
@@ -474,6 +475,16 @@ export const routes: RouteMeta[] = [
     description: describe("/contact", contactPage.intro),
     priority: 0.9,
     kind: "page",
+  },
+  /* صفحة حملة: عربية فقط، وصورة مشاركتها من إعلان العرض نفسه */
+  {
+    path: offerPath,
+    title: { ar: nationalDay.meta.title, en: nationalDay.meta.title },
+    description: { ar: nationalDay.meta.description, en: nationalDay.meta.description },
+    priority: 0.8,
+    kind: "page",
+    langs: ["ar"],
+    image: "/assets/og-national-day.jpg",
   },
   {
     path: "/saudi",

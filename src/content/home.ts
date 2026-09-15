@@ -410,6 +410,19 @@ export const footer = {
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,
   socialTitle: { ar: "تابعنا", en: "Follow" } as Bi,
   rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" } as Bi,
+  servicesTitle: { ar: "خدماتنا", en: "Services" } as Bi,
+  allServices: { ar: "كل الخدمات", en: "All services" } as Bi,
+  companyTitle: { ar: "الشركة", en: "Company" } as Bi,
+  marketsLabel: { ar: "نخدم", en: "Serving" } as Bi,
+  /* نفس ما في صفحة التواصل — مكرّر هنا عمدًا: الفوتر في الحزمة
+     الرئيسية، واستيراد `pages.ts` كلّه من أجل سطرين يُثقلها */
+  hoursLabel: { ar: "أوقات العمل", en: "Working hours" } as Bi,
+  hours: { ar: "الأحد – الخميس · 9ص – 6م", en: "Sunday – Thursday · 9am – 6pm" } as Bi,
+  responseLabel: { ar: "زمن الرد", en: "Response time" } as Bi,
+  response: { ar: "خلال يوم عمل", en: "Within one business day" } as Bi,
+  backToTop: { ar: "العودة إلى الأعلى", en: "Back to top" } as Bi,
+  /** الخدمات المعروضة في الفوتر — الأكثر طلبًا، والقائمة الكاملة في صفحتها */
+  serviceSlugs: ["branding", "company-profile", "web-development", "social-media", "digital-marketing", "seo"],
   social: [
     { label: "Instagram", href: "https://instagram.com/daamah.digital.solutions" },
     { label: "Facebook", href: "https://facebook.com/daamah.digital.solutions" },

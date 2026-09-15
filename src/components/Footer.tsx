@@ -5,7 +5,6 @@ import { track } from "../analytics";
 import { waHref, waMessage } from "../content/whatsapp";
 import { brand, contact, footer, hero, navItems, phoneFor, services, ui } from "../content/home";
 import { Btn, TextLink, Wrap } from "./ui";
-import { Wordmark } from "./Wordmark";
 
 /* ── علامات المنصّات — مرسومة لا محمّلة، فتتبع لون النص ── */
 const SOCIAL_ICONS: Record<string, ReactNode> = {
@@ -19,6 +18,11 @@ const SOCIAL_ICONS: Record<string, ReactNode> = {
   Facebook: (
     <svg viewBox="0 0 24 24" className="size-[18px]" fill="currentColor" aria-hidden="true">
       <path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.25-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z" />
+    </svg>
+  ),
+  LinkedIn: (
+    <svg viewBox="0 0 24 24" className="size-[17px]" fill="currentColor" aria-hidden="true">
+      <path d="M6.94 8.5H3.56V20.5h3.38zM5.25 3.5a1.97 1.97 0 1 0 0 3.94 1.97 1.97 0 0 0 0-3.94M20.44 13.1c0-3.24-1.73-4.85-4.03-4.85-1.86 0-2.69 1.02-3.16 1.74V8.5H9.87c.05.98 0 12 0 12h3.38v-6.7c0-.36.03-.72.13-.98.29-.72.95-1.46 2.06-1.46 1.45 0 2.03 1.1 2.03 2.72v6.42h3.38z" />
     </svg>
   ),
 };
@@ -199,14 +203,6 @@ export function Footer() {
           </div>
         </div>
       </Wrap>
-
-      {/* الوردمارك كبيرًا — توقيع يُغلق الصفحة، مقصوصٌ عند الحافّة السفلى */}
-      <div aria-hidden="true" className="pointer-events-none select-none">
-        <Wrap>
-          {/* متّجه لا صورة: بعرض الحاوية كاملًا كان الـ PNG يتكسّر */}
-          <Wordmark className="-mb-[5%] block h-auto w-full text-paper/[0.06]" accent="color-mix(in srgb, var(--color-red) 22%, transparent)" />
-        </Wrap>
-      </div>
     </footer>
   );
 }

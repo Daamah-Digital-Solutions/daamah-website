@@ -374,9 +374,15 @@ html[lang="ar"] .tag {
    وتعليقه عليها كان يجعله ساكنًا في كل حال لا تُضاف فيه.
    والوقوف عليه لم يعد يوقفه: الضغط يفتح العارض، فمن أراد التأمّل
    يفتحه ويقلّب فيه — ولا حاجة إلى تجميد الشريط تحت المؤشّر. */
-@media (prefers-reduced-motion: no-preference) {
+/* يتحرّك دائمًا: من أوقف الحركة في جهازه كان يرى الشريط ساكنًا فيظنّه
+   متوقّفًا. معه تبقى الحركة لكن أبطأ بمرّتين ونصف — حركة هادئة
+   منتظمة لا قفز فيها ولا وميض. */
+.marquee-track {
+  animation: marquee var(--marquee-dur, 70s) linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: marquee var(--marquee-dur, 70s) linear infinite;
+    animation-duration: calc(var(--marquee-dur, 70s) * 2.5);
   }
 }
 

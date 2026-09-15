@@ -55,16 +55,19 @@ function WorkStrip() {
   }));
 
   return (
-    <div className="marquee relative mt-20 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-24">
+    /* الحاوية نفسها LTR لا الشريط وحده: شريطٌ أعرض من حاويته داخل صفحة
+       RTL يلتصق بحافّتها اليمنى، فتسحبه الحركة يسارًا ويبقى خلفه فراغ —
+       فيبدو الشريط كأنه انتهى وتوقّف. من اليسار يلتفّ عند -50% بلا فجوة،
+       فتتكرّر الأعمال بلا نهاية. */
+    <div dir="ltr" className="marquee relative mt-20 overflow-hidden border-y border-[var(--line)] py-0 sm:mt-24">
       {/* تلاشٍ عند الحافتين حتى لا ينقطع الشريط بحدّة */}
-      <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent rtl:bg-gradient-to-l" />
-      <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent rtl:bg-gradient-to-r" />
+      <div className="pointer-events-none absolute inset-y-0 start-0 z-10 w-24 bg-gradient-to-r from-paper to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 end-0 z-10 w-24 bg-gradient-to-l from-paper to-transparent" />
 
       <div
         className="marquee-track flex w-max"
         /* أبطأ من هذا يُقرأ ساكنًا: ثمانون ثانية تعني 28px في الثانية */
         style={{ ["--marquee-dur" as string]: "44s" }}
-        dir="ltr"
       >
         {items.map((item, i) => {
           const size = coverSize[item.image] ?? { w: 1400, h: 933 };

@@ -109,8 +109,8 @@ export const hero = {
   primary: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
   secondary: { ar: "شاهد أعمالنا", en: "See our work" } as Bi,
   markets: {
-    ar: "السعودية · الإمارات · مصر · أوروبا",
-    en: "Saudi Arabia · UAE · Egypt · Europe",
+    ar: "السعودية · الإمارات · دول الخليج · مصر · أوروبا",
+    en: "Saudi Arabia · UAE · the Gulf · Egypt · Europe",
   } as Bi,
 };
 
@@ -426,5 +426,6 @@ export const footer = {
   social: [
     { label: "Instagram", href: "https://instagram.com/daamah.digital.solutions" },
     { label: "Facebook", href: "https://facebook.com/daamah.digital.solutions" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/daamah/" },
   ],
 };

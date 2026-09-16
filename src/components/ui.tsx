@@ -72,6 +72,24 @@ export function Wrap({
   );
 }
 
+/** شبكة خطوط شعرية رأسية — تُقرأ كأثر مسطرة، وتوحي بالدقّة. */
+export function GridLines() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 hidden md:block"
+    >
+      <Wrap className="h-full">
+        <div className="grid h-full grid-cols-4 border-e border-[var(--line-faint)]">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="border-s border-[var(--line-faint)]" />
+          ))}
+        </div>
+      </Wrap>
+    </div>
+  );
+}
+
 /** يبلّغ متى دخل العنصر الشاشة — مرّة واحدة. */
 function useInView<T extends HTMLElement>(threshold = 0.15) {
   const ref = useRef<T | null>(null);

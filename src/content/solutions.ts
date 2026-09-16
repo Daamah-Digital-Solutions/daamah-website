@@ -138,10 +138,6 @@ export const solutions = {
           ar: "موقع تعريفي يشرح ما تقدّمونه بوضوح، لا أكثر.",
           en: "A site that explains what you do clearly — and no more than that.",
         },
-        {
-          ar: "ملفات مفتوحة وحسابات مسجّلة باسم الشركة.",
-          en: "Open source files and accounts registered in the company's name.",
-        },
       ],
       outcome: {
         ar: "شكل واحد ثابت في كل مكان، وملفّ ترسلونه دون أن تعتذروا عنه.",
@@ -354,10 +350,6 @@ export const solutions = {
       {
         ar: "مراجعة عند كل مرحلة — لا تسليم مفاجئ في النهاية.",
         en: "Review at every stage — nothing lands as a surprise at the end.",
-      },
-      {
-        ar: "ملفات مفتوحة وحسابات باسمكم — ما نبنيه ملككم لا رهينة عندنا.",
-        en: "Open files and accounts in your name — what we build is yours, not held with us.",
       },
       {
         ar: "متابعة بعد التسليم — الشراكة لا تنتهي عند التسليم.",

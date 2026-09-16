@@ -6,26 +6,8 @@ import { coverSize } from "../content/gallery";
 import { workItems } from "../content/work";
 import { useState } from "react";
 import { Lightbox } from "../components/Lightbox";
-import { Btn, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
+import { Btn, GridLines, MaskLines, Reveal, TextLink, Wrap } from "../components/ui";
 import { Img } from "../components/Img";
-
-/** شبكة خطوط شعرية رأسية — تُقرأ كأثر مسطرة، وتوحي بالدقّة. */
-function GridLines() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 hidden md:block"
-    >
-      <Wrap className="h-full">
-        <div className="grid h-full grid-cols-4 border-e border-[var(--line-faint)]">
-          {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="border-s border-[var(--line-faint)]" />
-          ))}
-        </div>
-      </Wrap>
-    </div>
-  );
-}
 
 /**
  * شريط الأعمال — إثبات بصري متحرّك يغلق الهيرو.

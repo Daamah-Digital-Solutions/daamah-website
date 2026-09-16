@@ -18,6 +18,7 @@ import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { nationalDay, offerPath } from "./nationalDay";
+import { faqPage, faqPath } from "./faqAbout";
 
 /**
  * فهرس المسارات وبيانات رأس كل صفحة.
@@ -304,8 +305,8 @@ const META: Record<string, Bi> = {
     en: "Daamah's services across three factors: appearing and earning trust, reaching and creating demand, and running the work — branding, websites, SEO, ads, and CRM.",
   },
   "/services/branding": {
-    ar: "نظام هوية كامل — لون وخطّ وأسلوب صورة ونبرة — مبنيّ على فهم سوقك. يشمل دليل استخدام وملفات مفتوحة.",
-    en: "A complete identity system — colour, type, image style, and tone — built from your market. Includes a usage guide and open files.",
+    ar: "نظام هوية كامل — لون وخطّ وأسلوب صورة ونبرة — مبنيّ على فهم سوقك. يشمل دليل استخدام وتطبيقات جاهزة.",
+    en: "A complete identity system — colour, type, image style, and tone — built from your market. Includes a usage guide and ready applications.",
   },
   "/services/company-profile": {
     ar: "ملف تعريفي يُقرأ في خمس دقائق ويصلح للتأهيل والعروض — مكتوب ومصمّم على هويّتكم، عربي وإنجليزي.",
@@ -332,8 +333,8 @@ const META: Record<string, Bi> = {
     en: "A free first consultation, no commitment. Tell us about your project and we'll reply with a clear plan and a firm price — usually within one business day.",
   },
   "/saudi": {
-    ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. مواعيد على توقيت الرياض، وتسليم بملفات مفتوحة وحسابات باسمك.",
-    en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Riyadh-time scheduling, with open files and accounts in your name.",
+    ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. مواعيد على توقيت الرياض، ومراجعة مكتوبة عند كل مرحلة.",
+    en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Riyadh-time scheduling, with a written review at every stage.",
   },
   "/clients/adg": {
     ar: "هوية بصرية لشركة عقارات في جورجيا ولبنان، ثم إدارة حضورها على السوشيال — العلامة التي بنيناها هي التي تتكلّم يوميًا.",
@@ -474,6 +475,13 @@ export const routes: RouteMeta[] = [
     title: titled(contactPage.label),
     description: describe("/contact", contactPage.intro),
     priority: 0.9,
+    kind: "page",
+  },
+  {
+    path: faqPath,
+    title: titled(faqPage.label),
+    description: faqPage.description,
+    priority: 0.7,
     kind: "page",
   },
   /* صفحة حملة: عربية فقط، وصورة مشاركتها من إعلان العرض نفسه */

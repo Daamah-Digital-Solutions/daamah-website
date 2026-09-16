@@ -79,9 +79,16 @@ function Item({
  * النصّ يأتي من `content/faq.ts`، وهو المصدر نفسه الذي يقرأه مولّد
  * `FAQPage` — فما يراه الزائر هو ما يراه جوجل حرفيًا.
  */
-export function FaqList({ items }: { items: FaqItem[] }) {
+export function FaqList({
+  items,
+  initial = 0,
+}: {
+  items: FaqItem[];
+  /** السؤال المفتوح عند التحميل — `null` تُبقي القائمة كلّها مغلقة */
+  initial?: number | null;
+}) {
   const { t } = useLang();
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(initial);
 
   return (
     <div>

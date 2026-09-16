@@ -1,5 +1,6 @@
 import type { Bi } from "../i18n";
 import { nationalDay, offerPath } from "./nationalDay";
+import { faqGroups, faqPath } from "./faqAbout";
 
 /**
  * الأسئلة المتكررة — مصدر واحد للصفحة وللبيانات المنظّمة.
@@ -17,15 +18,8 @@ export const general: FaqItem[] = [
   {
     q: { ar: "كم يستغرق تنفيذ المشروع؟", en: "How long does a project take?" },
     a: {
-      ar: "الهوية البصرية في أسبوعين، والموقع من أسبوعين إلى ثلاثة حسب حجم المحتوى وعدد الصفحات. نضع جدولًا زمنيًا واضحًا قبل البدء ونلتزم به.",
-      en: "Brand identity in two weeks; a website in two to three, depending on content volume and page count. We agree a clear timeline before starting and hold to it.",
-    },
-  },
-  {
-    q: { ar: "هل أحصل على الملفات المفتوحة؟", en: "Do I get the source files?" },
-    a: {
-      ar: "نعم. تستلم كل ملفات الهوية مفتوحة بصيغتَي Ai و PSD، مع دليل استخدام يشرح الألوان والخطوط وطريقة التطبيق.",
-      en: "Yes. You receive every identity file open in Ai and PSD, plus a usage guide covering colours, type, and application.",
+      ar: "يتحدّد بنطاق المشروع وحجم المحتوى، لذلك لا نعطي مدّة عامة قبل أن نفهم ما تحتاجه. بعد جلسة النطاق نضع جدولًا زمنيًا مكتوبًا ونلتزم به.",
+      en: "It depends on the scope and the amount of content, so we don't quote a general duration before we understand what you need. After the scoping call we agree a written timeline and hold to it.",
     },
   },
   {
@@ -66,12 +60,97 @@ export const general: FaqItem[] = [
  * الخدمة التي لا أسئلة لها تعرض العامّة، فلا صفحة بلا إجابات.
  */
 export const byService: Record<string, FaqItem[]> = {
+  "company-profile": [
+    {
+      q: { ar: "هل تكتبون المحتوى أم أرسله أنا؟", en: "Do you write the content, or do I send it?" },
+      a: {
+        ar: "نكتبه نحن انطلاقًا من جلسة معك ومن موادك الحالية، وتراجعه قبل أن يبدأ التصميم. وإن كان لديك نص جاهز، نحرّره ونرتّبه بدل أن نصمّم فوقه كما هو.",
+        en: "We write it, starting from a session with you and your existing material, and you review it before design begins. If you already have copy, we edit and restructure it rather than designing on top of it as is.",
+      },
+    },
+    {
+      q: { ar: "هل يصلح الملف للمناقصات وملفات التأهيل؟", en: "Does the profile work for tenders and pre-qualification?" },
+      a: {
+        ar: "نعم. نرتّبه على ما يبحث عنه القارئ في هذه الحالة: التعريف بالشركة، والخبرات، والمشاريع، والشهادات حيث توجد.",
+        en: "Yes. We order it around what that reader looks for: the company overview, experience, projects, and certificates where you have them.",
+      },
+    },
+    {
+      q: { ar: "هل يمكنني تحديثه لاحقًا بنفسي؟", en: "Can I update it myself later?" },
+      a: {
+        ar: "نعم. نسلّمك نسخة قابلة للتحديث، فتضيف مشروعًا جديدًا أو تغيّر رقمًا دون الرجوع إلينا.",
+        en: "Yes. You receive an editable version, so you can add a new project or change a figure without coming back to us.",
+      },
+    },
+  ],
+  "media-buying": [
+    {
+      q: { ar: "على أي منصّات تديرون الإعلانات؟", en: "Which platforms do you run ads on?" },
+      a: {
+        ar: "نختار المنصّات بحسب مكان جمهورك لا بحسب العادة — مثل ميتا وجوجل وسناب شات وتيك توك — ونحدّد ذلك في جلسة النطاق قبل صرف أي ميزانية.",
+        en: "We choose platforms by where your audience is, not by habit — Meta, Google, Snapchat or TikTok, for example — and settle that in the scoping call before any budget is spent.",
+      },
+    },
+    {
+      q: { ar: "هل الميزانية الإعلانية ضمن أجر الإدارة؟", en: "Is the ad budget part of the management fee?" },
+      a: {
+        ar: "لا. الإنفاق الإعلاني يُدفع للمنصّات مباشرة، وأجر الإدارة منفصل عنه، فترى إنفاقك كما هو.",
+        en: "No. Ad spend is paid to the platforms directly and our management fee is separate, so you see your spend exactly as it is.",
+      },
+    },
+  ],
+  "performance-marketing": [
+    {
+      q: { ar: "ما الفرق بين تسويق الأداء وشراء المساحات الإعلانية؟", en: "How is performance marketing different from media buying?" },
+      a: {
+        ar: "شراء المساحات هو إطلاق الحملات وإدارتها. تسويق الأداء هو ما بعد ذلك: قياس دقيق للتحويلات، واختبارات منظّمة، وتحسين لصفحات الهبوط وتوزيع الميزانية حتى يرتفع العائد.",
+        en: "Media buying is launching and running campaigns. Performance marketing is what comes after: accurate conversion tracking, structured tests, and improving landing pages and budget allocation until the return rises.",
+      },
+    },
+    {
+      q: { ar: "هل تحتاجون إلى الوصول لموقعنا؟", en: "Do you need access to our website?" },
+      a: {
+        ar: "غالبًا نعم، لضبط تتبّع التحويلات وتعديل صفحات الهبوط. نعمل بصلاحيات تمنحونها أنتم وتسحبونها متى شئتم.",
+        en: "Usually, yes — to set up conversion tracking and adjust landing pages. We work with access you grant and can revoke at any time.",
+      },
+    },
+    {
+      q: { ar: "متى نحكم على نتيجة اختبار؟", en: "When is a test result judged?" },
+      a: {
+        ar: "حين يجمع بيانات كافية للحكم، لا بعد يوم أو يومين. ونسجّل كل اختبار ونتيجته، حتى لا يُعاد ما جُرّب.",
+        en: "When it has gathered enough data to judge — not after a day or two. Every test and its result is recorded, so nothing gets repeated.",
+      },
+    },
+  ],
+  crm: [
+    {
+      q: { ar: "هل ستُنقل بياناتنا الحالية إلى النظام؟", en: "Will our existing data move into the system?" },
+      a: {
+        ar: "نعم. ننقل بيانات العملاء من الجداول والمحادثات إلى النظام مرتّبة، ونتحقّق منها معكم قبل أن يبدأ الفريق العمل عليه.",
+        en: "Yes. We move client data out of spreadsheets and chats into the system, organised, and check it with you before the team starts working in it.",
+      },
+    },
+    {
+      q: { ar: "هل يحتاج فريقنا خبرة تقنية لاستعماله؟", en: "Does our team need technical skills to use it?" },
+      a: {
+        ar: "لا. نهيّئه بأقل خطوات ممكنة على طريقة عملكم، وندرّب الفريق على استعماله، ونبقى معكم في الشهر الأول لنعدّل ما يحتاج تعديلًا.",
+        en: "No. We set it up with as few steps as possible around how you work, train the team, and stay with you through the first month to adjust whatever needs it.",
+      },
+    },
+    {
+      q: { ar: "هل علينا تغيير طريقة عملنا؟", en: "Will we have to change how we work?" },
+      a: {
+        ar: "لا. نبدأ من طريقتكم الحالية ونبني النظام عليها، ولا نقترح تغييرًا إلا حين يكون سببًا مباشرًا في ضياع العملاء — ونشرح السبب قبل تنفيذه.",
+        en: "No. We start from how you work today and build the system on it, suggesting a change only where it directly causes lost clients — and we explain why before making it.",
+      },
+    },
+  ],
   branding: [
     {
       q: { ar: "ماذا تشمل الهوية البصرية بالضبط؟", en: "What exactly is in a brand identity?" },
       a: {
-        ar: "الشعار بصيغه المختلفة، ونظام الألوان والخطوط، وقواعد الاستخدام، وتطبيقات أساسية (بطاقة، ورق رسمي، قوالب سوشيال، واجهة الملف التعريفي). كل ذلك في دليل واحد وملفات مفتوحة تبقى ملكك.",
-        en: "The logo in its variants, a colour and type system, usage rules, and core applications (card, letterhead, social templates, profile cover). All of it in one guide, with open files that remain yours.",
+        ar: "الشعار بصيغه المختلفة، ونظام الألوان والخطوط، وقواعد الاستخدام، وتطبيقات أساسية (بطاقة، ورق رسمي، قوالب سوشيال، واجهة الملف التعريفي). كل ذلك في دليل استخدام واحد.",
+        en: "The logo in its variants, a colour and type system, usage rules, and core applications (card, letterhead, social templates, profile cover). All of it in one usage guide.",
       },
     },
     {
@@ -169,10 +248,10 @@ export const byService: Record<string, FaqItem[]> = {
       },
     },
     {
-      q: { ar: "من يملك الحسابات الإعلانية؟", en: "Who owns the ad accounts?" },
+      q: { ar: "هل تنفّذون الخطة أم تكتبونها فقط؟", en: "Do you carry out the plan, or only write it?" },
       a: {
-        ar: "أنت. نعمل داخل حساباتك أو ننشئها باسمك ونمنحك صلاحية المالك من اليوم الأول، فتبقى البيانات والتاريخ الإعلاني معك لو انتهت الشراكة.",
-        en: "You do. We work inside your accounts, or create them in your name with owner access from day one, so the data and ad history stay with you if the partnership ends.",
+        ar: "الاثنان ممكنان. نسلّم الخطة مكتوبة بأولوياتها ليعمل بها فريقك، أو ننفّذها معك عبر خدمات السوشيال ميديا والإعلانات والسيو.",
+        en: "Either. We deliver the written plan with its priorities for your team to run, or carry it out with you through our social media, advertising and SEO services.",
       },
     },
   ],
@@ -185,6 +264,8 @@ export const byService: Record<string, FaqItem[]> = {
 export function faqItemsFor(barePath: string): FaqItem[] {
   /* صفحة العرض تعرض أسئلتها هي — فتُعلَن هي لا العامّة */
   if (barePath === offerPath) return nationalDay.faq;
+  /* صفحة الأسئلة عن دَعمة — مجموعاتها مسطّحةً بترتيب عرضها */
+  if (barePath === faqPath) return faqGroups.flatMap((g) => g.items);
   const service = barePath.match(/^\/services\/([^/]+)/)?.[1];
   if (service && byService[service]) return byService[service];
   return general;

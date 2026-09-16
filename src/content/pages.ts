@@ -140,171 +140,8 @@ export const servicesPage = {
   backLabel: { ar: "كل الخدمات", en: "All services" } as Bi,
 };
 
-/** تفصيل كل خدمة — المفتاح هو slug الخدمة في home.ts */
-export const serviceDetails: Record<
-  string,
-  { intro: Bi; includes: Bi[]; deliverables: Bi[] }
-> = {
-  "company-profile": {
-    intro: {
-      ar: "الملف التعريفي ليس كتيّبًا يجمع كل ما تفعلونه. هو وثيقة تُقرأ في خمس دقائق قبل اجتماع أو داخل ملف تأهيل، فتترك انطباعًا بأن أمام القارئ شركة منظّمة تعرف ما تقول.",
-      en: "A company profile is not a booklet listing everything you do. It is a document read in five minutes before a meeting or inside a qualification file, leaving the reader with the impression of an organised company that knows what it is saying.",
-    },
-    includes: [
-      { ar: "ترتيب المحتوى بحسب ما يبحث عنه القارئ لا بحسب تاريخكم", en: "Content ordered by what the reader looks for, not by your history" },
-      { ar: "كتابة النصوص: من أنتم، وماذا تقدّمون، ولماذا أنتم", en: "Writing: who you are, what you offer, and why you" },
-      { ar: "عرض المشاريع والسجلّ بأرقام حيث توجد", en: "Projects and record presented with numbers where they exist" },
-      { ar: "تصميم على هويّتكم البصرية، عربي وإنجليزي", en: "Designed on your identity, in Arabic and English" },
-    ],
-    deliverables: [
-      { ar: "نسخة للطباعة ونسخة للإرسال بحجم أخفّ", en: "A print version and a lighter one for sending" },
-      { ar: "نسخة قابلة للتحديث دون العودة إلينا", en: "A version you can update without coming back to us" },
-      { ar: "ملفات مفتوحة", en: "Open source files" },
-    ],
-  },
-  crm: {
-    intro: {
-      ar: "النظام لا يُشترى، يُهيَّأ. نبدأ من طريقة عملكم الحالية — كيف يصل العميل، ومن يتابعه، ومتى يُعتبر الطلب مغلقًا — ثم نبني عليها نظامًا يعرف حالة كل عميل، بدل أن نجبركم على قالب جاهز.",
-      en: "A system isn't bought, it's shaped. We start from how you already work — how a client arrives, who follows up, when a request counts as closed — then build a system that knows every client's state, instead of forcing you into a template.",
-    },
-    includes: [
-      { ar: "قراءة مسار العميل عندكم كما هو اليوم", en: "Reading your client journey exactly as it runs today" },
-      { ar: "مراحل بيع واضحة، ولكل مرحلة مسؤول بالاسم", en: "Clear sales stages, each with an owner by name" },
-      { ar: "نقل بيانات العملاء الحالية من الجداول والمحادثات", en: "Migrating existing client data out of sheets and chats" },
-      { ar: "تنبيهات للمتابعة حتى لا تُنسى صفقة", en: "Follow-up reminders so no deal is forgotten" },
-      { ar: "تقارير تقرأها الإدارة بلا وسيط", en: "Reports management can read without a middleman" },
-    ],
-    deliverables: [
-      { ar: "نظام مهيّأ وجاهز للاستخدام", en: "A configured, working system" },
-      { ar: "تدريب الفريق على استعماله", en: "Team training on how to use it" },
-      { ar: "متابعة معكم في الشهر الأول", en: "We stay with you through the first month" },
-    ],
-  },
-  branding: {
-    intro: {
-      ar: "الهوية ليست لوجو. هي نظام كامل — لون وخطّ وأسلوب صورة ونبرة — يجعل شركتك تُعرَف قبل أن يُقرأ اسمها. نبنيها من فهم سوقك لا من ذوق المصمّم.",
-      en: "An identity is not a logo. It's a complete system — colour, type, image style, tone — that makes your company recognisable before its name is read. We build it from your market, not from a designer's taste.",
-    },
-    includes: [
-      { ar: "بحث في القطاع والمنافسين", en: "Sector and competitor research" },
-      { ar: "تصميم اللوجو ونظامه", en: "Logo and its system" },
-      { ar: "نظام ألوان وخطوط كامل", en: "Full colour and type system" },
-      { ar: "أسلوب الصورة والأيقونات", en: "Image and icon style" },
-      { ar: "تطبيقات ومطبوعات", en: "Applications and print" },
-    ],
-    deliverables: [
-      { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
-      { ar: "ملفات مفتوحة Ai + PSD", en: "Open Ai + PSD files" },
-      { ar: "ملف تعريفي احترافي", en: "Company profile" },
-    ],
-  },
-  "web-development": {
-    intro: {
-      ar: "موقع يُقرأ بسرعة على الموبايل قبل الديسكتوب، ويقود الزائر إلى خطوة واضحة. نبنيه بكود نظيف لا بقوالب جاهزة، فيبقى قابلًا للتطوير معك.",
-      en: "A site that reads fast on mobile before desktop, and leads the visitor to one clear next step. Built with clean code rather than a template, so it can grow with you.",
-    },
-    includes: [
-      { ar: "بنية معلومات وخريطة صفحات", en: "Information architecture and sitemap" },
-      { ar: "تصميم واجهات متجاوب", en: "Responsive interface design" },
-      { ar: "تطوير بكود نظيف", en: "Clean-code development" },
-      { ar: "تهيئة أساسية للسيو", en: "Baseline SEO setup" },
-      { ar: "ربط أدوات القياس", en: "Analytics wiring" },
-    ],
-    deliverables: [
-      { ar: "موقع متجاوب على كل المقاسات", en: "A site responsive at every size" },
-      { ar: "لوحة تحكّم للمحتوى", en: "Content management access" },
-      { ar: "تدريب على الاستخدام", en: "Handover and training" },
-    ],
-  },
-  seo: {
-    intro: {
-      ar: "السيو ليس وعدًا بالمركز الأول، بل عملٌ متّصل: تدقيق تقني يُصلح ما يمنع الفهرسة، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا لا على ترجمة قائمة إنجليزية، ومحتوى عربي مكتوب يُنشر بانتظام. النتائج التقنية تظهر خلال أسابيع، والترتيب على الكلمات التي تجلب عملاء يحتاج من أربعة إلى تسعة أشهر — نقولها قبل أن نبدأ لا بعدها.",
-      en: "SEO is not a promise of the top spot; it is connected work: a technical audit that fixes what blocks indexing, keyword research built on how Saudis actually search rather than a translated English list, and Arabic content written and published consistently. Technical gains show within weeks; ranking for terms that bring clients takes four to nine months — we say so before we start, not after.",
-    },
-    includes: [
-      { ar: "تدقيق تقني كامل للموقع", en: "Full technical site audit" },
-      { ar: "بحث كلمات عربية للسوق السعودي", en: "Arabic keyword research for the Saudi market" },
-      { ar: "تحسين الصفحات والبنية الداخلية", en: "On-page and internal structure work" },
-      { ar: "بيانات منظّمة وخريطة موقع", en: "Structured data and sitemap" },
-      { ar: "خطة محتوى شهرية", en: "A monthly content plan" },
-      { ar: "ضبط نشاطك على خرائط جوجل", en: "Google Business Profile setup" },
-    ],
-    deliverables: [
-      { ar: "تقرير التدقيق بأولويات واضحة", en: "An audit report with clear priorities" },
-      { ar: "خطة كلمات مفتاحية بنيّة البحث", en: "A keyword plan mapped to search intent" },
-      { ar: "تقرير شهري بما تحرّك وما لم يتحرّك", en: "A monthly report on what moved and what didn't" },
-    ],
-  },
-  "social-media": {
-    intro: {
-      ar: "المحتوى المنتظم يبني الثقة أكثر من الحملة الواحدة الكبيرة. نضع خطة شهرية، وننتج التصاميم والنصوص، ونتابع التفاعل ونعدّل على أساسه.",
-      en: "Consistent content builds more trust than one big campaign. We set a monthly plan, produce the designs and copy, then read engagement and adjust.",
-    },
-    includes: [
-      { ar: "خطة محتوى شهرية", en: "Monthly content plan" },
-      { ar: "تصميم البوستات والقصص", en: "Post and story design" },
-      { ar: "كتابة النصوص", en: "Copywriting" },
-      { ar: "جدولة النشر", en: "Publishing schedule" },
-      { ar: "تقرير أداء شهري", en: "Monthly performance report" },
-    ],
-    deliverables: [
-      { ar: "مكتبة تصاميم جاهزة", en: "A library of ready designs" },
-      { ar: "دليل نبرة الحساب", en: "Account tone guide" },
-      { ar: "تقارير تفاعل", en: "Engagement reports" },
-    ],
-  },
-  "digital-marketing": {
-    intro: {
-      ar: "استراتيجية مبنية على بيانات سوقك: من هو عميلك، أين يبحث، وما الذي يوقفه عن الشراء. ثم خطة قنوات بأهداف ومؤشرات واضحة.",
-      en: "A strategy built on your market's data: who your customer is, where they search, and what stops them buying. Then a channel plan with clear goals and metrics.",
-    },
-    includes: [
-      { ar: "تحليل الجمهور والمنافسين", en: "Audience and competitor analysis" },
-      { ar: "تحديد القنوات والرسائل", en: "Channel and message definition" },
-      { ar: "خطة تنفيذ بجدول زمني", en: "Execution plan with timeline" },
-      { ar: "مؤشرات أداء متّفق عليها", en: "Agreed performance indicators" },
-    ],
-    deliverables: [
-      { ar: "وثيقة استراتيجية", en: "Strategy document" },
-      { ar: "خطة قنوات ومحتوى", en: "Channel and content plan" },
-      { ar: "لوحة متابعة النتائج", en: "Results dashboard" },
-    ],
-  },
-  "media-buying": {
-    intro: {
-      ar: "الإعلان الجيد ليس الأكثر إنفاقًا بل الأدقّ استهدافًا. ندير حملاتك على المنصّات المناسبة لجمهورك، ونراقب التكلفة يوميًا لا شهريًا.",
-      en: "Good advertising isn't the biggest spend, it's the sharpest targeting. We run your campaigns on the platforms your audience actually uses, and watch cost daily rather than monthly.",
-    },
-    includes: [
-      { ar: "اختيار المنصّات والجمهور", en: "Platform and audience selection" },
-      { ar: "إعداد الحملات والتتبّع", en: "Campaign and tracking setup" },
-      { ar: "إنتاج مواد الإعلان", en: "Ad creative production" },
-      { ar: "متابعة يومية وتعديل", en: "Daily monitoring and adjustment" },
-    ],
-    deliverables: [
-      { ar: "حملات مضبوطة ومربوطة بالقياس", en: "Campaigns wired to measurement" },
-      { ar: "تقارير إنفاق وعائد", en: "Spend and return reports" },
-      { ar: "توصيات للجولة التالية", en: "Recommendations for the next round" },
-    ],
-  },
-  "performance-marketing": {
-    intro: {
-      ar: "بعد الإطلاق يبدأ الشغل الحقيقي: نقرأ الأرقام، ونجرّب نسخًا مختلفة، ونتخلّص ممّا لا يعمل — حتى يصير كل ما يُنفق أعلى عائدًا ممّا سبقه.",
-      en: "The real work starts after launch: reading the numbers, testing variants, and cutting what doesn't work — until every unit spent returns more than the last.",
-    },
-    includes: [
-      { ar: "قياس دقيق للتحويلات", en: "Accurate conversion tracking" },
-      { ar: "اختبارات A/B مستمرة", en: "Continuous A/B testing" },
-      { ar: "تحسين صفحات الهبوط", en: "Landing page optimisation" },
-      { ar: "إعادة توزيع الميزانية على الأفضل", en: "Budget shifted to what performs" },
-    ],
-    deliverables: [
-      { ar: "تقرير عائد شهري", en: "Monthly return report" },
-      { ar: "سجلّ الاختبارات ونتائجها", en: "Test log and outcomes" },
-      { ar: "خطة تحسين للربع القادم", en: "Next-quarter optimisation plan" },
-    ],
-  },
-};
+/* تفصيل كل خدمة انتقل إلى ملفّه — صار أكبر من أن يعيش وسط نصوص الصفحات */
+export { serviceDetails } from "./serviceDetails";
 
 /* ── /work ── */
 export const workPage = {
@@ -856,7 +693,6 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
       { ar: "دليل استخدام العلامة", en: "Brand usage guide" },
-      { ar: "ملفات Ai + PSD", en: "Ai + PSD files" },
     ],
   },
   "adg-brand": {
@@ -989,34 +825,90 @@ export const processPage = {
     ar: ["طريقة عمل", "بلا مفاجآت."],
     en: ["A way of working", "with no surprises."],
   } as Bi<string[]>,
+  /* بلا مُدَد: المدّة تُتّفق مع كل عميل على نطاق مشروعه، ورقمٌ عامّ
+     على الصفحة وعدٌ لا نملكه قبل أن نفهم ما يحتاجه */
   intro: {
-    ar: "خمس خطوات نمرّ بها في كل مشروع، مهما كان حجمه. تعرف في كل لحظة أين نحن وما الخطوة التالية ومتى تستلم.",
-    en: "Five steps we go through on every project, whatever its size. At any moment you know where we are, what comes next, and when you receive it.",
+    ar: "خمس خطوات نمرّ بها في كل مشروع، مهما كان حجمه. تعرف في كل لحظة أين نحن، وما الخطوة التالية، وما الذي ستستلمه.",
+    en: "Five steps we go through on every project, whatever its size. At any moment you know where we are, what comes next, and what you'll receive.",
   } as Bi,
-  durationLabel: { ar: "المدّة المعتادة", en: "Typical duration" } as Bi,
+  doLabel: { ar: "ما نقوم به", en: "What we do" } as Bi,
   outputLabel: { ar: "ما تستلمه", en: "What you receive" } as Bi,
+  youLabel: { ar: "ما نحتاجه منك", en: "What we need from you" } as Bi,
   details: [
     {
-      duration: { ar: "3 – 5 أيام", en: "3 – 5 days" } as Bi,
+      activities: [
+        { ar: "جلسة بداية نفهم فيها شركتك وأهدافك", en: "A kickoff session on your business and goals" },
+        { ar: "تحليل السوق والمنافسين والجمهور", en: "Market, competitor and audience analysis" },
+        { ar: "مراجعة ما لديك: هوية، وموقع، وحسابات، وأرقام", en: "A review of what you have: identity, site, accounts, numbers" },
+      ] as Bi[],
       output: { ar: "ملخّص الفهم وتحليل السوق", en: "A brief and market analysis" } as Bi,
+      you: { ar: "جلسة البداية معنا، وما لديك من مواد وأرقام حالية.", en: "The kickoff session with us, plus whatever material and numbers you already have." } as Bi,
     },
     {
-      duration: { ar: "أسبوع", en: "One week" } as Bi,
+      activities: [
+        { ar: "تحديد الأهداف وطريقة قياسها", en: "Setting goals and how they're measured" },
+        { ar: "ترتيب الأولويات: ماذا يُبنى أولًا ولماذا", en: "Ordering priorities: what gets built first, and why" },
+        { ar: "نطاق مكتوب بما يشمله العمل وما لا يشمله", en: "A written scope of what's included and what isn't" },
+      ] as Bi[],
       output: { ar: "خطة بأهداف وجدول زمني", en: "A plan with goals and a timeline" } as Bi,
+      you: { ar: "مراجعة الخطة والموافقة عليها قبل أن يبدأ التنفيذ.", en: "Reviewing and approving the plan before execution starts." } as Bi,
     },
     {
-      duration: { ar: "2 – 4 أسابيع", en: "2 – 4 weeks" } as Bi,
+      activities: [
+        { ar: "تصميم وتطوير وكتابة محتوى", en: "Design, development and content" },
+        { ar: "عرض كل مرحلة عليك قبل الانتقال إلى ما بعدها", en: "Every stage shown to you before moving on" },
+        { ar: "جولات تعديل ضمن النطاق المتّفق عليه", en: "Revision rounds within the agreed scope" },
+      ] as Bi[],
       output: { ar: "التصاميم والمواد النهائية", en: "Final designs and assets" } as Bi,
+      you: { ar: "ملاحظات مجمّعة وواضحة في كل جولة مراجعة.", en: "Clear, consolidated feedback in each review round." } as Bi,
     },
     {
-      duration: { ar: "أيام", en: "A few days" } as Bi,
+      activities: [
+        { ar: "النشر والاختبار على الأجهزة والمتصفحات", en: "Publishing and testing across devices and browsers" },
+        { ar: "ربط أدوات القياس والتتبّع", en: "Connecting analytics and tracking" },
+        { ar: "التسليم والتدريب على الاستخدام", en: "Handover and training" },
+      ] as Bi[],
       output: { ar: "المشروع منشور ومربوط بالقياس", en: "Live, wired to measurement" } as Bi,
+      you: { ar: "صلاحيات الوصول اللازمة، كالدومين والحسابات.", en: "The access we need, such as the domain and accounts." } as Bi,
     },
     {
-      duration: { ar: "مستمرّة", en: "Ongoing" } as Bi,
+      activities: [
+        { ar: "مراقبة الأداء بعد الإطلاق", en: "Watching performance after launch" },
+        { ar: "تقارير دورية بما تحرّك وما لم يتحرّك", en: "Regular reports on what moved and what didn't" },
+        { ar: "توصيات ونسخ محسّنة على أساس الأرقام", en: "Recommendations and improved versions based on the numbers" },
+      ] as Bi[],
       output: { ar: "تقارير أداء وتوصيات", en: "Performance reports and recommendations" } as Bi,
+      you: { ar: "جلسة لمراجعة النتائج، وقرار في الخطوة التالية.", en: "A session to review results, and a decision on the next step." } as Bi,
     },
   ],
+  principlesLabel: { ar: "في كل مشروع", en: "On every project" } as Bi,
+  principlesTitle: {
+    ar: ["ما تتوقّعه منّا،", "مهما كان حجم المشروع."],
+    en: ["What to expect from us,", "whatever the project's size."],
+  } as Bi<string[]>,
+  principles: [
+    {
+      title: { ar: "مراجعة مكتوبة عند كل مرحلة", en: "A written review at every stage" } as Bi,
+      desc: { ar: "لا تنتقل مرحلة إلى التي بعدها قبل أن تراها وتعرف ما الذي تغيّر.", en: "No stage moves on before you've seen it and know what changed." } as Bi,
+    },
+    {
+      title: { ar: "اجتماعات على توقيتك", en: "Meetings in your time zone" } as Bi,
+      desc: { ar: "نعمل مع شركات في الخليج ومصر وأوروبا، ونُجدوِل على توقيت العميل لا توقيتنا.", en: "We work with companies across the Gulf, Egypt and Europe, and schedule around the client's clock, not ours." } as Bi,
+    },
+    {
+      title: { ar: "نطاق وسعر واضحان", en: "A clear scope and price" } as Bi,
+      desc: { ar: "كل ما يشمله العمل مكتوب قبل التوقيع، بلا رسوم مخفية.", en: "Everything the work covers is written down before you sign, with no hidden fees." } as Bi,
+    },
+    {
+      title: { ar: "متابعة بعد الإطلاق", en: "Follow-up after launch" } as Bi,
+      desc: { ar: "دورنا لا ينتهي عند التسليم: نراقب الأداء ونقترح التحسينات.", en: "Our role doesn't end at handover: we track performance and propose improvements." } as Bi,
+    },
+  ],
+  faqLine: {
+    ar: "أسئلة عن المدّة والدفع والملكية؟ جمعنا إجاباتها في مكان واحد.",
+    en: "Questions about timing, payment or ownership? We've answered them in one place.",
+  } as Bi,
+  faqLink: { ar: "الأسئلة الشائعة", en: "Read the FAQ" } as Bi,
 };
 
 /* ── /packages ── */

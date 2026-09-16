@@ -191,8 +191,8 @@ export const services = {
       name: { ar: "الهوية البصرية", en: "Branding" } as Bi,
       en: "Branding",
       desc: {
-        ar: "هوية كاملة تعكس قوة مشروعك وتترك انطباعًا يبقى — بدليل استخدام وملفات مفتوحة.",
-        en: "A complete identity that carries your weight and leaves a lasting impression — with a usage guide and open files.",
+        ar: "هوية كاملة تعكس قوة مشروعك وتترك انطباعًا يبقى — بدليل استخدام واضح.",
+        en: "A complete identity that carries your weight and leaves a lasting impression — with a clear usage guide.",
       } as Bi,
     },
     {
@@ -406,6 +406,7 @@ export const footer = {
   navTitle: { ar: "الموقع", en: "Site" } as Bi,
   profileTitle: { ar: "ملفنا التعريفي", en: "Our profile" } as Bi,
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
+  faqTitle: { ar: "الأسئلة الشائعة", en: "FAQ" } as Bi,
   saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,
   socialTitle: { ar: "تابعنا", en: "Follow" } as Bi,

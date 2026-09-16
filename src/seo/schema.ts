@@ -2,6 +2,7 @@ import { withLang, type Bi, type Lang } from "../i18n";
 import { brand, phoneFor, saudi, services } from "../content/home";
 import { faqItemsFor } from "../content/faq";
 import { offerPath } from "../content/nationalDay";
+import { faqPath } from "../content/faqAbout";
 import { markets, sectorMeta, workItems } from "../content/work";
 import { findPost, posts } from "../content/blog";
 import { cityMeta, findCityPage } from "../content/saudi";
@@ -281,9 +282,9 @@ export function graphFor(bare: string, lang: Lang): Json {
     case "city":
       graph.push(...cityService(bare, lang));
       break;
-    /* صفحة العرض تعرض أسئلة فعلًا — فتُعلَن. بقيّة صفحات «page» لا */
+    /* صفحة العرض وصفحة الأسئلة تعرضان أسئلة فعلًا — فتُعلَنان. بقيّة صفحات «page» لا */
     case "page":
-      if (bare === offerPath) {
+      if (bare === offerPath || bare === faqPath) {
         const f = faqPage(bare, lang);
         if (f) graph.push(f);
       }

@@ -59,6 +59,7 @@ export function Footer() {
     ...navItems.filter((n) => n.href !== "/services"),
     { href: "/profile", label: footer.profileTitle },
     { href: "/saudi", label: footer.saudiTitle },
+    { href: "/faq", label: footer.faqTitle },
     { href: "/contact", label: footer.contactTitle },
   ];
 

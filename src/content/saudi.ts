@@ -289,8 +289,8 @@ export const cityPages: CityPage[] = [
         en: "Arabic and Latin are designed together rather than in sequence, so both carry the same visual weight.",
       },
       {
-        ar: "تستلم الملفات مفتوحةً ودليل استخدام — العلامة ملكك لا رهينة عند من صمّمها.",
-        en: "You receive open files and a usage guide — the brand is yours, not held by whoever drew it.",
+        ar: "دليل استخدام يشرح التطبيق، فتبقى العلامة متّسقة مهما تعدّد من ينفّذها.",
+        en: "A usage guide that explains application, so the brand stays consistent however many people execute it.",
       },
     ],
     faq: [
@@ -324,8 +324,8 @@ export const cityPages: CityPage[] = [
     city: "jeddah",
     title: { ar: "تصميم هوية بصرية للعلامات في جدة", en: "Brand identity for Jeddah brands" },
     description: {
-      ar: "هوية بصرية لمتاجر ومطاعم وبيوت تجارية في جدة: علامة تعمل على اللافتة والعبوة والشاشة معًا، بدليل استخدام وملفات مفتوحة.",
-      en: "Brand identity for Jeddah retailers, restaurants, and merchant houses: a mark that works on signage, packaging, and screen alike — with a usage guide and open files.",
+      ar: "هوية بصرية لمتاجر ومطاعم وبيوت تجارية في جدة: علامة تعمل على اللافتة والعبوة والشاشة معًا، بدليل استخدام واضح.",
+      en: "Brand identity for Jeddah retailers, restaurants, and merchant houses: a mark that works on signage, packaging, and screen alike — with a clear usage guide.",
     },
     h1: {
       ar: ["علامة تُعرَف", "من على الرفّ."],
@@ -387,13 +387,6 @@ export const cityPages: CityPage[] = [
           en: "A family name is an asset, not a burden: it's what your customer knows and trusts. We keep it and rebuild what surrounds it — type, colour system, application — so recognition stays while the look moves on.",
         },
       },
-      {
-        q: { ar: "هل نحصل على الملفات المفتوحة؟", en: "Do we get the open files?" },
-        a: {
-          ar: "نعم، بصيغتَي Ai و PSD مع دليل الاستخدام. أي مصمّم أو مطبعة تتعامل معهم لاحقًا يستطيع العمل بها بلا رجوع إلينا.",
-          en: "Yes, in Ai and PSD with the usage guide. Any designer or printer you work with later can use them without coming back to us.",
-        },
-      },
     ],
   },
 
@@ -411,8 +404,8 @@ export const cityPages: CityPage[] = [
       en: ["Campaigns measured", "in enquiries, not views."],
     },
     intro: {
-      ar: "البيع للشركات في الرياض دورة طويلة: من يبحث اليوم قد يوقّع بعد ثلاثة أشهر، والقرار يمرّ على أكثر من شخص. الحملة التي تُقاس بالمشاهدات في هذا السياق تقيس شيئًا لا علاقة له بالإيراد، ويمكن أن تبدو ناجحة تمامًا بينما لا يصل طلب واحد جادّ. نبني القياس أولًا: ما الذي نعدّه طلبًا مؤهّلًا، وكم يكلّف، ومن أين جاء — ثم نبني الحملات على هذا التعريف. البحث في جوجل يلتقط من يبحث عن حلّ الآن، ولينكدإن يصل إلى من يقرّر ولو لم يبحث بعد، والسوشيال يبني المعرفة التي تجعل اسمك مألوفًا حين يأتي وقت القرار. ونفصل الإنفاق الإعلاني عن أتعاب الإدارة في كل عرض وكل تقرير، فتعرف كم وصل إلى المنصّة وكم بقي عندنا. الحسابات باسمك ومنذ اليوم الأول.",
-      en: "Selling to companies in Riyadh is a long cycle: someone searching today may sign three months out, and the decision passes through more than one person. A campaign measured in impressions here measures something unrelated to revenue, and can look entirely successful while not a single serious enquiry arrives. So we build the measurement first: what counts as a qualified enquiry, what it costs, and where it came from — then build campaigns on that definition. Google Search catches people looking for a solution now; LinkedIn reaches the people who decide even before they search; social builds the familiarity that makes your name recognisable when the decision comes. We separate ad spend from management fees in every quote and every report, so you know how much reached the platform and how much stayed with us. Accounts are in your name from day one.",
+      ar: "البيع للشركات في الرياض دورة طويلة: من يبحث اليوم قد يوقّع بعد ثلاثة أشهر، والقرار يمرّ على أكثر من شخص. الحملة التي تُقاس بالمشاهدات في هذا السياق تقيس شيئًا لا علاقة له بالإيراد، ويمكن أن تبدو ناجحة تمامًا بينما لا يصل طلب واحد جادّ. نبني القياس أولًا: ما الذي نعدّه طلبًا مؤهّلًا، وكم يكلّف، ومن أين جاء — ثم نبني الحملات على هذا التعريف. البحث في جوجل يلتقط من يبحث عن حلّ الآن، ولينكدإن يصل إلى من يقرّر ولو لم يبحث بعد، والسوشيال يبني المعرفة التي تجعل اسمك مألوفًا حين يأتي وقت القرار. ونفصل الإنفاق الإعلاني عن أتعاب الإدارة في كل عرض وكل تقرير، فتعرف كم وصل إلى المنصّة وكم بقي عندنا.",
+      en: "Selling to companies in Riyadh is a long cycle: someone searching today may sign three months out, and the decision passes through more than one person. A campaign measured in impressions here measures something unrelated to revenue, and can look entirely successful while not a single serious enquiry arrives. So we build the measurement first: what counts as a qualified enquiry, what it costs, and where it came from — then build campaigns on that definition. Google Search catches people looking for a solution now; LinkedIn reaches the people who decide even before they search; social builds the familiarity that makes your name recognisable when the decision comes. We separate ad spend from management fees in every quote and every report, so you know how much reached the platform and how much stayed with us.",
     },
     painPoints: [
       {
@@ -443,8 +436,8 @@ export const cityPages: CityPage[] = [
         en: "We agree what a qualified enquiry is, and its target cost, before spending anything.",
       },
       {
-        ar: "الحسابات الإعلانية باسمك، ولك صلاحية المالك من اليوم الأول.",
-        en: "Ad accounts are in your name, with owner access from day one.",
+        ar: "نختبر الرسائل والجماهير على دفعات صغيرة، ثم نوسّع ما يجلب طلبات مؤهّلة.",
+        en: "We test messages and audiences in small batches, then scale what brings qualified enquiries.",
       },
       {
         ar: "التقرير الشهري يفصل الإنفاق عن الأتعاب ويقول ما لم ينجح كما يقول ما نجح.",
@@ -730,8 +723,8 @@ export const saudiHub = {
     en: ["Working with Saudi companies", "since 2019."],
   } as Bi<string[]>,
   intro: {
-    ar: "شركة عالمية أغلب عملائها في السعودية. نعمل بمواعيد على توقيت الرياض: اجتماع بداية، ومراجعة مكتوبة عند كل مرحلة، وتسليم بملفات مفتوحة وحسابات باسمك. هذه الصفحة تجمع ما نقدّمه للسوق السعودي وأين نعرف تفاصيله.",
-    en: "A global company with most of its clients in Saudi Arabia. We schedule on Riyadh time: a kickoff meeting, written review at every stage, and handover with open files and accounts in your name. This page gathers what we do for the Saudi market and where we know its details.",
+    ar: "شركة عالمية أغلب عملائها في السعودية. نعمل بمواعيد على توقيت الرياض: اجتماع بداية، ومراجعة مكتوبة عند كل مرحلة، ومتابعة بعد التسليم. هذه الصفحة تجمع ما نقدّمه للسوق السعودي وأين نعرف تفاصيله.",
+    en: "A global company with most of its clients in Saudi Arabia. We schedule on Riyadh time: a kickoff meeting, written review at every stage, and follow-up after handover. This page gathers what we do for the Saudi market and where we know its details.",
   } as Bi,
   trustLabel: { ar: "ما يمكن الاعتماد عليه", en: "What you can rely on" } as Bi,
   trust: [
@@ -745,8 +738,8 @@ export const saudiHub = {
     {
       title: { ar: "الملكية لك", en: "You own it" } as Bi,
       body: {
-        ar: "الدومين والاستضافة والحسابات الإعلانية وملفات التصميم كلها باسمك من اليوم الأول.",
-        en: "Domain, hosting, ad accounts, and design files are in your name from day one.",
+        ar: "الدومين والاستضافة باسمك من اليوم الأول.",
+        en: "Domain and hosting are in your name from day one.",
       } as Bi,
     },
     {

@@ -2,7 +2,7 @@ import { useLang } from "../i18n";
 import { faq } from "../content/home";
 import { general } from "../content/faq";
 import { FaqList } from "../components/FaqList";
-import { MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
+import { MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 
 export function Faq() {
   const { t } = useLang();
@@ -19,6 +19,9 @@ export function Faq() {
 
           <div className="lg:col-span-8">
             <FaqList items={general} />
+            <Reveal className="mt-10">
+              <TextLink href="/faq">{t({ ar: "كل الأسئلة عن دَعمة", en: "All questions about Daamah" })}</TextLink>
+            </Reveal>
           </div>
         </div>
       </Wrap>

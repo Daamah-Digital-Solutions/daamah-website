@@ -38,6 +38,7 @@ const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage").then((m) => ({ default: m.PrivacyPage })));
+const FaqPage = lazy(() => import("./pages/FaqPage").then((m) => ({ default: m.FaqPage })));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage").then((m) => ({ default: m.NotFoundPage })));
 
 /**
@@ -74,6 +75,7 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-blogtag`} path={at("blog/tag/:tag")} element={<BlogTagPage />} />,
     <Route key={`${prefix}-blogpost`} path={at("blog/:slug")} element={<BlogPostPage />} />,
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
+    <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
     /* صفحة حملة عربية فقط: لا نسخة إنجليزية لها، فلا مسار تحت `/en` */
     ...(prefix === ""
       ? [<Route key="national-day" path="/national-day" element={<NationalDayPage />} />]

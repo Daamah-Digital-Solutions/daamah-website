@@ -315,7 +315,7 @@ function prerender(): Plugin {
 
       /* خلاصة RSS لكل لغة — القرّاء المهنيّون وأدوات المتابعة
          تشترك بها، وهي كذلك إشارة تحديثٍ منتظم */
-      for (const lang of LANGS) {
+      for (const lang of ssr.BLOG_ENABLED ? LANGS : []) {
         const items = ssr
           .postsIn(lang)
           .slice(0, 20)

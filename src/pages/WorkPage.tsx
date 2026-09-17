@@ -11,6 +11,7 @@ import {
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { Reveal, Wrap } from "../components/ui";
+import { Justified } from "../components/Justified";
 import { WorkCard } from "../components/WorkCard";
 
 /* ── صفّ مرشِّحات واحد ── */
@@ -129,18 +130,17 @@ export function WorkPage() {
 
       <section className="py-16 sm:py-24">
         <Wrap>
-          {/* أعمدة CSS لا شبكة: كل عمل بنسبته — منشور مربّع وشريحة
-              عريضة وموك-أب طولي — والشبكة ذات النسبة الواحدة كانت
-              تقصّها كلّها إلى مقاس واحد فتمحو تنوّع الشغل نفسه */}
-          <div className="columns-1 gap-x-6 sm:columns-2 lg:columns-3">
+          {/* صفوف لا أعمدة: أعمدة CSS تُملأ عمودًا عمودًا، فيظهر آخر
+              القائمة أعلى العمود الثالث ويضيع ترتيب الأسواق (العالمي
+              أوّلًا ثم السعودية فالإمارات فمصر). الصفّ يُقرأ بالترتيب،
+              وكل بطاقة بنسبة تصميمها — لا قصّ — مصفوفةً من أعلاها */}
+          <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill>
             {items.map((item, i) => (
               /* المفتاح يحمل الاختيار: تغييره يعيد تركيب البطاقات
                  فتُكشف من جديد بدل أن تظهر دفعةً واحدة */
-              <div key={`${key}-${item.slug}`} className="mb-12 break-inside-avoid">
-                <WorkCard item={item} delay={(i % 3) * 90} natural />
-              </div>
+              <WorkCard key={`${key}-${item.slug}`} item={item} delay={(i % 4) * 60} />
             ))}
-          </div>
+          </Justified>
 
           {items.length === 0 && <p className="body mt-16 text-center">{t(work.empty)}</p>}
         </Wrap>

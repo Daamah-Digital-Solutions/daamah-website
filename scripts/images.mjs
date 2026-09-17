@@ -98,6 +98,26 @@ if (existsSync(galleryDir)) {
       const { width, height } = await variants(dir, file, GALLERY_WIDTHS);
       shots.push({ src: `/assets/work/gallery/${slug}/${file}`, w: width, h: height });
     }
+
+    /* السوشيال: شهور `YYYY-MM` داخل مجلّد العمل، وWebP جاهز من
+       `import-social.mjs` — لا نسخ تُولَّد، فقط المقاس والشهر */
+    const months = readdirSync(dir)
+      .filter((m) => /^\d{4}-\d\d$/.test(m) && statSync(join(dir, m)).isDirectory())
+      .sort();
+    for (const month of months) {
+      const files = readdirSync(join(dir, month))
+        .filter((f) => /^\d+\.webp$/.test(f))
+        .sort();
+      for (const file of files) {
+        const meta = await sharp(join(dir, month, file)).metadata();
+        shots.push({
+          src: `/assets/work/gallery/${slug}/${month}/${file}`,
+          w: meta.width,
+          h: meta.height,
+          month,
+        });
+      }
+    }
     if (shots.length) index[slug] = shots;
   }
 }
@@ -111,7 +131,9 @@ const body = Object.entries(index)
   .map(
     ([slug, shots]) =>
       `  ${/^[a-z][\w]*$/.test(slug) ? slug : JSON.stringify(slug)}: [\n` +
-      shots.map((s) => `    { src: "${s.src}", w: ${s.w}, h: ${s.h} },`).join("\n") +
+      shots
+        .map((s) => `    { src: "${s.src}", w: ${s.w}, h: ${s.h}${s.month ? `, month: "${s.month}"` : ""} },`)
+        .join("\n") +
       "\n  ],",
   )
   .join("\n");
@@ -129,7 +151,8 @@ writeFileSync(
  * صورة تُحمَّل — وهي مئتان.
  */
 
-export type Shot = { src: string; w: number; h: number };
+/** \`month\` لتصاميم السوشيال وحدها: شهر النشر، ومنه تُجمَّع في المعرض */
+export type Shot = { src: string; w: number; h: number; month?: string };
 
 /**
  * مقاس كل غلاف — الأغلفة لم تعد بنسبة واحدة.

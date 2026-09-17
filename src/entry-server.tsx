@@ -35,6 +35,7 @@ export async function render(url: string): Promise<string> {
    قادرةً لاحقًا على قراءة مسارات تُكتشف بـ `import.meta.glob` */
 export { routes, SITE_URL, OG_IMAGE, findRoute } from "./content/seo";
 export { postsIn } from "./content/blog";
+export { BLOG_ENABLED } from "./content/features";
 export { graphFor } from "./seo/schema";
 /* اسم الموقع بلغته — كان ثابتًا بالعربية في القالب، فيظهر
    اسمٌ عربي عند مشاركة أي صفحة إنجليزية */

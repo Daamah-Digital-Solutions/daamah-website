@@ -14,8 +14,8 @@ export const aboutPage = {
     en: ["We build presence,", "we don't decorate it."],
   } as Bi<string[]>,
   intro: {
-    ar: "في عالم رقمي سريع، الظهور الاحترافي لم يعد خيارًا بل ضرورة. منذ 2018 ونحن نعمل مع شركات في مصر والخليج وأوروبا لنحوّل أفكارها إلى حضور رقمي واضح.",
-    en: "In a fast-moving digital world, looking professional is no longer optional. Since 2018 we have worked with companies across Egypt, the Gulf, and Europe, turning their ideas into a clear digital presence.",
+    ar: "دَعمة للحلول الرقمية شركة تبني الحضور الرقمي للشركات. في عالم رقمي سريع، الظهور الاحترافي لم يعد خيارًا بل ضرورة — ومنذ 2018 ونحن نعمل مع شركات في الخليج وأوروبا ومصر لنحوّل أفكارها إلى حضور رقمي واضح.",
+    en: "Daamah Digital Solutions builds the digital presence of companies. In a fast-moving digital world, looking professional is no longer optional — and since 2018 we have worked with companies across the Gulf, Europe, and Egypt, turning their ideas into a clear digital presence.",
   } as Bi,
 
   vision: {
@@ -190,10 +190,275 @@ export const clientPage = {
 
 /** تفصيل كل عمل — المفتاح هو slug العمل في home.ts */
 export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
+  /* ── سوشيال من أرشيف العملاء — الوصف مما تقوله التصاميم نفسها ── */
+  "saif-events": {
+    desc: {
+      ar: "سيف للفعاليات شركة سعودية لتنظيم الفعاليات والمؤتمرات بخبرة عشرين عامًا، اختارتها أسماء كبيرة لتدير مناسباتها من التخطيط حتى آخر تفصيلة في يوم الحدث.",
+      en: "Saif Events is a Saudi events and conference company with twenty years of experience, chosen by major names to run their occasions from planning to the final detail on the day.",
+    },
+    results: [
+      { ar: "سبعة أشهر متّصلة من المحتوى", en: "Seven unbroken months of content" },
+      { ar: "محتوى يشرح طريقة العمل لا يعدّد الخدمات", en: "Content explaining the method, not listing services" },
+      { ar: "لغة بصرية واحدة عبر الشهور", en: "One visual language across the months" },
+    ],
+  },
+  "dr-asmaa-saeed": {
+    desc: {
+      ar: "د. أسماء سعيد اختصاصية في الصحة النفسية، تقدّم جلسات علاج وإرشاد نفسي قائمة على العلاج المعرفي السلوكي، وتعمل مع قضايا القلق والكمالية وأنماط التعلّق والعلاقات.",
+      en: "Dr. Asmaa Saeed is a mental-health specialist offering therapy and counselling grounded in cognitive behavioural therapy, working with anxiety, perfectionism, attachment styles and relationships.",
+    },
+    results: [
+      { ar: "محتوى توعوي يبني الثقة قبل الحجز", en: "Awareness content that builds trust before booking" },
+      { ar: "سلاسل مترابطة حول موضوع واحد كل شهر", en: "Linked series around one theme each month" },
+      { ar: "هوية بصرية هادئة تناسب الموضوع", en: "A calm visual identity suited to the subject" },
+    ],
+  },
+  "eliodoro-derma": {
+    desc: {
+      ar: "إليودورو ديرما علامة مصرية للعناية العلاجية بالبشرة، قدّمت أول مجموعة متكاملة لعلاج حبّ الشباب للبشرة الدهنية والمختلطة، وأول لوشن جسم علاجي في السوق المصري.",
+      en: "Eliodoro Derma is an Egyptian therapeutic skincare brand that introduced the first complete acne-treatment range for oily and combination skin, and the first therapeutic body lotion in the Egyptian market.",
+    },
+    results: [
+      { ar: "المنتج مقدَّم كحلّ لمشكلة لا كصورة", en: "The product presented as a solution, not a picture" },
+      { ar: "تصوير منتجات موحّد عبر الشهور", en: "Consistent product imagery across the months" },
+      { ar: "روتينات جاهزة تُحفظ وتُشارك", en: "Ready routines made to be saved and shared" },
+    ],
+  },
+  "alamein-social": {
+    desc: {
+      ar: "مصنع هياكل العلمين من مصانع الهياكل المعدنية والمقطورات الثقيلة في السعودية، يعمل منذ أكثر من اثني عشر عامًا ويورّد لشركات النقل والشحن هياكل مصمّمة لطرق المملكة وأحمالها.",
+      en: "Alamein Trailers is a Saudi manufacturer of steel bodies and heavy trailers, operating for more than twelve years and supplying transport and haulage companies with bodies built for the Kingdom's roads and loads.",
+    },
+    results: [
+      { ar: "محتوى صناعي يخاطب مشتري الأساطيل", en: "Industrial content aimed at fleet buyers" },
+      { ar: "حضور في المناسبات الوطنية السعودية", en: "A presence across Saudi national occasions" },
+      { ar: "ألوان العلامة ثابتة في كل منشور", en: "Brand colours held in every post" },
+    ],
+  },
+  "alraghad-social": {
+    desc: {
+      ar: "الرغد علامة مجوهرات وذهب في مصر، تقدّم تشكيلات من الذهب والقطع المرصّعة تجمع بين الفخامة والتصميم العصري، لمن يشتري الذهب زينةً واستثمارًا معًا.",
+      en: "Al Raghad is a gold and jewellery brand in Egypt offering gold and set pieces that combine luxury with contemporary design, for buyers who see gold as both adornment and investment.",
+    },
+    results: [
+      { ar: "لغة بصرية فاخرة ثابتة", en: "A consistent luxury visual language" },
+      { ar: "محتوى مرتبط بالمواسم والمناسبات", en: "Content tied to seasons and occasions" },
+      { ar: "امتداد مباشر لهوية العلامة", en: "A direct extension of the brand identity" },
+    ],
+  },
+  alqalaa: {
+    desc: {
+      ar: "القلعة لصناعة وتجارة الكيماويات شركة مصرية تورّد المواد الكيميائية والخامات للمصانع، وتعمل بخامات من IFF العالمية لقطاعات الروائح والنكهات.",
+      en: "Alqalaa for Chemicals Manufacturing and Trading is an Egyptian company supplying chemicals and raw materials to factories, working with raw materials from global IFF for the fragrance and flavour sectors.",
+    },
+    results: [
+      { ar: "محتوى B2B يخاطب أصحاب المصانع", en: "B2B content aimed at factory owners" },
+      { ar: "عبوة المنتج بطلٌ بصري ثابت", en: "The product drum as a consistent visual hero" },
+      { ar: "سلسلة منتجات بلون لكل رائحة", en: "A product series with a colour for each scent" },
+    ],
+  },
+  capimax: {
+    desc: {
+      ar: "كابيماكس للاستثمار شركة استثمار تجمع الخبرة المحلية بالرؤية العالمية، وتقدّم فرصًا استثمارية وشراكات استراتيجية في وجهات عالمية، منها الاستثمار السياحي.",
+      en: "Capimax Investments pairs local expertise with a global vision, offering investment opportunities and strategic partnerships in destinations worldwide, including tourism investment.",
+    },
+    results: [
+      { ar: "محتوى ثنائي اللغة", en: "Bilingual content" },
+      { ar: "كاروسيلات تشرح الفكرة خطوة بخطوة", en: "Carousels explaining ideas step by step" },
+      { ar: "سبعة أشهر متّصلة من المحتوى", en: "Seven unbroken months of content" },
+    ],
+  },
+  "amr-elkazaz": {
+    desc: {
+      ar: "أكاديمية عمرو القزاز أكاديمية لياقة بدنية في المنوفية، متخصّصة في تأهيل المتقدّمين للكليات العسكرية بدنيًا، إلى جانب برامج اللياقة وورش التدريب المتخصّصة.",
+      en: "Amr El-Kazaz Fitness Academy is a fitness academy in Menoufia specialising in the physical preparation of military college applicants, alongside fitness programmes and specialist training workshops.",
+    },
+    results: [
+      { ar: "محتوى يخاطب جمهورين: المتقدّم والرياضي", en: "Content for two audiences: applicants and athletes" },
+      { ar: "إعلانات الورش والفعاليات", en: "Workshop and event announcements" },
+      { ar: "صور حركة وطاقة بدل القوالب", en: "Energy and motion instead of templates" },
+    ],
+  },
+  "dr-hesham-omar": {
+    desc: {
+      ar: "صيدلية د. هشام عمر صيدلية مصرية تخدم عملاءها منذ 2003، وتوفّر الأدوية ومنتجات العناية بالبشرة والتجميل والمكمّلات الغذائية من علامات عالمية.",
+      en: "Dr. Hesham Omar Pharmacy has served its customers in Egypt since 2003, providing medicines along with skincare, beauty and supplement products from international brands.",
+    },
+    results: [
+      { ar: "منشورات منتجات بعروض واضحة", en: "Product posts with clear offers" },
+      { ar: "محتوى يبني الثقة المحلّية", en: "Content building local trust" },
+      { ar: "قالب بصري ثابت للصيدلية", en: "A consistent visual template for the pharmacy" },
+    ],
+  },
+  "ems-elriadh": {
+    desc: {
+      ar: "إي إم إس الرياض مركز تدريب بتقنية التحفيز الكهربائي للعضلات في الرياض، يقدّم جلسات تدريب مكثّفة مدّتها عشرون دقيقة تحت إشراف مدرّبين، لمن يريد نتيجة أسرع في وقت أقل.",
+      en: "EMS Elriadh is an electrical muscle stimulation training studio in Riyadh, offering intensive twenty-minute sessions under trainer supervision for people who want faster results in less time.",
+    },
+    results: [
+      { ar: "محتوى يشرح تقنية جديدة ببساطة", en: "Content explaining a new technology simply" },
+      { ar: "لهجة سعودية تناسب الجمهور", en: "Saudi dialect suited to the audience" },
+      { ar: "صور تدريب حقيقية", en: "Real training imagery" },
+    ],
+  },
+  "almohandes-travels": {
+    desc: {
+      ar: "المهندس للسياحة شركة سياحة وسفر في مصر، تنظّم رحلات وبرامج سفر متكاملة إلى وجهات حول العالم — من المغرب والسعودية إلى أوروبا وآسيا.",
+      en: "Almohandes Travels is a travel and tourism company in Egypt organising complete trips and travel programmes to destinations worldwide — from Morocco and Saudi Arabia to Europe and Asia.",
+    },
+    results: [
+      { ar: "محتوى وجهات يُلهم بالسفر", en: "Destination content that inspires travel" },
+      { ar: "عروض رحلات بتصميم موحّد", en: "Trip offers in a unified design" },
+      { ar: "حضور في المناسبات الوطنية", en: "A presence on national occasions" },
+    ],
+  },
+  natwan: {
+    desc: {
+      ar: "نطوان شقق فندقية في الدمام، تقدّم إقامة بمعايير نظافة وخدمة فندقية من فئة الخمس نجوم، للعائلات ورجال الأعمال والزوّار.",
+      en: "Natwan offers serviced apartments in Dammam with five-star standards of cleanliness and hotel service, for families, business travellers and visitors.",
+    },
+    results: [
+      { ar: "أفكار بصرية بدل صور الغرف المكرّرة", en: "Visual ideas instead of repetitive room photos" },
+      { ar: "لهجة سعودية قريبة", en: "Approachable Saudi dialect" },
+      { ar: "دعوة واضحة إلى الحجز", en: "A clear call to book" },
+    ],
+  },
+  "techcare-social": {
+    desc: {
+      ar: "معامل تك كير للتحاليل الطبية معامل مصرية لها فرع في مدينة السادات، تقدّم التحاليل الشاملة والفحوصات الدورية للكبار والأطفال بأجهزة حديثة.",
+      en: "Tech Care Labs are Egyptian medical laboratories with a branch in Sadat City, offering comprehensive tests and routine check-ups for adults and children on modern equipment.",
+    },
+    results: [
+      { ar: "محتوى صحّي بلغة الناس", en: "Health content in everyday language" },
+      { ar: "عروض فحوصات بتصميم واضح", en: "Test offers in a clear design" },
+      { ar: "امتداد لهوية المعامل", en: "An extension of the labs' identity" },
+    ],
+  },
+  "mardi-holding": {
+    desc: {
+      ar: "ماردي القابضة شركة تطوير عقاري في جورجيا بخبرة ثلاثين عامًا وأكثر من عشرة آلاف عميل، ومشاريعها في أفضل مواقع باتومي مثل ماردي هيلز وماردي أكوا بارك.",
+      en: "Mardi Holding is a real estate developer in Georgia with thirty years of experience and more than ten thousand clients, with projects in Batumi's best locations such as Mardi Hills and Mardi Aqua Park.",
+    },
+    results: [
+      { ar: "محتوى استثماري للمستثمر الخليجي", en: "Investment content for Gulf investors" },
+      { ar: "الوجهة قبل الوحدة", en: "The destination before the unit" },
+      { ar: "صور معمارية بمستوى القرار", en: "Architectural imagery matching the decision" },
+    ],
+  },
+  "hedaya-dental": {
+    desc: {
+      ar: "مركز هداية لطب وجراحة الأسنان في طنطا، يضمّ أكبر فريق طبي للأسنان في المدينة، ويقدّم التقويم وتجميل الأسنان وجراحة الفم تحت سقف واحد.",
+      en: "Hedaya Dental Center in Tanta houses the largest dental team in the city, offering orthodontics, cosmetic dentistry and oral surgery under one roof.",
+    },
+    results: [
+      { ar: "محتوى توعوي وعروض علاج", en: "Awareness content and treatment offers" },
+      { ar: "صور مفاهيمية بدل صور العيادة", en: "Conceptual imagery instead of clinic photos" },
+      { ar: "ألوان العلامة في كل منشور", en: "Brand colours in every post" },
+    ],
+  },
+  "mohamed-gamal-law": {
+    desc: {
+      ar: "مكتب محمد جمال للمحاماة والاستشارات القانونية في مصر، يتولّى القضايا الجنائية والمدنية ويقدّم الاستشارات القانونية للأفراد والشركات.",
+      en: "Mohamed Gamal Law Office is an Egyptian law and legal consultancy firm handling criminal and civil cases and advising individuals and companies.",
+    },
+    results: [
+      { ar: "محتوى قانوني رصين", en: "Measured legal content" },
+      { ar: "صور رمزية بدل صور المكتب", en: "Symbolic imagery instead of office photos" },
+      { ar: "لغة بصرية داكنة تناسب المهنة", en: "A dark visual language suited to the profession" },
+    ],
+  },
+  "profitmax-social": {
+    desc: {
+      ar: "بروفيت ماكس للاستثمار شركة خدمات مالية تعمل من المملكة المتحدة والإمارات، بخبرة ستة عشر عامًا في إدارة الاستثمارات وحلول مالية متنوّعة مبدؤها الأمان أولًا.",
+      en: "Profit Max Investments is a financial services company operating from the United Kingdom and the UAE, with sixteen years of investment management experience and diverse financial solutions built on security first.",
+    },
+    results: [
+      { ar: "محتوى إنجليزي بمستوى مؤسسي", en: "Corporate-grade English content" },
+      { ar: "امتداد للهوية والموقع والملف", en: "An extension of the identity, site and profile" },
+      { ar: "تعريف بالفريق والخدمات", en: "Introducing the team and services" },
+    ],
+  },
+  "trustech-social": {
+    desc: {
+      ar: "تراستك مجموعة مقاولات وتطوير عقاري بخبرة تتجاوز أربعين عامًا في البناء، تعمل في الإمارات وتوسّعت إلى المملكة المتحدة، وتقدّم صيانة سنوية مجانية لعشر سنوات على مشاريعها.",
+      en: "Trustech is a contracting and real estate development group with more than forty years in construction, operating in the UAE and expanding into the United Kingdom, with ten years of free annual maintenance on its projects.",
+    },
+    results: [
+      { ar: "محتوى إنجليزي لشركة مقاولات", en: "English content for a contracting firm" },
+      { ar: "امتداد للموقع والملف التعريفي", en: "An extension of the website and profile" },
+      { ar: "إبراز الخبرة والتوسّع", en: "Highlighting experience and expansion" },
+    ],
+  },
+  "4k-studio": {
+    desc: {
+      ar: "4K ستوديو ستوديو متخصّص في تصوير الأفراح، يوثّق يوم الزفاف بأسلوب سينمائي ويخطّط مع العروسين كل لقطة قبل اليوم الكبير.",
+      en: "4K Studio is a wedding photography studio that documents the wedding day in a cinematic style, planning every shot with the couple before the big day.",
+    },
+    results: [
+      { ar: "محتوى إطلاق للاستوديو", en: "Launch content for the studio" },
+      { ar: "صور الاستوديو نفسه بطل المنشور", en: "The studio's own photos as the hero" },
+      { ar: "لغة بصرية رومانسية موحّدة", en: "A unified romantic visual language" },
+    ],
+  },
+  "emaar-alryada": {
+    desc: {
+      ar: "إعمار الريادة شركة تطوير عقاري، ومن مشاريعها «رويال بالاس»: مجمّع سكني فاخر بطابع معماري كلاسيكي وحدائق ومسطّحات مائية.",
+      en: "Emaar Alryada is a real estate developer whose projects include Royal Palace, a luxury residential compound with classical architecture, gardens and water features.",
+    },
+    results: [
+      { ar: "محتوى يبيع أسلوب الحياة", en: "Content selling the lifestyle" },
+      { ar: "لغة بصرية فاخرة للمشروع", en: "A luxury visual language for the project" },
+      { ar: "إبراز مزايا المشروع واحدة واحدة", en: "The project's features shown one by one" },
+    ],
+  },
+  "dr-mohamed-ewida": {
+    desc: {
+      ar: "عيادة د. محمد عويضة لطب الأسنان عيادة تخصّصية تقدّم علاجات الأسنان وتجميلها بتجهيزات حديثة وبروتوكولات تعقيم صارمة.",
+      en: "Dr. Mohamed Ewida Dental Clinic is a specialist practice offering dental treatment and cosmetic dentistry with modern equipment and strict sterilisation protocols.",
+    },
+    results: [
+      { ar: "محتوى افتتاح العيادة", en: "Clinic opening content" },
+      { ar: "تعريف بالتجهيزات والخدمات", en: "Introducing equipment and services" },
+      { ar: "ألوان العيادة في كل منشور", en: "The clinic's colours in every post" },
+    ],
+  },
+  "fragancia-social": {
+    desc: {
+      ar: "فراجانسيا علامة مصرية للعناية الشخصية والجمال، تقدّم منتجات للعناية بالبشرة والشعر ومستحضرات تجميل لعميلات يبحثن عن جودة يُعتمد عليها.",
+      en: "Fragancia is an Egyptian personal care and beauty brand offering skin and hair care and cosmetics for customers who want quality they can rely on.",
+    },
+    results: [
+      { ar: "محتوى منتجات بلغة قريبة", en: "Product content in approachable language" },
+      { ar: "امتداد للمتجر الإلكتروني", en: "An extension of the online store" },
+      { ar: "تصوير منتجات ناعم وموحّد", en: "Soft, unified product photography" },
+    ],
+  },
+  "vibrant-social": {
+    desc: {
+      ar: "فايبرانت ديزاين شركة تصميم داخلي وتنفيذ بخبرة تتجاوز عشرين عامًا ومئات المشاريع المنفّذة، متخصّصة في المساحات السكنية والتجارية الفاخرة.",
+      en: "Vibrant Design is an interior design and fit-out company with more than twenty years of experience and hundreds of completed projects, specialising in luxury residential and commercial spaces.",
+    },
+    results: [
+      { ar: "محتوى إنجليزي لشركة تصميم داخلي", en: "English content for an interior design firm" },
+      { ar: "امتداد للموقع الإلكتروني", en: "An extension of the website" },
+      { ar: "لغة بصرية دافئة وفاخرة", en: "A warm, luxurious visual language" },
+    ],
+  },
+  "bird-area": {
+    desc: {
+      ar: "بيرد إيريا متجر متخصّص في مستلزمات الحيوانات الأليفة — الطيور والقطط والكلاب — من الأغذية إلى الإكسسوارات وأماكن النوم.",
+      en: "Bird Area is a store specialising in pet supplies — for birds, cats and dogs — from food to accessories and beds.",
+    },
+    results: [
+      { ar: "محتوى بيع مرح وقريب", en: "Playful, approachable selling content" },
+      { ar: "لون العلامة ثابت", en: "The brand colour held throughout" },
+      { ar: "منتجات معروضة بوضوح", en: "Products shown clearly" },
+    ],
+  },
   "xtreme-blue": {
     desc: {
-      ar: "الموزّع الحصري لشركة IFF العالمية للزيوت العطرية في مصر — يبيع لمصانع لا لأفراد. فالمنشور يوازن بين اثنين: عبوة صناعية بملصق مواصفات يقرأه المشتري الفنّي، وصورة عطر فاخر تقول ما تصير إليه هذه العبوة. خمسة وعشرون شهرًا على هذا التوازن.",
-      en: "The exclusive Egyptian distributor for IFF fragrance oils — selling to factories, not consumers. So each post balances two things: an industrial drum with a specification label the technical buyer reads, and a luxury fragrance shot saying what that drum becomes. Twenty-five months holding that balance.",
+      ar: "إكستريم بلو الموزّع الحصري في مصر لشركة IFF العالمية، إحدى كبرى شركات الروائح والنكهات في العالم، وتورّد الزيوت العطرية للمصانع وخطوط الإنتاج.",
+      en: "Xtreme Blue is the exclusive distributor in Egypt for IFF, one of the world's leading fragrance and flavour companies, supplying fragrance oils to factories and production lines.",
     },
     results: [
       { ar: "خمسة وعشرون شهرًا متّصلة من المحتوى", en: "Twenty-five unbroken months of content" },
@@ -203,8 +468,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   muri: {
     desc: {
-      ar: "شركة تطوير عقاري في مصر. المحتوى يشتغل على ما قبل القرار: من يؤجّر يدفع ولا يملك، ومن يشتري يبني. تسعة عشر شهرًا من المنشورات التي تقول ذلك بصورة واحدة لا بفقرة.",
-      en: "An Egyptian property developer. The content works on what comes before the decision: renting pays and owns nothing; buying builds. Nineteen months of posts saying that in one image rather than a paragraph.",
+      ar: "موري للتطوير العقاري شركة مصرية تطوّر مشاريع سكنية، وتقدّم وحدات بأنظمة سداد مرنة لمن ينتقل من الإيجار إلى التملّك.",
+      en: "Muri Real Estate is an Egyptian developer of residential projects, offering units with flexible payment plans for people moving from renting to owning.",
     },
     results: [
       { ar: "تسعة عشر شهرًا متّصلة من المحتوى", en: "Nineteen unbroken months of content" },
@@ -214,8 +479,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   swissroll: {
     desc: {
-      ar: "محلّ حلويات في شبين الكوم. الحلوى تُشترى بالعين، فالمنشور تصويرٌ قبل أن يكون تصميمًا: الطبقة والقوام والانسكاب. سبعة عشر شهرًا، والمناسبات — رمضان والأعياد — عمود التقويم لأنها موسم البيع.",
-      en: "A patisserie in Shibin El Kom. Sweets are bought with the eye, so a post here is photography before it is design: the layer, the texture, the pour. Seventeen months, with the occasions — Ramadan and the Eids — as the calendar's spine, because they are the selling season.",
+      ar: "سويسرول علامة حلويات شرقية وغربية انطلقت من شبين الكوم، تشتهر بالتورت والجاتوهات وحلويات المواسم، وتوصّل منتجاتها إلى البيوت.",
+      en: "Swiss Roll is an oriental and western patisserie brand that started in Shebin El Kom, known for its cakes, gateaux and seasonal sweets, and delivers to customers' homes.",
     },
     results: [
       { ar: "سبعة عشر شهرًا متّصلة من المحتوى", en: "Seventeen unbroken months of content" },
@@ -225,8 +490,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   vida: {
     desc: {
-      ar: "نادٍ رياضي في مصر. المحتوى لا يبيع اشتراكًا بل يزيل عذرًا: «اتخلّص من السيلوليت في 20 دقيقة»، «فرصتك لتحقيق هدفك في رمضان». وشركاء التقسيط ظاهرون في كل منشور لأن السعر هو الاعتراض الأخير. ستّة عشر شهرًا على هذا النسق.",
-      en: "An Egyptian fitness club. The content does not sell a membership, it removes an excuse: twenty minutes against cellulite, a Ramadan window to hit your goal. The instalment partners sit on every post because price is the last objection. Sixteen months in that register.",
+      ar: "فيدا فيتنس كلوب نادٍ رياضي متكامل في مصر، يقدّم صالات تدريب وبرامج لياقة وتخسيس بأجهزة حديثة، مع أنظمة تقسيط عبر شركاء تمويل.",
+      en: "Vida Fitness Club is a full-service gym in Egypt offering training floors, fitness and weight-loss programmes on modern equipment, with instalment plans through financing partners.",
     },
     results: [
       { ar: "ستّة عشر شهرًا متّصلة من المحتوى", en: "Sixteen unbroken months of content" },
@@ -236,8 +501,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "atm-realestate": {
     desc: {
-      ar: "شركة تطوير عقاري في مصر. الوعد المكرّر «بنبني ذكرياتك» لا «بنبيع وحدات» — والفارق يظهر في الصورة: بيتٌ في يد، لا مخطّط ولا واجهة. ستّة عشر شهرًا على هذه النبرة.",
-      en: "An Egyptian property developer. The repeated promise is building memories, not selling units — and the difference shows in the image: a house held in a hand, not a floor plan or a façade. Sixteen months in that voice.",
+      ar: "إيه تي إم للتطوير العقاري شركة مصرية تقدّم تنوّعًا واسعًا في المساحات السكنية والإدارية والتجارية، مع نظام يتيح للمالك تفويض وحدته للإيجار.",
+      en: "ATM Real Estate Development is an Egyptian developer offering a wide variety of residential, office and retail spaces, with a scheme that lets owners delegate their unit for rental.",
     },
     results: [
       { ar: "ستّة عشر شهرًا متّصلة من المحتوى", en: "Sixteen unbroken months of content" },
@@ -247,8 +512,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   nasea: {
     desc: {
-      ar: "مصنّع منظّفات يبيع للموزّعين والمخازن لا للمستهلك. فالمنشور موجَّه إلى تاجر: «شريكك في النجاح»، «ناصع أساسي في كل مخزن» — والصورة كرتونة وبالتة لا زجاجة على رفّ. ثلاثة عشر شهرًا على هذا الخطاب.",
-      en: "A cleaning-products manufacturer selling to distributors and warehouses, not to consumers. So a post addresses a trader — a partner in the business, a line every warehouse stocks — and the image is a carton and a pallet, not a bottle on a shelf. Thirteen months in that address.",
+      ar: "ناصع مصنع مصري للمنظّفات يبيع بالجملة للموزّعين والمخازن، ومنتجاته من أساسيات تجارة المنظّفات في السوق.",
+      en: "Nasea is an Egyptian detergent manufacturer selling wholesale to distributors and warehouses, with products that are staples of the detergent trade.",
     },
     results: [
       { ar: "ثلاثة عشر شهرًا متّصلة من المحتوى", en: "Thirteen unbroken months of content" },
@@ -258,8 +523,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   godran: {
     desc: {
-      ar: "استشارات عقارية في مصر. المحتوى يبيع الطمأنينة قبل العقار: «عيش في مكان كله أمان»، وفريق عمل «على أعلى مستوى من الخبرة». أربعة عشر شهرًا من بناء الثقة قبل المعاينة.",
-      en: "Property consultancy in Egypt. The content sells reassurance before it sells property: living somewhere entirely safe, a team at the top of its experience. Fourteen months of building trust before the viewing.",
+      ar: "غدران للاستشارات والتسويق العقاري في مصر، فريق بخبرة في السوق يرشد المشتري إلى المشروع المناسب، للسكن أو للاستثمار.",
+      en: "Godran is a real estate consultancy and marketing firm in Egypt, with a team experienced in the market guiding buyers to the right project, for living or investment.",
     },
     results: [
       { ar: "أربعة عشر شهرًا متّصلة من المحتوى", en: "Fourteen unbroken months of content" },
@@ -269,8 +534,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   alawael: {
     desc: {
-      ar: "شركة تربط المستثمر الخليجي بالعقار الجورجي. المحتوى يطمئن على ثلاثة محاور معًا — القانون والموقع والعائد — لأن المشتري هنا لا يعاين بنفسه. أحد عشر شهرًا على هذا الثالوث.",
-      en: "A firm connecting Gulf investors to Georgian property. The content reassures on three fronts at once — the legal, the location, the return — because this buyer never views in person. Eleven months on that triad.",
+      ar: "أملاك الأوائل شركة عقارية تفتح للمستثمر السعودي والخليجي باب التملّك في جورجيا، وترافقه من اختيار العقار حتى التملّك والإقامة.",
+      en: "Amlak Alawael is a real estate company opening property ownership in Georgia to Saudi and Gulf investors, accompanying them from choosing the property through to ownership and residency.",
     },
     results: [
       { ar: "أحد عشر شهرًا متّصلة من المحتوى", en: "Eleven unbroken months of content" },
@@ -280,8 +545,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "royal-consultant": {
     desc: {
-      ar: "بيت استشارات وشريك معتمد لأودو في السوق السعودي. المحتوى يخاطب صاحب شركة تعب من الجداول: «تعبت من الطرق التقليدية لإدارة شركتك؟». سبعة أشهر تقول المشكلة قبل النظام.",
-      en: "A consultancy and certified Odoo partner in the Saudi market. The content addresses an owner tired of spreadsheets — asking whether the traditional way of running the company has worn thin. Seven months naming the problem before the system.",
+      ar: "رويال كونسلتنتس بيت استشارات وتحوّل رقمي في مصر، وشريك لأودو يطبّق أنظمة إدارة الشركات — المبيعات والمخازن والمحاسبة والفوترة الإلكترونية — للشركات والمستشفيات.",
+      en: "Royal Consultants is a consulting and digital transformation firm in Egypt and an Odoo partner implementing business management systems — sales, inventory, accounting and e-invoicing — for companies and hospitals.",
     },
     results: [
       { ar: "سبعة أشهر من المحتوى المنتظم", en: "Seven months of steady content" },
@@ -291,8 +556,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   alhaitham: {
     desc: {
-      ar: "مكتب استشارات قانونية وهندسية. الموضوعات نفسها هي الإعلان: التخلّف عن الخدمة العسكرية، تأسيس شركات الاستيراد والتصدير، القضايا العسكرية. المحتوى يجيب سؤالًا يبحث عنه القارئ فعلًا بدل أن يعرّف بالمكتب.",
-      en: "A legal and engineering consultancy. The subjects are the advertising: military service default, forming import-export companies, military cases. The content answers a question the reader is actually searching for rather than introducing the practice.",
+      ar: "الهيثم للاستشارات مكتب استشارات قانونية وهندسية في مصر، يتولّى ملفّات الخدمة العسكرية والقضايا العسكرية وتأسيس شركات الاستيراد والتصدير.",
+      en: "Al Haitham Consultancy is a legal and engineering consultancy in Egypt handling military service files, military cases and the incorporation of import and export companies.",
     },
     results: [
       { ar: "محتوى مبنيّ على سؤال يُبحَث عنه", en: "Content built on a question people search for" },
@@ -302,8 +567,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   almuttahida: {
     desc: {
-      ar: "شركة تخليص جمركي وشحن. المشتري هنا يخاف التعطيل لا السعر، فالمحتوى يبيع زوال القلق: «خلّص واخلص»، «التخليص لعبة وإحنا أبطالها». والصور سفن وشاحنات ومواني — لغة من يعرف الطريق.",
-      en: "A customs clearance and freight company. This buyer fears delay more than cost, so the content sells the end of that worry — clear it and be done, clearance as a game they play best. The images are ships, trucks and ports: the language of someone who knows the route.",
+      ar: "المتحدة للخدمات الجمركية شركة تخليص جمركي وشحن في مصر، تتولّى إجراءات الموانئ والجمارك والنقل للمستوردين والمصدّرين من الميناء حتى المخزن.",
+      en: "United Customs Services is a customs clearance and shipping company in Egypt handling port, customs and transport procedures for importers and exporters, from the port to the warehouse.",
     },
     results: [
       { ar: "محتوى يبيع زوال القلق لا الخدمة", en: "Content selling the end of the worry, not the service" },
@@ -313,8 +578,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   corpenta: {
     desc: {
-      ar: "شركة تأسيس أعمال تدخل بالمستثمر الأجنبي إلى السوق السعودي. المحتوى مبنيّ على رؤية 2030 لا على الخدمة: «ابنِ عملك في السعودية متوافقًا مع 2030» — لأن المستثمر يشتري التوقيت قبل أن يشتري الإجراء.",
-      en: "A business-formation firm taking foreign investors into the Saudi market. The content is built on Vision 2030 rather than on the service — build your business in Saudi Arabia aligned with 2030 — because this investor buys the timing before the paperwork.",
+      ar: "كوربنتا شركة متخصّصة في تأسيس الأعمال في السعودية للمستثمرين الأجانب، من ترخيص وزارة الاستثمار والسجل التجاري إلى الخدمات الحكومية، ضمن مستهدفات رؤية 2030.",
+      en: "Corpenta specialises in setting up businesses in Saudi Arabia for foreign investors, from the Ministry of Investment licence and commercial registration to government services, in line with Vision 2030.",
     },
     results: [
       { ar: "محتوى مبنيّ على التوقيت لا على الإجراء", en: "Content built on the timing rather than the procedure" },
@@ -324,8 +589,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "amlak-social": {
     desc: {
-      ar: "شركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة. فالمنشور هنا ليس إعلانًا بل جولةً: يقول أين المشروع، وماذا يطلّ عليه، ولماذا جورجيا أصلًا. ثمانية وعشرون شهرًا متّصلة عبر عشرة مشاريع مسمّاة — بانوراما، سي فيو، جرين تاون، ماردي أكوا بارك، نوفوتيل باتومي وغيرها — لكلٍّ لغته البصرية داخل هوية واحدة.",
-      en: "A company selling property in Batumi to investors who have never visited the city. So a post here is not an advert but a tour: where the project sits, what it looks onto, and why Georgia at all. Twenty-eight unbroken months across ten named developments — Panorama, Sea View, Green Town, Mardi Aqua Park, Novotel Batumi and others — each with its own visual line inside one identity.",
+      ar: "أملاك العقارية شركة استثمار عقاري بخبرة عشر سنوات في السوق الجورجي، بفروع تخدم المستثمرين في جورجيا والسعودية ومصر، ومحفظة مشاريع في باتومي مثل بانوراما وسي فيو ونوفوتيل.",
+      en: "Amlak Real Estate is a property investment company with ten years in the Georgian market, branches serving investors in Georgia, Saudi Arabia and Egypt, and a portfolio of Batumi projects such as Panorama, Sea View and Novotel.",
     },
     results: [
       { ar: "ثمانية وعشرون شهرًا متّصلة من المحتوى", en: "Twenty-eight unbroken months of content" },
@@ -335,8 +600,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "amlak-revamp": {
     desc: {
-      ar: "بعد ثمانية وعشرين شهرًا، كبرت الشركة على علامتها الأولى فبُنيت لها أخرى: من السداسي الذهبي إلى علامة زرقاء أهدأ تحتمل مشاريع أكبر. سبعة أشهر من المحتوى داخل العلامة الجديدة — رمادا ريزيدنسيز، ماردي أكوا بارك، ويندام، أركي — بنَفَس واحد يثبت أن التجديد شكلٌ جديد لا شركة جديدة.",
-      en: "After twenty-eight months the company outgrew its first mark, so a second was built: from the gold hexagon to a quieter blue mark able to carry larger developments. Seven months of content inside the new brand — Ramada Residences, Mardi Aqua Park, Wyndham, Archi — in one voice, proving a rebrand is a new look and not a new company.",
+      ar: "بعد عشر سنوات في جورجيا دخلت أملاك مرحلة أكبر: مشاريع تديرها علامات فندقية عالمية مثل رمادا وويندام، ومنتجعات عائلية مثل ماردي أكوا بارك في قلب باتومي.",
+      en: "After ten years in Georgia, Amlak entered a bigger phase: projects managed by global hotel brands such as Ramada and Wyndham, and family resorts such as Mardi Aqua Park in the heart of Batumi.",
     },
     results: [
       { ar: "سبعة أشهر من المحتوى داخل العلامة الجديدة", en: "Seven months of content inside the new brand" },
@@ -346,8 +611,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "profitmax-profile": {
     desc: {
-      ar: "شركة استثمار تعمل من بريطانيا والإمارات. الملف يشرح عقود الاستثمار وضماناتها بلغة المستثمر لا بلغة النشرة — مدّة العقد، والعائد، وما الذي يضمنه، صفحةً بعد صفحة.",
-      en: "An investment firm operating out of the UK and the UAE. The profile explains the investment contracts and their guarantees in the investor's language rather than a brochure's — contract term, return, and what backs it, page after page.",
+      ar: "شركة استثمار بريطانية إماراتية تبني علاقتها مع المستثمر على الوضوح: عقود محدّدة المدّة، وعوائد معلنة، وضمانات مكتوبة.",
+      en: "A British-Emirati investment firm that builds its relationship with investors on clarity: fixed-term contracts, stated returns and written guarantees.",
     },
     results: [
       { ar: "ملف من ثلاث عشرة صفحة", en: "A thirteen-page profile" },
@@ -357,8 +622,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "hcc-profile": {
     desc: {
-      ar: "شركة تأمين دولية مقرّها لندن. الملف يشرح السندات والضمانات لمشترٍ محترف يقرأ التفاصيل قبل أن يقرّر — أنواع التغطية، ونطاقها القانوني، وما يجعلها معترفًا بها دوليًا.",
-      en: "A London-based international insurer. The profile explains bonds and guarantees to a professional buyer who reads the detail before deciding — types of cover, legal scope, and what makes them internationally recognised.",
+      ar: "إتش سي سي للتأمين الدولي شركة تأمين مقرّها لندن بخمسة عقود من الخبرة، تقدّم السندات والضمانات وحلول التأمين للمشاريع والشركات حول العالم.",
+      en: "HCC International Insurance is a London-based insurer with five decades of experience, providing bonds, guarantees and insurance solutions for projects and companies worldwide.",
     },
     results: [
       { ar: "ملف من سبع عشرة صفحة", en: "A seventeen-page profile" },
@@ -368,8 +633,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "trustech-profile": {
     desc: {
-      ar: "مجموعة مقاولات وتطوير بين الإمارات وبريطانيا. ملف مشروع «سكاي فيو» يُرسَل إلى المستثمر: الشركاء المنفّذون، والموقع ومسافاته، ومميزات الوحدة، والمخططات، والشهادات — ما يسأل عنه من يضع ماله لا من يتفرّج.",
-      en: "A contracting and development group between the UAE and the UK. The Sky View project profile goes to an investor: the delivery partners, the location and its distances, the unit features, the plans, the certificates — what someone putting money in asks, not someone browsing.",
+      ar: "سكاي فيو ريزيدنس مشروع سكني من تطوير تراستك، مجموعة المقاولات والتطوير ذات الأربعين عامًا بين الإمارات والمملكة المتحدة.",
+      en: "Sky View Residence is a residential project developed by Trustech, the forty-year contracting and development group operating between the UAE and the United Kingdom.",
     },
     results: [
       { ar: "ملف مشروع من سبع عشرة صفحة", en: "A seventeen-page project profile" },
@@ -379,8 +644,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "tdh-profile": {
     desc: {
-      ar: "مشروع سكني في عجمان من ثلاث وثلاثين صفحة. الملف يمشي بالمستثمر من الشركاء العالميين إلى موقع المشروع إلى كل نمط وحدة بمخططاته ومساحاته — حتى يقرّر وهو يعرف ما يشتريه بالمتر.",
-      en: "A thirty-three-page residential project in Ajman. The profile walks an investor from the international partners to the site to every unit type with its plans and areas — so the decision is made knowing what is bought, to the square metre.",
+      ar: "تي دي إتش للتطوير العقاري، ومشروعها «سكاي فيو ريزيدنس» في عجمان: برج سكني بشركاء تطوير عالميين وأنماط وحدات متعدّدة للسكن والاستثمار.",
+      en: "TDH Real Estate Development and its Sky View Residence in Ajman: a residential tower with international development partners and multiple unit types for living and investment.",
     },
     results: [
       { ar: "ملف مشروع من ثلاث وثلاثين صفحة", en: "A thirty-three-page project profile" },
@@ -390,8 +655,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "hennawy-profile": {
     desc: {
-      ar: "شركة تصنيع مناديل ورقية وكيماويات. الملف موجّه لمشترٍ صناعي: خطوط الإنتاج، والمنتجات، ومعايير الجودة، والشراكات — لا صور مصنع بلا معنى.",
-      en: "A tissue-paper and chemicals manufacturer. The profile is written for an industrial buyer: production lines, products, quality standards, partnerships — not factory photography without meaning.",
+      ar: "الحناوي شركة مصرية لتصنيع المناديل الورقية والكيماويات، بخطوط إنتاج متعدّدة ومعايير جودة صناعية.",
+      en: "Al Hennawy is an Egyptian manufacturer of tissue paper and chemicals, with multiple production lines and industrial quality standards.",
     },
     results: [
       { ar: "ملف من اثنتي عشرة صفحة", en: "A twelve-page profile" },
@@ -401,8 +666,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "alamein-profile": {
     desc: {
-      ar: "مصنع هياكل ومقطورات في السعودية. الملف كتالوج بقدر ما هو تعريف: كل نوع مقطورة بصوره ومواصفاته، لأن المشتري هنا يقارن بالمواصفة لا بالكلام.",
-      en: "A trailer and truck-body plant in Saudi Arabia. The profile is as much a catalogue as an introduction: every trailer type with its photographs and specification, because this buyer compares on spec, not on prose.",
+      ar: "مصنع سعودي متخصّص في تصنيع الهياكل المعدنية والمقطورات، بتشكيلة واسعة من أنواع المقطورات ومواصفاتها تخدم شركات النقل والإنشاءات في المملكة.",
+      en: "A Saudi factory specialising in steel bodies and trailers, with a wide range of trailer types and specifications serving transport and construction companies across the Kingdom.",
     },
     results: [
       { ar: "ملف من ثمانٍ وعشرين صفحة", en: "A twenty-eight-page profile" },
@@ -412,8 +677,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "connect-profile": {
     desc: {
-      ar: "شركة سعودية لتصميم وتنفيذ أجنحة المعارض. الملف نصفه تعريف ونصفه معرض أعمال: ثمانية عشر جناحًا منفّذًا لعلامات معروفة — لأن هذا القطاع يُشترى بالعين لا بالوصف.",
-      en: "A Saudi exhibition-stand design and build company. Half the profile introduces, half of it shows: eighteen delivered stands for recognised brands — because this category is bought with the eye, not from a description.",
+      ar: "كونكت شركة سعودية لتصميم وتنفيذ أجنحة المعارض، نفّذت ثمانية عشر جناحًا لعلامات معروفة في معارض المملكة.",
+      en: "Connect is a Saudi company designing and building exhibition stands, having delivered eighteen stands for well-known brands at exhibitions across the Kingdom.",
     },
     results: [
       { ar: "ملف من ثمانٍ وعشرين صفحة", en: "A twenty-eight-page profile" },
@@ -423,8 +688,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "sara-younis-brand": {
     desc: {
-      ar: "علامة أزياء نسائية طلبت الاقتصاد والرقيّ معًا. بنينا الشعار على حرفين داخل شكل بيضاوي بلا زخرفة — علامة تحتمل أن تُطبع على البطاقة واللافتة والعبوة وتظلّ هي نفسها.",
-      en: "A womenswear label that asked for restraint and refinement at once. We built the mark on two letters inside an oval with no ornament — a mark that can be printed on a card, a sign, and a package and stay itself.",
+      ar: "سارة يونس علامة أزياء نسائية تجمع بين الأناقة والبساطة، وتقدّم تصاميم عصرية بجودة راقية.",
+      en: "Sara Younis is a womenswear label combining elegance with simplicity, offering contemporary designs of refined quality.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -434,8 +699,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "expert-estate": {
     desc: {
-      ar: "شركة استثمار عقاري. بنينا الشعار على حرف E مكرّرًا ومعكوسًا حتى يُقرأ مبنى — فيقول مجال الشركة قبل أن يُقرأ اسمها، بذهبٍ على داكن يليق بحجم الصفقة.",
-      en: "A property investment firm. We built the mark on the letter E, repeated and mirrored until it reads as a building — stating the line of business before the name is read, in gold on dark to match the size of the deal.",
+      ar: "إكسبرت إستيت شركة استثمار عقاري تقدّم لعملائها فرصًا مختارة وخبرة في صفقات العقار عالية القيمة.",
+      en: "Expert Estate is a property investment company offering clients selected opportunities and expertise in high-value real estate deals.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -445,8 +710,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "hennawy-brand": {
     desc: {
-      ar: "شركة ورق وصناعات كيماوية. جمعنا في الشعار حرف H وأنبوب اختبار وورقة نبات: الحرف للاسم، والأنبوب للكيمياء، والورقة للبيئة التي يقوم عليها ادّعاء الشركة — ثلاث إشارات في شكل واحد.",
-      en: "A paper and chemical company. We folded the letter H, a test tube, and a leaf into one mark: the letter for the name, the tube for the chemistry, the leaf for the environmental claim the company rests on — three signals in one shape.",
+      ar: "الحناوي للورق والصناعات الكيماوية مجموعة صناعية مصرية تجمع صناعة الورق والكيماويات تحت علامة واحدة.",
+      en: "Al Hennawy for Paper and Chemical Industries is an Egyptian industrial group bringing paper and chemicals manufacturing under one brand.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -456,8 +721,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "adg-profile": {
     desc: {
-      ar: "شركة عقارات تربط المستثمر الخليجي بالسوق الجورجي. الملف يُرسَل إلى مستثمر يزن قراره بمئات الآلاف، فبُني على ما يسأل عنه: من أنتم، ولماذا جورجيا، وبأي أرقام — لا على سرد إنجازات. الهوية التي بنيناها للشركة هي نفسها التي يتكلّم بها الملف.",
-      en: "A real estate firm connecting Gulf investors to the Georgian market. The profile goes to an investor weighing a decision worth hundreds of thousands, so it is built on what they ask — who you are, why Georgia, and on what numbers — rather than on a list of achievements. The identity we built for the company is the one the profile speaks in.",
+      ar: "إيه دي جي شركة عقارات تعمل بين جورجيا ولبنان، وتفتح للمستثمر الخليجي والعربي فرص الاستثمار العقاري في باتومي.",
+      en: "ADG is a real estate company working between Georgia and Lebanon, opening property investment opportunities in Batumi to Gulf and Arab investors.",
     },
     results: [
       { ar: "ملف تعريفي من ثماني صفحات، عربي", en: "An eight-page company profile, in Arabic" },
@@ -467,8 +732,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "profitmax-brand": {
     desc: {
-      ar: "شركة استثمار تعمل من بريطانيا والإمارات. بنينا هوية تجمع حرف الاسم بسهم صاعد، فيقول الشعار تخصّص الشركة قبل أن يُقرأ اسمها، بلوحة ألوان تفصلها عن رمادية القطاع المالي.",
-      en: "An investment firm operating out of the UK and the UAE. We built an identity folding the initial into a rising arrow, so the mark states the specialism before the name is read — with a palette that separates it from the greyness of the sector.",
+      ar: "بروفيت ماكس للاستثمار مجموعة استثمارية بين المملكة المتحدة والإمارات، تقدّم لعملائها عقود استثمار وحلولًا مالية مصمّمة لنمو رأس المال.",
+      en: "Profit Max Investments is an investment group between the United Kingdom and the UAE, offering clients investment contracts and financial solutions designed to grow capital.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -478,8 +743,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "alhayat-brand": {
     desc: {
-      ar: "مزرعة دواجن في الرياض. بنينا الهوية من عناصر المزرعة نفسها — شمس وسنبلة قمح وأرض زراعية — لتقول جودة المنتج ونقاء بيئته دون ادّعاء مكتوب.",
-      en: "A poultry farm in Riyadh. We built the identity from the farm's own elements — a sun, a wheat spike, cultivated land — so it states the quality of the product and the purity of its environment without a written claim.",
+      ar: "مزرعة الحياة للدواجن مزرعة سعودية في الرياض تنتج دواجن طازجة من بيئة طبيعية، وتصل منتجاتها إلى البيوت والأسواق.",
+      en: "Alhayat Poultry Farm is a Saudi farm in Riyadh producing fresh poultry in a natural environment, supplying homes and markets.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -489,8 +754,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   sedra: {
     desc: {
-      ar: "علامة إكسسوارات فاخرة. بنينا الشعار على خطّ عربي مخصّص لكلمة «سدرة» — انسياب الحروف نفسه هو ما يقول رقّة المنتج، فلا يحتاج شرحًا.",
-      en: "A luxury accessories brand. We built the mark on custom Arabic lettering of the word «Sedra» — the flow of the script itself carries the delicacy of the product, so it needs no explaining.",
+      ar: "سدرة علامة إكسسوارات فاخرة تقدّم قطعًا مختارة بلمسة عربية راقية.",
+      en: "Sedra is a luxury accessories brand offering curated pieces with a refined Arabic touch.",
     },
     results: [
       { ar: "شعار بخطّ عربي مخصّص", en: "A logo in custom Arabic lettering" },
@@ -500,8 +765,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   alraghad: {
     desc: {
-      ar: "علامة مجوهرات. جمعنا حرفي الاسم في شكل خاتم داخل إطار مقوّس، بلمسة ذهبية على خلفية داكنة — لغة القطاع نفسها، لكن بعلامة تُميَّز لا تُشبَّه.",
-      en: "A jewellery brand. We folded the two initials into the shape of a ring inside an arched frame, gold on a dark ground — the language of the category, but a mark that is recognised rather than merely resembling.",
+      ar: "الرغد اسم في تجارة الذهب والمجوهرات، يبني حضوره على الفخامة والثقة في قطعة تُشترى لتبقى العمر كلّه.",
+      en: "Al Raghad is a name in the gold and jewellery trade, building its presence on luxury and trust in pieces bought to last a lifetime.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -511,8 +776,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "tech-care": {
     desc: {
-      ar: "معامل تحاليل طبية. المطلوب شعار يقول الثقة والراحة معًا، فبنيناه على قطرة داخل حرف C وجزيئات تحليل، بأزرق طبّي يفصله عن حِدّة القطاع.",
-      en: "A medical laboratory. The brief asked for a mark carrying both trust and reassurance, so we built it on a droplet inside the letter C with analysis particles, in a medical blue that softens the edge of the category.",
+      ar: "معامل تك كير علامة مصرية في التشخيص المعملي، تبني ثقة مرضاها على دقّة النتائج وراحة التجربة داخل المعمل.",
+      en: "Tech Care is an Egyptian laboratory diagnostics brand that builds patient trust on accurate results and a comfortable experience inside the lab.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -522,8 +787,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "vip-limo": {
     desc: {
-      ar: "خدمة ليموزين في شيكاغو. بنينا الهوية على حرفي الاسم في صيغة شخصٍ واقف، ثم امتدّ العمل إلى واجهات التطبيق نفسه — الهوية والاستخدام من مصدر واحد.",
-      en: "A limousine service in Chicago. We built the identity on the two initials read as a standing figure, then the work extended into the screens of the app itself — identity and use from one source.",
+      ar: "في آي بي ليمو شركة ليموزين ونقل فاخر في شيكاغو بالولايات المتحدة، تخدم رجال الأعمال والمناسبات بأسطول سيارات فاخرة وتطبيق حجز خاص.",
+      en: "VIP Limo is a limousine and luxury transport company in Chicago, USA, serving executives and events with a fleet of luxury vehicles and its own booking app.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -533,8 +798,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "auto-crazy-car": {
     desc: {
-      ar: "خدمات سيارات. هوية عالية التباين تحمل حركةً وسرعة — الحرف المشقوق في الوسط يقول الطاقة قبل أن يُقرأ الاسم.",
-      en: "An automotive service. A high-contrast identity carrying movement and speed — the split letter at its centre states the energy before the name is read.",
+      ar: "أوتو كريزي كار علامة خدمات سيارات تخاطب عشّاق السيارات والأداء.",
+      en: "Auto Crazy Car is an automotive services brand speaking to car and performance enthusiasts.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -544,8 +809,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "caffeine-kiss": {
     desc: {
-      ar: "علامة قهوة. الشعار فنجانٌ يُقرأ ابتسامةً في آنٍ واحد — فكرة واحدة تحمل اسم العلامة ومزاجها معًا، بلا زخرفة زائدة.",
-      en: "A coffee brand. The mark is a cup that reads as a smile at the same time — one idea carrying both the name and the mood, with no decoration to spare.",
+      ar: "كافيين كيس علامة قهوة تقدّم تجربة قهوة ودودة وعصرية.",
+      en: "A Caffeine Kiss is a coffee brand offering a friendly, contemporary coffee experience.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -555,8 +820,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   daughters: {
     desc: {
-      ar: "شركة تجارة عامة. بنينا الشعار على صندوق شحن يُقرأ حرف الاسم الأول، فيقول مجال الشركة في لمحة واحدة دون سطر تعريفي.",
-      en: "A general trading company. We built the mark on a shipping crate that reads as the initial, so it states the line of business at a glance without a descriptor line.",
+      ar: "دوترز للتجارة شركة تجارة عامة وتوريد وتوزيع.",
+      en: "Daughters Trading is a general trading, supply and distribution company.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -566,8 +831,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "profitmax-web": {
     desc: {
-      ar: "موقع شركة استثمار تعمل من بريطانيا والإمارات. بنيناه ثنائي اللغة يعرض الخدمات وعقود التأمين، ويقود الزائر إلى حجز استشارة بدل أن يتركه يقرأ ويغادر.",
-      en: "A site for an investment firm operating out of the UK and the UAE. We built it bilingual, presenting the services and contract insurance, and leading the visitor to book a consultation rather than read and leave.",
+      ar: "بروفيت ماكس شركة استثمار وخدمات مالية تخدم مستثمرين من أسواق متعدّدة انطلاقًا من المملكة المتحدة والإمارات.",
+      en: "Profit Max is an investment and financial services company serving investors from multiple markets out of the United Kingdom and the UAE.",
     },
     results: [
       { ar: "موقع ثنائي اللغة", en: "A bilingual site" },
@@ -577,8 +842,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "utility-vision": {
     desc: {
-      ar: "شركة مقاولات في جدة. بنينا موقعًا يعرض المشاريع والخدمات بلغة القطاع، مع مسار «اطلب عرض سعر» ظاهر في كل صفحة لا في صفحة التواصل وحدها.",
-      en: "A contracting company in Jeddah. We built a site presenting the projects and services in the language of the sector, with a request-a-quote path visible on every page rather than on the contact page alone.",
+      ar: "يوتيليتي فيجن شركة مقاولات في جدة تنفّذ المشاريع الإنشائية وأعمال المرافق.",
+      en: "Utility Vision is a contracting company in Jeddah delivering construction projects and utility works.",
     },
     results: [
       { ar: "موقع يعرض المشاريع والخدمات", en: "A site presenting projects and services" },
@@ -588,8 +853,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "future-axis": {
     desc: {
-      ar: "شركة مقاولات في السعودية. الموقع يعرض السجلّ والموردين والمشاريع الأخيرة — ما يسأل عنه المقاول الباحث عن شريك تنفيذ، لا ما يبدو جميلًا في العرض.",
-      en: "A Saudi contracting company. The site presents the record, the suppliers, and the latest projects — what a contractor looking for a delivery partner asks about, not what looks good in a showreel.",
+      ar: "فيوتشر أكسس للمقاولات شركة سعودية بسجلّ مشاريع وشبكة موردين، تعمل شريكَ تنفيذ في المشاريع الإنشائية.",
+      en: "Future Axis Contracting is a Saudi company with a track record of projects and a supplier network, working as an execution partner on construction projects.",
     },
     results: [
       { ar: "موقع بسجلّ مشاريع ومورّدين", en: "A site with a project and supplier record" },
@@ -599,8 +864,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "alhayat-web": {
     desc: {
-      ar: "مزرعة دواجن في الرياض. بنينا متجرًا إلكترونيًا يعرض المنتجات ويستقبل الطلبات، بالهوية نفسها التي بنيناها للمزرعة — فما على العبوة هو ما على الشاشة.",
-      en: "A poultry farm in Riyadh. We built an online store that presents the products and takes orders, in the same identity we built for the farm — so what is on the pack is what is on screen.",
+      ar: "الحياة للدواجن من مزارع الرياض المنتجة، تبيع منتجاتها مباشرة إلى المستهلك عبر متجرها الإلكتروني.",
+      en: "Alhayat Poultry is a producing farm in Riyadh selling its products directly to consumers through its online store.",
     },
     results: [
       { ar: "متجر إلكتروني يستقبل الطلبات", en: "An online store taking orders" },
@@ -610,8 +875,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   greenmark: {
     desc: {
-      ar: "شركة تأسيس شركات وتخليص أوراق في دبي. أدرنا حضورها على السوشيال بمحتوى يجيب أسئلة العميل الفعلية — كم تستغرق؟ ما التراخيص؟ كيف تُستخرج التأشيرة؟ — بدل إعلانات عامّة.",
-      en: "A company-formation and document-clearing firm in Dubai. We ran its social presence on content answering the questions clients actually ask — how long it takes, which licences, how a visa is issued — instead of generic advertising.",
+      ar: "جرين مارك شركة في دبي لتأسيس الشركات والخدمات الحكومية والتأشيرات، ترافق روّاد الأعمال والمستثمرين من الرخصة حتى بدء النشاط.",
+      en: "Green Mark is a Dubai company for business setup, government services and visas, accompanying entrepreneurs and investors from licence to launch.",
     },
     results: [
       { ar: "محتوى شهري بالعربية والإنجليزية", en: "Monthly content in Arabic and English" },
@@ -621,8 +886,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   rahiq: {
     desc: {
-      ar: "علامة عسل ومنتجات طبيعية في مصر. بنينا محتوى شهريًا يربط المنتج بمناسبات السنة وفوائده الغذائية، فصار المنشور سببًا للشراء لا صورةً للمنتج.",
-      en: "A honey and natural-products brand in Egypt. We built monthly content tying the product to the occasions of the year and to its nutritional value, so a post became a reason to buy rather than a picture of the product.",
+      ar: "رحيق علامة مصرية للعسل والمنتجات الطبيعية، تقدّم أنواع عسل منتقاة ومنتجات نحل تصل إلى المستهلك مباشرة.",
+      en: "Rahiq is an Egyptian honey and natural products brand offering selected honeys and bee products direct to consumers.",
     },
     results: [
       { ar: "محتوى شهري متّصل بمناسبات السنة", en: "Monthly content tied to the occasions of the year" },
@@ -632,8 +897,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "sat-leaders": {
     desc: {
-      ar: "أكاديمية تحضير لاختبارات SAT وACT وEST في مصر. بنينا محتوى يخاطب قلق الطالب وولي الأمر معًا — الدرجة والمدّة والطريقة — بلغة واضحة لا بشعارات تعليمية.",
-      en: "An academy preparing students for the SAT, ACT and EST in Egypt. We built content addressing the anxiety of both student and parent — the score, the timeline, the method — in plain language rather than educational slogans.",
+      ar: "سات ليدرز أكاديمية في مصر لتحضير اختبارات SAT وACT وEST والدبلومة الأمريكية ودورات اللغة الإنجليزية.",
+      en: "SAT Leaders is an academy in Egypt preparing students for the SAT, ACT and EST and the American Diploma, with English language courses.",
     },
     results: [
       { ar: "محتوى شهري لمواسم الاختبارات", en: "Monthly content across the exam seasons" },
@@ -643,8 +908,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "building-line": {
     desc: {
-      ar: "شركة مقاولات في السعودية. طوّرنا هوية بصرية تعكس الاحترافية والصلابة والثقة، بما يتماشى مع طبيعة القطاع الإنشائي.",
-      en: "A Saudi construction company. We developed an identity conveying professionalism, solidity, and trust, matched to the nature of the sector.",
+      ar: "بيلدنج لاين شركة مقاولات سعودية تنفّذ المشاريع الإنشائية بمعايير هندسية صارمة.",
+      en: "Building Line is a Saudi contracting company delivering construction projects to rigorous engineering standards.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -654,8 +919,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   amlak: {
     desc: {
-      ar: "شركة عقارات تعمل في جورجيا والسعودية. طوّرنا هوية تعكس الاحترافية والمصداقية مع إبراز الطابع الاستثماري والبعد الدولي للعلامة.",
-      en: "A real estate company operating in Georgia and Saudi Arabia. We built an identity conveying credibility while carrying its investment focus and international reach.",
+      ar: "أملاك العقارية من الأسماء الراسخة في تسويق العقار الجورجي للمستثمر العربي، تعمل بين جورجيا والسعودية بفريق يرافق المستثمر حتى التملّك.",
+      en: "Amlak Real Estate is an established name in marketing Georgian property to Arab investors, working between Georgia and Saudi Arabia with a team that accompanies investors through to ownership.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -665,8 +930,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   elitegate: {
     desc: {
-      ar: "شركة استثمار عقاري. طوّرنا هوية تعكس الطابع الاستثماري الراقي وتعزّز مفاهيم الثقة والاحترافية.",
-      en: "A property investment firm. We developed an identity carrying a refined investment character while reinforcing trust and professionalism.",
+      ar: "إيليت جيت شركة استثمار عقاري تقدّم فرصًا عقارية راقية لمستثمرين يبحثون عن قيمة طويلة الأجل.",
+      en: "Elitegate Properties is a property investment company offering upscale real estate opportunities to investors seeking long-term value.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -676,8 +941,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "basmat-alomran": {
     desc: {
-      ar: "شركة مقاولات في السعودية. طوّرنا هوية تعكس قوة التنفيذ والطابع الهندسي الحديث مع إبراز الموثوقية.",
-      en: "A Saudi construction company. We built an identity conveying delivery strength and a modern engineering character alongside reliability.",
+      ar: "بصمة العمران شركة مقاولات سعودية تجمع بين قوّة التنفيذ والطابع الهندسي الحديث.",
+      en: "Basmat Alomran is a Saudi contracting company combining strong execution with a modern engineering character.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -687,8 +952,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   inmaa: {
     desc: {
-      ar: "شركة مقاولات. طوّرنا هوية بصرية تعكس الاعتمادية والاحترافية، مع إبراز قوة التنفيذ والالتزام بالمواعيد.",
-      en: "A construction company. We developed an identity conveying dependability and professionalism, highlighting delivery strength and punctuality.",
+      ar: "إنماء للمقاولات شركة مقاولات تبني سمعتها على الاعتمادية والالتزام بمواعيد التسليم.",
+      en: "Inmaa Constructions is a contracting company building its reputation on reliability and on-time delivery.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -697,8 +962,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "adg-brand": {
     desc: {
-      ar: "شركة عقارات في جورجيا ولبنان. طوّرنا هوية حديثة وقوية تعكس الثقة وقيمة الاستثمار والنمو في كلا السوقين.",
-      en: "A real estate company in Georgia and Lebanon. We built a modern, confident identity reflecting trust, investment value, and growth in both markets.",
+      ar: "إيه دي جي العقارية مجموعة استثمار عقاري في جورجيا ولبنان، تقدّم مشاريع فاخرة في باتومي بخطط سداد مرنة.",
+      en: "ADG Real Estate is a property investment group in Georgia and Lebanon offering luxury projects in Batumi with flexible payment plans.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -708,8 +973,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   fragancia: {
     desc: {
-      ar: "متجر إلكتروني للعطور والعناية، بتجربة تسوّق راقية تعكس الأناقة وتُبرز المنتج بوضوح.",
-      en: "An e-commerce store for fragrance and care products, with a refined shopping experience that puts the product first.",
+      ar: "فراجانسيا متجر للعطور ومنتجات العناية والجمال، يبيع إلكترونيًا بتجربة تسوّق تليق بفئة منتجاته.",
+      en: "Fragancia is a fragrance, care and beauty store selling online with a shopping experience that matches the class of its products.",
     },
     results: [
       { ar: "متجر إلكتروني متكامل", en: "Complete online store" },
@@ -719,8 +984,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "vibrant-design": {
     desc: {
-      ar: "موقع لشركة ديكور وتصميم داخلي يعرض المشاريع بأسلوب بصري أنيق بالأبيض والأسود.",
-      en: "A site for an interior design studio presenting projects in an elegant black-and-white visual style.",
+      ar: "فايبرانت ديزاين استوديو ديكور وتصميم داخلي يحوّل المساحات إلى تجارب فاخرة بتوقيع واضح، من الفكرة حتى التسليم.",
+      en: "Vibrant Design is an interior design studio turning spaces into luxury experiences with a clear signature, from concept to handover.",
     },
     results: [
       { ar: "موقع أعمال", en: "Portfolio site" },
@@ -730,8 +995,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "trustech-web": {
     desc: {
-      ar: "موقع مؤسسي يبرز إرث 42 عامًا من الخبرة في المقاولات والتطوير العقاري داخل الإمارات.",
-      en: "A corporate site carrying 42 years of experience in contracting and property development in the UAE.",
+      ar: "تراستك للمقاولات من شركات المقاولات والتطوير العقاري ذات الإرث الطويل في الإمارات — اثنان وأربعون عامًا من المشاريع — بحضور ممتد إلى المملكة المتحدة.",
+      en: "Trustech Building Contracting is one of the long-established contracting and development firms in the UAE — forty-two years of projects — with a presence extending to the United Kingdom.",
     },
     results: [
       { ar: "موقع مؤسسي", en: "Corporate site" },
@@ -741,8 +1006,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "hcc-insurance": {
     desc: {
-      ar: "شركة تأمين دولية مقرّها لندن. بنينا موقعًا مؤسسيًا يقوم على رسالة الثقة والقوة المالية عبر خمسة عقود من الخبرة، بصفحات خدمات تشرح كل نوع تأمين على حدة.",
-      en: "An international insurance company based in London. We built a corporate site on a message of trust and financial strength across five decades, with service pages explaining each line of cover on its own.",
+      ar: "إتش سي سي شركة تأمين دولية من لندن، تعتمد عليها الشركات والمقاولون في سندات الضمان والتغطيات المعترف بها دوليًا.",
+      en: "HCC is an international insurer from London that companies and contractors rely on for surety bonds and internationally recognised cover.",
     },
     results: [
       { ar: "موقع مؤسسي", en: "Corporate site" },
@@ -752,8 +1017,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "sara-younis-web": {
     desc: {
-      ar: "علامة أزياء نسائية. بنينا متجرًا بتصميم مينيمال أبيض وأسود يترك الصورة تتكلّم، ويقصّر الطريق من التصفّح إلى الشراء بدل أن يزيّن الصفحة.",
-      en: "A womenswear label. We built a store in a minimal black-and-white design that lets the photography speak, and shortens the path from browsing to buying rather than decorating the page.",
+      ar: "سارة يونس علامة أزياء نسائية تبيع تشكيلاتها إلكترونيًا لعميلات يبحثن عن قطع راقية بتصميم هادئ.",
+      en: "Sara Younis is a womenswear label selling its collections online to customers looking for refined pieces with understated design.",
     },
     results: [
       { ar: "متجر إلكتروني", en: "Online store" },
@@ -763,8 +1028,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "eco-vista": {
     desc: {
-      ar: "شركة مقاولات تعمل في السعودية. أنشأنا محتوى سوشيال ميديا متكامل يبرز المشاريع والخدمات بشكل احترافي ويبني حضورًا رقميًا قويًا.",
-      en: "A Saudi construction company. We produced a full social content programme presenting projects and services professionally and building a strong presence.",
+      ar: "إيكو فيستا شركة مقاولات وبنية تحتية في السعودية، تنفّذ أعمال الحفر والإنشاءات والمشاريع المدنية بفرق ميدانية متخصّصة.",
+      en: "Eco Vista is a contracting and infrastructure company in Saudi Arabia, carrying out excavation, construction and civil works with specialist field teams.",
     },
     results: [
       { ar: "حضور رقمي أقوى", en: "A stronger digital presence" },
@@ -774,8 +1039,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "sky-shooter": {
     desc: {
-      ar: "شركة تصوير جوي في الإمارات. صمّمنا محتوى بصري ديناميكي يعكس جودة التصوير ويبرز تميّز الشركة في عرض المشاريع.",
-      en: "An aerial filming company in the UAE. We designed dynamic visual content reflecting the quality of the footage and how it presents projects.",
+      ar: "سكاي شوتر شركة تصوير جوي وإنتاج في الإمارات، تنفّذ التصوير بالدرون داخل المباني وخارجها للعقارات والإعلانات والأفلام، بفريق خبراء وتصاريح طيران كاملة.",
+      en: "Sky Shooter is an aerial filming and production company in the UAE, flying drones indoors and outdoors for real estate, advertising and film, with an expert team and full flight permits.",
     },
     results: [
       { ar: "زيادة التفاعل", en: "Higher engagement" },
@@ -785,8 +1050,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "green-flash": {
     desc: {
-      ar: "شركة في قطاع الصناعة والطاقة. طوّرنا محتوى بصريًا قويًا يعكس حجم المشاريع وجودة التنفيذ ويعزّز صورة الشركة في السوق.",
-      en: "A company in the industrial and energy sector. We produced strong visual content reflecting project scale and delivery quality.",
+      ar: "جرين فلاش شركة حلول هندسية وصناعية في السعودية، تعمل في مشاريع الطاقة والإنشاءات ضمن مستهدفات رؤية المملكة 2030.",
+      en: "Green Flash is an engineering and industrial solutions company in Saudi Arabia, working on energy and construction projects aligned with Vision 2030.",
     },
     results: [
       { ar: "تحسين صورة الشركة", en: "An improved market image" },
@@ -796,8 +1061,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "ahl-alquran": {
     desc: {
-      ar: "أكاديمية تعليم قرآن تستهدف الجاليات المسلمة في أمريكا وأوروبا. أنشأنا محتوى بصريًا يعكس الرسالة التعليمية بأسلوب حديث وبسيط.",
-      en: "A Quran academy serving Muslim communities in the US and Europe. We created visual content carrying its educational message in a modern, simple style.",
+      ar: "أكاديمية أهل القرآن أكاديمية إلكترونية لتعليم القرآن الكريم والتربية الإسلامية للأطفال، تخدم الأسر المسلمة في أمريكا وأوروبا بمعلّمين مؤهّلين ومتابعة دورية مع أولياء الأمور.",
+      en: "Ahl Alquran Academy is an online academy teaching the Quran and Islamic studies to children, serving Muslim families in the US and Europe with qualified teachers and regular parent follow-up.",
     },
     results: [
       { ar: "زيادة التفاعل مع المحتوى التعليمي", en: "Higher engagement with educational content" },
@@ -807,8 +1072,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "adg-social": {
     desc: {
-      ar: "شركة متخصّصة في الاستثمار العقاري داخل جورجيا. طوّرنا محتوى بصريًا يعكس الثقة ويبرز الفرص الاستثمارية بوضوح.",
-      en: "A firm specialising in property investment in Georgia. We developed visual content conveying trust and presenting investment opportunities clearly.",
+      ar: "إيه دي جي العقارية تقدّم للمستثمر عنوانًا أيقونيًا في باتومي: مشروع بعشرين ألف متر مربع من الطبيعة وسط المدينة، بخطط تقسيط تبدأ من ألف دولار شهريًا.",
+      en: "ADG Real Estate offers investors an iconic Batumi address: a project with twenty thousand square metres of nature in the city centre, with instalment plans from one thousand dollars a month.",
     },
     results: [
       { ar: "زيادة التفاعل على المحتوى", en: "Higher content engagement" },
@@ -946,8 +1211,8 @@ export const contactPage = {
   hours: { ar: "الأحد – الخميس · 9ص – 6م", en: "Sunday – Thursday · 9am – 6pm" } as Bi,
   marketsLabel: { ar: "الأسواق", en: "Markets" } as Bi,
   markets: {
-    ar: "السعودية · الإمارات · مصر · أوروبا · جورجيا",
-    en: "Saudi Arabia · UAE · Egypt · Europe · Georgia",
+    ar: "السعودية · الإمارات · أوروبا · مصر",
+    en: "Saudi Arabia · UAE · Europe · Egypt",
   } as Bi,
   responseLabel: { ar: "زمن الرد", en: "Response time" } as Bi,
   response: { ar: "خلال يوم عمل", en: "Within one business day" } as Bi,

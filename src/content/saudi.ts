@@ -147,8 +147,8 @@ export const cityPages: CityPage[] = [
       {
         q: { ar: "كم يستغرق موقع شركة؟", en: "How long does a company site take?" },
         a: {
-          ar: "من ثلاثة إلى خمسة أسابيع حسب عدد الصفحات وجاهزية المحتوى. أكبر سبب للتأخير ليس التطوير بل انتظار النصوص والصور، ولهذا نتّفق على جدول تسليم المحتوى قبل أن نبدأ.",
-          en: "Three to five weeks depending on page count and content readiness. The biggest cause of delay isn't development but waiting on text and images, which is why we agree a content schedule before starting.",
+          ar: "يتحدّد بعدد الصفحات وجاهزية المحتوى، لذلك نضع الجدول الزمني بعد جلسة النطاق لا قبلها. أكبر سبب للتأخير ليس التطوير بل انتظار النصوص والصور، ولهذا نتّفق على جدول تسليم المحتوى قبل أن نبدأ.",
+          en: "It depends on page count and content readiness, so we set the timeline after the scoping call, not before. The biggest cause of delay isn't development but waiting on text and images, which is why we agree a content schedule before starting.",
         },
       },
     ],
@@ -311,8 +311,8 @@ export const cityPages: CityPage[] = [
       {
         q: { ar: "كم تستغرق الهوية الكاملة؟", en: "How long does a full identity take?" },
         a: {
-          ar: "من أسبوعين إلى ثلاثة للهوية، وأسبوع إضافي للملف التعريفي. تصلك اتجاهات مختلفة فعلًا لا تنويعات على فكرة واحدة، ثم نطوّر ما تختاره حتى يكتمل.",
-          en: "Two to three weeks for the identity, and a further week for the company profile. You see genuinely different directions rather than variations on one idea, then we develop the one you pick.",
+          ar: "تتحدّد بنطاق الهوية وتطبيقاتها، ونضع جدولًا زمنيًا مكتوبًا بعد جلسة النطاق ونلتزم به. تصلك اتجاهات مختلفة فعلًا لا تنويعات على فكرة واحدة، ثم نطوّر ما تختاره حتى يكتمل.",
+          en: "It depends on the scope of the identity and its applications; we set a written timeline after the scoping call and hold to it. You see genuinely different directions rather than variations on one idea, then we develop the one you pick.",
         },
       },
     ],

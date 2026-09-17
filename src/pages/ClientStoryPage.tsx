@@ -119,7 +119,7 @@ export function ClientStoryPage() {
                           width={coverSize[c.image]?.w ?? 1400}
                           height={coverSize[c.image]?.h ?? 933}
                           sizes="(min-width: 1024px) 50vw, 100vw"
-                          className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04] dark:brightness-[0.86] dark:group-hover:brightness-100"
+                          className="size-full object-contain transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04] dark:brightness-[0.86] dark:group-hover:brightness-100"
                         />
                       </div>
                     </div>

@@ -62,7 +62,10 @@ function WorkStrip() {
                  وعن مسار المفاتيح حتى لا يمرّ على العمل مرّتين */
               aria-hidden={i >= picks.length}
               tabIndex={i >= picks.length ? -1 : undefined}
-              className="group relative block h-[190px] w-[280px] shrink-0 overflow-hidden border-e border-[var(--line)] sm:h-[230px] sm:w-[340px]"
+              /* الارتفاع ثابت والعرض يتبع نسبة التصميم: كان إطارًا 3:2
+                 يقصّ المنشور الطولي فيبقى منه وسطه بلا شعار ولا عنوان */
+              className="group relative block h-[190px] shrink-0 overflow-hidden border-e border-[var(--line)] sm:h-[230px]"
+              style={{ aspectRatio: `${size.w} / ${size.h}` }}
             >
               {/* الشريط قرب الطية: أول نسختين تُحمَّلان فورًا لأنهما
                   مرئيّتان، والباقي كسولًا. `sizes` ثابت لأن عرض
@@ -76,7 +79,7 @@ function WorkStrip() {
                 priority={i < 2}
                 /* في الوضع الداكن تُخفَّف الإضاءة: أعمال كثيرة خلفياتها
                    بيضاء وتشتعل على خلفية شبه سوداء */
-                className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
+                className="size-full object-contain transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
               />
               <span className="tag absolute bottom-0 start-0 translate-y-full bg-ink px-3 py-2 text-paper transition-transform duration-500 ease-[var(--ease-out-quint)] group-hover:translate-y-0">
                 {t(item.name)}

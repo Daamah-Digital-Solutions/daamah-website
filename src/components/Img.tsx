@@ -39,6 +39,26 @@ export function Img({
       وإلا حمل `srcset` مسارات غير موجودة. صور المعرض أضيق. */
   widths?: number[];
 }) {
+  /* تصاميم السوشيال WebP جاهز بعرضين: الأصل (≤1080) ونسخة 480 —
+     فلا `<source>`، والمتصفح يختار من `srcset` مباشرة */
+  if (/\.webp$/i.test(src)) {
+    const small = src.replace(/\.webp$/i, "-480.webp");
+    return (
+      <img
+        src={src}
+        srcSet={width > 480 ? `${small} 480w, ${src} ${width}w` : undefined}
+        sizes={sizes}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        decoding="async"
+        className={className}
+      />
+    );
+  }
+
   const base = src.replace(/\.(jpe?g|png)$/i, "");
   /* السكربت لا يكبّر ما هو أصغر من العرض المطلوب، فلا نَعِد المتصفح
      بنسخة لم تُولَّد: لقطة جوّال عرضها 264px ليس لها 480 ولا 960،

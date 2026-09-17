@@ -5,6 +5,7 @@ import { cities, citiesForService, cityPages, saudiHub } from "../content/saudi"
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { waMessage } from "../content/whatsapp";
+import { Justified } from "../components/Justified";
 import { WorkCard } from "../components/WorkCard";
 import { Testimonials } from "../sections/Testimonials";
 import {
@@ -124,11 +125,11 @@ export function SaudiHubPage() {
             <Reveal>
               <SectionLabel>{t(saudiHub.workLabel)}</SectionLabel>
             </Reveal>
-            <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-10">
               {proof.map((w, i) => (
                 <WorkCard key={w.slug} item={w} delay={i * 70} />
               ))}
-            </div>
+            </Justified>
           </Wrap>
         </section>
       )}

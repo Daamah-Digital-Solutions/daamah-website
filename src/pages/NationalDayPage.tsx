@@ -41,7 +41,8 @@ function ShotImg({ s, sizes, className = "", priority = false }: { s: Shot; size
       sizes={sizes}
       priority={priority}
       widths={s.gallery ? GALLERY_WIDTHS : undefined}
-      className={`size-full object-cover dark:brightness-[0.9] ${className}`}
+      /* التصميم كاملًا داخل إطاره — القصّ كان يبتر الشعار والعنوان */
+      className={`size-full object-contain dark:brightness-[0.9] ${className}`}
     />
   );
 }

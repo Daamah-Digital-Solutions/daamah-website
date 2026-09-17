@@ -15,6 +15,7 @@ import { PageCta } from "../components/PageCta";
 import { waMessage } from "../content/whatsapp";
 import { Breadcrumbs } from "../components/Breadcrumbs";
 import { FaqList } from "../components/FaqList";
+import { Justified } from "../components/Justified";
 import { WorkCard } from "../components/WorkCard";
 import { Testimonials } from "../sections/Testimonials";
 import { Chevron, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
@@ -116,11 +117,11 @@ export function CityServicePage() {
             <Reveal>
               <SectionLabel>{t(cityUi.workLabel)}</SectionLabel>
             </Reveal>
-            <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-10">
               {proof.map((w, i) => (
                 <WorkCard key={w.slug} item={w} delay={i * 80} />
               ))}
-            </div>
+            </Justified>
           </Wrap>
         </section>
       )}

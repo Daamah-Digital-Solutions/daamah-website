@@ -1,7 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <rect width="120" height="120" rx="26" fill="#000000"/>
-  <g transform="translate(14 10) scale(0.83)">
-    <path d="M6 0 L52 50 L6 100 L30 100 L76 50 L30 0 Z" fill="#ffffff"/>
-    <path d="M50 0 L96 50 L50 100 L74 100 L120 50 L74 0 Z" fill="#e40000"/>
+  <!-- علامة دَعمة: الشيفرونات الثلاثة من الشعار نفسه (أسود · أحمر · أسود) -->
+  <rect width="120" height="120" rx="26" fill="#ffffff"/>
+  <g transform="translate(17.5 32.5) scale(0.2)">
+    <path d="M0,0 L96,0 L160,138.5 L96,277 L0,277 L64,138.5 Z" fill="#000000"/>
+    <path d="M125,0 L221,0 L285,138.5 L221,277 L125,277 L189,138.5 Z" fill="#e40000"/>
+    <path d="M245,0 L341,0 L405,138.5 L341,277 L245,277 L309,138.5 Z" fill="#000000"/>
   </g>
 </svg>

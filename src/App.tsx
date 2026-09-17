@@ -1,4 +1,5 @@
 import { Suspense, lazy } from "react";
+import { BLOG_ENABLED } from "./content/features";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
 import { barePaths } from "./content/nationalDay";
@@ -70,10 +71,15 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-profile`} path={at("profile")} element={<ProfilePage />} />,
     <Route key={`${prefix}-solutions`} path={at("solutions")} element={<PackagesPage />} />,
     <Route key={`${prefix}-contact`} path={at("contact")} element={<ContactPage />} />,
-    <Route key={`${prefix}-blog`} path={at("blog")} element={<BlogPage />} />,
-    /* الوسم قبل المقال: لولا ذلك لالتقط `:slug` كلمة «tag» */
-    <Route key={`${prefix}-blogtag`} path={at("blog/tag/:tag")} element={<BlogTagPage />} />,
-    <Route key={`${prefix}-blogpost`} path={at("blog/:slug")} element={<BlogPostPage />} />,
+    /* المدوّنة موقوفة مؤقّتًا (`content/features.ts`) — مساراتها تُعرض 404 */
+    ...(BLOG_ENABLED
+      ? [
+          <Route key={`${prefix}-blog`} path={at("blog")} element={<BlogPage />} />,
+          /* الوسم قبل المقال: لولا ذلك لالتقط `:slug` كلمة «tag» */
+          <Route key={`${prefix}-blogtag`} path={at("blog/tag/:tag")} element={<BlogTagPage />} />,
+          <Route key={`${prefix}-blogpost`} path={at("blog/:slug")} element={<BlogPostPage />} />,
+        ]
+      : []),
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
     <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
     /* صفحة حملة عربية فقط: لا نسخة إنجليزية لها، فلا مسار تحت `/en` */

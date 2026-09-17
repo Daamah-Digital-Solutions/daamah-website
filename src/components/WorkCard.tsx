@@ -13,6 +13,7 @@ import {
 } from "../content/work";
 import { Reveal } from "./ui";
 import { Img } from "./Img";
+import { JustifiedItem } from "./Justified";
 
 /**
  * بطاقة عمل — تُستعمل في الرئيسية وصفحة الأعمال وصفحة الخدمة.
@@ -29,11 +30,9 @@ import { Img } from "./Img";
 export function WorkCard({
   item,
   delay = 0,
-  natural = false,
 }: {
   item: WorkItem;
   delay?: number;
-  natural?: boolean;
 }) {
   const { t, path } = useLang();
 
@@ -49,59 +48,59 @@ export function WorkCard({
     ...item.markets.map((m) => t(marketLabels[m])),
   ].filter(Boolean);
 
+  /* بطاقة داخل صفّ مضبوط: عرضها بنسبة غلافها، والارتفاع واحد في الصفّ،
+     فتلتصق البطاقات بلا فراغات والغلاف كامل بلا قصّ. الاسم والقطاع فوق
+     الصورة لا تحتها — سطرا النصّ كانا يفصلان كل عمل عن الذي يليه */
   return (
-    <Reveal delay={delay} as="article" className="group">
-      <Link to={path(`/work/${item.slug}`)} className="block">
-        <div
-          className={`relative overflow-hidden bg-paper-2 ${natural ? "" : "aspect-[4/3]"}`}
-        >
+    <JustifiedItem w={size.w} h={size.h} className="overflow-hidden bg-paper-2">
+      <Reveal delay={delay} as="article" className="group size-full">
+        <Link to={path(`/work/${item.slug}`)} className="relative block size-full">
           <Img
             src={item.image}
             alt={t(item.name)}
             width={size.w}
             height={size.h}
-            /* ثلث الشاشة على الديسكتوب، نصفها على اللوح، كاملةً على الجوال */
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className={`transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100 ${
-              natural ? "w-full" : "size-full object-cover"
-            }`}
+            className="size-full transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03] dark:brightness-[0.86] dark:group-hover:brightness-100"
           />
 
-          {/* الخدمة على الصورة: تقول نوع الشغل قبل أن يُقرأ الاسم */}
-          <span className="tag absolute top-3 start-3 rounded-pill bg-paper/85 px-3 py-1.5 text-ink backdrop-blur-sm">
-            {t(serviceMeta(item.service).label)}
-          </span>
-
-          {/* المدّة قبل عدد الخدمات: «ثمانية وأربعون شهرًا» أثقل من
-              «خدمتان»، وهي وحدها ما لا يُقال بلا سجلّ يسنده */}
-          {item.months && item.months >= 6 && (
-            <span className="tag absolute bottom-3 start-3 rounded-pill bg-red px-3 py-1.5 text-paper">
-              <span className="nums ltr">{item.months}</span> {t(work.months)}
+          {/* الكلام فوق التصميم: على الأجهزة التي فيها مؤشّر يظهر عند المرور
+              أو التركيز وحده، فتُقرأ الصفحة معرضًا والتصميم يتكلّم أوّلًا. على
+              اللمس لا مرور، فيبقى ظاهرًا — القرار بالقدرة لا بمقاس الشاشة */}
+          <div className="pointer-events-none absolute inset-0 transition-opacity duration-(--dur-base) [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-within:opacity-100">
+            {/* الخدمة على الصورة: تقول نوع الشغل قبل أن يُقرأ الاسم */}
+            <span className="tag absolute top-3 start-3 rounded-pill bg-paper/85 px-3 py-1.5 text-ink backdrop-blur-sm">
+              {t(serviceMeta(item.service).label)}
             </span>
-          )}
 
-          {!item.months && story && storyServices > 1 && (
-            <span className="tag absolute bottom-3 start-3 rounded-pill bg-ink/90 px-3 py-1.5 text-paper backdrop-blur-sm">
-              <span className="nums ltr">{storyServices}</span> {t(work.storyServices)}
-            </span>
-          )}
+            {/* المدّة قبل عدد الخدمات: «ثمانية وأربعون شهرًا» أثقل من
+                «خدمتان»، وهي وحدها ما لا يُقال بلا سجلّ يسنده */}
+            {item.months && item.months >= 6 ? (
+              <span className="tag absolute top-3 end-3 rounded-pill bg-red px-3 py-1.5 text-white">
+                <span className="nums ltr">{item.months}</span> {t(work.months)}
+              </span>
+            ) : story && storyServices > 1 ? (
+              <span className="tag absolute top-3 end-3 rounded-pill bg-ink/90 px-3 py-1.5 text-paper backdrop-blur-sm">
+                <span className="nums ltr">{storyServices}</span> {t(work.storyServices)}
+              </span>
+            ) : null}
 
-          {/* عدد الصور: يَعِد بما وراء البطاقة، فيصير للنقر سبب */}
-          {shots > 0 && (
-            <span className="tag absolute bottom-3 end-3 rounded-pill bg-ink/70 px-3 py-1.5 text-paper opacity-0 backdrop-blur-sm transition-opacity duration-(--dur-base) group-hover:opacity-100">
-              <span className="nums ltr">{shots}</span> {t(work.shots)}
-            </span>
-          )}
-        </div>
-
-        {/* لا رقم ترتيب: كان يقول «هذه البطاقة الثالثة والعشرون» ولا
-            شيء غير ذلك، ومع أعمدة الشبكة — تُملأ من أعلى العمود إلى
-            أسفله لا سطرًا بسطر — صار أوّل صفٍّ يُقرأ 01 · 16 · 30. */}
-        <div className="mt-4 border-t border-[var(--line)] pt-3.5 transition-transform duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-          <h3 className="text-[17px] font-medium leading-snug">{t(item.name)}</h3>
-          <p className="tag mt-2 text-ink/40">{meta.join(" · ")}</p>
-        </div>
-      </Link>
-    </Reveal>
+            {/* الاسم فوق تدرّج داكن ثابت اللون — يُقرأ على أي غلاف وفي الوضعين */}
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent px-4 pt-12 pb-3.5 text-white">
+              <h3 className="text-[15.5px] font-medium leading-snug sm:text-[17px]">{t(item.name)}</h3>
+              <p className="tag mt-1.5 text-white/70">
+                {meta.join(" · ")}
+                {shots > 0 && (
+                  <span>
+                    {" · "}
+                    <span className="nums ltr">{shots}</span> {t(work.shots)}
+                  </span>
+                )}
+              </p>
+            </div>
+          </div>
+        </Link>
+      </Reveal>
+    </JustifiedItem>
   );
 }

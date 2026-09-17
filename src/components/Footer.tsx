@@ -56,7 +56,7 @@ export function Footer() {
     .filter((s) => !!s);
 
   const company = [
-    ...navItems.filter((n) => n.href !== "/services"),
+    ...navItems.filter((n) => n.href !== "/services" && n.href !== "/contact"),
     { href: "/profile", label: footer.profileTitle },
     { href: "/saudi", label: footer.saudiTitle },
     { href: "/faq", label: footer.faqTitle },

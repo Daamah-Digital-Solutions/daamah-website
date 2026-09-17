@@ -42,6 +42,7 @@ export const brand = {
   social: [
     "https://instagram.com/daamah.digital.solutions",
     "https://facebook.com/daamah.digital.solutions",
+    "https://eg.linkedin.com/company/daamah",
   ],
 } as const;
 
@@ -80,7 +81,7 @@ export const navItems: { href: string; label: Bi }[] = [
   { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
   { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
   { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
-  { href: "/blog", label: { ar: "المدوّنة", en: "Journal" } },
+  { href: "/contact", label: { ar: "تواصل معنا", en: "Contact" } },
 ];
 
 export const ui = {
@@ -95,7 +96,8 @@ export const ui = {
 };
 
 export const hero = {
-  status: { ar: "نعمل منذ 2018", en: "Working since 2018" } as Bi,
+  /* اسم الشركة أوّل ما يُقرأ — كان الموقع بالعربية لا يذكره في أيّ نصّ ظاهر */
+  status: { ar: "دَعمة للحلول الرقمية · منذ 2018", en: "Daamah Digital Solutions · Since 2018" } as Bi,
   /* السطور مفصولة يدويًا — الكسر جزء من التصميم لا نتيجة له */
   headline: {
     ar: ["نبني حضورًا رقميًا", "يُرى، ويُفهم،", "ويُختار."],
@@ -109,8 +111,8 @@ export const hero = {
   primary: { ar: "ابدأ مشروعك", en: "Start a project" } as Bi,
   secondary: { ar: "شاهد أعمالنا", en: "See our work" } as Bi,
   markets: {
-    ar: "السعودية · الإمارات · دول الخليج · مصر · أوروبا",
-    en: "Saudi Arabia · UAE · the Gulf · Egypt · Europe",
+    ar: "السعودية · الإمارات · دول الخليج · أوروبا · مصر",
+    en: "Saudi Arabia · UAE · the Gulf · Europe · Egypt",
   } as Bi,
 };
 
@@ -140,8 +142,8 @@ export const about = {
     en: ["In a crowded market the best", "rarely wins — the clearest", "and most present does."],
   } as Bi<string[]>,
   body: {
-    ar: "منذ 2018 ونحن نعمل مع شركات في الخليج ومصر وأوروبا. لا نبدأ من التنفيذ: نفهم مشروعك، نحلّل سوقك، وندرك كيف يفكّر عميلك — ثم نحوّل ذلك إلى هوية تعبّر عنك، وموقع يعرضك باحتراف، وتسويق يجلب نتائج.",
-    en: "Since 2018 we have worked with companies across the Gulf, Egypt, and Europe. We don't start with execution — we study your business, analyse your market, and learn how your customer thinks. Only then do we turn that into an identity, a website, and marketing that performs.",
+    ar: "منذ 2018 تعمل دَعمة للحلول الرقمية مع شركات في الخليج وأوروبا ومصر. لا نبدأ من التنفيذ: نفهم مشروعك، نحلّل سوقك، وندرك كيف يفكّر عميلك — ثم نحوّل ذلك إلى هوية تعبّر عنك، وموقع يعرضك باحتراف، وتسويق يجلب نتائج.",
+    en: "Since 2018, Daamah Digital Solutions has worked with companies across the Gulf, Europe, and Egypt. We don't start with execution — we study your business, analyse your market, and learn how your customer thinks. Only then do we turn that into an identity, a website, and marketing that performs.",
   } as Bi,
   link: { ar: "اقرأ رسالتنا", en: "Read our mission" } as Bi,
   pillars: [
@@ -427,6 +429,6 @@ export const footer = {
   social: [
     { label: "Instagram", href: "https://instagram.com/daamah.digital.solutions" },
     { label: "Facebook", href: "https://facebook.com/daamah.digital.solutions" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/company/daamah/" },
+    { label: "LinkedIn", href: "https://eg.linkedin.com/company/daamah" },
   ],
 };

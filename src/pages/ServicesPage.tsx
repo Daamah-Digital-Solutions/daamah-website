@@ -7,6 +7,7 @@ import { serviceDetails, serviceUi } from "../content/serviceDetails";
 import { workItems } from "../content/work";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { Justified } from "../components/Justified";
 import { WorkCard } from "../components/WorkCard";
 import { Arrow, Chevron, MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
 
@@ -177,11 +178,11 @@ export function ServicesPage() {
               <SectionLabel>{t(serviceUi.workLabel)}</SectionLabel>
               <TextLink href="/work">{t(workPage.backLabel)}</TextLink>
             </Reveal>
-            <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-12">
               {picks.map((item, i) => (
                 <WorkCard key={item.slug} item={item} delay={(i % 3) * 90} />
               ))}
-            </div>
+            </Justified>
           </Wrap>
         </section>
       )}

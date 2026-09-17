@@ -18,6 +18,7 @@ import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { nationalDay, offerPath } from "./nationalDay";
+import { BLOG_ENABLED } from "./features";
 import { faqPage, faqPath } from "./faqAbout";
 
 /**
@@ -96,58 +97,6 @@ function titled(label: Bi): Bi {
 const META: Record<string, Bi> = {
   /* أوصاف الأعمال الجديدة: نصّ الصفحة يشرح، والوصف هنا يُقتطع في
      نتائج البحث إن طال — فيُكتب قصيرًا بدل أن يُبتر */
-  "/work/hcc-insurance": {
-    ar: "موقع مؤسسي لشركة تأمين دولية مقرّها لندن، على رسالة الثقة والقوة المالية عبر خمسة عقود.",
-    en: "A corporate site for a London-based international insurer, on a message of trust and financial strength.",
-  },
-  "/work/sara-younis-web": {
-    ar: "متجر علامة أزياء نسائية بتصميم مينيمال يترك الصورة تتكلّم ويقصّر الطريق إلى الشراء.",
-    en: "A womenswear store in a minimal design that lets the photography speak and shortens the path to buying.",
-  },
-  "/work/adg-profile": {
-    ar: "ملف تعريفي عربي لشركة عقارات تربط المستثمر الخليجي بالسوق الجورجي — مبنيّ على ما يسأل عنه المستثمر لا على سرد الإنجازات.",
-    en: "An Arabic company profile for a firm connecting Gulf investors to the Georgian market — built on what an investor asks.",
-  },
-  "/work/sara-younis-brand": {
-    ar: "هوية علامة أزياء نسائية — حرفان داخل شكل بيضاوي بلا زخرفة، تحتمل البطاقة واللافتة والعبوة.",
-    en: "Identity for a womenswear label — two letters inside an oval, no ornament, built to survive every application.",
-  },
-  "/work/expert-estate": {
-    ar: "هوية شركة استثمار عقاري — حرف E مكرّرًا ومعكوسًا حتى يُقرأ مبنى، ذهبٌ على داكن.",
-    en: "Identity for a property investment firm — the letter E mirrored until it reads as a building, gold on dark.",
-  },
-  "/work/hennawy-brand": {
-    ar: "هوية شركة ورق وكيماويات — حرف H وأنبوب اختبار وورقة نبات في شكل واحد.",
-    en: "Identity for a paper and chemical company — the letter H, a test tube, and a leaf folded into one mark.",
-  },
-  "/work/profitmax-profile": {
-    ar: "ملف تعريفي لشركة استثمار بين بريطانيا والإمارات — عقود الاستثمار وضماناتها بلغة المستثمر.",
-    en: "A profile for an investment firm between the UK and the UAE — contracts and guarantees in the investor's language.",
-  },
-  "/work/hcc-profile": {
-    ar: "ملف تعريفي لشركة تأمين دولية مقرّها لندن — السندات والضمانات لمشترٍ يقرأ التفاصيل قبل أن يقرّر.",
-    en: "A profile for a London-based international insurer — bonds and guarantees for a buyer who reads the detail.",
-  },
-  "/work/trustech-profile": {
-    ar: "ملف مشروع «سكاي فيو» لمجموعة مقاولات بين الإمارات وبريطانيا — الشركاء والمخططات والوحدات.",
-    en: "The Sky View project profile for a contracting group between the UAE and the UK — partners, plans, and units.",
-  },
-  "/work/tdh-profile": {
-    ar: "ملف مشروع سكني في عجمان — من الشركاء العالميين إلى مخططات كل نمط وحدة ومساحاته.",
-    en: "A residential project profile in Ajman — from the international partners to the plans and areas of every unit type.",
-  },
-  "/work/hennawy-profile": {
-    ar: "ملف تعريفي لشركة مناديل ورقية وكيماويات — خطوط الإنتاج والمنتجات ومعايير الجودة.",
-    en: "A profile for a tissue-paper and chemicals manufacturer — production lines, products, and quality standards.",
-  },
-  "/work/alamein-profile": {
-    ar: "ملف تعريفي لمصنع مقطورات في السعودية — كل نوع بصوره ومواصفاته، كتالوج بقدر ما هو تعريف.",
-    en: "A profile for a Saudi trailer plant — every type with photographs and specification, as much catalogue as introduction.",
-  },
-  "/work/connect-profile": {
-    ar: "ملف تعريفي لشركة أجنحة معارض سعودية — ثمانية عشر جناحًا منفّذًا لعلامات معروفة.",
-    en: "A profile for a Saudi exhibition-stand company — eighteen delivered stands for recognised brands.",
-  },
   "/clients/hcc": {
     ar: "موقع ثم ملف تعريفي لشركة تأمين دولية في لندن — رسالة واحدة على الشاشة وفي الورق.",
     en: "A site then a profile for a London international insurer — one message on screen and on paper.",
@@ -160,129 +109,9 @@ const META: Record<string, Bi> = {
     ar: "هوية ثم ملف تعريفي لشركة مناديل ورقية وكيماويات تبيع لشركات لا لأفراد.",
     en: "Identity then profile for a tissue-paper and chemicals manufacturer selling to businesses.",
   },
-  "/work/xtreme-blue": {
-    ar: "خمسة وعشرون شهرًا من المحتوى للموزّع الحصري لزيوت IFF العطرية في مصر — عبوة صناعية وعطر فاخر في منشور واحد.",
-    en: "Twenty-five months of content for the exclusive Egyptian distributor of IFF fragrance oils — the industrial drum and the luxury bottle in one post.",
-  },
-  "/work/muri": {
-    ar: "تسعة عشر شهرًا من المحتوى لمطوّر عقاري في مصر — رسالة واحدة: من يؤجّر يدفع، ومن يشتري يبني.",
-    en: "Nineteen months of content for an Egyptian developer — one message: renting pays, buying builds.",
-  },
-  "/work/swissroll": {
-    ar: "سبعة عشر شهرًا من المحتوى لمحلّ حلويات — تصوير قبل أن يكون تصميمًا، وتقويم مبنيّ على مواسم البيع.",
-    en: "Seventeen months of content for a patisserie — photography before design, on a calendar built from selling seasons.",
-  },
-  "/work/vida": {
-    ar: "ستّة عشر شهرًا من المحتوى لنادٍ رياضي — محتوى يزيل عذرًا لا يبيع اشتراكًا.",
-    en: "Sixteen months of content for a fitness club — content that removes an excuse rather than selling a membership.",
-  },
-  "/work/atm-realestate": {
-    ar: "ستّة عشر شهرًا من المحتوى لمطوّر عقاري — «نبني ذكرياتك» لا «نبيع وحدات»، والفرق يظهر في الصورة.",
-    en: "Sixteen months of content for a developer — building memories, not selling units, and the difference shows in the image.",
-  },
-  "/work/nasea": {
-    ar: "ثلاثة عشر شهرًا من المحتوى لمصنّع منظّفات يبيع للموزّعين — الصورة كرتونة وبالتة لا زجاجة على رفّ.",
-    en: "Thirteen months of content for a cleaning-products maker selling to distributors — cartons and pallets, not a bottle on a shelf.",
-  },
-  "/work/godran": {
-    ar: "أربعة عشر شهرًا من المحتوى لاستشارات عقارية — بناء ثقة يسبق عرض الوحدة.",
-    en: "Fourteen months of content for a property consultancy — trust built ahead of the unit being shown.",
-  },
-  "/work/alawael": {
-    ar: "أحد عشر شهرًا من المحتوى لشركة تربط المستثمر الخليجي بالعقار الجورجي — طمأنة على القانون والموقع والعائد.",
-    en: "Eleven months of content for a firm linking Gulf investors to Georgian property — reassurance on law, location and return.",
-  },
-  "/work/royal-consultant": {
-    ar: "سبعة أشهر من المحتوى لبيت استشارات وشريك أودو في السوق السعودي — يبدأ بالمشكلة لا بالنظام.",
-    en: "Seven months of content for a consultancy and Odoo partner in Saudi Arabia — opening on the problem, not the system.",
-  },
-  "/work/alhaitham": {
-    ar: "محتوى لمكتب استشارات قانونية وهندسية — الموضوع نفسه هو الإعلان، فيجيب سؤالًا يُبحَث عنه فعلًا.",
-    en: "Content for a legal and engineering consultancy — the subject is the advertising, answering a question people actually search.",
-  },
-  "/work/almuttahida": {
-    ar: "محتوى لشركة تخليص جمركي وشحن — يبيع زوال القلق من التعطيل لا الخدمة نفسها.",
-    en: "Content for a customs clearance and freight firm — selling the end of the worry about delay, not the service.",
-  },
-  "/work/corpenta": {
-    ar: "محتوى لشركة تأسيس أعمال تدخل بالمستثمر الأجنبي إلى السوق السعودي — مبنيّ على التوقيت لا على الإجراء.",
-    en: "Content for a business-formation firm taking foreign investors into Saudi Arabia — built on the timing, not the paperwork.",
-  },
-  "/work/amlak-social": {
-    ar: "ثمانية وعشرون شهرًا متّصلة من المحتوى لشركة تبيع عقارًا في باتومي لمستثمر لم يزر المدينة — عشرة مشاريع مسمّاة.",
-    en: "Twenty-eight unbroken months of content for a firm selling Batumi property to investors who have never visited — ten named developments.",
-  },
-  "/work/amlak-revamp": {
-    ar: "علامة ثانية لشركة كبرت على أولاها، وسبعة أشهر من المحتوى داخلها — تجديدٌ بلا انقطاع شهر واحد.",
-    en: "A second brand for a company that outgrew its first, and seven months of content inside it — a rebrand without a single month's gap.",
-  },
   "/clients/amlak": {
     ar: "هوية، ثم خمسة وثلاثون شهرًا من المحتوى، ثم تجديد الهوية — علاقة كاملة مع شركة استثمار عقاري في جورجيا.",
     en: "An identity, thirty-five months of content, then a rebrand — a full relationship with a Georgian property investment firm.",
-  },
-  "/work/profitmax-brand": {
-    ar: "هوية شركة استثمار تعمل من بريطانيا والإمارات — شعار يجمع حرف الاسم بسهم صاعد يقول التخصّص قبل أن يُقرأ الاسم.",
-    en: "Identity for an investment firm in the UK and the UAE — a mark folding the initial into a rising arrow.",
-  },
-  "/work/profitmax-web": {
-    ar: "موقع ثنائي اللغة لشركة استثمار تعمل من بريطانيا والإمارات، يعرض الخدمات ويقود الزائر إلى حجز استشارة.",
-    en: "A bilingual site for an investment firm in the UK and the UAE, leading visitors to book a consultation.",
-  },
-  "/work/alhayat-brand": {
-    ar: "هوية مزرعة دواجن في الرياض، مبنيّة من عناصر المزرعة نفسها: شمس وسنبلة قمح وأرض زراعية.",
-    en: "Identity for a poultry farm in Riyadh, built from the farm's own elements: sun, wheat spike, and land.",
-  },
-  "/work/alhayat-web": {
-    ar: "متجر إلكتروني لمزرعة دواجن في الرياض يعرض المنتجات ويستقبل الطلبات، بامتداد هويّتها لا بنسخة منها.",
-    en: "An online store for a poultry farm in Riyadh, presenting products and taking orders in its own identity.",
-  },
-  "/work/utility-vision": {
-    ar: "موقع شركة مقاولات في جدة يعرض المشاريع والخدمات، بمسار طلب عرض سعر ظاهر في كل صفحة.",
-    en: "A site for a contracting company in Jeddah presenting projects and services, with a quote path on every page.",
-  },
-  "/work/future-axis": {
-    ar: "موقع شركة مقاولات سعودية يعرض السجلّ والمورّدين والمشاريع الأخيرة، لا صور عرض فقط.",
-    en: "A site for a Saudi contracting company showing the record, the suppliers, and the latest projects.",
-  },
-  "/work/greenmark": {
-    ar: "إدارة حضور شركة تأسيس شركات وتخليص أوراق في دبي، بمحتوى يجيب أسئلة العميل الفعلية.",
-    en: "Social presence for a company-formation firm in Dubai, on content that answers real client questions.",
-  },
-  "/work/rahiq": {
-    ar: "محتوى شهري لعلامة عسل ومنتجات طبيعية في مصر، يربط المنتج بمناسبات السنة وفوائده الغذائية.",
-    en: "Monthly content for an Egyptian honey brand, tying the product to the year's occasions and its benefits.",
-  },
-  "/work/sat-leaders": {
-    ar: "محتوى شهري لأكاديمية تحضير اختبارات SAT وACT وEST في مصر، يخاطب قلق الطالب وولي الأمر معًا.",
-    en: "Monthly content for a SAT, ACT and EST prep academy in Egypt, addressing student and parent alike.",
-  },
-  "/work/sedra": {
-    ar: "هوية علامة إكسسوارات فاخرة، مبنيّة على خطّ عربي مخصّص لكلمة «سدرة».",
-    en: "Identity for a luxury accessories brand, built on custom Arabic lettering of the word Sedra.",
-  },
-  "/work/alraghad": {
-    ar: "هوية علامة مجوهرات — حرفان يجتمعان في شكل خاتم داخل إطار مقوّس، ذهبٌ على خلفية داكنة.",
-    en: "Identity for a jewellery brand — two initials folded into a ring inside an arched frame.",
-  },
-  "/work/tech-care": {
-    ar: "هوية معامل تحاليل طبية — قطرة داخل حرف C وجزيئات تحليل، بأزرق طبّي يقول الثقة والراحة.",
-    en: "Identity for a medical laboratory — a droplet inside the letter C, in a blue that carries reassurance.",
-  },
-  "/work/vip-limo": {
-    ar: "هوية خدمة ليموزين في شيكاغو، وواجهات تطبيقها — الهوية والاستخدام من مصدر واحد.",
-    en: "Identity and app interface design for a limousine service in Chicago.",
-  },
-  "/work/auto-crazy-car": {
-    ar: "هوية خدمات سيارات، عالية التباين تحمل حركةً وسرعة قبل أن يُقرأ الاسم.",
-    en: "Identity for an automotive service — high contrast, carrying movement before the name is read.",
-  },
-  "/work/caffeine-kiss": {
-    ar: "هوية علامة قهوة — فنجانٌ يُقرأ ابتسامةً في آنٍ واحد، فكرة واحدة تحمل الاسم والمزاج.",
-    en: "Identity for a coffee brand — a cup that reads as a smile, one idea carrying name and mood.",
-  },
-  "/work/daughters": {
-    ar: "هوية شركة تجارة عامة — صندوق شحن يُقرأ حرف الاسم الأول، فيقول المجال في لمحة.",
-    en: "Identity for a general trading company — a shipping crate that reads as the initial.",
   },
   "/clients/sara-younis": {
     ar: "هوية ثم متجر لعلامة أزياء نسائية — قاعدة واحدة: الصورة تتكلّم والواجهة تصمت.",
@@ -517,14 +346,19 @@ export const routes: RouteMeta[] = [
     kind: "city" as const,
     parent: `/services/${p.service}`,
   })),
-  {
-    path: "/blog",
-    title: titled(blogPage.label),
-    description: blogPage.intro,
-    priority: 0.9,
-    kind: "blog",
-  },
-  ...blogRoutes,
+  /* المدوّنة موقوفة مؤقّتًا: لا صفحات تُولَّد ولا تدخل خريطة الموقع */
+  ...(BLOG_ENABLED
+    ? [
+        {
+          path: "/blog",
+          title: titled(blogPage.label),
+          description: blogPage.intro,
+          priority: 0.9,
+          kind: "blog" as const,
+        },
+        ...blogRoutes,
+      ]
+    : []),
   {
     path: "/privacy",
     title: titled(privacyPage.label),

@@ -46,7 +46,8 @@ export type SectorKey =
   | "business"
   | "health"
   | "auto"
-  | "events";
+  | "events"
+  | "travel";
 
 export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "construction", label: { ar: "مقاولات", en: "Construction" } },
@@ -62,6 +63,7 @@ export const sectors: { key: SectorKey; label: Bi }[] = [
   { key: "health", label: { ar: "صحّة ولياقة", en: "Health & fitness" } },
   { key: "auto", label: { ar: "سيارات ونقل", en: "Automotive & transport" } },
   { key: "events", label: { ar: "معارض وفعاليات", en: "Events & exhibitions" } },
+  { key: "travel", label: { ar: "سياحة وسفر", en: "Travel & tourism" } },
 ];
 
 /* ── الأسواق ── */
@@ -105,7 +107,7 @@ export type WorkItem = {
   months?: number;
 };
 
-export const workItems: WorkItem[] = [
+const allWork: WorkItem[] = [
   {
     slug: "building-line",
     service: "brand",
@@ -363,7 +365,7 @@ export const workItems: WorkItem[] = [
     service: "social",
     name: { ar: "جرين فلاش", en: "Green Flash" },
     sector: "energy",
-    markets: [],
+    markets: ["sa"],
     image: "/assets/work/social-greenflash.jpg",
   },
   {
@@ -434,7 +436,7 @@ export const workItems: WorkItem[] = [
     markets: ["eg"],
     note: { ar: "حلويات", en: "Patisserie" },
     image: "/assets/work/social-swissroll.jpg",
-    months: 17,
+    months: 19,
   },
   {
     slug: "vida",
@@ -488,7 +490,7 @@ export const workItems: WorkItem[] = [
     service: "social",
     name: { ar: "رويال كونسلتنتس", en: "Royal Consultants" },
     sector: "business",
-    markets: ["sa"],
+    markets: ["eg"],
     note: { ar: "أنظمة إدارة", en: "Business systems" },
     image: "/assets/work/social-royalconsultant.jpg",
     months: 7,
@@ -617,7 +619,253 @@ export const workItems: WorkItem[] = [
     markets: ["eg"],
     image: "/assets/work/social-satleaders.jpg",
   },
+
+  /* ── سوشيال من أرشيف العملاء — مجمّع بالشهر (scripts/import-social.mjs).
+     `months` عدد الشهور الموثّقة في الأرشيف، ويُترك لما دون ثلاثة:
+     «شهر واحد متواصل» لا يقول شيئًا ── */
+  {
+    slug: "saif-events",
+    service: "social",
+    months: 7,
+    name: { ar: "سيف للفعاليات", en: "Saif Events" },
+    sector: "events",
+    markets: ["sa"],
+    note: { ar: "تنظيم فعاليات", en: "Event management" },
+    image: "/assets/work/social-saifevents.jpg",
+  },
+  {
+    slug: "dr-asmaa-saeed",
+    service: "social",
+    months: 12,
+    name: { ar: "د. أسماء سعيد", en: "Dr. Asmaa Saeed" },
+    sector: "health",
+    markets: [],
+    note: { ar: "صحّة نفسية", en: "Mental health" },
+    image: "/assets/work/social-asmaasaeed.jpg",
+  },
+  {
+    slug: "eliodoro-derma",
+    service: "social",
+    months: 10,
+    name: { ar: "إليودورو ديرما", en: "Eliodoro Derma" },
+    sector: "health",
+    markets: ["eg"],
+    note: { ar: "عناية بالبشرة", en: "Skincare" },
+    image: "/assets/work/social-eliodoro.jpg",
+  },
+  {
+    slug: "alamein-social",
+    service: "social",
+    months: 10,
+    name: { ar: "مصنع هياكل العلمين — المحتوى", en: "Alamein Trailers — Content" },
+    sector: "energy",
+    markets: ["sa"],
+    note: { ar: "مقطورات", en: "Trailers" },
+    image: "/assets/work/social-alamein.jpg",
+  },
+  {
+    slug: "alraghad-social",
+    service: "social",
+    months: 14,
+    name: { ar: "الرغد — المحتوى", en: "Al Raghad — Content" },
+    sector: "ecommerce",
+    markets: ["eg"],
+    note: { ar: "مجوهرات", en: "Jewellery" },
+    image: "/assets/work/social-alraghad.jpg",
+  },
+  {
+    slug: "alqalaa",
+    service: "social",
+    months: 13,
+    name: { ar: "القلعة للكيماويات", en: "Alqalaa Chemicals" },
+    sector: "energy",
+    markets: ["eg"],
+    note: { ar: "كيماويات", en: "Chemicals" },
+    image: "/assets/work/social-alqalaa.jpg",
+  },
+  {
+    slug: "capimax",
+    service: "social",
+    months: 7,
+    name: { ar: "كابيماكس للاستثمار", en: "Capimax Investments" },
+    sector: "finance",
+    markets: [],
+    note: { ar: "استثمار", en: "Investment" },
+    image: "/assets/work/social-capimax.jpg",
+  },
+  {
+    slug: "amr-elkazaz",
+    service: "social",
+    months: 8,
+    name: { ar: "أكاديمية عمرو القزاز", en: "Amr El-Kazaz Fitness Academy" },
+    sector: "health",
+    markets: ["eg"],
+    note: { ar: "لياقة وتأهيل", en: "Fitness & training" },
+    image: "/assets/work/social-amrelkazaz.jpg",
+  },
+  {
+    slug: "dr-hesham-omar",
+    service: "social",
+    months: 5,
+    name: { ar: "صيدلية د. هشام عمر", en: "Dr. Hesham Omar Pharmacy" },
+    sector: "health",
+    markets: ["eg"],
+    note: { ar: "صيدليات", en: "Pharmacy" },
+    image: "/assets/work/social-heshamomar.jpg",
+  },
+  {
+    slug: "ems-elriadh",
+    service: "social",
+    months: 4,
+    name: { ar: "إي إم إس الرياض", en: "EMS Elriadh" },
+    sector: "health",
+    markets: ["sa"],
+    note: { ar: "تدريب EMS", en: "EMS training" },
+    image: "/assets/work/social-emselriadh.jpg",
+  },
+  {
+    slug: "almohandes-travels",
+    service: "social",
+    months: 4,
+    name: { ar: "المهندس للسياحة", en: "Almohandes Travels" },
+    sector: "travel",
+    markets: ["eg"],
+    image: "/assets/work/social-almohandes.jpg",
+  },
+  {
+    slug: "natwan",
+    service: "social",
+    months: 3,
+    name: { ar: "نطوان", en: "Natwan" },
+    sector: "travel",
+    markets: ["sa"],
+    note: { ar: "شقق فندقية", en: "Serviced apartments" },
+    image: "/assets/work/social-natwan.jpg",
+  },
+  {
+    slug: "techcare-social",
+    service: "social",
+    months: 3,
+    name: { ar: "معامل تك كير — المحتوى", en: "Tech Care Labs — Content" },
+    sector: "health",
+    markets: ["eg"],
+    note: { ar: "تحاليل طبية", en: "Medical labs" },
+    image: "/assets/work/social-techcare.jpg",
+  },
+  {
+    slug: "mardi-holding",
+    service: "social",
+    name: { ar: "ماردي القابضة", en: "Mardi Holding" },
+    sector: "realestate",
+    markets: ["ge", "sa"],
+    note: { ar: "استثمار عقاري", en: "Property investment" },
+    image: "/assets/work/social-mardi.jpg",
+  },
+  {
+    slug: "hedaya-dental",
+    service: "social",
+    name: { ar: "مركز هداية لطب الأسنان", en: "Hedaya Dental Center" },
+    sector: "health",
+    markets: ["eg"],
+    note: { ar: "طب أسنان", en: "Dentistry" },
+    image: "/assets/work/social-hedaya.jpg",
+  },
+  {
+    slug: "mohamed-gamal-law",
+    service: "social",
+    name: { ar: "مكتب محمد جمال للمحاماة", en: "Mohamed Gamal Law Office" },
+    sector: "business",
+    markets: ["eg"],
+    note: { ar: "محاماة", en: "Law" },
+    image: "/assets/work/social-mohamedgamal.jpg",
+  },
+  {
+    slug: "profitmax-social",
+    service: "social",
+    name: { ar: "بروفيت ماكس — المحتوى", en: "Profit Max — Content" },
+    sector: "finance",
+    markets: ["eu", "ae"],
+    image: "/assets/work/social-profitmax.jpg",
+    client: "profitmax",
+  },
+  {
+    slug: "trustech-social",
+    service: "social",
+    name: { ar: "تراستك — المحتوى", en: "Trustech — Content" },
+    sector: "construction",
+    markets: ["ae", "eu"],
+    image: "/assets/work/social-trustech.jpg",
+    client: "trustech",
+  },
+  {
+    slug: "4k-studio",
+    service: "social",
+    name: { ar: "4K ستوديو", en: "4K Studio" },
+    sector: "media",
+    markets: [],
+    note: { ar: "تصوير أفراح", en: "Wedding photography" },
+    image: "/assets/work/social-4kstudio.jpg",
+  },
+  {
+    slug: "emaar-alryada",
+    service: "social",
+    name: { ar: "إعمار الريادة العقارية", en: "Emaar Alryada Real Estate" },
+    sector: "realestate",
+    markets: [],
+    image: "/assets/work/social-emaaralryada.jpg",
+  },
+  {
+    slug: "dr-mohamed-ewida",
+    service: "social",
+    name: { ar: "د. محمد عويضة لطب الأسنان", en: "Dr. Mohamed Ewida Dental Clinic" },
+    sector: "health",
+    markets: [],
+    note: { ar: "طب أسنان", en: "Dentistry" },
+    image: "/assets/work/social-ewida.jpg",
+  },
+  {
+    slug: "fragancia-social",
+    service: "social",
+    name: { ar: "فراجانسيا — المحتوى", en: "Fragancia — Content" },
+    sector: "ecommerce",
+    markets: [],
+    note: { ar: "عناية وجمال", en: "Beauty & care" },
+    image: "/assets/work/social-fragancia.jpg",
+  },
+  {
+    slug: "vibrant-social",
+    service: "social",
+    name: { ar: "فايبرانت ديزاين — المحتوى", en: "Vibrant Design — Content" },
+    sector: "interior",
+    markets: [],
+    image: "/assets/work/social-vibrant.jpg",
+  },
+  {
+    slug: "bird-area",
+    service: "social",
+    name: { ar: "بيرد إيريا", en: "Bird Area" },
+    sector: "ecommerce",
+    markets: [],
+    note: { ar: "مستلزمات الحيوانات الأليفة", en: "Pet supplies" },
+    image: "/assets/work/social-birdarea.jpg",
+  },
 ];
+
+/**
+ * ترتيب العرض بالسوق: العالمي أوّلًا — أوروبا وأمريكا، ثم جورجيا
+ * ولبنان — ثم السعودية، ثم الإمارات، ثم مصر، وما لا سوق معروفًا له
+ * أخيرًا. رتبة العمل هي أعلى أسواقه، فمشروع لجورجيا والسعودية معًا
+ * يُحسب بجورجيا.
+ *
+ * الترتيب هنا لا في الصفحات: صفحة الأعمال والرئيسية وصفحة الخدمة
+ * و«العمل التالي» تقرأ القائمة كما هي، فيتّفق الترتيب في كل مكان.
+ * والفرز مستقرّ، فداخل السوق الواحد يبقى الترتيب المكتوب أعلاه.
+ */
+const MARKET_RANK: Record<MarketKey, number> = { us: 0, eu: 0, ge: 1, lb: 1, sa: 2, ae: 3, eg: 4 };
+const rankOf = (w: WorkItem) =>
+  w.markets.length ? Math.min(...w.markets.map((m) => MARKET_RANK[m])) : 5;
+
+export const workItems: WorkItem[] = [...allWork].sort((a, b) => rankOf(a) - rankOf(b));
 
 /* ── قصص العملاء ── */
 

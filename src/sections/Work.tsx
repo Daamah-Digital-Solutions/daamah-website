@@ -2,6 +2,7 @@ import { useLang } from "../i18n";
 import { work } from "../content/home";
 import { workItems } from "../content/work";
 import { MaskLines, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui";
+import { Justified } from "../components/Justified";
 import { WorkCard } from "../components/WorkCard";
 
 /** ما يُعرض في الرئيسية — منتقًى لا كامل. */
@@ -32,11 +33,11 @@ export function Work() {
           </Reveal>
         </div>
 
-        <div className="mt-14 grid gap-x-6 gap-y-12 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
+        <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-14 sm:mt-20">
           {items.map((item, i) => (
             <WorkCard key={item.slug} item={item} delay={(i % 3) * 90} />
           ))}
-        </div>
+        </Justified>
       </Wrap>
     </section>
   );

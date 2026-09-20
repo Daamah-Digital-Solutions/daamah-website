@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLang } from "../i18n";
 
 export type LightboxShot = {
@@ -40,6 +40,60 @@ export function Lightbox({
     [at, shots.length, onMove],
   );
 
+  /**
+   * السحب بالإصبع — لا الأسهم وحدها.
+   *
+   * على الجوال لا مؤشّر يمرّ فوق السهم: الحركة الطبيعية سحبٌ يمينًا
+   * أو يسارًا، ومن لا يجدها يظنّ العارض صورةً واحدة. والصورة تتبع
+   * الإصبع بمقاومة، فيُرى أن ثمّة ما بعدها قبل أن يُفلت.
+   *
+   * والاتجاه منطقي لا فيزيائي: الصورة التالية في العربية إلى اليسار،
+   * فسحب الإصبع يمينًا يقدّم — كما تفعل الأسهم نفسها.
+   */
+  const drag = useRef<{ x: number; y: number; id: number } | null>(null);
+  const [dx, setDx] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const rtlDir = lang === "ar";
+  const SWIPE = 56;
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse" || shots.length < 2) return;
+    drag.current = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    setDragging(true);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    const d = drag.current;
+    if (!d || e.pointerId !== d.id) return;
+    const mx = e.clientX - d.x;
+    const my = e.clientY - d.y;
+    /* الحركة الرأسية تعني تمرير صفحة طويلة لا تنقّلًا بين الصور */
+    if (Math.abs(my) > Math.abs(mx) * 1.2) {
+      drag.current = null;
+      setDragging(false);
+      setDx(0);
+      return;
+    }
+    setDx(mx);
+  };
+
+  /** إزاحةٌ تتبع الإصبع بمقاومة، وترتدّ عند الإفلات */
+  const follow: React.CSSProperties =
+    dragging || dx !== 0
+      ? { transform: `translateX(${dx * 0.38}px)`, transition: "none" }
+      : { transition: "transform 260ms var(--ease-out-quint)" };
+
+  const endDrag = () => {
+    if (!drag.current) return;
+    const mx = dx;
+    drag.current = null;
+    setDragging(false);
+    setDx(0);
+    if (Math.abs(mx) < SWIPE) return;
+    const forward = rtlDir ? mx > 0 : mx < 0;
+    step(forward ? 1 : -1);
+  };
+
   useEffect(() => {
     const rtl = lang === "ar";
     const onKey = (e: KeyboardEvent) => {
@@ -79,6 +133,12 @@ export function Lightbox({
       aria-modal="true"
       aria-label={caption}
       onClick={onClose}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+      /* الإيماءة الأفقية لنا، والرأسية للصفحة الطويلة */
+      style={{ touchAction: tall ? "pan-y" : "none" }}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/95 p-4 pb-16 backdrop-blur-sm sm:p-8 sm:pb-20"
     >
       <button
@@ -100,8 +160,12 @@ export function Lightbox({
           والصفحة الطويلة (بعض ملفات الـPDF صفحةٌ واحدة تُمرَّر)
           تُعرض بعرضها كاملًا وتُمرَّر رأسيًا: احتواؤها في الشاشة
           يردّها إلى شريط بعرض 230px لا يُقرأ منه حرف. */}
+      {/* الحاوية `display: contents` في الحالة العادية فلا صندوق لها
+          يُزاح — فالإزاحة على الصورة نفسها، وعلى الحاوية وحدها حين
+          تكون الصفحة طويلة وتُمرَّر داخلها */}
       <div
         onClick={(e) => e.stopPropagation()}
+        style={tall ? follow : undefined}
         className={tall ? "max-h-full w-full max-w-4xl overflow-y-auto" : "contents"}
       >
         <img
@@ -110,6 +174,7 @@ export function Lightbox({
           alt={caption}
           width={shot.w}
           height={shot.h}
+          style={tall ? undefined : follow}
           className={tall ? "w-full" : "max-h-full max-w-full object-contain"}
         />
       </div>

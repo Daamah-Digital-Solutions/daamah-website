@@ -81,6 +81,7 @@ export const navItems: { href: string; label: Bi }[] = [
   { href: "/work", label: { ar: "أعمالنا", en: "Work" } },
   { href: "/process", label: { ar: "كيف نعمل", en: "Process" } },
   { href: "/solutions", label: { ar: "الحلول", en: "Solutions" } },
+  { href: "/faq", label: { ar: "أسئلة شائعة", en: "FAQ" } },
   { href: "/contact", label: { ar: "تواصل معنا", en: "Contact" } },
 ];
 

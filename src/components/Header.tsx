@@ -150,13 +150,15 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-9 lg:flex">
+          {/* الفجوة تضيق قبل أن يُكسر البند: سبعة بنود بالعربية لا تسع
+              في 1024 بفجوة 36px، فكانت الكلمة تنزل تحت أختها */}
+          <nav className="hidden items-center gap-6 lg:flex xl:gap-9">
             {navItems.map((n) => (
               <NavLink
                 key={n.href}
                 to={path(n.href)}
                 className={({ isActive }) =>
-                  `relative text-[14px] font-medium transition-colors duration-300 hover:text-ink ${
+                  `relative whitespace-nowrap text-[13.5px] font-medium transition-colors duration-300 hover:text-ink xl:text-[14px] ${
                     isActive ? "text-ink" : "text-ink/55"
                   }`
                 }
@@ -231,7 +233,10 @@ export function Header() {
               key={n.href}
               to={path(n.href)}
               onClick={() => setOpen(false)}
-              className="border-b border-[var(--line)] py-5 text-[30px] font-medium transition-[opacity,transform] duration-700"
+              /* كان 30px وسبعة بنود: السطر الواحد يملأ عرض الشاشة
+                 والقائمة تملأ الطول فلا يُرى آخرها. الأصغر يُقرأ
+                 بلمحة ويبقى لمسًا مريحًا (48px ارتفاع الهدف) */
+              className="border-b border-[var(--line)] py-[15px] text-[22px] font-medium transition-[opacity,transform] duration-700 sm:py-4 sm:text-[26px]"
               style={{
                 transitionDelay: open ? `${120 + i * 60}ms` : "0ms",
                 opacity: open ? 1 : 0,

@@ -89,8 +89,8 @@ const home: RouteMeta = {
       en: "Daamah Digital Solutions — building presence that fits your company",
     },
     description: {
-      ar: "منذ 2018 نبني للشركات هوية بصرية ومواقع وحضورًا رقميًا متكاملًا — في السعودية والخليج وأوروبا ومصر.",
-      en: "Since 2018 we build brand identity, websites, and complete digital presence for companies across Saudi Arabia, the Gulf, Europe, and Egypt.",
+      ar: "شركة عالمية تبني حضورًا رقميًا متكاملًا للشركات في الخليج وأوروبا ومصر من خلال: هوية بصرية متكاملة، مواقع إلكترونية، أنظمة إدارة الشركات، سوشيال ميديا، وتسويق رقمي يحقق نتائج.",
+      en: "A global company building complete digital presence for companies across the Gulf, Europe, and Egypt: brand identity, websites, company management systems, social media, and marketing that performs.",
     },
   },
   priority: 1,

@@ -135,7 +135,10 @@ export function Hero() {
               </span>
               <span className="tag text-ink/70">{t(hero.status)}</span>
             </span>
-            <span className="tag text-ink/35">{t(hero.markets)}</span>
+            {/* سطر الأسواق بالإنجليزية أعرض من الجوال بمقدار كلمة، فتسقط
+                «Egypt» وحدها في سطر ثانٍ. التتبّع وحده يسعه: أضيق قليلًا
+                على الشاشة الصغيرة فيبقى سطرًا واحدًا */}
+            <span className="tag tag-tight text-ink/35">{t(hero.markets)}</span>
           </Reveal>
 
           {/* ── العنوان ── */}

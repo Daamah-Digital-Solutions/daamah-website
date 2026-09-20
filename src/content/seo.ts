@@ -63,6 +63,14 @@ export type RouteMeta = {
   lastmod?: string;
   /** صورة تمثّل الصفحة — لخريطة الموقع ولوسوم المشاركة */
   image?: string;
+  /**
+   * عنوان ووصف المشاركة حين يختلفان عن عنوان الصفحة ووصفها.
+   *
+   * عنوان نتائج البحث مكتوبٌ لمحرّك بحث: يحمل الكلمات التي يُبحث بها.
+   * وبطاقة المشاركة يقرؤها إنسان في محادثة، فالكلمات المفتاحية فيها
+   * تقرأ كإعلانٍ مبوّب لا كشركة. لذلك يفترقان حين يلزم.
+   */
+  share?: { title: Bi; description: Bi };
 };
 
 const home: RouteMeta = {
@@ -74,6 +82,16 @@ const home: RouteMeta = {
   description: {
     ar: "شركة عالمية تبني منذ 2018 حضورًا رقميًا متكاملًا: هوية بصرية، مواقع إلكترونية، سوشيال ميديا، وتسويق رقمي يحقق نتائج — للشركات في الخليج ومصر وأوروبا.",
     en: "A global company building complete digital presence since 2018 — brand identity, websites, social media, and marketing that performs."
+  },
+  share: {
+    title: {
+      ar: "دَعمة للحلول الرقمية — شريكك في بناء حضور يليق بشركتك",
+      en: "Daamah Digital Solutions — building presence that fits your company",
+    },
+    description: {
+      ar: "منذ 2018 نبني للشركات هوية بصرية ومواقع وحضورًا رقميًا متكاملًا — في السعودية والخليج وأوروبا ومصر.",
+      en: "Since 2018 we build brand identity, websites, and complete digital presence for companies across Saudi Arabia, the Gulf, Europe, and Egypt.",
+    },
   },
   priority: 1,
   kind: "home",

@@ -48,6 +48,7 @@ declare module "virtual:routes" {
     kind: string;
     parent?: string;
     langs?: ("ar" | "en")[];
+    share?: { title: { ar: string; en: string }; description: { ar: string; en: string } };
   }[];
   export default routes;
 }

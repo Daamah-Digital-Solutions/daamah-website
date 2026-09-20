@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { stripLang, useLang, withLang } from "../i18n";
 import routes from "virtual:routes";
-import { OG_IMAGE, SITE_URL } from "../seo/site";
+import { SITE_URL, ogFor } from "../seo/site";
 import { brand } from "../content/home";
 
 const findRoute = (path: string) => routes.find((r) => r.path === path);
@@ -72,16 +72,26 @@ export function Seo() {
     const url = `${SITE_URL}${withLang(bare, lang)}`;
     link("canonical", url);
 
-    meta("property", "og:title", title);
-    meta("property", "og:description", desc);
+    /* ملف التطبيق يتبع اللغة: اسم الأيقونة على شاشة الجوال يُقرأ منه.
+       الصفحات تصل مرسومةً ومعها ملفها الصحيح، وهذا السطر لمن بدّل
+       اللغة داخل الموقع بلا إعادة تحميل. */
+    link("manifest", lang === "en" ? "/site-en.webmanifest" : "/site.webmanifest");
+    meta("name", "apple-mobile-web-app-title", t(brand.name));
+    meta("name", "application-name", t(brand.name));
+
+    const shareTitle = route?.share ? t(route.share.title) : title;
+    const shareDesc = route?.share ? t(route.share.description) : desc;
+
+    meta("property", "og:title", shareTitle);
+    meta("property", "og:description", shareDesc);
     meta("property", "og:url", url);
     meta("property", "og:locale", lang === "ar" ? "ar_AR" : "en_US");
     meta("property", "og:site_name", t(brand.name));
-    meta("property", "og:image", `${SITE_URL}${OG_IMAGE}`);
+    meta("property", "og:image", `${SITE_URL}${ogFor(lang)}`);
     meta("name", "twitter:card", "summary_large_image");
-    meta("name", "twitter:title", title);
-    meta("name", "twitter:description", desc);
-    meta("name", "twitter:image", `${SITE_URL}${OG_IMAGE}`);
+    meta("name", "twitter:title", shareTitle);
+    meta("name", "twitter:description", shareDesc);
+    meta("name", "twitter:image", `${SITE_URL}${ogFor(lang)}`);
     meta("property", "og:image:width", "1200");
     meta("property", "og:image:height", "630");
 

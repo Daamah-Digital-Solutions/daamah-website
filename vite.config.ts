@@ -99,7 +99,7 @@ function blogStats(): Plugin {
 function routeIndex(): Plugin {
   const ID = "virtual:routes";
   const RESOLVED = `\0${ID}`;
-  const KEEP = ["path", "title", "description", "kind", "parent", "langs"] as const;
+  const KEEP = ["path", "title", "description", "kind", "parent", "langs", "share"] as const;
 
   return {
     name: "daamah:route-index",
@@ -158,7 +158,7 @@ function prerender(): Plugin {
       const outDir = "dist";
       const entry = pathToFileURL(resolve(".ssr/entry-server.js")).href;
       const ssr = await import(/* @vite-ignore */ entry);
-      const { routes, SITE_URL, OG_IMAGE, graphFor, withLang, siteName } = ssr;
+      const { routes, SITE_URL, ogFor, graphFor, withLang, siteName } = ssr;
 
       const template = readFileSync(join(outDir, "index.html"), "utf8");
       const urls: string[] = [];
@@ -171,6 +171,7 @@ function prerender(): Plugin {
           title: Record<Lang, string>;
           description: Record<Lang, string>;
           image?: string;
+          share?: { title: Record<Lang, string>; description: Record<Lang, string> };
         },
         lang: Lang,
         opts: { noindex?: boolean; alternates?: boolean } = {},
@@ -179,7 +180,10 @@ function prerender(): Plugin {
         const url = `${SITE_URL}${localized}`;
         const title = route.title[lang];
         const desc = route.description[lang];
-        const image = `${SITE_URL}${route.image ?? OG_IMAGE}`;
+        /* بطاقة المشاركة تقرؤها عين لا زاحف — فنصّها غير نصّ النتائج حين يوجد */
+        const shareTitle = route.share?.title[lang] ?? title;
+        const shareDesc = route.share?.description[lang] ?? desc;
+        const image = `${SITE_URL}${route.image ?? ogFor(lang)}`;
 
         /* React 19 يرفع وسوم الموارد (preload للصور مثلًا) إلى مقدّمة
            ما يرسمه. وهي في المتصفح تذهب إلى `<head>` لا إلى الجذر،
@@ -211,18 +215,21 @@ function prerender(): Plugin {
           ...PRELOAD[lang].map(
             (f) => `<link rel="preload" as="font" type="font/woff2" href="${f}" crossorigin />`,
           ),
-          `<meta property="og:title" content="${esc(title)}" />`,
-          `<meta property="og:description" content="${esc(desc)}" />`,
+          `<meta property="og:title" content="${esc(shareTitle)}" />`,
+          `<meta property="og:description" content="${esc(shareDesc)}" />`,
           `<meta property="og:url" content="${url}" />`,
           `<meta property="og:locale" content="${lang === "ar" ? "ar_AR" : "en_US"}" />`,
+          /* iOS يقرأ اسم أيقونة الشاشة الرئيسية من هنا لا من الـ manifest */
+          `<meta name="apple-mobile-web-app-title" content="${esc(siteName[lang])}" />`,
+          `<meta name="application-name" content="${esc(siteName[lang])}" />`,
             `<meta property="og:site_name" content="${esc(siteName[lang])}" />`,
           `<meta property="og:image" content="${image}" />`,
           `<meta property="og:image:width" content="1200" />`,
           `<meta property="og:image:height" content="630" />`,
           `<meta property="og:image:alt" content="${esc(title)}" />`,
           `<meta name="twitter:card" content="summary_large_image" />`,
-          `<meta name="twitter:title" content="${esc(title)}" />`,
-          `<meta name="twitter:description" content="${esc(desc)}" />`,
+          `<meta name="twitter:title" content="${esc(shareTitle)}" />`,
+          `<meta name="twitter:description" content="${esc(shareDesc)}" />`,
           `<meta name="twitter:image" content="${image}" />`,
           `<script type="application/ld+json">${jsonLd(graphFor(route.path, lang))}</script>`,
         ]
@@ -236,6 +243,13 @@ function prerender(): Plugin {
           .replace(
             /<html lang="[^"]*" dir="[^"]*">/,
             `<html lang="${lang}" dir="${lang === "ar" ? "rtl" : "ltr"}">`,
+          )
+          /* لكل لغة ملف تطبيقها: الاسم الذي يظهر تحت الأيقونة حين
+             يُثبَّت الموقع على الجوال يُقرأ من الـ manifest وقت
+             التحميل، فلا يكفي تبديله بعد إقلاع جافاسكربت */
+          .replace(
+            '<link rel="manifest" href="/site.webmanifest" />',
+            `<link rel="manifest" href="${lang === "en" ? "/site-en.webmanifest" : "/site.webmanifest"}" />`,
           )
           .replace("</head>", `  ${head}\n  </head>`)
           .replace('<div id="root"></div>', `<div id="root">${body}</div>`);

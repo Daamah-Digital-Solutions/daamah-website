@@ -10,7 +10,7 @@ import { FaqList } from "../components/FaqList";
 import { Lightbox, type LightboxShot } from "../components/Lightbox";
 import { OfferForm } from "../components/OfferForm";
 import { WhatsAppMark } from "../components/WhatsAppFab";
-import { Arrow, Chevron, Counter, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
+import { Arrow, Chevron, Counter, MaskLines, PlayMark, Reveal, SectionLabel, Wrap } from "../components/ui";
 
 const WA = waMessage.nationalDay.ar;
 const GALLERY_WIDTHS = [480, 960];
@@ -105,20 +105,6 @@ function BookLink({ placement, children, tone = "ink", className = "" }: { place
         <Arrow className="size-4" />
       </span>
     </a>
-  );
-}
-
-function PlayMark({ size = "lg" }: { size?: "lg" | "sm" }) {
-  return (
-    <span
-      className={`grid place-items-center rounded-full bg-ink text-paper shadow-[0_18px_40px_-12px_rgba(0,0,0,0.5)] transition-transform duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:scale-110 ${
-        size === "lg" ? "size-20 sm:size-24" : "size-14"
-      }`}
-    >
-      <svg viewBox="0 0 24 24" className={`ms-1 ${size === "lg" ? "size-8" : "size-6"}`} fill="currentColor" aria-hidden="true">
-        <path d="M7 4.5v15l13-7.5z" />
-      </svg>
-    </span>
   );
 }
 

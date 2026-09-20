@@ -3,6 +3,7 @@ import { about } from "../content/home";
 import { aboutPage } from "../content/pages";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
+import { Film } from "../sections/Film";
 import { Chevron, Counter, Reveal, SectionLabel, Wrap } from "../components/ui";
 
 /** عمود «مشكلة» أو «حل» — نفس الشكل، والنبرة وحدها تفرّق. */
@@ -66,6 +67,9 @@ export function AboutPage() {
           </div>
         </Wrap>
       </section>
+
+      {/* الفيلم التعريفي — بعد الرؤية والرسالة: من قرأهما أراد أن يرانا */}
+      <Film className="pt-16 pb-20 sm:pt-20 sm:pb-28" />
 
       {/* المشكلة والحل */}
       <section className="bg-paper-2 py-24 sm:py-32">

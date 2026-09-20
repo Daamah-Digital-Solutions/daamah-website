@@ -1,4 +1,5 @@
 import { Hero } from "../sections/Hero";
+import { Film } from "../sections/Film";
 import { About } from "../sections/About";
 import { Services } from "../sections/Services";
 import { Work } from "../sections/Work";
@@ -15,6 +16,7 @@ export function Home() {
   return (
     <>
       <Hero />
+      <Film />
       <About />
       <Services />
       <Work />

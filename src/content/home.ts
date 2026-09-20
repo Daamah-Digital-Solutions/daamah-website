@@ -134,6 +134,32 @@ export const stripSlugs = [
   "basmat-alomran",
 ];
 
+/**
+ * الفيلم التعريفي — لكل لغة نسختها، والملف يتبع لغة الصفحة.
+ *
+ * بلا ترقيم: الأرقام ترتيبٌ للأقسام التي تشرح الشركة، والفيلم ليس
+ * واحدًا منها بل دعوة لرؤيتها مجتمعة. ولا يُحمَّل إلا بالضغط —
+ * الغلاف صورة، والفيديو لا ينزل إلا على من أراده.
+ */
+export const film = {
+  label: { ar: "تعرّف علينا", en: "Meet Daamah" } as Bi,
+  lede: {
+    ar: ["فيلم قصير يعرّفك بنا،", "وبطريقتنا في العمل."],
+    en: ["A short film: who we are,", "and how we work."],
+  } as Bi<string[]>,
+  play: { ar: "شغّل الفيلم التعريفي", en: "Play the intro film" } as Bi,
+  /* المدّة تختلف بين النسختين — النصّ الإنجليزي أطول */
+  note: { ar: "1:42 دقيقة · يُفضَّل بالصوت", en: "2:09 · best with sound" } as Bi,
+  src: {
+    ar: "/assets/video/daamah-intro.mp4",
+    en: "/assets/video/daamah-intro-en.mp4",
+  } as Bi,
+  poster: {
+    ar: "/assets/video/daamah-intro-poster.jpg",
+    en: "/assets/video/daamah-intro-en-poster.jpg",
+  } as Bi,
+};
+
 export const about = {
   index: "01",
   label: { ar: "من نحن", en: "About" } as Bi,

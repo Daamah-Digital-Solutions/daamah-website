@@ -400,3 +400,24 @@ export function Counter({
     </span>
   );
 }
+
+/**
+ * علامة التشغيل فوق غلاف الفيديو.
+ *
+ * الفيديو لا يُحمَّل إلا بالضغط عليها، فهي الحدّ بين صورة ساكنة
+ * وملفٍّ بالميجابايتات — ولذلك تكبر قليلًا عند المرور: إشارة أنها
+ * فعلٌ لا زخرفة.
+ */
+export function PlayMark({ size = "lg" }: { size?: "lg" | "sm" }) {
+  return (
+    <span
+      className={`grid place-items-center rounded-full bg-ink text-paper shadow-[0_18px_40px_-12px_rgba(0,0,0,0.5)] transition-transform duration-(--dur-base) ease-[var(--ease-out-quint)] group-hover:scale-110 ${
+        size === "lg" ? "size-20 sm:size-24" : "size-14"
+      }`}
+    >
+      <svg viewBox="0 0 24 24" className={`ms-1 ${size === "lg" ? "size-8" : "size-6"}`} fill="currentColor" aria-hidden="true">
+        <path d="M7 4.5v15l13-7.5z" />
+      </svg>
+    </span>
+  );
+}

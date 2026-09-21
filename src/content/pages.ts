@@ -832,8 +832,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   "caffeine-kiss": {
     desc: {
-      ar: "كافيين كيس علامة قهوة تقدّم تجربة قهوة ودودة وعصرية.",
-      en: "A Caffeine Kiss is a coffee brand offering a friendly, contemporary coffee experience.",
+      ar: "كافيين كيس علامة قهوة تقدّم تجربة قهوة ودودة وعصرية — بنينا لها هوية بصرية كاملة مع تطبيقاتها على المقهى والعبوات ودليل استخدام يحفظ اتساقها.",
+      en: "A Caffeine Kiss is a coffee brand offering a friendly, contemporary coffee experience — we built its complete visual identity, café and packaging applications, and a usage guide that keeps it consistent.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },
@@ -843,8 +843,8 @@ export const workDetails: Record<string, { desc: Bi; results: Bi[] }> = {
   },
   daughters: {
     desc: {
-      ar: "دوترز للتجارة شركة تجارة عامة وتوريد وتوزيع.",
-      en: "Daughters Trading is a general trading, supply and distribution company.",
+      ar: "دوترز للتجارة شركة تجارة عامة وتوريد وتوزيع — بنينا لها هوية بصرية كاملة تليق بحجم أعمالها، مع دليل استخدام وتطبيقات جاهزة للطباعة والرقمي.",
+      en: "Daughters Trading is a general trading, supply and distribution company — we built its complete visual identity to match the scale of its business, with a usage guide and print and digital applications.",
     },
     results: [
       { ar: "هوية بصرية كاملة", en: "Complete visual identity" },

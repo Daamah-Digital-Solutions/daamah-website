@@ -31,6 +31,12 @@ const SITE = `${SITE_URL}/#website`;
 
 const pick = <T,>(v: Bi<T>, lang: Lang): T => v[lang];
 
+/** القطاعات التي فيها أعمال منشورة فعلًا — لا كل القطاعات المعرَّفة */
+function sectorsWorked(lang: Lang): string[] {
+  const seen = new Set(workItems.map((w) => w.sector));
+  return [...seen].map((k) => pick(sectorMeta(k).label, lang));
+}
+
 /** المنظّمة — عقدة واحدة يشير إليها الباقي بـ `@id`. */
 function organization(lang: Lang): Json {
   const tel = phoneFor();
@@ -53,6 +59,13 @@ function organization(lang: Lang): Json {
     foundingDate: String(brand.founded),
     sameAs: brand.social,
     knowsLanguage: ["ar", "en"],
+    slogan: "Digital Solutions & Empowering Brands",
+    /* المجالات بالاسم: نماذج اللغة تربط الكيان بمواضيع لا بوصفٍ عام.
+       الخدمات كما تُعرض، والقطاعات التي فيها أعمال منشورة */
+    knowsAbout: [
+      ...services.items.map((s) => pick(s.name, lang)),
+      ...sectorsWorked(lang),
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",

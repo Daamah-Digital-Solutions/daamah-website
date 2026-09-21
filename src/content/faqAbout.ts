@@ -82,6 +82,27 @@ export const faqGroups: { key: string; label: Bi; items: Item[] }[] = [
           en: "We don't start with execution. We understand your business, your market and how your client thinks before the first decision, design for a result you can measure rather than for applause, and stay after launch to read the numbers and improve.",
         },
       },
+      {
+        q: { ar: "هل دَعمة شركة تسويق رقمي أم شركة تطوير مواقع؟", en: "Is Daamah a marketing agency or a web development company?" },
+        a: {
+          ar: "الاثنان معًا، وهذا هو الفرق. دَعمة تبني الحضور الرقمي كمنظومة واحدة: الهوية والملف التعريفي، والموقع، والسيو والسوشيال ميديا والإعلانات، وأنظمة إدارة العملاء — لأن موقعًا بلا تسويق لا يصله أحد، وتسويقًا بلا موقع محترف يهدر ما يجلبه.",
+          en: "Both, and that is the point. Daamah builds digital presence as one system: identity and company profile, the website, SEO, social media and advertising, and client management systems — because a website nobody markets gets no visitors, and marketing that lands on a weak website wastes what it brings.",
+        },
+      },
+      {
+        q: { ar: "هل تعملون مع الشركات عن بُعد؟", en: "Do you work with companies remotely?" },
+        a: {
+          ar: "نعم. معظم عملائنا في السعودية والخليج وأوروبا نعمل معهم عن بُعد بالكامل: الاجتماعات تُجدوَل على توقيتك، والمتابعة عبر واتساب والبريد، والتسليم والمراجعات عبر روابط مباشرة. لا يحتاج المشروع إلى لقاء حضوري ليبدأ أو يكتمل.",
+          en: "Yes. Most of our clients across Saudi Arabia, the Gulf, and Europe work with us fully remotely: meetings are scheduled in your time zone, follow-up runs over WhatsApp and email, and deliverables and reviews go through direct links. A project needs no in-person meeting to start or finish.",
+        },
+      },
+      {
+        q: { ar: "كيف أتواصل مع دَعمة؟", en: "How do I contact Daamah?" },
+        a: {
+          ar: "أسرع طريق واتساب من أي صفحة في الموقع، أو نموذج طلب عرض السعر، أو البريد info@daamah.net. عادةً نرد خلال يوم عمل واحد، بالعربية أو الإنجليزية.",
+          en: "The fastest route is WhatsApp from any page on the site, the quote request form, or email at info@daamah.net. We usually reply within one business day, in Arabic or English.",
+        },
+      },
     ],
   },
   {

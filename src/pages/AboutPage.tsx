@@ -54,6 +54,29 @@ export function AboutPage() {
         intro={t(aboutPage.intro)}
       />
 
+      {/* دَعمة في سطور — التعريف الذي يُقتبس، قبل الرؤية والرسالة:
+          من يريد الحقائق يجدها أولًا، ومن يريد القصّة يكمل */}
+      <section className="border-b border-[var(--line)] py-20 sm:py-24">
+        <Wrap>
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-7">
+              <SectionLabel>{t(aboutPage.glance.label)}</SectionLabel>
+              <p className="mt-7 max-w-[62ch] text-[18px] leading-relaxed sm:text-[19.5px]">{t(aboutPage.glance.summary)}</p>
+            </Reveal>
+            <Reveal delay={120} className="lg:col-span-5">
+              <dl className="divide-y divide-[var(--line)] border-t border-[var(--line)]">
+                {aboutPage.glance.facts.map((f) => (
+                  <div key={f.k.en} className="grid grid-cols-[7.5rem_1fr] gap-4 py-3.5 text-[15px]">
+                    <dt className="text-ink/50">{t(f.k)}</dt>
+                    <dd className="font-medium">{t(f.v)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
+        </Wrap>
+      </section>
+
       {/* الرؤية والرسالة */}
       <section className="py-24 sm:py-32">
         <Wrap>

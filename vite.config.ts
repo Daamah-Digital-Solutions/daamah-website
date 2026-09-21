@@ -158,7 +158,7 @@ function prerender(): Plugin {
       const outDir = "dist";
       const entry = pathToFileURL(resolve(".ssr/entry-server.js")).href;
       const ssr = await import(/* @vite-ignore */ entry);
-      const { routes, SITE_URL, ogFor, graphFor, withLang, siteName } = ssr;
+      const { routes, SITE_URL, ogFor, graphFor, withLang, siteName, llmsTxt, llmsFullTxt } = ssr;
 
       const template = readFileSync(join(outDir, "index.html"), "utf8");
       const urls: string[] = [];
@@ -203,7 +203,11 @@ function prerender(): Plugin {
           `<title>${esc(title)}</title>`,
           ...hoisted,
           `<meta name="description" content="${esc(desc)}" />`,
-          opts.noindex ? `<meta name="robots" content="noindex,follow" />` : null,
+          /* `max-snippet:-1`: ملخّصات الذكاء الاصطناعي في نتائج البحث تقتبس
+             فقرةً كاملة حين يُسمح لها بلا حدّ، وجملةً مبتورة حين لا */
+          opts.noindex
+            ? `<meta name="robots" content="noindex,follow" />`
+            : `<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />`,
           `<link rel="canonical" href="${url}" />`,
           ...(opts.alternates === false
             ? []
@@ -373,9 +377,25 @@ function prerender(): Plugin {
         "utf8",
       );
 
+      /* زواحف الذكاء الاصطناعي بالاسم لا بالنجمة وحدها: النجمة تسمح
+         اليوم، لكن سطرًا مضافًا غدًا لحجب زاحفٍ مزعج قد يحجبها معه.
+         التصريح الصريح توثيقٌ للنيّة قبل أن يكون قاعدة. */
+      const AI_BOTS = [
+        "GPTBot", "OAI-SearchBot", "ChatGPT-User",
+        "ClaudeBot", "Claude-User", "Claude-SearchBot", "anthropic-ai",
+        "PerplexityBot", "Perplexity-User",
+        "Google-Extended", "Googlebot", "Bingbot",
+        "Applebot", "Applebot-Extended",
+        "Meta-ExternalAgent", "Meta-ExternalFetcher",
+        "Amazonbot", "DuckAssistBot", "YouBot", "CCBot", "cohere-ai", "MistralAI-User",
+      ];
       writeFileSync(
         join(outDir, "robots.txt"),
         [
+          "# البحث والإجابات المولَّدة مسموحان: الموقع يريد أن يُقرأ ويُقتبس",
+          "Content-Signal: search=yes, ai-input=yes, ai-train=yes",
+          "",
+          ...AI_BOTS.flatMap((ua) => [`User-agent: ${ua}`, "Allow: /", ""]),
           "User-agent: *",
           "Allow: /",
           "",
@@ -384,12 +404,17 @@ function prerender(): Plugin {
           "Disallow: /assets/*.css$",
           "",
           `Sitemap: ${SITE_URL}/sitemap.xml`,
+          `# ملخّص الموقع لنماذج اللغة: ${SITE_URL}/llms.txt`,
           "",
         ].join("\n"),
         "utf8",
       );
 
-      this.info?.(`prerendered ${urls.length} pages + sitemap + 404`);
+      /* الموقع كما تقرؤه نماذج اللغة — مولَّد من المحتوى نفسه */
+      writeFileSync(join(outDir, "llms.txt"), llmsTxt(), "utf8");
+      writeFileSync(join(outDir, "llms-full.txt"), llmsFullTxt(), "utf8");
+
+      this.info?.(`prerendered ${urls.length} pages + sitemap + robots + llms.txt + 404`);
     },
   };
 }

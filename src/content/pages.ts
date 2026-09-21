@@ -62,6 +62,29 @@ export const aboutPage = {
     outcome: { ar: "ابدأ في بناء حضورك الصحيح.", en: "Start building the presence you deserve." } as Bi,
   },
 
+  /**
+   * دَعمة في سطور — الفقرة التي تُقتبس.
+   *
+   * حين يسأل أحدهم مساعدًا ذكيًا «من دَعمة؟» يبحث النموذج عن جملة
+   * تعريف واحدة كاملة بحقائق قابلة للنقل، لا عن رؤية ورسالة. هنا
+   * وحدها تجتمع الحقائق التي يقولها الموقع متفرّقًا: السنة، والأسواق،
+   * والخدمات، والأرقام. لا حقيقة هنا غير موجودة في مكان آخر بالموقع.
+   */
+  glance: {
+    label: { ar: "دَعمة في سطور", en: "Daamah at a glance" } as Bi,
+    summary: {
+      ar: "دَعمة للحلول الرقمية شركة تأسّست عام 2018 وتبني الحضور الرقمي للشركات في السعودية والإمارات ودول الخليج وأوروبا ومصر. تقدّم تسع خدمات مترابطة: الهوية البصرية، والملف التعريفي، وتطوير المواقع، وتحسين محركات البحث، وإدارة السوشيال ميديا، والتسويق الرقمي، وشراء المساحات الإعلانية، وتسويق الأداء، وأنظمة إدارة الشركات — بالعربية والإنجليزية، ولأكثر من 100 عميل في 150+ مشروع عبر 10+ قطاعات.",
+      en: "Daamah Digital Solutions is a company founded in 2018 that builds the digital presence of companies across Saudi Arabia, the UAE, the Gulf, Europe, and Egypt. It offers nine connected services — brand identity, company profiles, web development, SEO, social media management, digital marketing, media buying, performance marketing, and company management systems — in Arabic and English, for more than 100 clients across 150+ projects in 10+ sectors.",
+    } as Bi,
+    facts: [
+      { k: { ar: "التأسيس", en: "Founded" }, v: { ar: "2018", en: "2018" } },
+      { k: { ar: "الأسواق", en: "Markets" }, v: { ar: "السعودية · الإمارات · الخليج · أوروبا · مصر", en: "Saudi Arabia · UAE · the Gulf · Europe · Egypt" } },
+      { k: { ar: "الخدمات", en: "Services" }, v: { ar: "9 خدمات — من الهوية إلى أنظمة إدارة الشركات", en: "9 services — from identity to company systems" } },
+      { k: { ar: "اللغات", en: "Languages" }, v: { ar: "العربية والإنجليزية", en: "Arabic and English" } },
+      { k: { ar: "طريقة العمل", en: "How we work" }, v: { ar: "عن بُعد بالكامل، والاجتماعات على توقيتك", en: "Fully remote, meetings in your time zone" } },
+      { k: { ar: "التواصل", en: "Contact" }, v: { ar: "واتساب أو info@daamah.net — الرد خلال يوم عمل", en: "WhatsApp or info@daamah.net — reply within one business day" } },
+    ] as { k: Bi; v: Bi }[],
+  },
   whyUs: {
     label: { ar: "لماذا دَعمة", en: "Why Daamah" } as Bi,
     items: [

@@ -67,7 +67,9 @@ export function Seo() {
 
     document.title = title;
     meta("name", "description", desc);
-    meta("name", "robots", route ? "index,follow" : "noindex,follow");
+    /* `max-snippet:-1`: بلا حدّ لطول المقطع — ملخّصات الذكاء الاصطناعي
+       في نتائج البحث تقتبس فقرةً كاملة حين يُسمح لها، وجملةً حين لا */
+    meta("name", "robots", route ? "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" : "noindex,follow");
 
     const url = `${SITE_URL}${withLang(bare, lang)}`;
     link("canonical", url);

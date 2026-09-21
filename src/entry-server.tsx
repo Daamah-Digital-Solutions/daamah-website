@@ -38,6 +38,7 @@ export { ogFor } from "./seo/site";
 export { postsIn } from "./content/blog";
 export { BLOG_ENABLED } from "./content/features";
 export { graphFor } from "./seo/schema";
+export { llmsFullTxt, llmsTxt } from "./seo/llms";
 /* اسم الموقع بلغته — كان ثابتًا بالعربية في القالب، فيظهر
    اسمٌ عربي عند مشاركة أي صفحة إنجليزية */
 export { name as siteName } from "./content/brandName";

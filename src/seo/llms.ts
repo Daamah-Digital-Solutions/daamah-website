@@ -24,6 +24,14 @@ export function llmsTxt(): string {
   const tel = phoneFor();
   const sectors = [...new Set(workItems.map((w) => w.sector))].map((k) => sectorMeta(k).label.en);
   const core = routes.filter((r) => ["home", "page", "services", "service", "work"].includes(r.kind) && !r.path.startsWith("/national-day"));
+  /* المقالات بلغتها الأصلية: أكثرها عربي، والنموذج يقرأ العربية —
+     ترجمة عنوانٍ لمقال غير مترجم تَعِد بصفحة لا وجود لها */
+  const articles = routes
+    .filter((r) => r.kind === "post")
+    .map((r) => {
+      const lang: Lang = !r.langs || r.langs.includes("en") ? "en" : "ar";
+      return `- [${r.title[lang]}](${abs(r.path, lang)})${lang === "ar" ? " (Arabic)" : ""}: ${r.description[lang]}`;
+    });
 
   return [
     `# ${brand.name.en} (${brand.name.ar})`,
@@ -48,6 +56,7 @@ export function llmsTxt(): string {
     "## Key pages",
     "",
     ...core.map((r) => `- [${r.title.en.split("—")[0].trim()}](${abs(r.path, "en")}): ${r.description.en}`),
+    ...(articles.length ? ["", "## Articles", "", ...articles] : []),
     "",
     "## Optional",
     "",

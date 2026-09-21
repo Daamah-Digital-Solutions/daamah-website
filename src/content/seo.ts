@@ -364,7 +364,7 @@ export const routes: RouteMeta[] = [
     kind: "city" as const,
     parent: `/services/${p.service}`,
   })),
-  /* المدوّنة موقوفة مؤقّتًا: لا صفحات تُولَّد ولا تدخل خريطة الموقع */
+  /* المدوّنة: صفحاتها وخريطتها وخلاصتها تتبع مفتاحًا واحدًا في `features.ts` */
   ...(BLOG_ENABLED
     ? [
         {

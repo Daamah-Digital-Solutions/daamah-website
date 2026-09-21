@@ -4,6 +4,8 @@ import { useLang } from "../i18n";
 import { track } from "../analytics";
 import { waHref, waMessage } from "../content/whatsapp";
 import { brand, contact, footer, hero, navItems, phoneFor, services, ui } from "../content/home";
+import { blogPage } from "../content/pages";
+import { BLOG_ENABLED } from "../content/features";
 import { Btn, TextLink, Wrap } from "./ui";
 
 /* ── علامات المنصّات — مرسومة لا محمّلة، فتتبع لون النص ── */
@@ -60,6 +62,8 @@ export function Footer() {
     { href: "/profile", label: footer.profileTitle },
     { href: "/saudi", label: footer.saudiTitle },
     { href: "/faq", label: footer.faqTitle },
+    /* المدوّنة في الفوتر لا القائمة: طريق الزواحف إليها، لا طريق المشتري */
+    ...(BLOG_ENABLED ? [{ href: "/blog", label: blogPage.label }] : []),
     { href: "/contact", label: footer.contactTitle },
   ];
 

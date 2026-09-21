@@ -14,6 +14,10 @@ export const tagLabels: Record<string, Bi> = {
   marketing: { ar: "التسويق الرقمي", en: "Digital marketing" },
   saudi: { ar: "السوق السعودي", en: "Saudi market" },
   pricing: { ar: "التكلفة", en: "Pricing" },
+  ai: { ar: "الذكاء الاصطناعي", en: "AI" },
+  profile: { ar: "الملف التعريفي", en: "Company profile" },
+  crm: { ar: "إدارة علاقات العملاء", en: "CRM" },
+  ads: { ar: "الإعلانات الممولة", en: "Paid ads" },
 };
 
 export const tagLabel = (tag: string): Bi =>

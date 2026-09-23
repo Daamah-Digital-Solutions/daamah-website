@@ -287,7 +287,12 @@ export const routes: RouteMeta[] = [
   /* قصص العملاء أعلى أولويةً من العمل المفرد: هي ما نريد أن يُقرأ */
   ...clientStories.map<RouteMeta>((c) => ({
     path: `/clients/${c.slug}`,
-    title: titled(c.name),
+    /* عنوان مختلف عن صفحة العمل نفسه: عنوانان متطابقان يجعلان جوجل
+       يختار واحدة ويُسقط الأخرى من النتائج */
+    title: {
+      ar: `${c.name.ar} — قصة عميل | ${brand.short.ar}`,
+      en: `${c.name.en} — client story | ${brand.short.en}`,
+    },
     description: describe(`/clients/${c.slug}`, c.lede),
     priority: 0.7,
     kind: "client" as const,

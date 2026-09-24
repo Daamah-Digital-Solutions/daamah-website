@@ -19,6 +19,7 @@ import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { nationalDay, offerPath } from "./nationalDay";
 import { BLOG_ENABLED } from "./features";
+import { contractorsPage, contractorsPath } from "./contractors";
 import { faqPage, faqPath } from "./faqAbout";
 
 /**
@@ -97,6 +98,31 @@ const home: RouteMeta = {
   kind: "home",
 };
 
+/**
+ * عناوين صفحات الخدمات في نتائج البحث.
+ *
+ * اسم الخدمة في القوائم مكتوب بلغة الشركة («تطوير المواقع»)، والباحث
+ * يكتب بلغته («تصميم مواقع»). العنوان هنا بلغة الباحث، بلا «أفضل شركة»:
+ * جوجل يرتّب بالعبارة لا بالصفة، والادعاء لا يشبه نبرة دَعمة.
+ */
+const SERVICE_TITLES: Record<string, Bi> = {
+  "branding": { ar: "تصميم هوية بصرية وشعار للشركات", en: "Brand identity & logo design" },
+  "company-profile": { ar: "تصميم بروفايل شركة Company Profile عربي وإنجليزي", en: "Company profile design, Arabic & English" },
+  "web-development": { ar: "تصميم مواقع الشركات وتطويرها في السعودية", en: "Company website design & development" },
+  "seo": { ar: "خدمات سيو وتحسين محركات البحث في السعودية", en: "SEO services in Saudi Arabia" },
+  "social-media": { ar: "إدارة حسابات السوشيال ميديا للشركات", en: "Social media management for companies" },
+  "digital-marketing": { ar: "شركة تسويق رقمي للشركات في السعودية والخليج", en: "Digital marketing agency for Saudi & Gulf companies" },
+  "media-buying": { ar: "إدارة الإعلانات الممولة وشراء المساحات", en: "Paid ads & media buying" },
+  "performance-marketing": { ar: "تسويق الأداء: حملات تُقاس بالطلبات", en: "Performance marketing" },
+  "crm": { ar: "برمجة أنظمة إدارة الشركات وCRM", en: "Custom CRM & company systems" },
+};
+
+/** «العبارة | دَعمة» — الاسم القصير يترك مكانًا للعبارة */
+const searchTitled = (label: Bi): Bi => ({
+  ar: `${label.ar} | ${brand.short.ar}`,
+  en: `${label.en} | ${brand.short.en}`,
+});
+
 /** يبني عنوانًا موحّدًا: «اسم الصفحة — اسم الشركة» */
 function titled(label: Bi): Bi {
   return { ar: `${label.ar} — ${brand.name.ar}`, en: `${label.en} — ${brand.name.en}` };
@@ -113,6 +139,43 @@ function titled(label: Bi): Bi {
  * المفتاح هو المسار المجرّد. ما لا مفتاح له يبقى على مقدّمته.
  */
 const META: Record<string, Bi> = {
+  /* صفحات الخدمات: الوصف يبدأ بالعبارة التي يكتبها الباحث، ثم ما يميّزنا */
+  "/services/branding": {
+    ar: "تصميم هوية بصرية وشعار للشركات: نظام كامل من لون وخطّ وأسلوب صورة ونبرة، مبنيّ على فهم سوقك، مع دليل استخدام وتطبيقات جاهزة.",
+    en: "Brand identity and logo design for companies: a full system of colour, type, imagery and tone built from your market, with a usage guide and ready applications.",
+  },
+  "/services/company-profile": {
+    ar: "تصميم بروفايل شركة (Company Profile) بالعربية والإنجليزية: ملف يُقرأ في خمس دقائق ويصلح للمناقصات وملفات التأهيل، نكتب نصوصه ونصمّمه على هويتكم.",
+    en: "Company profile design in Arabic and English: a document read in five minutes that holds up in tenders and qualification files, written and designed on your identity.",
+  },
+  "/services/web-development": {
+    ar: "تصميم مواقع الشركات وتطويرها بكود نظيف لا بقوالب: موقع عربي أولًا، سريع على الجوال، يقود الزائر إلى خطوة واضحة، والدومين والاستضافة باسمك.",
+    en: "Company website design and development in clean code, not templates: Arabic-first, fast on mobile, leading visitors to one clear step, with domain and hosting in your name.",
+  },
+  "/services/seo": {
+    ar: "خدمات سيو وتحسين محركات البحث: تدقيق تقني، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا، ومحتوى عربي يُنشر بانتظام، وضبط نشاطك على خرائط جوجل.",
+    en: "SEO services: a technical audit, keyword research built on how Saudis actually search, Arabic content published consistently, and your Google Maps listing set up.",
+  },
+  "/services/social-media": {
+    ar: "إدارة حسابات السوشيال ميديا للشركات: خطة محتوى شهرية، وتصميم البوستات والقصص، وكتابة النصوص وجدولة النشر، وتقرير أداء شهري نعدّل على أساسه.",
+    en: "Social media management for companies: a monthly content plan, post and story design, copywriting and scheduling, and a monthly performance report we adjust from.",
+  },
+  "/services/digital-marketing": {
+    ar: "شركة تسويق رقمي تبني استراتيجيتك على بيانات سوقك: من هو عميلك، وأين يبحث، وما يوقفه عن الشراء، ثم خطة قنوات بأهداف ومؤشرات واضحة.",
+    en: "A digital marketing agency that builds your strategy on market data: who your customer is, where they search, what stops them buying, then a channel plan with clear metrics.",
+  },
+  "/services/media-buying": {
+    ar: "إدارة الإعلانات الممولة على المنصّات التي يستعملها جمهورك فعلًا: اختيار الجمهور، وإعداد الحملات والتتبّع، وإنتاج الإعلان، ومتابعة يومية للتكلفة.",
+    en: "Paid ads run on the platforms your audience actually uses: audience selection, campaign and tracking setup, ad production, and cost watched daily.",
+  },
+  "/services/performance-marketing": {
+    ar: "تسويق الأداء: قياس دقيق للتحويلات، واختبارات A/B مستمرة، وتحسين صفحات الهبوط، وإعادة توزيع الميزانية حتى يرتفع عائد كل ريال يُنفق.",
+    en: "Performance marketing: precise conversion tracking, ongoing A/B tests, landing page improvements, and budget reallocation until every riyal spent returns more.",
+  },
+  "/services/crm": {
+    ar: "برمجة وتهيئة أنظمة إدارة الشركات وCRM على طريقة عملكم: مراحل بيع واضحة بمسؤول لكل مرحلة، وتنبيهات متابعة، وتقارير تقرأها الإدارة بلا وسيط.",
+    en: "Custom CRM and company management systems shaped to how you work: clear sales stages with an owner each, follow-up alerts, and reports management reads directly.",
+  },
   /* أوصاف الأعمال الجديدة: نصّ الصفحة يشرح، والوصف هنا يُقتطع في
      نتائج البحث إن طال — فيُكتب قصيرًا بدل أن يُبتر */
   "/clients/hcc": {
@@ -150,26 +213,6 @@ const META: Record<string, Bi> = {
   "/services": {
     ar: "خدمات دَعمة في ثلاثة عوامل: الظهور وبناء الثقة، والوصول وخلق الفرص، وتنظيم العمل والنمو — هوية ومواقع وسيو وإعلانات وأنظمة CRM.",
     en: "Daamah's services across three factors: appearing and earning trust, reaching and creating demand, and running the work — branding, websites, SEO, ads, and CRM.",
-  },
-  "/services/branding": {
-    ar: "نظام هوية كامل — لون وخطّ وأسلوب صورة ونبرة — مبنيّ على فهم سوقك. يشمل دليل استخدام وتطبيقات جاهزة.",
-    en: "A complete identity system — colour, type, image style, and tone — built from your market. Includes a usage guide and ready applications.",
-  },
-  "/services/company-profile": {
-    ar: "ملف تعريفي يُقرأ في خمس دقائق ويصلح للتأهيل والعروض — مكتوب ومصمّم على هويّتكم، عربي وإنجليزي.",
-    en: "A company profile read in five minutes that holds up in qualification files — written and designed on your identity, in Arabic and English.",
-  },
-  "/services/crm": {
-    ar: "نظام CRM مهيّأ على طريقة عملكم: مراحل بيع واضحة، ومسؤول لكل مرحلة، وتقارير تقرأها الإدارة بلا وسيط.",
-    en: "A CRM shaped to how you work: clear sales stages, an owner for each, and reports management reads without a middleman.",
-  },
-  "/services/seo": {
-    ar: "تدقيق تقني، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا، ومحتوى عربي يُنشر بانتظام. نتائج تقنية خلال أسابيع، وترتيب خلال 4–9 أشهر.",
-    en: "Technical audit, Arabic keyword research based on how Saudis really search, and content published consistently. Technical gains in weeks, rankings in 4–9 months.",
-  },
-  "/services/media-buying": {
-    ar: "حملات على المنصّات التي يستعملها جمهورك فعلًا، بمتابعة يومية للتكلفة لا شهرية. الاستهداف الدقيق أهمّ من الإنفاق الكبير.",
-    en: "Campaigns on the platforms your audience actually uses, with cost watched daily rather than monthly. Sharp targeting beats big spend.",
   },
   "/solutions": {
     ar: "أربعة حلول مبنيّة على وضع الشركة لا على قائمة خدمات: الأساس، الحضور، الفرص، والنظام. اقرأ الأقرب إلى وضعكم.",
@@ -262,7 +305,7 @@ export const routes: RouteMeta[] = [
   },
   ...services.items.map<RouteMeta>((s) => ({
     path: `/services/${s.slug}`,
-    title: titled(s.name),
+    title: SERVICE_TITLES[s.slug] ? searchTitled(SERVICE_TITLES[s.slug]) : titled(s.name),
     description: describe(`/services/${s.slug}`, serviceDetails[s.slug]?.intro ?? s.desc),
     priority: 0.8,
     kind: "service" as const,
@@ -345,6 +388,15 @@ export const routes: RouteMeta[] = [
     kind: "page",
     langs: ["ar"],
     image: "/assets/og-national-day.jpg",
+  },
+  /* صفحة قطاع: أسهل عبارة تجارية أمامنا («بروفايل شركة مقاولات») ولا
+     منافس يشرح ما تطلبه لجنة التأهيل فعلًا */
+  {
+    path: contractorsPath,
+    title: contractorsPage.meta.title,
+    description: contractorsPage.meta.description,
+    priority: 0.9,
+    kind: "page",
   },
   {
     path: "/saudi",

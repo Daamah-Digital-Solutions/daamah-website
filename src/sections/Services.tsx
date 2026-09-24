@@ -73,9 +73,14 @@ export function Services() {
           <p className="max-w-[64ch] flex-1 text-[16.5px] leading-relaxed">{t(areas.proof)}</p>
         </Reveal>
 
-        <Reveal className="mt-10">
+        <Reveal className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <TextLink href="/services">
             {t({ ar: "اقرأ الخدمات بالتفصيل", en: "Read the services in detail" })}
+          </TextLink>
+          {/* صفحة السوق السعودي كانت لا تُبلَغ إلا من الفوتر — وهي أهمّ
+              صفحة لمن يبحث من السعودية، ومنها تتفرّع صفحات المدن */}
+          <TextLink href="/saudi">
+            {t({ ar: "خدماتنا في السعودية", en: "Our work in Saudi Arabia" })}
           </TextLink>
         </Reveal>
       </Wrap>

@@ -23,7 +23,7 @@ import type { FaqItem } from "./faq";
 export type CityKey = "riyadh" | "jeddah";
 
 /** الخدمات التي لنا فيها ما نقوله محليًا — لا كل الخدمات. */
-export type CityServiceSlug = "web-development" | "branding" | "digital-marketing" | "seo";
+export type CityServiceSlug = "web-development" | "branding" | "digital-marketing" | "seo" | "company-profile";
 
 export const cities: { key: CityKey; name: Bi; inCity: Bi; blurb: Bi }[] = [
   {
@@ -68,11 +68,11 @@ export const cityPages: CityPage[] = [
     service: "web-development",
     city: "riyadh",
     title: {
-      ar: "تصميم وتطوير مواقع الشركات في الرياض",
-      en: "Company website design and development in Riyadh",
+      ar: "شركة تصميم مواقع في الرياض",
+      en: "Web design company in Riyadh",
     },
     description: {
-      ar: "مواقع شركات في الرياض تصمد أمام لجنة مشتريات: عربية أولًا، سريعة على الجوال، وفيها ما تسأل عنه الجهات قبل التعاقد. نعمل مع عملاء سعوديين منذ 2019.",
+      ar: "تصميم مواقع الشركات في الرياض بمعيار لجنة المشتريات: عربية أولًا، سريعة على الجوال، وفيها ما تسأل عنه الجهات قبل التعاقد. مع عملاء سعوديين منذ 2019.",
       en: "Company websites in Riyadh built to survive a procurement committee: Arabic-first, fast on mobile, and carrying what entities ask for before contracting.",
     },
     h1: {
@@ -80,7 +80,7 @@ export const cityPages: CityPage[] = [
       en: ["Your Riyadh company site,", "read before it's judged."],
     },
     intro: {
-      ar: "في الرياض لا يفتح موقعك عميلٌ واحد بل لجنة: مسؤول مشتريات يبحث عن السجل التجاري والعنوان الوطني، ومهندس يقرأ المشاريع السابقة، ومدير يريد أن يعرف من أنتم في دقيقة. الموقع الذي يخدم واحدًا منهم ويُهمل الباقين يُستبعد قبل أن يصل إلى مرحلة السعر. نبني الموقع على هذا الترتيب: صفحة تعريف تجيب سؤال «من أنتم» بلا التفاف، ومشاريع مفصّلة بأرقامها وقطاعاتها لا صورًا بلا سياق، وملف تعريفي جاهز للتحميل لأن كثيرًا من الجهات تطلبه ملفًا لا رابطًا، وبيانات تواصل ظاهرة في كل صفحة. والعربية هي اللغة الأولى لا ترجمةً للإنجليزية — النصّ المترجم آليًا يُقرأ فورًا على أنه كذلك، وهو أول ما يُفقد الثقة.",
+      ar: "تصميم مواقع الشركات في الرياض يبدأ من سؤال: من سيفتح الموقع؟ في الرياض لا يفتح موقعك عميلٌ واحد بل لجنة: مسؤول مشتريات يبحث عن السجل التجاري والعنوان الوطني، ومهندس يقرأ المشاريع السابقة، ومدير يريد أن يعرف من أنتم في دقيقة. الموقع الذي يخدم واحدًا منهم ويُهمل الباقين يُستبعد قبل أن يصل إلى مرحلة السعر. نبني الموقع على هذا الترتيب: صفحة تعريف تجيب سؤال «من أنتم» بلا التفاف، ومشاريع مفصّلة بأرقامها وقطاعاتها لا صورًا بلا سياق، وملف تعريفي جاهز للتحميل لأن كثيرًا من الجهات تطلبه ملفًا لا رابطًا، وبيانات تواصل ظاهرة في كل صفحة. والعربية هي اللغة الأولى لا ترجمةً للإنجليزية — النصّ المترجم آليًا يُقرأ فورًا على أنه كذلك، وهو أول ما يُفقد الثقة.",
       en: "In Riyadh your website is not opened by one person but by a committee: a procurement officer looking for the commercial registration and national address, an engineer reading past projects, and a manager who wants to know who you are inside a minute. A site that serves one of them and neglects the rest is set aside before price is ever discussed. We build in that order: an about page that answers \"who are you\" without circling, projects detailed with their numbers and sectors rather than pictures without context, a downloadable company profile because many entities want a file rather than a link, and contact details visible on every page. Arabic comes first, not as a translation of English — machine-translated text reads as exactly that, and it is the first thing to cost you trust.",
     },
     painPoints: [
@@ -159,11 +159,11 @@ export const cityPages: CityPage[] = [
     service: "web-development",
     city: "jeddah",
     title: {
-      ar: "تصميم مواقع ومتاجر إلكترونية في جدة",
-      en: "Websites and online stores in Jeddah",
+      ar: "شركة تصميم مواقع ومتاجر إلكترونية في جدة",
+      en: "Web design and online stores in Jeddah",
     },
     description: {
-      ar: "مواقع ومتاجر إلكترونية لشركات جدة: كتالوج يُتصفَّح من الجوال، طلب عبر واتساب، ومحتوى عربي يبيع. خبرة مع عملاء سعوديين منذ 2019.",
+      ar: "تصميم مواقع ومتاجر إلكترونية في جدة: كتالوج يُتصفَّح من الجوال، وطلب عبر واتساب، ومحتوى عربي يبيع. خبرة مع عملاء سعوديين منذ 2019.",
       en: "Websites and stores for Jeddah businesses: a catalogue that browses on a phone, ordering over WhatsApp, and Arabic content that sells.",
     },
     h1: {
@@ -243,9 +243,9 @@ export const cityPages: CityPage[] = [
   {
     service: "branding",
     city: "riyadh",
-    title: { ar: "تصميم هوية بصرية لشركات الرياض", en: "Brand identity for Riyadh companies" },
+    title: { ar: "تصميم هوية بصرية وشعار في الرياض", en: "Brand identity and logo design in Riyadh" },
     description: {
-      ar: "هوية بصرية لشركات الرياض تُقرأ مؤسّسيةً لا ناشئة: لوجو عربي-إنجليزي متّزن، ودليل استخدام، وملف تعريفي جاهز للتأهيل.",
+      ar: "تصميم هوية بصرية وشعار لشركات الرياض يُقرأ مؤسّسيًا لا ناشئًا: لوجو عربي-إنجليزي متّزن، ودليل استخدام، وملف تعريفي جاهز للتأهيل.",
       en: "Brand identity for Riyadh companies that reads established, not new: a balanced Arabic–English mark, a usage guide, and a profile for qualification files.",
     },
     h1: {
@@ -322,9 +322,9 @@ export const cityPages: CityPage[] = [
   {
     service: "branding",
     city: "jeddah",
-    title: { ar: "تصميم هوية بصرية للعلامات في جدة", en: "Brand identity for Jeddah brands" },
+    title: { ar: "تصميم هوية بصرية وشعار في جدة", en: "Brand identity and logo design in Jeddah" },
     description: {
-      ar: "هوية بصرية لمتاجر ومطاعم وبيوت تجارية في جدة: علامة تعمل على اللافتة والعبوة والشاشة معًا، بدليل استخدام واضح.",
+      ar: "تصميم هوية بصرية وشعار لمتاجر ومطاعم وبيوت تجارية في جدة: علامة تعمل على اللافتة والعبوة والشاشة معًا، بدليل استخدام واضح.",
       en: "Brand identity for Jeddah retailers, restaurants, and merchant houses: a mark that works on signage, packaging, and screen alike — with a clear usage guide.",
     },
     h1: {
@@ -394,9 +394,9 @@ export const cityPages: CityPage[] = [
   {
     service: "digital-marketing",
     city: "riyadh",
-    title: { ar: "التسويق الرقمي للشركات في الرياض", en: "Digital marketing for Riyadh companies" },
+    title: { ar: "شركة تسويق رقمي في الرياض", en: "Digital marketing agency in Riyadh" },
     description: {
-      ar: "تسويق رقمي لشركات B2B في الرياض: حملات تُقاس بالطلبات المؤهّلة لا بالمشاهدات، وتقرير شهري يربط الإنفاق بالنتيجة.",
+      ar: "شركة تسويق رقمي في الرياض لشركات B2B: حملات تُقاس بالطلبات المؤهّلة لا بالمشاهدات، وتقرير شهري يربط الإنفاق بالنتيجة.",
       en: "B2B digital marketing in Riyadh: campaigns measured in qualified enquiries rather than impressions, with a monthly report tying spend to outcome.",
     },
     h1: {
@@ -473,9 +473,9 @@ export const cityPages: CityPage[] = [
   {
     service: "digital-marketing",
     city: "jeddah",
-    title: { ar: "التسويق الرقمي للمتاجر والمطاعم في جدة", en: "Digital marketing for Jeddah retail and food" },
+    title: { ar: "شركة تسويق رقمي في جدة للمتاجر والمطاعم", en: "Digital marketing agency in Jeddah" },
     description: {
-      ar: "تسويق رقمي لتجزئة ومطاعم جدة: حملات تتبع الموسم، ومحتوى بلهجة جمهورك، وقياس يصل إلى الطلب لا إلى الإعجاب.",
+      ar: "شركة تسويق رقمي في جدة للتجزئة والمطاعم: حملات تتبع الموسم، ومحتوى بلهجة جمهورك، وقياس يصل إلى الطلب لا إلى الإعجاب.",
       en: "Digital marketing for Jeddah retail and restaurants: campaigns that follow the season, content in your audience's voice, and measurement that reaches the order.",
     },
     h1: {
@@ -552,9 +552,9 @@ export const cityPages: CityPage[] = [
   {
     service: "seo",
     city: "riyadh",
-    title: { ar: "خدمات السيو وتحسين محركات البحث في الرياض", en: "SEO services in Riyadh" },
+    title: { ar: "شركة سيو وتحسين محركات البحث في الرياض", en: "SEO company in Riyadh" },
     description: {
-      ar: "سيو لشركات الرياض: تدقيق تقني، وبحث كلمات عربية حقيقي، ومحتوى يُنشر بانتظام. بلا وعود بالمركز الأول ولا تقارير بلا رقم.",
+      ar: "شركة سيو في الرياض: تدقيق تقني، وبحث كلمات عربية حقيقي، ومحتوى يُنشر بانتظام. بلا وعود بالمركز الأول ولا تقارير بلا رقم.",
       en: "SEO for Riyadh companies: a technical audit, real Arabic keyword research, and content published consistently. No promises of page one, no empty reports.",
     },
     h1: {
@@ -631,9 +631,9 @@ export const cityPages: CityPage[] = [
   {
     service: "seo",
     city: "jeddah",
-    title: { ar: "خدمات السيو وتحسين الظهور المحلي في جدة", en: "SEO and local visibility in Jeddah" },
+    title: { ar: "خدمات سيو وظهور محلي في جدة", en: "SEO and local search in Jeddah" },
     description: {
-      ar: "سيو محلي لأنشطة جدة: الظهور في خرائط جوجل وعبارات «قريب مني»، وصفحات فروع، ومحتوى موسمي يلتقط الطلب في وقته.",
+      ar: "خدمات سيو محلي في جدة: الظهور في خرائط جوجل وعبارات «قريب مني»، وصفحات فروع، ومحتوى موسمي يلتقط الطلب في وقته.",
       en: "Local SEO for Jeddah businesses: showing up in Maps and \"near me\" searches, branch pages, and seasonal content that catches demand when it happens.",
     },
     h1: {
@@ -701,6 +701,169 @@ export const cityPages: CityPage[] = [
         a: {
           ar: "نعم، ولعلّه أوضح عائد في السيو المحلي: بطاقتان مضبوطتان وصفحتا فرع مكتوبتان جيدًا تلتقطان بحثًا مستعجلًا لا ينافس عليه غيرك في حيّك بالضرورة.",
           en: "Yes — it's often the clearest return in local SEO: two well-kept listings and two properly written branch pages catch urgent searches that may have little competition in your district.",
+        },
+      },
+    ],
+  },
+  /* ─────────── الرياض × البروفايل ─────────── */
+  {
+    service: "company-profile",
+    city: "riyadh",
+    title: {
+      ar: "تصميم بروفايل شركة في الرياض",
+      en: "Company profile design in Riyadh",
+    },
+    description: {
+      ar: "تصميم بروفايل شركة في الرياض لملفات التأهيل واللجان والعروض: عربي وإنجليزي مصمّمان معًا، مشاريع بأرقامها، ونصوص نكتبها نحن لا ننتظرها منك.",
+      en: "Company profile design in Riyadh for qualification files, committees and pitches: Arabic and English designed together, projects with numbers, and copy we write.",
+    },
+    h1: {
+      ar: ["بروفايل شركتك في الرياض", "يُقرأ قبل الاجتماع لا بعده."],
+      en: ["Your Riyadh company profile,", "read before the meeting, not after."],
+    },
+    intro: {
+      ar: "في الرياض يصل بروفايل الشركة قبل صاحبه: يُرفق بطلب تأهيل، أو يُرسل إلى إدارة مشتريات، أو يُفتح على شاشة قبل اجتماع مع لجنة. من يقرؤه لا يبحث عن صفحات جميلة بل عن إجابات: من أنتم، ومنذ متى، وماذا نفّذتم ولمن وبكم، وما الذي يثبت ذلك. نكتب البروفايل على هذا الترتيب ونصمّمه على هويتك، بالعربية لجهات القطاع العام وبالإنجليزية للاستشاريين والشركات الكبرى، مصمّمتين معًا لا مترجمة إحداهما عن الأخرى. والنص جزء من الخدمة: نجلس معك ونكتب، بدل أن يُطلب منك «إرسال المحتوى» فيتوقّف الملف أسابيع عند أصعب خطوة فيه.",
+      en: "In Riyadh a company profile arrives before its owner: attached to a qualification request, sent to a procurement team, or opened on a screen before a committee meeting. Whoever reads it isn't looking for pretty pages but for answers: who you are, since when, what you delivered, for whom and at what value, and what proves it. We write the profile in that order and design it on your identity, in Arabic for public-sector entities and English for consultants and large companies, designed together rather than one translated from the other. The writing is part of the service: we sit with you and write, instead of asking you to \"send the content\" and leaving the file stuck for weeks at its hardest step.",
+    },
+    painPoints: [
+      {
+        title: { ar: "نبذة تصلح لأي شركة", en: "An about page that fits any company" },
+        body: {
+          ar: "«شركة رائدة ذات خبرة طويلة وفريق محترف» جملة تقرؤها اللجنة في كل ملف، فتتخطّاها. ما يُقرأ هو الرقم والشهادة والمشروع المرجعي.",
+          en: "\"A leading company with long experience and a professional team\" is a line the committee reads in every file, so it skips it. What gets read is the number, the certificate and the reference project.",
+        },
+      },
+      {
+        title: { ar: "الإنجليزية مترجمة آليًا", en: "Machine-translated English" },
+        body: {
+          ar: "الاستشاري الذي يقرأ بالإنجليزية يلاحظ الترجمة الآلية من السطر الأول، ويقرأ بعدها كل ما في الملف بشكّ.",
+          en: "A consultant reading in English spots machine translation from the first line, and reads everything after it with doubt.",
+        },
+      },
+      {
+        title: { ar: "ملف ثقيل لا يُرسل", en: "A file too heavy to send" },
+        body: {
+          ar: "ملف طباعة بخمسين ميجابايت يُرفض في البريد أو في منصّة الرفع. نسلّم نسخة إرسال خفيفة بجانب نسخة الطباعة.",
+          en: "A fifty-megabyte print file bounces from email or the upload portal. We deliver a light sending version alongside the print one.",
+        },
+      },
+    ],
+    approach: [
+      {
+        ar: "نحدّد القارئ الأول للملف — لجنة تأهيل أم عميل أم شريك — ونرتّب الصفحات على أسئلته.",
+        en: "We identify the file's first reader — a qualification committee, a client or a partner — and order the pages around their questions.",
+      },
+      {
+        ar: "نكتب النصوص من جلسة معك ومن موادك الحالية، وتراجعها قبل أن يبدأ التصميم.",
+        en: "We write the copy from a session with you and your existing material, and you review it before design begins.",
+      },
+      {
+        ar: "نسلّم نسخة طباعة ونسخة إرسال ونسخة قابلة للتحديث حين يُضاف مشروع جديد.",
+        en: "We deliver a print version, a sending version and one you can update when a new project is added.",
+      },
+    ],
+    faq: [
+      {
+        q: { ar: "هل تكتبون محتوى البروفايل أم نرسله نحن؟", en: "Do you write the profile's content, or do we send it?" },
+        a: {
+          ar: "نكتبه نحن. نحتاج منك جلسة ومستنداتك الحالية وقائمة المشاريع، ثم نكتب النصوص وتراجعها. الكتابة هي أصعب ما في البروفايل، ولهذا هي داخل الخدمة لا خارجها.",
+          en: "We write it. We need a session with you, your existing documents and your project list; then we write and you review. Writing is the hardest part of a profile, which is why it sits inside the service.",
+        },
+      },
+      {
+        q: { ar: "هل يصلح البروفايل لملفات التأهيل والمنافسات؟", en: "Does the profile work for qualification files and tenders?" },
+        a: {
+          ar: "نعم، إن بُني لها. نرتّبه على ما تطلبه الجهة عادةً ونعرض المشاريع بقيمها وجهاتها. ولشركات المقاولات صفحة خاصة بما تطلبه لجان التأهيل.",
+          en: "Yes, if it is built for them. We order it around what the entity usually asks for and show projects with their values and owners. Contractors have a dedicated page on what prequalification committees ask for.",
+        },
+      },
+      {
+        q: { ar: "كيف تتم الاجتماعات والتسليم؟", en: "How do meetings and handover work?" },
+        a: {
+          ar: "عن بُعد على توقيت الرياض: جلسة بداية، ثم مراجعة مكتوبة للنص، ثم للتصميم، ثم تسليم الملفات. نعمل بهذه الطريقة مع شركات سعودية منذ 2019.",
+          en: "Remotely on Riyadh time: a kickoff session, a written review of the copy, then of the design, then handover. We've worked this way with Saudi companies since 2019.",
+        },
+      },
+    ],
+  },
+
+  /* ─────────── جدة × البروفايل ─────────── */
+  {
+    service: "company-profile",
+    city: "jeddah",
+    title: {
+      ar: "تصميم بروفايل شركة في جدة",
+      en: "Company profile design in Jeddah",
+    },
+    description: {
+      ar: "تصميم بروفايل شركة في جدة للبيوت التجارية والمصانع والموزّعين: ملف يعرض المنتجات والوكالات والأسواق، بالعربية والإنجليزية، ونسخة ترسلها في دقيقة.",
+      en: "Company profile design in Jeddah for trading houses, manufacturers and distributors: products, agencies and markets, in Arabic and English, with a version you can send in a minute.",
+    },
+    h1: {
+      ar: ["بروفايل شركتك في جدة", "لمن يشتري منك بالجملة."],
+      en: ["Your Jeddah company profile,", "for whoever buys from you in bulk."],
+    },
+    intro: {
+      ar: "في جدة كثير من البروفايلات يُكتب لقارئ مختلف عن الرياض: موزّع في مدينة أخرى، أو سلسلة تجزئة، أو مورّد في الخارج، أو شريك يدرس وكالة. هذا القارئ يريد أن يعرف ماذا تبيعون، وبأي علامات، وفي أي أسواق، وما حجم التوريد، وكيف يُطلب منكم. نصمّم بروفايل الشركة للبيوت التجارية والمصانع والموزّعين على هذه الأسئلة: المنتجات والوكالات معروضة كما يُعرض كتالوج مختصر، والأسواق والفروع بخريطة واضحة، وطرق الطلب والتواصل في صفحة لا تُفوَّت. بالعربية والإنجليزية معًا، لأن نصف قرّاء هذا الملف غالبًا خارج المملكة.",
+      en: "In Jeddah many profiles are written for a different reader than in Riyadh: a distributor in another city, a retail chain, a supplier abroad, or a partner weighing an agency. That reader wants to know what you sell, under which brands, in which markets, at what supply volume, and how to order from you. We design company profiles for trading houses, manufacturers and distributors around those questions: products and agencies shown like a short catalogue, markets and branches on a clear map, and ordering and contact on a page nobody misses. In Arabic and English together, because half of this file's readers are often outside the Kingdom.",
+    },
+    painPoints: [
+      {
+        title: { ar: "التاريخ قبل المنتج", en: "History before product" },
+        body: {
+          ar: "صفحتان عن تأسيس البيت التجاري قبل أن يعرف القارئ ماذا تبيعون. المشتري يقرأ المنتجات أولًا، والتاريخ يُقرأ بعد أن يقتنع.",
+          en: "Two pages on the trading house's founding before the reader learns what you sell. A buyer reads products first; history gets read once they're convinced.",
+        },
+      },
+      {
+        title: { ar: "الوكالات غير ظاهرة", en: "The agencies don't show" },
+        body: {
+          ar: "العلامات التي تمثّلونها هي أقوى ما في الملف، وكثيرًا ما تُذكر في سطر عابر. نعرضها بشعاراتها وأسواقها حيث يُسمح بذلك.",
+          en: "The brands you represent are the strongest thing in the file, and they're often mentioned in a passing line. We show them with their marks and markets where permitted.",
+        },
+      },
+      {
+        title: { ar: "لا طريقة واضحة للطلب", en: "No clear way to order" },
+        body: {
+          ar: "ملف يُقنع ثم لا يقول لمن يُرسل الطلب ولا الحدّ الأدنى ولا مناطق التوصيل يترك القارئ عند أهمّ لحظة.",
+          en: "A file that convinces and then doesn't say where to send an order, the minimum quantity or the delivery areas leaves the reader at the most important moment.",
+        },
+      },
+    ],
+    approach: [
+      {
+        ar: "نبدأ بالمنتجات والوكالات والأسواق، ثم نضع التاريخ حيث يخدم الثقة لا حيث يؤخّر القارئ.",
+        en: "We start with products, agencies and markets, then place the history where it builds trust rather than where it delays the reader.",
+      },
+      {
+        ar: "نكتب العربية والإنجليزية معًا لقرّاء داخل المملكة وخارجها.",
+        en: "We write Arabic and English together for readers inside and outside the Kingdom.",
+      },
+      {
+        ar: "نسلّم نسخة إرسال خفيفة تصلح للواتساب والبريد، ونسخة طباعة للمعارض.",
+        en: "We deliver a light sending version that works on WhatsApp and email, and a print version for exhibitions.",
+      },
+    ],
+    faq: [
+      {
+        q: { ar: "هل يمكن أن يعمل البروفايل ككتالوج منتجات؟", en: "Can the profile work as a product catalogue?" },
+        a: {
+          ar: "يمكن أن يحمل كتالوجًا مختصرًا بالفئات والعلامات. أمّا الكتالوج الكامل بالأسعار والأكواد فالأفضل أن يكون ملفًا منفصلًا يُحدَّث وحده، حتى لا يتقادم البروفايل مع كل تغيير سعر.",
+          en: "It can carry a short catalogue by category and brand. A full catalogue with prices and codes is better as a separate file updated on its own, so the profile doesn't go stale with every price change.",
+        },
+      },
+      {
+        q: { ar: "هل تكتبون المحتوى بالإنجليزية للموردين في الخارج؟", en: "Do you write English copy for suppliers abroad?" },
+        a: {
+          ar: "نعم. نكتب العربية والإنجليزية معًا، فلا تكون إحداهما ترجمة حرفية للأخرى، ويقرأ المورّد الأجنبي نصًّا كُتب له.",
+          en: "Yes. We write Arabic and English together, so neither is a literal translation of the other, and a foreign supplier reads text written for them.",
+        },
+      },
+      {
+        q: { ar: "كيف تتم المتابعة ونحن في جدة؟", en: "How does follow-up work with us in Jeddah?" },
+        a: {
+          ar: "عن بُعد بالكامل على توقيت السعودية: جلسة بداية، ومراجعة مكتوبة للنص ثم للتصميم، ثم التسليم. التواصل بالواتساب والاجتماعات المرئية.",
+          en: "Fully remote on Saudi time: a kickoff session, written review of the copy and then the design, then handover. We communicate over WhatsApp and video calls.",
         },
       },
     ],

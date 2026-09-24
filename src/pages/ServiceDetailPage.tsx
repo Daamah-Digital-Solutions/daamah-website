@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { useLang } from "../i18n";
+import { useLang, type Bi } from "../i18n";
 import { track } from "../analytics";
 import { services } from "../content/home";
 import { servicesPage, workPage } from "../content/pages";
@@ -40,9 +40,21 @@ type ServiceItem = (typeof services.items)[number];
  * هل هي لي؟ ماذا تشمل؟ كيف تسير؟ ماذا أستلم ولماذا أنتم؟
  * ثم الإثبات (أعمال) والاعتراضات (أسئلة) والخطوة التالية.
  */
+/** مقال التكلفة لكل خدمة. `arOnly`: المقال بالعربية وحدها، فلا يُربط من الإنجليزية */
+const COST: Record<string, { href: string; label: Bi; arOnly?: boolean }> = {
+  "web-development": { href: "/blog/cost-of-a-company-website-in-saudi-arabia", label: { ar: "كم تكلفة تصميم موقع شركة؟", en: "What does a company website cost?" } },
+  branding: { href: "/blog/cost-of-branding-in-saudi-arabia", label: { ar: "كم تكلفة تصميم الهوية البصرية؟", en: "What does brand identity cost?" } },
+  "company-profile": { href: "/blog/cost-of-a-company-profile-in-saudi-arabia", label: { ar: "كم تكلفة تصميم بروفايل شركة؟", en: "" }, arOnly: true },
+  "social-media": { href: "/blog/social-media-management-cost-in-saudi-arabia", label: { ar: "كم تكلفة إدارة السوشيال ميديا شهريًا؟", en: "" }, arOnly: true },
+  seo: { href: "/blog/seo-cost-in-saudi-arabia", label: { ar: "كم تكلفة خدمات السيو شهريًا؟", en: "" }, arOnly: true },
+};
+
+/** خدمات لها صفحة قطاع المقاولات — البروفايل والموقع والنظام */
+const FOR_CONTRACTORS = new Set(["company-profile", "web-development", "crm"]);
+
 export function ServiceDetailPage() {
   const { slug = "" } = useParams();
-  const { t, path } = useLang();
+  const { t, path, lang } = useLang();
 
   const service = services.items.find((s) => s.slug === slug);
   const detail = serviceDetails[slug];
@@ -56,6 +68,7 @@ export function ServiceDetailPage() {
   const inCities = citiesForService(slug);
   /* نفس المصدر الذي يقرأه مولّد `FAQPage` — ما يُعلَن هو ما يُعرض */
   const faq = faqItemsFor(`/services/${slug}`);
+  const cost = COST[slug];
 
   /* الخدمات المكمّلة: أخوات العامل نفسه؛ والعامل الذي لا أخوات له
      (الأنظمة) يُكمَّل بما يغذّيه — الموقع والتسويق */
@@ -79,7 +92,7 @@ export function ServiceDetailPage() {
     <>
       <PageHero
         label={`${area ? t(area.name) : t(servicesPage.label)} · ${service.en}`}
-        title={[t(service.name)]}
+        title={[t(detail.headline ?? service.name)]}
         intro={t(detail.intro)}
       >
         <Reveal delay={260} eager className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
@@ -91,6 +104,10 @@ export function ServiceDetailPage() {
             {t(serviceUi.ask)}
           </Btn>
           {related.length > 0 && <TextLink href="#work">{t(serviceUi.seeWork)}</TextLink>}
+          {/* الخدمات التي يشتريها المقاول: رابط إلى صفحة قطاعه */}
+          {FOR_CONTRACTORS.has(slug) && (
+            <TextLink href="/contractors">{t({ ar: "لشركات المقاولات", en: "For contractors" })}</TextLink>
+          )}
         </Reveal>
         <div className="mt-12">
           <Breadcrumbs
@@ -253,8 +270,12 @@ export function ServiceDetailPage() {
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
               <Reveal className="lg:col-span-4">
                 <SectionLabel>{t(serviceUi.faqLabel)}</SectionLabel>
-                <div className="mt-8">
+                <div className="mt-8 flex flex-col items-start gap-4">
                   <TextLink href="/faq">{t(serviceUi.allFaq)}</TextLink>
+                  {/* سؤال السعر هو أكثر ما يُبحث عنه — والإجابة في مقال بنطاقات السوق */}
+                  {cost && (!cost.arOnly || lang === "ar") && (
+                    <TextLink href={cost.href}>{t(cost.label)}</TextLink>
+                  )}
                 </div>
               </Reveal>
               <div className="lg:col-span-8">
@@ -298,6 +319,7 @@ export function ServiceDetailPage() {
                   {`${t(service.name)} ${t(cityMeta(c).inCity)}`}
                 </TextLink>
               ))}
+              <TextLink href="/saudi">{t({ ar: "كل خدماتنا في السعودية", en: "All our Saudi services" })}</TextLink>
             </Reveal>
           )}
         </Wrap>

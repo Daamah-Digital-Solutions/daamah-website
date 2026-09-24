@@ -14,6 +14,9 @@ import type { Bi } from "../i18n";
 export type Point = { title: Bi; desc: Bi };
 
 export type ServiceDetail = {
+  /** العنوان الرئيسي للصفحة بالعبارة التي يبحث بها العميل — اسم الخدمة
+      في القوائم يبقى قصيرًا، والعنوان هنا يقول ما يكتبه الباحث في جوجل */
+  headline?: Bi;
   intro: Bi;
   /** علامات أنك تحتاج هذه الخدمة — تُقرأ بصيغة «تحتاجها إن…» */
   signs: Bi[];
@@ -25,9 +28,10 @@ export type ServiceDetail = {
 
 export const serviceDetails: Record<string, ServiceDetail> = {
   branding: {
+    headline: { ar: "تصميم الهوية البصرية", en: "Brand identity design" },
     intro: {
-      ar: "الهوية ليست لوجو. هي نظام كامل — لون وخطّ وأسلوب صورة ونبرة — يجعل شركتك تُعرَف قبل أن يُقرأ اسمها. نبنيها من فهم سوقك لا من ذوق المصمّم.",
-      en: "An identity is not a logo. It's a complete system — colour, type, image style, tone — that makes your company recognisable before its name is read. We build it from your market, not from a designer's taste.",
+      ar: "تصميم الهوية البصرية لا يعني تصميم لوجو فقط. الهوية نظام كامل — لون وخطّ وأسلوب صورة ونبرة — يجعل شركتك تُعرَف قبل أن يُقرأ اسمها. نبنيها من فهم سوقك لا من ذوق المصمّم.",
+      en: "Brand identity design isn't just logo design. An identity is a complete system — colour, type, image style, tone — that makes your company recognisable before its name is read. We build it from your market, not from a designer's taste.",
     },
     signs: [
       { ar: "شعارك صُمّم على عجل في البداية، ولم يعد يشبه حجم شركتك اليوم", en: "Your logo was made in a hurry at the start and no longer matches the company you've become" },
@@ -76,9 +80,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "company-profile": {
+    headline: { ar: "تصميم بروفايل الشركة", en: "Company profile design" },
     intro: {
-      ar: "الملف التعريفي ليس كتيّبًا يجمع كل ما تفعلونه. هو وثيقة تُقرأ في خمس دقائق قبل اجتماع أو داخل ملف تأهيل، فتترك انطباعًا بأن أمام القارئ شركة منظّمة تعرف ما تقول.",
-      en: "A company profile is not a booklet listing everything you do. It is a document read in five minutes before a meeting or inside a qualification file, leaving the reader with the impression of an organised company that knows what it is saying.",
+      ar: "بروفايل الشركة (Company Profile) ليس كتيّبًا يجمع كل ما تفعلونه. هو وثيقة تُقرأ في خمس دقائق قبل اجتماع أو داخل ملف تأهيل أو مناقصة، فتترك انطباعًا بأن أمام القارئ شركة منظّمة تعرف ما تقول.",
+      en: "A company profile is not a booklet listing everything you do. It is a document read in five minutes before a meeting or inside a tender or qualification file, leaving the reader with the impression of an organised company that knows what it is saying.",
     },
     signs: [
       { ar: "تدخل مناقصات أو ملفات تأهيل، ويُطلب منك ما يعرّف بالشركة", en: "You bid for tenders or pre-qualification and are asked for something that presents the company" },
@@ -122,9 +127,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "web-development": {
+    headline: { ar: "تصميم وتطوير المواقع", en: "Website design & development" },
     intro: {
-      ar: "موقع يُقرأ بسرعة على الموبايل قبل الديسكتوب، ويقود الزائر إلى خطوة واضحة. نبنيه بكود نظيف لا بقوالب جاهزة، فيبقى قابلًا للتطوير معك.",
-      en: "A site that reads fast on mobile before desktop, and leads the visitor to one clear next step. Built with clean code rather than a template, so it can grow with you.",
+      ar: "نصمّم مواقع الشركات ونطوّرها لتُقرأ بسرعة على الموبايل قبل الديسكتوب، وتقود الزائر إلى خطوة واضحة. نبنيها بكود نظيف لا بقوالب جاهزة، فتبقى قابلة للتطوير معك.",
+      en: "We design and build company websites that read fast on mobile before desktop and lead the visitor to one clear next step. Built with clean code rather than a template, so the site can grow with you.",
     },
     signs: [
       { ar: "موقعك بطيء، أو يظهر مكسورًا على الموبايل", en: "Your site is slow, or looks broken on mobile" },
@@ -174,6 +180,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   seo: {
+    headline: { ar: "خدمات السيو", en: "SEO services" },
     intro: {
       ar: "السيو ليس وعدًا بالمركز الأول، بل عملٌ متّصل: تدقيق تقني يُصلح ما يمنع الفهرسة، وبحث كلمات مبنيّ على كيف يبحث السعودي فعلًا لا على ترجمة قائمة إنجليزية، ومحتوى عربي مكتوب يُنشر بانتظام. النتائج التقنية تظهر خلال أسابيع، والترتيب على الكلمات التي تجلب عملاء يحتاج من أربعة إلى تسعة أشهر — نقولها قبل أن نبدأ لا بعدها.",
       en: "SEO is not a promise of the top spot; it is connected work: a technical audit that fixes what blocks indexing, keyword research built on how Saudis actually search rather than a translated English list, and Arabic content written and published consistently. Technical gains show within weeks; ranking for terms that bring clients takes four to nine months — we say so before we start, not after.",
@@ -230,9 +237,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "social-media": {
+    headline: { ar: "إدارة حسابات السوشيال ميديا", en: "Social media management" },
     intro: {
-      ar: "المحتوى المنتظم يبني الثقة أكثر من الحملة الواحدة الكبيرة. نضع خطة شهرية، وننتج التصاميم والنصوص، ونتابع التفاعل ونعدّل على أساسه.",
-      en: "Consistent content builds more trust than one big campaign. We set a monthly plan, produce the designs and copy, then read engagement and adjust.",
+      ar: "إدارة حسابات السوشيال ميديا عندنا تبدأ من فكرة بسيطة: المحتوى المنتظم يبني الثقة أكثر من الحملة الواحدة الكبيرة. نضع خطة شهرية، وننتج التصاميم والنصوص، ونتابع التفاعل ونعدّل على أساسه.",
+      en: "Our social media management starts from a simple idea: consistent content builds more trust than one big campaign. We set a monthly plan, produce the designs and copy, then read engagement and adjust.",
     },
     signs: [
       { ar: "حساباتك متوقّفة، أو تُنشر فيها منشورات متفرّقة بلا خطة", en: "Your accounts have gone quiet, or post at random with no plan" },
@@ -282,6 +290,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "digital-marketing": {
+    headline: { ar: "التسويق الرقمي", en: "Digital marketing" },
     intro: {
       ar: "استراتيجية مبنية على بيانات سوقك: من هو عميلك، أين يبحث، وما الذي يوقفه عن الشراء. ثم خطة قنوات بأهداف ومؤشرات واضحة.",
       en: "A strategy built on your market's data: who your customer is, where they search, and what stops them buying. Then a channel plan with clear goals and metrics.",
@@ -329,9 +338,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "media-buying": {
+    headline: { ar: "إدارة الإعلانات الممولة", en: "Paid media buying" },
     intro: {
-      ar: "الإعلان الجيد ليس الأكثر إنفاقًا بل الأدقّ استهدافًا. ندير حملاتك على المنصّات المناسبة لجمهورك، ونراقب التكلفة يوميًا لا شهريًا.",
-      en: "Good advertising isn't the biggest spend, it's the sharpest targeting. We run your campaigns on the platforms your audience actually uses, and watch cost daily rather than monthly.",
+      ar: "الإعلان الممول الجيد ليس الأكثر إنفاقًا بل الأدقّ استهدافًا. ندير حملاتك على المنصّات المناسبة لجمهورك، ونراقب التكلفة يوميًا لا شهريًا.",
+      en: "Good paid advertising isn't the biggest spend, it's the sharpest targeting. We run your campaigns on the platforms your audience actually uses, and watch cost daily rather than monthly.",
     },
     signs: [
       { ar: "تروّج المنشورات بزرّ الترويج ولا تعرف كم يكلّفك العميل", en: "You boost posts and don't know what a client costs you" },
@@ -377,6 +387,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   "performance-marketing": {
+    headline: { ar: "تسويق الأداء", en: "Performance marketing" },
     intro: {
       ar: "بعد الإطلاق يبدأ الشغل الحقيقي: نقرأ الأرقام، ونجرّب نسخًا مختلفة، ونتخلّص ممّا لا يعمل — حتى يصير كل ما يُنفق أعلى عائدًا ممّا سبقه.",
       en: "The real work starts after launch: reading the numbers, testing variants, and cutting what doesn't work — until every unit spent returns more than the last.",
@@ -424,9 +435,10 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   },
 
   crm: {
+    headline: { ar: "أنظمة إدارة الشركات وCRM", en: "CRM & company systems" },
     intro: {
-      ar: "النظام لا يُشترى، يُهيَّأ. نبدأ من طريقة عملكم الحالية — كيف يصل العميل، ومن يتابعه، ومتى يُعتبر الطلب مغلقًا — ثم نبني عليها نظامًا يعرف حالة كل عميل، بدل أن نجبركم على قالب جاهز.",
-      en: "A system isn't bought, it's shaped. We start from how you already work — how a client arrives, who follows up, when a request counts as closed — then build a system that knows every client's state, instead of forcing you into a template.",
+      ar: "نظام إدارة الشركة أو الـCRM لا يُشترى، بل يُهيَّأ. نبدأ من طريقة عملكم الحالية — كيف يصل العميل، ومن يتابعه، ومتى يُعتبر الطلب مغلقًا — ثم نبني عليها نظامًا يعرف حالة كل عميل، بدل أن نجبركم على قالب جاهز.",
+      en: "A CRM or company system isn't bought, it's shaped. We start from how you already work — how a client arrives, who follows up, when a request counts as closed — then build a system that knows every client's state, instead of forcing you into a template.",
     },
     signs: [
       { ar: "بيانات العملاء موزّعة بين الواتساب والجداول والدفاتر", en: "Client data is scattered across WhatsApp, spreadsheets and notebooks" },

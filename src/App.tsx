@@ -32,6 +32,7 @@ const WorkDetailPage = lazy(() => import("./pages/WorkDetailPage").then((m) => (
 const ClientStoryPage = lazy(() => import("./pages/ClientStoryPage").then((m) => ({ default: m.ClientStoryPage })));
 const ProcessPage = lazy(() => import("./pages/ProcessPage").then((m) => ({ default: m.ProcessPage })));
 const ProfilePage = lazy(() => import("./pages/ProfilePage").then((m) => ({ default: m.ProfilePage })));
+const ContractorsPage = lazy(() => import("./pages/ContractorsPage").then((m) => ({ default: m.ContractorsPage })));
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 const NationalDayPage = lazy(() => import("./pages/NationalDayPage").then((m) => ({ default: m.NationalDayPage })));
@@ -63,6 +64,7 @@ function pageRoutes(prefix: string) {
       path={at("services/:slug")}
       element={<ServiceDetailPage />}
     />,
+    <Route key={`${prefix}-contractors`} path={at("contractors")} element={<ContractorsPage />} />,
     <Route key={`${prefix}-saudi`} path={at("saudi")} element={<SaudiHubPage />} />,
     <Route key={`${prefix}-work`} path={at("work")} element={<WorkPage />} />,
     <Route key={`${prefix}-workitem`} path={at("work/:slug")} element={<WorkDetailPage />} />,

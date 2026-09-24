@@ -24,6 +24,7 @@ import { Chevron, Reveal, SectionLabel, TextLink, Wrap } from "../components/ui"
 const WORK_KEY: Record<string, ServiceKey | undefined> = {
   branding: "brand",
   "web-development": "web",
+  "company-profile": "profile",
   "digital-marketing": "social",
 };
 

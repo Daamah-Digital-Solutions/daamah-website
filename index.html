@@ -72,6 +72,31 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      /* كشف ما يدخل الشاشة قبل أن يصل جافاسكربت التطبيق.
+         الصفحة مرسومة من البناء، لكن `.reveal` يُخفي أقسامها حتى يعمل
+         React ومراقبه — وحزمته كبيرة، فكان النص الظاهر على الجوال ينتظر
+         نحو خمس ثوانٍ. هذا المراقب الصغير يعمل فور تحليل الصفحة بنفس
+         شروط `useInView`؛ وحين يصل React يجد الفئة `in` موضوعة فلا يغيّر شيئًا. */
+      (function () {
+        try {
+          var els = document.querySelectorAll("#root .reveal");
+          if (!els.length || !("IntersectionObserver" in window)) return;
+          var io = new IntersectionObserver(
+            function (entries) {
+              for (var i = 0; i < entries.length; i++) {
+                if (entries[i].isIntersecting) {
+                  entries[i].target.classList.add("in");
+                  io.unobserve(entries[i].target);
+                }
+              }
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+          );
+          for (var j = 0; j < els.length; j++) io.observe(els[j]);
+        } catch (e) {}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

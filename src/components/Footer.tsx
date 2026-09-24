@@ -61,6 +61,7 @@ export function Footer() {
     ...navItems.filter((n) => n.href !== "/services" && n.href !== "/contact"),
     { href: "/profile", label: footer.profileTitle },
     { href: "/saudi", label: footer.saudiTitle },
+    { href: "/contractors", label: { ar: "لشركات المقاولات", en: "For contractors" } },
     { href: "/faq", label: footer.faqTitle },
     /* المدوّنة في الفوتر لا القائمة: طريق الزواحف إليها، لا طريق المشتري */
     ...(BLOG_ENABLED ? [{ href: "/blog", label: blogPage.label }] : []),

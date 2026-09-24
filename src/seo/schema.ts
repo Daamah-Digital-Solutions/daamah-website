@@ -3,6 +3,7 @@ import { brand, phoneFor, saudi, services } from "../content/home";
 import { faqItemsFor } from "../content/faq";
 import { offerPath } from "../content/nationalDay";
 import { faqPath } from "../content/faqAbout";
+import { contractorsPage, contractorsPath } from "../content/contractors";
 import { markets, sectorMeta, workItems } from "../content/work";
 import { findPost, posts } from "../content/blog";
 import { cityMeta, findCityPage } from "../content/saudi";
@@ -297,6 +298,10 @@ export function graphFor(bare: string, lang: Lang): Json {
       break;
     /* صفحة العرض وصفحة الأسئلة تعرضان أسئلة فعلًا — فتُعلَنان. بقيّة صفحات «page» لا */
     case "page":
+      if (bare === contractorsPath) {
+        const f = faqPage(bare, lang, contractorsPage.faq);
+        if (f) graph.push(f);
+      }
       if (bare === offerPath || bare === faqPath) {
         const f = faqPage(bare, lang);
         if (f) graph.push(f);

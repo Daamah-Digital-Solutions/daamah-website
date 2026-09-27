@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { about, film } from "../content/home";
+import { film } from "../content/home";
 import { workItems } from "../content/work";
-import { coverSize, galleries } from "../content/gallery";
-import type { ShotRef } from "../content/nationalDay";
+import { galleries } from "../content/gallery";
 import {
   WO_CURRENCY,
   WO_PRICE,
@@ -10,6 +9,7 @@ import {
   WO_WAS,
   websiteOffer as wo,
   type IconKey,
+  type SiteSlide,
 } from "../content/websiteOffer";
 import { waHref, waMessage } from "../content/whatsapp";
 import { track } from "../analytics";
@@ -17,7 +17,7 @@ import { Img } from "../components/Img";
 import { FaqList } from "../components/FaqList";
 import { Lightbox, type LightboxShot } from "../components/Lightbox";
 import { WhatsAppMark } from "../components/WhatsAppFab";
-import { Chevron, Counter, MaskLines, PlayMark, Reveal, SectionLabel, Wrap } from "../components/ui";
+import { Chevron, MaskLines, PlayMark, Reveal, SectionLabel, Wrap } from "../components/ui";
 
 const OFFER = "website_offer";
 const WA = waMessage.websiteOffer.ar;
@@ -25,25 +25,18 @@ const GALLERY_WIDTHS = [480, 960];
 
 /* ── الصور: من معرض العمل ───────────────────────────────── */
 
-type Shot = LightboxShot & { gallery: boolean };
-
-function resolve(r: ShotRef): Shot | null {
-  const item = workItems.find((w) => w.slug === r.slug);
-  if (r.n) {
-    const s = galleries[r.slug]?.[r.n - 1];
-    if (s) return { src: s.src, w: s.w, h: s.h, label: item?.name.ar ?? "", gallery: true };
-  }
-  if (!item) return null;
-  const size = coverSize[item.image] ?? { w: 1400, h: 933 };
-  return { src: item.image, ...size, label: item.name.ar, gallery: false };
+function shotOf(slug: string, n: number): LightboxShot | null {
+  const s = galleries[slug]?.[n - 1];
+  if (!s) return null;
+  return { src: s.src, w: s.w, h: s.h, label: workItems.find((w) => w.slug === slug)?.name.ar ?? "" };
 }
-const resolveAll = (refs: ShotRef[]) => refs.map(resolve).filter((s): s is Shot => !!s);
 
 /** معرض المشروع كاملًا — يُفتح في العارض عند الضغط على الموقع */
-const projectShots = (slug: string) => resolveAll((galleries[slug] ?? []).map((_, i) => ({ slug, n: i + 1 })));
+const projectShots = (slug: string) =>
+  (galleries[slug] ?? []).map((_, i) => shotOf(slug, i + 1)).filter((s): s is LightboxShot => !!s);
 
-type Box = { shots: Shot[]; at: number } | null;
-type OpenBox = (shots: Shot[], at: number, placement: string) => void;
+type Box = { shots: LightboxShot[]; at: number } | null;
+type OpenBox = (shots: LightboxShot[], at: number, placement: string) => void;
 
 /* ── قطع صغيرة ─────────────────────────────────────────── */
 
@@ -64,6 +57,15 @@ function Check({ className = "" }: { className?: string }) {
   );
 }
 
+function Clock({ className = "size-[18px]" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={`${className} shrink-0 text-red`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
+
 function Price({ size = "lg", tone = "ink" }: { size?: "lg" | "md"; tone?: "ink" | "paper" }) {
   return (
     <span className={`inline-flex items-baseline gap-3 ${tone === "paper" ? "text-paper" : "text-ink"}`}>
@@ -73,12 +75,11 @@ function Price({ size = "lg", tone = "ink" }: { size?: "lg" | "md"; tone?: "ink"
   );
 }
 
-/** السعر القديم مشطوبًا والتوفير — مكوّن واحد لكل مواضع السعر */
+/** السعر القديم مشطوبًا والتوفير */
 function WasSave({ tone = "ink" }: { tone?: "ink" | "paper" }) {
-  const muted = tone === "paper" ? "text-paper/55" : "text-ink/55";
   return (
     <span className="flex flex-wrap items-center gap-x-4 gap-y-2">
-      <span className={`text-[16px] ${muted}`}>
+      <span className={`text-[16px] ${tone === "paper" ? "text-paper/55" : "text-ink/55"}`}>
         {wo.hero.was}{" "}
         <span className="line-through decoration-red decoration-2">
           <span className="ltr nums">{WO_WAS}</span> {WO_CURRENCY}
@@ -123,6 +124,11 @@ function StartLink({ placement, children, tone = "ink", className = "" }: { plac
   );
 }
 
+/** عنوان القسم — عنوان العرض نفسه، بلا عنوان فرعي */
+function Heading({ children }: { children: string }) {
+  return <MaskLines lines={[children]} as="h2" className="h2" accentDot />;
+}
+
 /* ── أيقونات البنود — مرسومة لا محمّلة، فتتبع لون النص ── */
 const ICON: Record<IconKey, ReactNode> = {
   lang: <path d="M3 5h9M7.5 3v2M5 5c.7 3.2 3 6 6 7.5M10 5c-.8 3.5-3.4 6.4-6.5 8M13 21l4-9 4 9M14.3 18h5.4" />,
@@ -152,22 +158,19 @@ function TopBar() {
       <Wrap className="flex h-16 items-center justify-between gap-4">
         {/* الشعار ليس رابطًا: صفحة إعلان لا يُخرج منها شيء */}
         <span className="shrink-0">
-          <img src="/assets/logo-wordmark.png" alt="دَعمة للحلول الرقمية" width={2035} height={544} className="h-[20px] w-auto dark:hidden" />
-          <img src="/assets/logo-wordmark-light.png" alt="" aria-hidden="true" width={2035} height={544} className="hidden h-[20px] w-auto dark:block" />
+          <img src="/assets/logo-wordmark.png" alt="دَعمة للحلول الرقمية" width={2035} height={544} className="h-[20px] w-auto" />
         </span>
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <span className="hidden text-[14px] text-ink/60 md:inline">
             <span className="ltr nums font-semibold text-ink">{WO_PRICE}</span> {WO_CURRENCY} ·{" "}
-            <span className="line-through decoration-red">
-              <span className="ltr nums">{WO_WAS}</span>
-            </span>
+            <span className="ltr nums line-through decoration-red">{WO_WAS}</span>
           </span>
           <a
             href={waHref(WA)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("whatsapp_click", { placement: "wo_topbar", offer: OFFER })}
-            className="btn inline-flex items-center gap-2 rounded-pill bg-ink px-5 py-2.5 text-[14px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
+            className="btn inline-flex items-center rounded-pill bg-ink px-5 py-2.5 text-[14px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
           >
             <span className="inline-flex items-center gap-2">
               <WhatsAppMark className="size-4" />
@@ -180,20 +183,52 @@ function TopBar() {
   );
 }
 
+/* ── الفيديو التعريفي: من نحن قبل أي تفاصيل ─────────────── */
+function IntroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div>
+      <p className="flex items-center gap-2.5 text-[14px] font-medium text-ink/60">
+        <span className="size-1.5 rounded-full bg-red" />
+        {wo.video}
+      </p>
+      {/* الإطار حبريّ: ريثما تُفكّ أوّل لقطة لا يومض بياض مكان الصورة */}
+      <div className="relative mt-4 aspect-video overflow-hidden rounded-[20px] bg-ink shadow-[0_40px_90px_-50px_rgba(11,11,13,0.45)]">
+        <video ref={ref} src={film.src.ar} poster={film.poster.ar} preload="none" playsInline controls={playing} className="size-full object-cover" />
+        {!playing && (
+          <button
+            type="button"
+            aria-label={film.play.ar}
+            onClick={() => {
+              setPlaying(true);
+              track("cta_click", { placement: "wo_intro_film", offer: OFFER });
+              void ref.current?.play();
+            }}
+            className="group absolute inset-0 grid place-items-center bg-ink/10 transition-colors duration-(--dur-base) hover:bg-ink/25"
+          >
+            <PlayMark />
+          </button>
+        )}
+      </div>
+      <p className="mt-3 text-[13.5px] text-ink/50">{film.note.ar}</p>
+    </div>
+  );
+}
+
 /* ── موقع حقيقي في إطار متصفّح + لقطة الجوال فوقه ─────── */
-function Device({ slug, desktop, phone, onOpen, priority = false, sizes }: { slug: string; desktop: number; phone: number; onOpen: OpenBox; priority?: boolean; sizes: string }) {
-  const d = resolve({ slug, n: desktop });
-  const p = resolve({ slug, n: phone });
+function Device({ slide, onOpen, sizes }: { slide: SiteSlide; onOpen: OpenBox; sizes: string }) {
+  const d = shotOf(slide.slug, slide.desktop);
+  const p = shotOf(slide.slug, slide.phone);
   if (!d) return null;
-  const all = projectShots(slug);
   return (
     <button
       type="button"
-      onClick={() => onOpen(all, desktop - 1, "wo_device")}
+      onClick={() => onOpen(projectShots(slide.slug), slide.desktop - 1, "wo_slider")}
       aria-label={`${d.label} — عرض بالحجم الكامل`}
       className="group relative block w-full pb-[9%] text-start"
     >
-      {/* إطار المتصفّح داكن دائمًا: الموقع فاتح، وإطار فاتح يذيب حافّته */}
+      {/* إطار المتصفّح داكن: الموقع فاتح، وإطار فاتح يذيب حافّته */}
       <span className="block overflow-hidden rounded-[14px] bg-[#17171a] shadow-[0_40px_80px_-40px_rgba(11,11,13,0.55)] ring-1 ring-black/5">
         <span dir="ltr" className="flex h-7 items-center gap-1.5 px-3">
           {["#ff5f57", "#febc2e", "#28c840"].map((c) => (
@@ -207,22 +242,135 @@ function Device({ slug, desktop, phone, onOpen, priority = false, sizes }: { slu
             width={d.w}
             height={d.h}
             sizes={sizes}
-            priority={priority}
             widths={GALLERY_WIDTHS}
             className="size-full object-cover object-top transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.03]"
           />
         </span>
       </span>
       {p && (
-        <span className="absolute bottom-0 end-[5%] block w-[24%] drop-shadow-[0_24px_30px_rgba(11,11,13,0.35)]">
-          <Img src={p.src} alt="" width={p.w} height={p.h} sizes="160px" widths={[320]} className="h-auto w-full" />
+        <span className="absolute bottom-0 end-[5%] block w-[22%] drop-shadow-[0_24px_30px_rgba(11,11,13,0.35)]">
+          <Img src={p.src} alt="" width={p.w} height={p.h} sizes="160px" widths={[320]} className="h-auto w-full rounded-[18px]" />
         </span>
       )}
-      <span className="mt-4 flex items-center gap-2 text-[14.5px] font-medium text-ink/70">
+      <span className="mt-4 flex items-center gap-2 text-[15px] font-medium text-ink/70">
         <Chevron className="h-2.5 w-auto text-red" />
         {d.label}
       </span>
     </button>
+  );
+}
+
+/* ── سلايدر المواقع: سحب بالإصبع، وأسهم ونقاط ───────────── */
+function SiteSlider({ onOpen }: { onOpen: OpenBox }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [at, setAt] = useState(0);
+  const slides = wo.sites.list;
+
+  /* حافّة البداية داخل الشريط: يمينه في الصفحة العربية، بعد الحشوة */
+  const startEdge = (el: HTMLElement) => {
+    const r = el.getBoundingClientRect();
+    const pad = parseFloat(getComputedStyle(el).paddingRight) || 0;
+    return r.right - pad;
+  };
+
+  /* الشريحة الحالية = الأقرب إلى حافّة البداية. «الأكثر ظهورًا» يخطئ على
+     الكمبيوتر حيث تظهر شريحتان كاملتان، فيقفز السهم شريحتين */
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const edge = startEdge(el);
+        let best = 0;
+        let min = Infinity;
+        Array.from(el.children).forEach((c, i) => {
+          const d = Math.abs(c.getBoundingClientRect().right - edge);
+          if (d < min) {
+            min = d;
+            best = i;
+          }
+        });
+        /* آخر الشريط: الشريحة الأخيرة لا تصل إلى حافّة البداية على
+           الشاشات العريضة، فنهاية التمرير تعني أنها الحالية */
+        const atEnd = Math.abs(el.scrollLeft) + el.clientWidth >= el.scrollWidth - 4;
+        setAt(atEnd ? el.children.length - 1 : best);
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  /* يحرّك الشريط وحده — scrollIntoView كان يحرّك الصفحة أيضًا */
+  const go = (i: number) => {
+    const el = trackRef.current;
+    const n = Math.max(0, Math.min(slides.length - 1, i));
+    const child = el?.children[n] as HTMLElement | undefined;
+    if (!el || !child) return;
+    el.scrollBy({ left: child.getBoundingClientRect().right - startEdge(el), behavior: "smooth" });
+    track("cta_click", { placement: "wo_slider_nav", offer: OFFER });
+  };
+
+  /* الأسهم تتحرّك شريحةً واحدة بعرضها — تعمل حتى قرب نهاية الشريط حيث
+     لا تصل الشريحة إلى الحافّة. التالي في الصفحة العربية نحو اليسار */
+  const step = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    const first = el?.children[0] as HTMLElement | undefined;
+    if (!el || !first) return;
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 0;
+    el.scrollBy({ left: -dir * (first.offsetWidth + gap), behavior: "smooth" });
+    track("cta_click", { placement: "wo_slider_nav", offer: OFFER });
+  };
+
+  const arrow =
+    "grid size-12 place-items-center rounded-full border border-[var(--line-strong)] text-ink transition-colors duration-(--dur-fast) hover:bg-ink hover:text-paper disabled:pointer-events-none disabled:opacity-30";
+
+  return (
+    <div>
+      <div
+        ref={trackRef}
+        className="-mx-6 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-6 px-6 pt-2 pb-4 [scrollbar-width:none] sm:-mx-10 sm:gap-8 sm:scroll-px-10 sm:px-10 [&::-webkit-scrollbar]:hidden"
+      >
+        {slides.map((s, i) => (
+          <div key={s.slug} data-i={i} className="w-[86%] shrink-0 snap-start sm:w-[62%] lg:w-[46%]">
+            <Device slide={s} onOpen={onOpen} sizes="(min-width: 1024px) 46vw, (min-width: 640px) 62vw, 86vw" />
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-6">
+        <div className="flex items-center gap-2" role="tablist" aria-label={wo.sites.title}>
+          {slides.map((s, i) => (
+            <button
+              key={s.slug}
+              type="button"
+              role="tab"
+              aria-selected={at === i}
+              aria-label={`${i + 1}`}
+              onClick={() => go(i)}
+              className={`h-2 rounded-full transition-[width,background-color] duration-(--dur-base) ${at === i ? "w-7 bg-ink" : "w-2 bg-ink/20 hover:bg-ink/40"}`}
+            />
+          ))}
+        </div>
+        {/* في الصفحة العربية «السابق» يمينًا وسهمه لليمين، و«التالي» يسارًا */}
+        <div className="flex gap-2">
+          <button type="button" onClick={() => step(-1)} disabled={at === 0} aria-label={wo.sites.prev} className={arrow}>
+            <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </button>
+          <button type="button" onClick={() => step(1)} disabled={at === slides.length - 1} aria-label={wo.sites.next} className={arrow}>
+            <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -266,15 +414,12 @@ function StickyBar() {
       }`}
     >
       <div className="flex items-center gap-3">
-        <div className="flex-1 leading-tight">
-          <p className="text-[12.5px] text-ink/50">{wo.sticky.label}</p>
-          <p className="mt-1 flex items-baseline gap-2">
-            <span className="text-[20px] font-semibold">
-              <span className="ltr nums">{WO_PRICE}</span> {WO_CURRENCY}
-            </span>
-            <span className="ltr nums text-[13px] text-ink/40 line-through decoration-red">{WO_WAS}</span>
-          </p>
-        </div>
+        <p className="flex flex-1 items-baseline gap-2">
+          <span className="text-[20px] font-semibold">
+            <span className="ltr nums">{WO_PRICE}</span> {WO_CURRENCY}
+          </span>
+          <span className="ltr nums text-[13px] text-ink/40 line-through decoration-red">{WO_WAS}</span>
+        </p>
         <a
           href={waHref(WA)}
           target="_blank"
@@ -293,75 +438,6 @@ function StickyBar() {
   );
 }
 
-/* ── بطاقة البدء: السعر وزرّ واتساب ─────────────────────── */
-function CtaCard({ id, placement, tone = "ink" }: { id: string; placement: string; tone?: "ink" | "paper" }) {
-  const onInk = tone === "paper";
-  return (
-    <div
-      id={id}
-      className={`scroll-mt-24 rounded-[24px] p-6 sm:p-9 ${
-        onInk ? "border border-paper/15 bg-paper/[0.04]" : "border border-[var(--line)] bg-paper-2 shadow-[0_40px_90px_-50px_rgba(11,11,13,0.35)]"
-      }`}
-    >
-      <p className="text-[28px] font-semibold leading-snug sm:text-[32px]">
-        {wo.cta.title}
-        <span className="text-red">.</span>
-      </p>
-      <p className={`mt-1.5 text-[15px] ${onInk ? "text-paper/60" : "text-ink/60"}`}>{wo.cta.intro}</p>
-      <div className={`mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-4 ${onInk ? "border-paper/15" : "border-[var(--line)]"}`}>
-        <Price size="md" tone={tone} />
-        <WasSave tone={tone} />
-      </div>
-      <StartLink placement={placement} tone={tone} className="mt-6 w-full py-[18px] text-[16.5px]">
-        {wo.cta.button}
-      </StartLink>
-      <p className={`mt-3.5 text-center text-[13.5px] ${onInk ? "text-paper/55" : "text-ink/50"}`}>{wo.cta.assurance}</p>
-    </div>
-  );
-}
-
-/* ── الفيديو التعريفي: من نحن قبل أي تفاصيل ─────────────── */
-function IntroVideo() {
-  const ref = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  return (
-    <div>
-      <p className="flex items-center gap-2.5 text-[14px] font-medium text-ink/60">
-        <span className="size-1.5 rounded-full bg-red" />
-        {wo.video.label}
-      </p>
-      {/* الإطار حبريّ: ريثما تُفكّ أوّل لقطة لا يومض بياض مكان الصورة */}
-      <div className="relative mt-4 aspect-video overflow-hidden rounded-[20px] bg-ink shadow-[0_40px_90px_-50px_rgba(11,11,13,0.45)]">
-        <video
-          ref={ref}
-          src={film.src.ar}
-          poster={film.poster.ar}
-          preload="none"
-          playsInline
-          controls={playing}
-          className="size-full object-cover"
-        />
-        {!playing && (
-          <button
-            type="button"
-            aria-label={film.play.ar}
-            onClick={() => {
-              setPlaying(true);
-              track("cta_click", { placement: "wo_intro_film", offer: OFFER });
-              void ref.current?.play();
-            }}
-            className="group absolute inset-0 grid place-items-center bg-ink/10 transition-colors duration-(--dur-base) hover:bg-ink/25"
-          >
-            <PlayMark />
-          </button>
-        )}
-      </div>
-      <p className="mt-4 text-[16px] font-medium">{wo.video.title}</p>
-      <p className="mt-1 text-[13.5px] text-ink/50">{film.note.ar}</p>
-    </div>
-  );
-}
-
 /* ═══════════════════════════════════════════════════════════
    الصفحة
    ═══════════════════════════════════════════════════════════ */
@@ -372,13 +448,10 @@ function IntroVideo() {
  * بلا نموذج: الزائر ملأ نموذج الإعلان وتواصل على واتساب قبل أن يصله
  * هذا الرابط، فكل زرّ هنا يعيده إلى المحادثة. تُعرض فاتحة دائمًا.
  *
- * ترتيب القرار: العرض والسعر والتوفير وزرّ واتساب فوق الطيّة، وبجانبها
- * الفيلم التعريفي — من نحن قبل أي تفاصيل، حفاظًا على موقع دَعمة لا
- * كعرض سعر فقط، ثم مواقع
- * حقيقية في إطار متصفّح وجوال (الإثبات قبل الكلام)، ثم لماذا موقع،
- * ثم البنود العشرة، ثم الضمان — أقوى ما يزيل التردّد — ثم الخطوات
- * والمدة، والدفع مع التزاماتنا، وما نحتاجه منك (قصير عمدًا ليبدو
- * البدء سهلًا)، ومن نحن، والأسئلة، والبدء مرّة ثانية.
+ * الأقسام أقسام العرض نفسه وبعناوينه، لا أكثر: العرض والسعر وبجانبه
+ * الفيلم التعريفي (من نحن قبل السعر)، ثم سلايدر مواقع حقيقية، ثم لماذا
+ * موقع، وماذا تحصل عليه، والضمان، وكيف نعمل، والدفع وما نحتاجه منك،
+ * والأسئلة، والختام.
  */
 export function WebsiteOfferPage() {
   const [box, setBox] = useState<Box>(null);
@@ -386,13 +459,12 @@ export function WebsiteOfferPage() {
     setBox({ shots, at });
     track("cta_click", { placement: `${placement}_open`, offer: OFFER });
   };
-  const more = resolveAll(wo.sites.more);
 
   return (
     <>
       <TopBar />
 
-      {/* ── الهيرو: العرض + البدء ── */}
+      {/* ── الهيرو: العرض + الفيلم التعريفي ── */}
       <section className="pt-28 pb-16 sm:pt-32 sm:pb-24">
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-14">
@@ -408,10 +480,7 @@ export function WebsiteOfferPage() {
                   <div className="flex flex-col gap-2.5 pb-2">
                     <WasSave />
                     <p className="flex items-center gap-2 text-[15px] font-medium text-ink/70">
-                      <svg viewBox="0 0 24 24" className="size-[18px] text-red" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="9" />
-                        <path d="M12 7v5l3 2" />
-                      </svg>
+                      <Clock />
                       {wo.hero.delivery}
                     </p>
                   </div>
@@ -420,20 +489,10 @@ export function WebsiteOfferPage() {
 
               <Reveal delay={220} eager>
                 <p className="mt-8 max-w-[54ch] text-[17px] leading-[2] text-ink/70 sm:text-[18px]">{wo.hero.intro}</p>
-
-                <ul className="mt-8 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
-                  {wo.hero.highlights.map((x) => (
-                    <li key={x} className="flex items-center gap-3 text-[16px] font-medium">
-                      <Check />
-                      {x}
-                    </li>
-                  ))}
-                </ul>
-
-                <div id="start" className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4">
+                <div id="start" className="mt-9">
                   <StartLink placement="wo_hero">{wo.hero.primary}</StartLink>
                 </div>
-                <div className="mt-7">
+                <div className="mt-6">
                   <Scarcity />
                 </div>
               </Reveal>
@@ -446,93 +505,47 @@ export function WebsiteOfferPage() {
         </Wrap>
       </section>
 
-      {/* ── مواقع حقيقية: الإثبات قبل الكلام ── */}
+      {/* ── سلايدر مواقع حقيقية ── */}
       <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>
-          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-7">
-              <Reveal>
-                <SectionLabel>{wo.sites.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.sites.title} as="h2" className="h2 mt-8" accentDot />
-            </div>
-            <Reveal className="lg:col-span-5">
-              <p className="body max-w-[44ch]">{wo.sites.intro}</p>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
-            {wo.sites.list.map((s, i) => (
-              <Reveal key={s.slug} delay={i * 100}>
-                <Device {...s} onOpen={open} sizes="(min-width: 768px) 32vw, 92vw" />
-              </Reveal>
-            ))}
-          </div>
+          <Heading>{wo.sites.title}</Heading>
+          <Reveal className="mt-12">
+            <SiteSlider onOpen={open} />
+          </Reveal>
         </Wrap>
-
-        {/* شريط لقطات إضافية — يُسحب بالإصبع */}
-        <div className="mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] sm:px-10 [&::-webkit-scrollbar]:hidden">
-          {more.map((s, i) => (
-            <button
-              key={s.src}
-              type="button"
-              onClick={() => open(more, i, "wo_strip")}
-              aria-label={s.label}
-              className="group relative block h-[200px] shrink-0 snap-start overflow-hidden rounded-[16px] bg-paper-3 sm:h-[300px]"
-              style={{ aspectRatio: `${s.w} / ${s.h}` }}
-            >
-              <Img src={s.src} alt={s.label ?? ""} width={s.w} height={s.h} sizes="(min-width: 640px) 480px, 320px" widths={GALLERY_WIDTHS} className="size-full object-cover transition-transform duration-[900ms] ease-[var(--ease-out-quint)] group-hover:scale-[1.04]" />
-            </button>
-          ))}
-        </div>
       </section>
 
       {/* ── لماذا تحتاج موقعًا ── */}
       <section className="py-20 sm:py-28">
         <Wrap>
-          <Reveal>
-            <SectionLabel>{wo.why.label}</SectionLabel>
-          </Reveal>
-          <MaskLines lines={wo.why.title} as="h2" className="h2 mt-8 max-w-[20ch]" accentDot />
-          <ul className="mt-14 grid gap-x-12 gap-y-10 md:grid-cols-3">
-            {wo.why.points.map((p, i) => (
-              <Reveal key={p.title} as="li" delay={i * 90} className="border-t-2 border-ink pt-6">
-                <h3 className="text-[21px] font-semibold leading-snug">{p.title}</h3>
-                <p className="body mt-3">{p.body}</p>
-              </Reveal>
-            ))}
-          </ul>
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <Heading>{wo.why.title}</Heading>
+            </div>
+            <Reveal delay={100} className="lg:col-span-7">
+              <p className="text-[19px] leading-[2] text-ink/75 sm:text-[21px]">{wo.why.body}</p>
+            </Reveal>
+          </div>
         </Wrap>
       </section>
 
       {/* ── ماذا تحصل عليه ── */}
       <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>
-          <Reveal>
-            <SectionLabel>{wo.included.label}</SectionLabel>
-          </Reveal>
-          <MaskLines lines={wo.included.title} as="h2" className="h2 mt-8 max-w-[22ch]" accentDot />
-          <ul className="mt-14 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5">
+          <Heading>{wo.included.title}</Heading>
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5">
             {wo.included.list.map((it, i) => (
               <Reveal key={it.title} as="li" delay={(i % 5) * 60} className="flex flex-col rounded-[20px] border border-[var(--line)] bg-paper p-6">
                 <span className="grid size-12 place-items-center rounded-[14px] bg-ink text-paper">
                   <Icon k={it.icon} />
                 </span>
                 <h3 className="mt-5 text-[17.5px] font-semibold leading-snug">{it.title}</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.85] text-ink/65">
-                  {it.icon === "mail" ? (
-                    <>
-                      بريد إلكتروني باسم شركتك، مثل <span className="ltr">info@company.com</span>.
-                    </>
-                  ) : (
-                    it.body
-                  )}
-                </p>
+                <p className="mt-2 text-[14.5px] leading-[1.85] text-ink/65">{it.body}</p>
               </Reveal>
             ))}
           </ul>
 
-          {/* خلاصة القيمة: كل ما سبق بالسعر نفسه */}
+          {/* بعد البنود مباشرة: كل هذا بهذا السعر، والبدء */}
           <Reveal className="mt-10 flex flex-col gap-6 rounded-[24px] bg-ink p-7 text-paper sm:flex-row sm:items-center sm:justify-between sm:p-9">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
               <Price size="md" tone="paper" />
@@ -548,29 +561,15 @@ export function WebsiteOfferPage() {
       {/* ── الضمان ── */}
       <section className="py-20 sm:py-28">
         <Wrap>
-          <div className="grid gap-12 overflow-hidden rounded-[28px] border-2 border-ink p-8 sm:p-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="lg:col-span-8">
-              <Reveal>
-                <SectionLabel>{wo.guarantee.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.guarantee.title} as="h2" className="h2 mt-8" accentDot />
-              <Reveal delay={120}>
-                <p className="mt-6 max-w-[56ch] text-[18px] leading-[2] text-ink/75">{wo.guarantee.body}</p>
-              </Reveal>
+          <div className="rounded-[28px] border-2 border-ink p-8 sm:p-12">
+            <Reveal>
+              <SectionLabel>{wo.guarantee.label}</SectionLabel>
+            </Reveal>
+            <div className="mt-8">
+              <Heading>{wo.guarantee.title}</Heading>
             </div>
-            <Reveal delay={180} className="flex justify-center lg:col-span-4">
-              {/* ختم الضمان — دائرة بخطّ مزدوج كختم ورقي */}
-              <div className="relative grid size-[210px] place-items-center rounded-full border-2 border-red text-center sm:size-[240px]">
-                <div className="absolute inset-[10px] rounded-full border border-dashed border-red/60" />
-                <div className="px-8">
-                  <svg viewBox="0 0 24 24" className="mx-auto size-10 text-red" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M12 3 5 6v5c0 4.4 3 8.3 7 9.5 4-1.2 7-5.1 7-9.5V6l-7-3z" />
-                    <path d="m8.8 12 2.2 2.2 4.4-4.6" />
-                  </svg>
-                  <p className="mt-3 text-[19px] font-semibold leading-snug">{wo.guarantee.stamp}</p>
-                  <p className="mt-1.5 text-[13.5px] text-ink/60">{wo.guarantee.stampSub}</p>
-                </div>
-              </div>
+            <Reveal delay={120}>
+              <p className="mt-6 max-w-[62ch] text-[18px] leading-[2] text-ink/75">{wo.guarantee.body}</p>
             </Reveal>
           </div>
         </Wrap>
@@ -579,10 +578,7 @@ export function WebsiteOfferPage() {
       {/* ── كيف نعمل ── */}
       <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>
-          <Reveal>
-            <SectionLabel>{wo.steps.label}</SectionLabel>
-          </Reveal>
-          <MaskLines lines={wo.steps.title} as="h2" className="h2 mt-8 max-w-[22ch]" accentDot />
+          <Heading>{wo.steps.title}</Heading>
           <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {wo.steps.list.map((s, i) => (
               <Reveal key={s.title} as="li" delay={(i % 3) * 80} className="rounded-[22px] border border-[var(--line)] bg-paper p-7">
@@ -596,10 +592,7 @@ export function WebsiteOfferPage() {
           </ol>
           <Reveal className="mt-8">
             <p className="inline-flex items-center gap-3 rounded-pill border border-[var(--line-strong)] bg-paper px-5 py-3 text-[15.5px] font-medium">
-              <svg viewBox="0 0 24 24" className="size-5 text-red" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M12 7v5l3 2" />
-              </svg>
+              <Clock className="size-5" />
               {wo.steps.duration}
             </p>
           </Reveal>
@@ -611,31 +604,22 @@ export function WebsiteOfferPage() {
         <Wrap>
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
             <div>
-              <Reveal>
-                <SectionLabel>{wo.payment.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.payment.title} as="h2" className="h2 mt-8" accentDot />
+              <Heading>{wo.payment.title}</Heading>
               <Reveal delay={100}>
                 <p className="body mt-6 max-w-[52ch]">{wo.payment.body}</p>
               </Reveal>
-              <ul className="mt-8 flex flex-col gap-3">
+              <ul className="mt-6 border-t border-[var(--line)]">
                 {wo.payment.promises.map((p, i) => (
-                  <Reveal key={p.title} as="li" delay={i * 80} className="flex items-start gap-4 rounded-[18px] border border-[var(--line)] p-5">
+                  <Reveal key={p} as="li" delay={i * 70} className="flex items-start gap-4 border-b border-[var(--line)] py-5">
                     <Check className="mt-1" />
-                    <span>
-                      <span className="block text-[17px] font-semibold">{p.title}</span>
-                      <span className="mt-1 block text-[15px] text-ink/65">{p.body}</span>
-                    </span>
+                    <span className="text-[17px] leading-[1.8]">{p}</span>
                   </Reveal>
                 ))}
               </ul>
             </div>
 
             <div>
-              <Reveal>
-                <SectionLabel>{wo.needs.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.needs.title} as="h2" className="h2 mt-8" accentDot />
+              <Heading>{wo.needs.title}</Heading>
               <ol className="mt-8 border-t border-[var(--line)]">
                 {wo.needs.list.map((n, i) => (
                   <Reveal key={n} as="li" delay={i * 60} className="flex items-start gap-5 border-b border-[var(--line)] py-5">
@@ -644,48 +628,17 @@ export function WebsiteOfferPage() {
                   </Reveal>
                 ))}
               </ol>
-              <Reveal className="mt-8">
-                <StartLink placement="wo_needs">{wo.hero.primary}</StartLink>
-              </Reveal>
             </div>
-          </div>
-        </Wrap>
-      </section>
-
-      {/* ── من نحن ── */}
-      <section className="bg-paper-2 py-20 sm:py-28">
-        <Wrap>
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="lg:col-span-6">
-              <Reveal>
-                <SectionLabel>{wo.about.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.about.title} as="h2" className="h2 mt-8" accentDot />
-              <Reveal delay={120}>
-                <p className="body mt-6 max-w-[52ch]">{wo.about.body}</p>
-              </Reveal>
-            </div>
-            <ul className="grid grid-cols-2 gap-4 lg:col-span-6">
-              {about.stats.map((s, i) => (
-                <Reveal key={s.label.ar} as="li" delay={i * 70} className="rounded-[22px] border border-[var(--line)] bg-paper p-7">
-                  <Counter to={s.value} suffix={s.suffix} className="text-[clamp(2.4rem,4.4vw,3.4rem)] font-semibold leading-none" />
-                  <p className="mt-3 text-[15px] text-ink/60">{s.label.ar}</p>
-                </Reveal>
-              ))}
-            </ul>
           </div>
         </Wrap>
       </section>
 
       {/* ── الأسئلة ── */}
-      <section className="py-20 sm:py-28">
+      <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-4">
-              <Reveal>
-                <SectionLabel>{wo.faqLabel}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.faqTitle} as="h2" className="h2 mt-8" accentDot />
+              <Heading>{wo.faqTitle}</Heading>
             </div>
             <div className="lg:col-span-8">
               <FaqList items={wo.faq} />
@@ -694,31 +647,22 @@ export function WebsiteOfferPage() {
         </Wrap>
       </section>
 
-      {/* ── الخاتمة: البدء مرّة ثانية ── */}
+      {/* ── الختام ── */}
       <section className="bg-ink pt-20 pb-32 text-paper sm:py-28 lg:pb-28">
         <Wrap>
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
-            <div className="lg:col-span-6">
-              <Reveal>
-                <SectionLabel tone="paper">{wo.closing.label}</SectionLabel>
-              </Reveal>
-              <MaskLines lines={wo.closing.title} as="h2" className="h2 mt-8" accentDot />
-              <Reveal delay={120}>
-                <p className="mt-6 max-w-[48ch] text-[18px] leading-[2] text-paper/75">{wo.closing.sub}</p>
-                <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
-                  <Price tone="paper" />
-                  <WasSave tone="paper" />
-                </div>
-                <div className="mt-7">
-                  <Scarcity tone="paper" />
-                </div>
-                <p className="mt-10 text-[13.5px] text-paper/45">{wo.closing.sign}</p>
-              </Reveal>
+          <MaskLines lines={wo.closing.title} as="h2" className="h2 max-w-[24ch]" accentDot />
+          <Reveal delay={120}>
+            <p className="mt-6 max-w-[52ch] text-[18px] leading-[2] text-paper/75">{wo.closing.sub}</p>
+            <div className="mt-7">
+              <Scarcity tone="paper" />
             </div>
-            <Reveal delay={160} className="lg:col-span-6">
-              <CtaCard id="start-end" placement="wo_closing" tone="paper" />
-            </Reveal>
-          </div>
+            <div id="start-end" className="mt-9">
+              <StartLink placement="wo_closing" tone="paper">
+                {wo.closing.whatsapp}
+              </StartLink>
+            </div>
+            <p className="mt-12 text-[13.5px] text-paper/45">{wo.closing.sign}</p>
+          </Reveal>
         </Wrap>
       </section>
 

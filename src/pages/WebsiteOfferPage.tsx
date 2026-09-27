@@ -1,5 +1,5 @@
-import { useEffect, useState, type ReactNode } from "react";
-import { about } from "../content/home";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { about, film } from "../content/home";
 import { workItems } from "../content/work";
 import { coverSize, galleries } from "../content/gallery";
 import type { ShotRef } from "../content/nationalDay";
@@ -16,9 +16,8 @@ import { track } from "../analytics";
 import { Img } from "../components/Img";
 import { FaqList } from "../components/FaqList";
 import { Lightbox, type LightboxShot } from "../components/Lightbox";
-import { OfferForm } from "../components/OfferForm";
 import { WhatsAppMark } from "../components/WhatsAppFab";
-import { Arrow, Chevron, Counter, MaskLines, Reveal, SectionLabel, Wrap } from "../components/ui";
+import { Chevron, Counter, MaskLines, PlayMark, Reveal, SectionLabel, Wrap } from "../components/ui";
 
 const OFFER = "website_offer";
 const WA = waMessage.websiteOffer.ar;
@@ -104,36 +103,22 @@ function Scarcity({ tone = "ink" }: { tone?: "ink" | "paper" }) {
   );
 }
 
+/** زرّ البدء — يفتح واتساب مباشرة، فلا نموذج في هذه الصفحة */
 function StartLink({ placement, children, tone = "ink", className = "" }: { placement: string; children: ReactNode; tone?: "ink" | "paper"; className?: string }) {
-  return (
-    <a
-      href="#start"
-      onClick={() => track("cta_click", { placement, offer: OFFER })}
-      className={`btn group inline-flex items-center justify-center rounded-pill px-8 py-4 text-[16px] font-semibold ${
-        tone === "paper" ? "bg-paper text-ink hover:text-white" : "bg-ink text-paper hover:text-white"
-      } [--btn-fill:var(--color-red)] ${className}`}
-    >
-      <span className="inline-flex items-center gap-2.5">
-        {children}
-        <Arrow className="size-4" />
-      </span>
-    </a>
-  );
-}
-
-function WaButton({ placement, tone = "ink", children }: { placement: string; tone?: "ink" | "paper"; children: ReactNode }) {
   return (
     <a
       href={waHref(WA)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track("whatsapp_click", { placement, offer: OFFER })}
-      className={`inline-flex items-center gap-3 rounded-pill border px-6 py-3.5 text-[15.5px] font-semibold transition-colors duration-(--dur-fast) ${
-        tone === "paper" ? "border-paper/25 text-paper hover:border-paper" : "border-[var(--line-strong)] text-ink hover:border-ink"
-      }`}
+      className={`btn group inline-flex items-center justify-center rounded-pill px-8 py-4 text-[16px] font-semibold ${
+        tone === "paper" ? "bg-paper text-ink hover:text-white" : "bg-ink text-paper hover:text-white"
+      } [--btn-fill:var(--color-red)] ${className}`}
     >
-      <WhatsAppMark className="size-5" />
-      {children}
+      <span className="inline-flex items-center gap-2.5">
+        <WhatsAppMark className="size-5" />
+        {children}
+      </span>
     </a>
   );
 }
@@ -181,18 +166,13 @@ function TopBar() {
             href={waHref(WA)}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={wo.sticky.whatsapp}
             onClick={() => track("whatsapp_click", { placement: "wo_topbar", offer: OFFER })}
-            className="grid size-10 place-items-center rounded-pill border border-[var(--line-strong)] text-ink transition-colors duration-(--dur-fast) hover:border-ink"
+            className="btn inline-flex items-center gap-2 rounded-pill bg-ink px-5 py-2.5 text-[14px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
           >
-            <WhatsAppMark className="size-[18px]" />
-          </a>
-          <a
-            href="#start"
-            onClick={() => track("cta_click", { placement: "wo_topbar", offer: OFFER })}
-            className="btn inline-flex items-center rounded-pill bg-ink px-5 py-2.5 text-[14px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
-          >
-            <span>{wo.topCta}</span>
+            <span className="inline-flex items-center gap-2">
+              <WhatsAppMark className="size-4" />
+              {wo.topCta}
+            </span>
           </a>
         </div>
       </Wrap>
@@ -296,31 +276,25 @@ function StickyBar() {
           </p>
         </div>
         <a
-          href="#start"
-          tabIndex={shown ? undefined : -1}
-          onClick={() => track("cta_click", { placement: "wo_sticky", offer: OFFER })}
-          className="btn inline-flex items-center rounded-pill bg-ink px-6 py-3.5 text-[15px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
-        >
-          <span>{wo.sticky.cta}</span>
-        </a>
-        <a
           href={waHref(WA)}
           target="_blank"
           rel="noopener noreferrer"
           tabIndex={shown ? undefined : -1}
-          aria-label={wo.sticky.whatsapp}
           onClick={() => track("whatsapp_click", { placement: "wo_sticky", offer: OFFER })}
-          className="grid size-[50px] shrink-0 place-items-center rounded-pill border border-[var(--line-strong)] text-ink"
+          className="btn inline-flex items-center rounded-pill bg-ink px-6 py-3.5 text-[15px] font-semibold text-paper hover:text-white [--btn-fill:var(--color-red)]"
         >
-          <WhatsAppMark className="size-5" />
+          <span className="inline-flex items-center gap-2">
+            <WhatsAppMark className="size-[18px]" />
+            {wo.sticky.cta}
+          </span>
         </a>
       </div>
     </div>
   );
 }
 
-/* ── بطاقة النموذج ─────────────────────────────────────── */
-function FormCard({ id, placement, tone = "ink" }: { id: string; placement: string; tone?: "ink" | "paper" }) {
+/* ── بطاقة البدء: السعر وزرّ واتساب ─────────────────────── */
+function CtaCard({ id, placement, tone = "ink" }: { id: string; placement: string; tone?: "ink" | "paper" }) {
   const onInk = tone === "paper";
   return (
     <div
@@ -330,17 +304,60 @@ function FormCard({ id, placement, tone = "ink" }: { id: string; placement: stri
       }`}
     >
       <p className="text-[28px] font-semibold leading-snug sm:text-[32px]">
-        {wo.form.title}
+        {wo.cta.title}
         <span className="text-red">.</span>
       </p>
-      <p className={`mt-1.5 text-[15px] ${onInk ? "text-paper/60" : "text-ink/60"}`}>{wo.form.intro}</p>
+      <p className={`mt-1.5 text-[15px] ${onInk ? "text-paper/60" : "text-ink/60"}`}>{wo.cta.intro}</p>
       <div className={`mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-4 ${onInk ? "border-paper/15" : "border-[var(--line)]"}`}>
         <Price size="md" tone={tone} />
         <WasSave tone={tone} />
       </div>
-      <div className="mt-6">
-        <OfferForm placement={placement} tone={tone} copy={wo.form} offer={OFFER} />
+      <StartLink placement={placement} tone={tone} className="mt-6 w-full py-[18px] text-[16.5px]">
+        {wo.cta.button}
+      </StartLink>
+      <p className={`mt-3.5 text-center text-[13.5px] ${onInk ? "text-paper/55" : "text-ink/50"}`}>{wo.cta.assurance}</p>
+    </div>
+  );
+}
+
+/* ── الفيديو التعريفي: من نحن قبل أي تفاصيل ─────────────── */
+function IntroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  return (
+    <div>
+      <p className="flex items-center gap-2.5 text-[14px] font-medium text-ink/60">
+        <span className="size-1.5 rounded-full bg-red" />
+        {wo.video.label}
+      </p>
+      {/* الإطار حبريّ: ريثما تُفكّ أوّل لقطة لا يومض بياض مكان الصورة */}
+      <div className="relative mt-4 aspect-video overflow-hidden rounded-[20px] bg-ink shadow-[0_40px_90px_-50px_rgba(11,11,13,0.45)]">
+        <video
+          ref={ref}
+          src={film.src.ar}
+          poster={film.poster.ar}
+          preload="none"
+          playsInline
+          controls={playing}
+          className="size-full object-cover"
+        />
+        {!playing && (
+          <button
+            type="button"
+            aria-label={film.play.ar}
+            onClick={() => {
+              setPlaying(true);
+              track("cta_click", { placement: "wo_intro_film", offer: OFFER });
+              void ref.current?.play();
+            }}
+            className="group absolute inset-0 grid place-items-center bg-ink/10 transition-colors duration-(--dur-base) hover:bg-ink/25"
+          >
+            <PlayMark />
+          </button>
+        )}
       </div>
+      <p className="mt-4 text-[16px] font-medium">{wo.video.title}</p>
+      <p className="mt-1 text-[13.5px] text-ink/50">{film.note.ar}</p>
     </div>
   );
 }
@@ -352,7 +369,12 @@ function FormCard({ id, placement, tone = "ink" }: { id: string; placement: stri
 /**
  * صفحة هبوط «موقع شركتك الاحترافي» — عرض اليوم الوطني، للإعلان وحده.
  *
- * ترتيب القرار: العرض والسعر والتوفير والنموذج فوق الطيّة، ثم مواقع
+ * بلا نموذج: الزائر ملأ نموذج الإعلان وتواصل على واتساب قبل أن يصله
+ * هذا الرابط، فكل زرّ هنا يعيده إلى المحادثة. تُعرض فاتحة دائمًا.
+ *
+ * ترتيب القرار: العرض والسعر والتوفير وزرّ واتساب فوق الطيّة، وبجانبها
+ * الفيلم التعريفي — من نحن قبل أي تفاصيل، حفاظًا على موقع دَعمة لا
+ * كعرض سعر فقط، ثم مواقع
  * حقيقية في إطار متصفّح وجوال (الإثبات قبل الكلام)، ثم لماذا موقع،
  * ثم البنود العشرة، ثم الضمان — أقوى ما يزيل التردّد — ثم الخطوات
  * والمدة، والدفع مع التزاماتنا، وما نحتاجه منك (قصير عمدًا ليبدو
@@ -408,7 +430,7 @@ export function WebsiteOfferPage() {
                   ))}
                 </ul>
 
-                <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4 lg:hidden">
+                <div id="start" className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-4">
                   <StartLink placement="wo_hero">{wo.hero.primary}</StartLink>
                 </div>
                 <div className="mt-7">
@@ -417,8 +439,8 @@ export function WebsiteOfferPage() {
               </Reveal>
             </div>
 
-            <Reveal delay={200} eager className="lg:col-span-5 lg:sticky lg:top-24">
-              <FormCard id="start" placement="wo_hero" />
+            <Reveal delay={200} eager className="lg:col-span-5 lg:pt-14">
+              <IntroVideo />
             </Reveal>
           </div>
         </Wrap>
@@ -699,16 +721,11 @@ export function WebsiteOfferPage() {
                 <div className="mt-7">
                   <Scarcity tone="paper" />
                 </div>
-                <div className="mt-9">
-                  <WaButton placement="wo_closing_wa" tone="paper">
-                    {wo.closing.whatsapp}
-                  </WaButton>
-                </div>
                 <p className="mt-10 text-[13.5px] text-paper/45">{wo.closing.sign}</p>
               </Reveal>
             </div>
             <Reveal delay={160} className="lg:col-span-6">
-              <FormCard id="start-end" placement="wo_closing" tone="paper" />
+              <CtaCard id="start-end" placement="wo_closing" tone="paper" />
             </Reveal>
           </div>
         </Wrap>

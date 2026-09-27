@@ -31,9 +31,14 @@
         el.dir = en ? "ltr" : "rtl";
         try {
           var saved = localStorage.getItem("daamah:theme");
+          /* صفحات إعلان تُعرض فاتحة دائمًا — كما صُمّم الإعلان نفسه،
+             ولا مفتاح سمة فيها يغيّرها. تتبّع النظام يتوقّف عليها أيضًا */
+          var light = ["/website-offer"].indexOf(p.replace(/\/$/, "")) !== -1;
+          if (light) el.dataset.forceLight = "1";
           var dark =
-            saved === "dark" ||
-            (!saved && matchMedia("(prefers-color-scheme: dark)").matches);
+            !light &&
+            (saved === "dark" ||
+              (!saved && matchMedia("(prefers-color-scheme: dark)").matches));
           el.dataset.theme = dark ? "dark" : "light";
           if (dark) {
             document

@@ -18,6 +18,7 @@ import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { nationalDay, offerPath } from "./nationalDay";
+import { websiteOffer, websiteOfferPath } from "./websiteOffer";
 import { BLOG_ENABLED } from "./features";
 import { contractorsPage, contractorsPath } from "./contractors";
 import { faqPage, faqPath } from "./faqAbout";
@@ -388,6 +389,15 @@ export const routes: RouteMeta[] = [
     kind: "page",
     langs: ["ar"],
     image: "/assets/og-national-day.jpg",
+  },
+  /* عرض الموقع الاحترافي — صفحة إعلان عربية فقط */
+  {
+    path: websiteOfferPath,
+    title: { ar: websiteOffer.meta.title, en: websiteOffer.meta.title },
+    description: { ar: websiteOffer.meta.description, en: websiteOffer.meta.description },
+    priority: 0.8,
+    kind: "page",
+    langs: ["ar"],
   },
   /* صفحة قطاع: أسهل عبارة تجارية أمامنا («بروفايل شركة مقاولات») ولا
      منافس يشرح ما تطلبه لجنة التأهيل فعلًا */

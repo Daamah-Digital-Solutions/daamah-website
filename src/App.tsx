@@ -3,6 +3,7 @@ import { BLOG_ENABLED } from "./content/features";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
 import { barePaths } from "./content/nationalDay";
+import { websiteOfferPath } from "./content/websiteOffer";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -36,6 +37,7 @@ const ContractorsPage = lazy(() => import("./pages/ContractorsPage").then((m) =>
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 const NationalDayPage = lazy(() => import("./pages/NationalDayPage").then((m) => ({ default: m.NationalDayPage })));
+const WebsiteOfferPage = lazy(() => import("./pages/WebsiteOfferPage").then((m) => ({ default: m.WebsiteOfferPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
@@ -86,7 +88,10 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
     /* صفحة حملة عربية فقط: لا نسخة إنجليزية لها، فلا مسار تحت `/en` */
     ...(prefix === ""
-      ? [<Route key="national-day" path="/national-day" element={<NationalDayPage />} />]
+      ? [
+          <Route key="national-day" path="/national-day" element={<NationalDayPage />} />,
+          <Route key="website-offer" path={websiteOfferPath} element={<WebsiteOfferPage />} />,
+        ]
       : []),
   ];
 }

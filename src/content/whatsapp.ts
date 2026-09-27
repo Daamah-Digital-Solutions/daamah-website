@@ -123,6 +123,12 @@ export const waMessage = {
     en: "about the National Day offer (the complete package for SAR 5,000) — I'd like to book a place for our company.",
   }),
 
+  /** صفحة عرض الموقع الاحترافي (1,000 ريال) */
+  websiteOffer: compose({
+    ar: "بخصوص عرض اليوم الوطني: موقع احترافي بالعربي والإنجليزي بـ 1,000 ريال، وأرغب في البدء.",
+    en: "about the National Day offer: a professional Arabic and English website for SAR 1,000. I'd like to start.",
+  }),
+
   /**
    * العرض الخفيف — لمن ليس جاهزًا للكلام.
    *

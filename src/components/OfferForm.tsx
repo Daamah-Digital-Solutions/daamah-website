@@ -15,7 +15,8 @@ function Field({
 }: {
   id: string;
   label: string;
-  optional?: boolean;
+  /** نصّ «اختياري» — يأتي من نصوص العرض */
+  optional?: string;
   error?: string;
   tone: "ink" | "paper";
   children: ReactNode;
@@ -24,7 +25,7 @@ function Field({
     <div className="flex flex-col gap-2.5">
       <label htmlFor={id} className={`flex items-baseline gap-2 text-[14px] font-medium ${tone === "paper" ? "text-paper/80" : "text-ink/70"}`}>
         {label}
-        {optional && <span className={tone === "paper" ? "text-paper/40" : "text-ink/35"}>({nd.form.optional})</span>}
+        {optional && <span className={tone === "paper" ? "text-paper/40" : "text-ink/35"}>({optional})</span>}
       </label>
       {children}
       <p role="alert" className={`text-[13.5px] text-red ${error ? "" : "hidden"}`}>
@@ -50,13 +51,27 @@ const EMPTY: Values = { name: "", company: "", activity: "" };
  *
  * `tone` لأن النموذج يظهر على الورق أعلى الصفحة وعلى الحبر في خاتمتها.
  */
-export function OfferForm({ placement, tone = "ink" }: { placement: string; tone?: "ink" | "paper" }) {
+/** نصوص النموذج — كل عرض يمرّر نصوصه، والافتراضي عرض الباقة */
+export type OfferFormCopy = typeof nd.form;
+
+export function OfferForm({
+  placement,
+  tone = "ink",
+  copy = nd.form,
+  offer = "national_day",
+}: {
+  placement: string;
+  tone?: "ink" | "paper";
+  copy?: OfferFormCopy;
+  /** مفتاح العرض في القياس — يفرّق طلبات كل حملة في ميتا وجوجل */
+  offer?: string;
+}) {
   const uid = useId();
   const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [waUrl, setWaUrl] = useState<string | null>(null);
   const [engaged, setEngaged] = useState(false);
-  const f = nd.form;
+  const f = copy;
   const onInk = tone === "paper";
 
   const input =
@@ -70,7 +85,7 @@ export function OfferForm({ placement, tone = "ink" }: { placement: string; tone
     setErrors((e) => (k in e ? { ...e, [k]: undefined } : e));
     if (!engaged) {
       setEngaged(true);
-      track("quote_form_open", { offer: "national_day", placement });
+      track("quote_form_open", { offer, placement });
     }
   };
 
@@ -112,7 +127,7 @@ export function OfferForm({ placement, tone = "ink" }: { placement: string; tone
     }
     const url = `https://wa.me/${phoneFor().raw.replace(/\D/g, "")}?text=${encodeURIComponent(compose(values))}`;
     track("lead", {
-      offer: "national_day",
+      offer,
       placement,
       lang: "ar",
       activity: values.activity.trim().slice(0, 60),
@@ -181,7 +196,7 @@ export function OfferForm({ placement, tone = "ink" }: { placement: string; tone
           className={input}
         />
       </Field>
-      <Field id={`${uid}-company`} label={f.fields.company.label} optional tone={tone}>
+      <Field id={`${uid}-company`} label={f.fields.company.label} optional={f.optional} tone={tone}>
         <input
           id={`${uid}-company`}
           name="organization"

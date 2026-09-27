@@ -1,4 +1,5 @@
 import type { Bi } from "../i18n";
+import { websiteOfferPath } from "./websiteOffer";
 
 /**
  * صفحة حملة «عرض اليوم الوطني» — عربية فقط، للإعلان وحده.
@@ -17,7 +18,7 @@ import type { Bi } from "../i18n";
 export const offerPath = "/national-day";
 
 /** مسارات تُعرض بلا هيدر ولا فوتر — صفحات الإعلانات */
-export const barePaths = [offerPath];
+export const barePaths = [offerPath, websiteOfferPath];
 
 const ar = (s: string): Bi => ({ ar: s, en: s });
 

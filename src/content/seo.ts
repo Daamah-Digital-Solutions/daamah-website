@@ -398,6 +398,7 @@ export const routes: RouteMeta[] = [
     priority: 0.8,
     kind: "page",
     langs: ["ar"],
+    image: "/assets/og-website-offer.jpg",
   },
   /* صفحة قطاع: أسهل عبارة تجارية أمامنا («بروفايل شركة مقاولات») ولا
      منافس يشرح ما تطلبه لجنة التأهيل فعلًا */

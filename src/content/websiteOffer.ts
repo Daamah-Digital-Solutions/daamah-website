@@ -59,7 +59,7 @@ export const websiteOffer = {
     list: [
       { slug: "utility-vision", desktop: 1, phone: 2 },
       { slug: "profitmax-web", desktop: 1, phone: 2 },
-      { slug: "hcc-insurance", desktop: 1, phone: 2 },
+      { slug: "alhayat-web", desktop: 1, phone: 2 },
     ],
     more: [
       { slug: "utility-vision", n: 3 },
@@ -67,7 +67,6 @@ export const websiteOffer = {
       { slug: "alhayat-web", n: 3 },
       { slug: "profitmax-web", n: 3 },
       { slug: "future-axis", n: 1 },
-      { slug: "hcc-insurance", n: 3 },
       { slug: "sara-younis-web", n: 1 },
       { slug: "vibrant-design", n: 3 },
       { slug: "alhayat-web", n: 5 },
@@ -150,8 +149,6 @@ export const websiteOffer = {
     label: "من نحن",
     title: ["دَعمة للحلول الرقمية،", "منذ 2018."],
     body: "نعمل مع شركات في السعودية والخليج ومصر وأوروبا، ونبني المواقع والهويات والملفات التعريفية بالعربية والإنجليزية.",
-    clients: "من عملائنا في السعودية",
-    names: ["بصمة العمران", "بيلدنج لاين", "كونكت لأجنحة المعارض", "مصنع هياكل العلمين", "مزرعة الحياة للدواجن", "يوتيليتي فيجن", "فيوتشر أكسس", "كوربنتا"],
   },
 
   faqLabel: "الأسئلة الشائعة",

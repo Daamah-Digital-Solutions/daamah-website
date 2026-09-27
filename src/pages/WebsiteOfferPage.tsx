@@ -663,15 +663,6 @@ export function WebsiteOfferPage() {
               <MaskLines lines={wo.about.title} as="h2" className="h2 mt-8" accentDot />
               <Reveal delay={120}>
                 <p className="body mt-6 max-w-[52ch]">{wo.about.body}</p>
-                <p className="mt-8 text-[14px] font-medium text-ink/50">{wo.about.clients}</p>
-                <ul className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-                  {wo.about.names.map((n, i) => (
-                    <li key={n} className="flex items-center gap-4 text-[15px] font-semibold text-ink/80">
-                      {i > 0 && <span className="size-1 rounded-full bg-ink/25" />}
-                      {n}
-                    </li>
-                  ))}
-                </ul>
               </Reveal>
             </div>
             <ul className="grid grid-cols-2 gap-4 lg:col-span-6">

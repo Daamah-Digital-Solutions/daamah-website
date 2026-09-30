@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { brand } from "../content/home";
+import { waHref } from "../content/whatsapp";
+import { WhatsAppMark } from "../components/WhatsAppFab";
 import { launchDeck as deck } from "../content/launchDeck";
 import { track } from "../analytics";
 
@@ -168,6 +170,30 @@ function DeckSheet({ n, doc }: { n: number; doc: PdfDoc | null }) {
  */
 export function DeckPage() {
   const [doc, setDoc] = useState<PdfDoc | null>(null);
+  const [cta, setCta] = useState(false);
+
+  /* زرّ الطلب يظهر بعد الغلاف، ويختفي عند آخر صفحة: فيها زرّ واتساب
+     خاصّ بها، وزرّان فوق بعضهما يتنافسان على الإبهام نفسه */
+  useEffect(() => {
+    let raf = 0;
+    const read = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const end = document.documentElement.scrollHeight - window.innerHeight;
+      setCta(y > window.innerHeight * 0.4 && y < end - window.innerHeight * 0.45);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(read);
+    };
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -194,7 +220,7 @@ export function DeckPage() {
 
   return (
     <div className="min-h-dvh bg-[#101012] text-[#edebe7]">
-      <div className="sticky top-0 z-10 border-b border-white/[0.06] bg-[#101012]/85 backdrop-blur-md">
+      <div className="border-b border-white/[0.06]">
         <div className="mx-auto flex h-14 max-w-[1320px] items-center justify-between gap-4 px-4 sm:h-16 sm:px-8">
           <Link to="/" aria-label={brand.name.ar} className="shrink-0 transition-opacity duration-300 hover:opacity-60">
             <img
@@ -224,6 +250,27 @@ export function DeckPage() {
         {Array.from({ length: deck.pages }, (_, i) => (
           <DeckSheet key={i} n={i + 1} doc={doc} />
         ))}
+      </div>
+
+      <div
+        className={`pointer-events-none fixed inset-x-0 bottom-0 z-20 flex justify-center px-4 pb-[max(16px,env(safe-area-inset-bottom))] transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          cta ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        }`}
+      >
+        <a
+          href={waHref(deck.waMessage)}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={cta ? 0 : -1}
+          aria-hidden={!cta}
+          onClick={() => track("whatsapp_click", { placement: "deck_cta" })}
+          className={`inline-flex items-center gap-2.5 rounded-full bg-[#e70000] px-6 py-3.5 text-[15px] font-bold leading-none text-white shadow-[0_18px_40px_-12px_rgba(231,0,0,0.55)] transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98] sm:px-7 sm:py-4 sm:text-[16px] ${
+            cta ? "pointer-events-auto" : ""
+          }`}
+        >
+          <WhatsAppMark className="size-5" />
+          {deck.cta}
+        </a>
       </div>
     </div>
   );

@@ -64,8 +64,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const mq = matchMedia("(prefers-color-scheme: dark)");
     const onChange = () => {
-      /* صفحة إعلان مثبّتة على الفاتح — لا تتبع تغيّر النظام */
-      if (document.documentElement.dataset.forceLight) return;
       try {
         if (localStorage.getItem(KEY)) return;
       } catch {

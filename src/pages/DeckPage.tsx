@@ -264,7 +264,7 @@ export function DeckPage() {
           tabIndex={cta ? 0 : -1}
           aria-hidden={!cta}
           onClick={() => track("whatsapp_click", { placement: "deck_cta" })}
-          className={`inline-flex items-center gap-2.5 rounded-full bg-[#e70000] px-6 py-3.5 text-[15px] font-bold leading-none text-white shadow-[0_18px_40px_-12px_rgba(231,0,0,0.55)] transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98] sm:px-7 sm:py-4 sm:text-[16px] ${
+          className={`inline-flex items-center gap-2.5 rounded-full bg-[#25d366] px-6 py-3.5 text-[15px] font-bold leading-none text-[#0b0b0d] shadow-[0_18px_40px_-12px_rgba(37,211,102,0.5)] transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98] sm:px-7 sm:py-4 sm:text-[16px] ${
             cta ? "pointer-events-auto" : ""
           }`}
         >

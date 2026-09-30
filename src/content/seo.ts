@@ -17,8 +17,7 @@ import {
 import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
-import { nationalDay, offerPath } from "./nationalDay";
-import { websiteOffer, websiteOfferPath } from "./websiteOffer";
+import { launchDeck, launchDeckPath } from "./launchDeck";
 import { BLOG_ENABLED } from "./features";
 import { contractorsPage, contractorsPath } from "./contractors";
 import { faqPage, faqPath } from "./faqAbout";
@@ -73,6 +72,8 @@ export type RouteMeta = {
    * تقرأ كإعلانٍ مبوّب لا كشركة. لذلك يفترقان حين يلزم.
    */
   share?: { title: Bi; description: Bi };
+  /** خارج الفهرسة وخريطة الموقع وllms.txt — رابط يُرسَل لا صفحة يُبحث عنها */
+  noindex?: boolean;
 };
 
 const home: RouteMeta = {
@@ -380,25 +381,17 @@ export const routes: RouteMeta[] = [
     priority: 0.7,
     kind: "page",
   },
-  /* صفحة حملة: عربية فقط، وصورة مشاركتها من إعلان العرض نفسه */
+  /* عرض «باقة الانطلاق الرقمي» — رابط يُرسَل، عربي فقط وخارج الفهرسة،
+     وصورة مشاركته غلاف العرض نفسه */
   {
-    path: offerPath,
-    title: { ar: nationalDay.meta.title, en: nationalDay.meta.title },
-    description: { ar: nationalDay.meta.description, en: nationalDay.meta.description },
-    priority: 0.8,
+    path: launchDeckPath,
+    title: { ar: launchDeck.meta.title, en: launchDeck.meta.title },
+    description: { ar: launchDeck.meta.description, en: launchDeck.meta.description },
+    priority: 0,
     kind: "page",
     langs: ["ar"],
-    image: "/assets/og-national-day.jpg",
-  },
-  /* عرض الموقع الاحترافي — صفحة إعلان عربية فقط */
-  {
-    path: websiteOfferPath,
-    title: { ar: websiteOffer.meta.title, en: websiteOffer.meta.title },
-    description: { ar: websiteOffer.meta.description, en: websiteOffer.meta.description },
-    priority: 0.8,
-    kind: "page",
-    langs: ["ar"],
-    image: "/assets/og-website-offer.jpg",
+    noindex: true,
+    image: "/assets/og-digital-launch.jpg",
   },
   /* صفحة قطاع: أسهل عبارة تجارية أمامنا («بروفايل شركة مقاولات») ولا
      منافس يشرح ما تطلبه لجنة التأهيل فعلًا */

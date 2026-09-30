@@ -2,8 +2,7 @@ import { Suspense, lazy } from "react";
 import { BLOG_ENABLED } from "./content/features";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
-import { barePaths } from "./content/nationalDay";
-import { websiteOfferPath } from "./content/websiteOffer";
+import { barePaths, launchDeckPath } from "./content/launchDeck";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -36,8 +35,7 @@ const ProfilePage = lazy(() => import("./pages/ProfilePage").then((m) => ({ defa
 const ContractorsPage = lazy(() => import("./pages/ContractorsPage").then((m) => ({ default: m.ContractorsPage })));
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
-const NationalDayPage = lazy(() => import("./pages/NationalDayPage").then((m) => ({ default: m.NationalDayPage })));
-const WebsiteOfferPage = lazy(() => import("./pages/WebsiteOfferPage").then((m) => ({ default: m.WebsiteOfferPage })));
+const DeckPage = lazy(() => import("./pages/DeckPage").then((m) => ({ default: m.DeckPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
@@ -86,13 +84,8 @@ function pageRoutes(prefix: string) {
       : []),
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
     <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
-    /* صفحة حملة عربية فقط: لا نسخة إنجليزية لها، فلا مسار تحت `/en` */
-    ...(prefix === ""
-      ? [
-          <Route key="national-day" path="/national-day" element={<NationalDayPage />} />,
-          <Route key="website-offer" path={websiteOfferPath} element={<WebsiteOfferPage />} />,
-        ]
-      : []),
+    /* عرض عربي فقط: لا نسخة إنجليزية له، فلا مسار تحت `/en` */
+    ...(prefix === "" ? [<Route key="launch-deck" path={launchDeckPath} element={<DeckPage />} />] : []),
   ];
 }
 
@@ -104,8 +97,8 @@ function pageRoutes(prefix: string) {
  * فلا يمكن أن يختلف ما يراه الزاحف عمّا يراه الزائر.
  */
 export function Shell() {
-  /* صفحات الإعلانات بلا هيدر ولا فوتر: كل رابط تنقّل فيها بابٌ يخرج
-     منه زائرٌ دُفع ثمن وصوله قبل أن يحجز */
+  /* صفحة العرض بلا هيدر ولا فوتر: رابطٌ يُرسَل لعميل ليقرأ العرض،
+     لا ليتجوّل في الموقع */
   const bare = barePaths.includes(stripLang(useLocation().pathname));
   return (
     <ThemeProvider>

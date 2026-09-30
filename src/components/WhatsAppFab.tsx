@@ -30,9 +30,9 @@ export function WhatsAppFab() {
   const [shown, setShown] = useState(false);
   const raf = useRef(0);
 
-  /* صفحة التواصل فيها قنواتها، وصفحة العرض فيها شريط حجز ثابت خاصّ
-     بها — زرّان عائمان فوق بعضهما يتنافسان على الإبهام نفسه */
-  const onContact = ["/contact", "/national-day"].includes(stripLang(pathname));
+  /* صفحة التواصل فيها قنواتها — زرّان عائمان فوق بعضهما يتنافسان
+     على الإبهام نفسه */
+  const onContact = stripLang(pathname) === "/contact";
 
   useEffect(() => {
     if (onContact) return;

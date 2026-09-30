@@ -4,6 +4,16 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/national-day",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/website-offer",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {

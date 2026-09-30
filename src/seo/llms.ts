@@ -23,7 +23,7 @@ const abs = (p: string, lang: Lang) => `${SITE_URL}${withLang(p, lang)}`;
 export function llmsTxt(): string {
   const tel = phoneFor();
   const sectors = [...new Set(workItems.map((w) => w.sector))].map((k) => sectorMeta(k).label.en);
-  const core = routes.filter((r) => ["home", "page", "services", "service", "work"].includes(r.kind) && !r.path.startsWith("/national-day"));
+  const core = routes.filter((r) => ["home", "page", "services", "service", "work"].includes(r.kind) && !r.noindex);
   /* المقالات بلغتها الأصلية: أكثرها عربي، والنموذج يقرأ العربية —
      ترجمة عنوانٍ لمقال غير مترجم تَعِد بصفحة لا وجود لها */
   const articles = routes
@@ -77,7 +77,7 @@ export function llmsFullTxt(): string {
 
   const all = (lang: Lang) =>
     routes
-      .filter((r) => !r.langs || r.langs.includes(lang))
+      .filter((r) => !r.noindex && (!r.langs || r.langs.includes(lang)))
       .map((r) => `- [${r.title[lang]}](${abs(r.path, lang)}): ${r.description[lang]}`);
 
   return [

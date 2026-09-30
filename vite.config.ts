@@ -99,7 +99,7 @@ function blogStats(): Plugin {
 function routeIndex(): Plugin {
   const ID = "virtual:routes";
   const RESOLVED = `\0${ID}`;
-  const KEEP = ["path", "title", "description", "kind", "parent", "langs", "share"] as const;
+  const KEEP = ["path", "title", "description", "kind", "parent", "langs", "share", "noindex"] as const;
 
   return {
     name: "daamah:route-index",
@@ -286,7 +286,9 @@ function prerender(): Plugin {
           seen.set(key, route.path);
 
           const localized: string = withLang(route.path, lang);
-          write(localized, await page(route, lang, { alternates: langs.length > 1 }));
+          write(localized, await page(route, lang, { alternates: langs.length > 1, noindex: route.noindex }));
+          /* رابط يُرسَل لا يدخل خريطة الموقع */
+          if (route.noindex) continue;
 
           const loc = `${SITE_URL}${localized}`;
           urls.push(
@@ -441,6 +443,17 @@ export default defineConfig({
   },
   resolve: {
     alias: { "@": new URL("./src/", import.meta.url).pathname },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        /* عامل pdf.js يُنسخ كما هو بامتداده `.mjs`، وبعض الخوادم تقدّمه
+           بنوع غير نوع جافاسكربت فيرفضه المتصفح. بامتداد `.js` يُقدَّم
+           صحيحًا في كل مكان. */
+        assetFileNames: (info) =>
+          info.names?.[0]?.endsWith(".mjs") ? "assets/[name]-[hash].js" : "assets/[name]-[hash][extname]",
+      },
+    },
   },
   server: { port: 4100 },
 });

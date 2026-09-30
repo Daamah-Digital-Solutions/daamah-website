@@ -34,6 +34,7 @@ const TYPES = {
   ".avif": "image/avif",
   ".woff2": "font/woff2",
   ".mp4": "video/mp4",
+  ".pdf": "application/pdf",
   ".webmanifest": "application/manifest+json",
 };
 

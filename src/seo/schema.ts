@@ -1,8 +1,6 @@
 import { withLang, type Bi, type Lang } from "../i18n";
 import { brand, phoneFor, saudi, services } from "../content/home";
 import { faqItemsFor } from "../content/faq";
-import { offerPath } from "../content/nationalDay";
-import { websiteOfferPath } from "../content/websiteOffer";
 import { faqPath } from "../content/faqAbout";
 import { contractorsPage, contractorsPath } from "../content/contractors";
 import { markets, sectorMeta, workItems } from "../content/work";
@@ -297,13 +295,13 @@ export function graphFor(bare: string, lang: Lang): Json {
     case "city":
       graph.push(...cityService(bare, lang));
       break;
-    /* صفحة العرض وصفحة الأسئلة تعرضان أسئلة فعلًا — فتُعلَنان. بقيّة صفحات «page» لا */
+    /* صفحة الأسئلة تعرض أسئلة فعلًا — فتُعلَن. بقيّة صفحات «page» لا */
     case "page":
       if (bare === contractorsPath) {
         const f = faqPage(bare, lang, contractorsPage.faq);
         if (f) graph.push(f);
       }
-      if (bare === offerPath || bare === websiteOfferPath || bare === faqPath) {
+      if (bare === faqPath) {
         const f = faqPage(bare, lang);
         if (f) graph.push(f);
       }

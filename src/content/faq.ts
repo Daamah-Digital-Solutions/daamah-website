@@ -1,6 +1,4 @@
 import type { Bi } from "../i18n";
-import { nationalDay, offerPath } from "./nationalDay";
-import { websiteOffer, websiteOfferPath } from "./websiteOffer";
 import { faqGroups, faqPath } from "./faqAbout";
 
 /**
@@ -263,9 +261,6 @@ export const byService: Record<string, FaqItem[]> = {
  * تقرأها الصفحة وقارئ البيانات المنظّمة معًا.
  */
 export function faqItemsFor(barePath: string): FaqItem[] {
-  /* صفحة العرض تعرض أسئلتها هي — فتُعلَن هي لا العامّة */
-  if (barePath === offerPath) return nationalDay.faq;
-  if (barePath === websiteOfferPath) return websiteOffer.faq;
   /* صفحة الأسئلة عن دَعمة — مجموعاتها مسطّحةً بترتيب عرضها */
   if (barePath === faqPath) return faqGroups.flatMap((g) => g.items);
   const service = barePath.match(/^\/services\/([^/]+)/)?.[1];

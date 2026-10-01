@@ -1304,8 +1304,8 @@ export const privacyPage = {
     {
       title: { ar: "الدفع", en: "Payments" } as Bi,
       body: {
-        ar: "حين تدفع من صفحة عرض، يتمّ الدفع على صفحة مزوّد الدفع لا على موقعنا: بيانات بطاقتك تصله هو وحده ولا نراها. ونستلم منه ما يلزم لبدء العمل فقط: اسمك، ورقم جوالك، واسم شركتك، والمبلغ.",
-        en: "When you pay from an offer page, the payment happens on the payment provider's page, not on our site: your card details reach the provider alone and we never see them. We receive only what we need to start the work: your name, mobile number, company name, and the amount.",
+        ar: "حين تحجز من صفحة عرض، تكتب اسمك ورقم جوالك واسم شركتك، ثم يتمّ الدفع على صفحة مزوّد الدفع (Ziina) لا على موقعنا: بيانات بطاقتك تصله هو وحده ولا نراها. وتُرفق بياناتك الثلاث بالعملية لنعرف من دفع ونبدأ العمل — ولا نستخدمها لغير ذلك.",
+        en: "When you book from an offer page, you enter your name, mobile number and company name, then pay on the payment provider's page (Ziina), not on our site: your card details reach the provider alone and we never see them. Those three details are attached to the payment so we know who paid and can start the work — and are used for nothing else.",
       } as Bi,
     },
     {

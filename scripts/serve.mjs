@@ -17,9 +17,41 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { createBrotliCompress } from "node:zlib";
 import { extname, join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const dist = resolve("dist");
 const port = Number(process.argv[2] ?? 4200);
+
+/* مفاتيح الدوال المحلية (ZIINA_API_KEY…) — كما تضبطها Vercel في الإنتاج */
+if (existsSync(".env.local")) process.loadEnvFile(".env.local");
+
+/**
+ * `/api/<name>` ← `api/<name>.js`، كما تفعل Vercel: الدالة تصدّر
+ * `GET`/`POST` تأخذ `Request` وتعيد `Response`.
+ */
+async function api(req, res, url) {
+  const file = resolve("api", `${url.pathname.slice(5)}.js`);
+  if (!/^\/api\/[\w-]+$/.test(url.pathname) || !isFile(file)) {
+    res.writeHead(404, { "Content-Type": "text/plain" }).end("404");
+    return;
+  }
+  const mod = await import(`${pathToFileURL(file).href}?t=${statSync(file).mtimeMs}`);
+  const handler = mod[req.method];
+  if (!handler) {
+    res.writeHead(405).end();
+    return;
+  }
+  const chunks = [];
+  for await (const c of req) chunks.push(c);
+  const request = new Request(`http://localhost:${port}${req.url}`, {
+    method: req.method,
+    headers: req.headers,
+    body: ["GET", "HEAD"].includes(req.method) ? undefined : Buffer.concat(chunks),
+  });
+  const out = await handler(request);
+  res.writeHead(out.status, Object.fromEntries(out.headers));
+  res.end(Buffer.from(await out.arrayBuffer()));
+}
 
 const TYPES = {
   ".html": "text/html; charset=utf-8",
@@ -59,6 +91,13 @@ const send = (res, status, file, req) => {
 
 createServer((req, res) => {
   const url = new URL(req.url, "http://localhost");
+  if (url.pathname.startsWith("/api/")) {
+    api(req, res, url).catch((e) => {
+      console.error(e);
+      res.writeHead(500).end("api error");
+    });
+    return;
+  }
   let path = decodeURIComponent(url.pathname);
 
   // منع الخروج من مجلد النشر

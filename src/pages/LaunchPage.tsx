@@ -2,59 +2,215 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { brand, phoneFor } from "../content/home";
 import { launchDeck } from "../content/launchDeck";
-import { LAUNCH_PAY_URL, launch as L, launchWa, type IconKey } from "../content/launchOffer";
+import {
+  LAUNCH_CURRENCY,
+  LAUNCH_PAYMENTS,
+  LAUNCH_PRICE,
+  PAYER_KEY,
+  PAY_INTENT_KEY,
+  launch as L,
+  launchWa,
+  type IconKey,
+} from "../content/launchOffer";
 import { track } from "../analytics";
-import { utm } from "../utm";
 import { WhatsAppMark } from "../components/WhatsAppFab";
 
-/* ── روابط ───────────────────────────────────────────────────────── */
+/* ── الحجز والدفع ────────────────────────────────────────────────── */
+
+const BOOK_EVENT = "daamah:launch-book";
 
 /**
- * رابط الدفع ومعه مصدر الزيارة: وسوم utm يقرؤها Stripe ويحفظها مع
- * الدفعة، و`gclid` في `client_reference_id` — فتُنسب كل دفعة إلى
- * حملتها من لوحة المزوّد. بلا رابط دفع بعد: واتساب برسالة حجز.
+ * «احجز الآن» — رابط واتساب في الأصل، فيعمل قبل وصول جافاسكربت وبدونها.
+ * بعد الترطيب يفتح نموذج الحجز، ومنه صفحة الدفع.
  */
-function payHref(): string {
-  if (!LAUNCH_PAY_URL) return launchWa(L.wa.book);
-  try {
-    const url = new URL(LAUNCH_PAY_URL);
-    const t = utm();
-    const tags: [string, string | undefined][] = [
-      ["utm_source", t.source ?? (t.gclid ? "google" : undefined)],
-      ["utm_medium", t.medium ?? (t.gclid ? "cpc" : undefined)],
-      ["utm_campaign", t.campaign],
-      ["utm_term", t.term],
-      ["utm_content", t.content],
-    ];
-    for (const [k, v] of tags) if (v) url.searchParams.set(k, v);
-    /* Stripe يقبل حروفًا وأرقامًا و`-` و`_` حتى 200 حرف */
-    if (t.gclid && url.hostname.endsWith("stripe.com")) {
-      url.searchParams.set("client_reference_id", t.gclid.replace(/[^\w-]/g, "").slice(0, 200));
-    }
-    return url.toString();
-  } catch {
-    return LAUNCH_PAY_URL;
-  }
-}
-
-/* ── أزرار ───────────────────────────────────────────────────────── */
-
 function BookButton({ placement, className = "" }: { placement: string; className?: string }) {
-  /* الرابط يُبنى عند الضغط: مصدر الزيارة يُلتقط بعد الرسم الأوّل */
   return (
     <a
-      href={LAUNCH_PAY_URL || launchWa(L.wa.book, false)}
-      target={LAUNCH_PAY_URL ? undefined : "_blank"}
-      rel={LAUNCH_PAY_URL ? undefined : "noopener noreferrer"}
+      href={launchWa(L.wa.book, false)}
+      target="_blank"
+      rel="noopener noreferrer"
       onClick={(e) => {
-        e.currentTarget.href = payHref();
-        track("begin_checkout", { placement, value: 2000, currency: "SAR" });
-        if (!LAUNCH_PAY_URL) track("whatsapp_click", { placement: `${placement}_book` });
+        if (LAUNCH_PAYMENTS) {
+          e.preventDefault();
+          window.dispatchEvent(new CustomEvent(BOOK_EVENT, { detail: placement }));
+          return;
+        }
+        e.currentTarget.href = launchWa(L.wa.book);
+        track("whatsapp_click", { placement: `${placement}_book` });
       }}
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-red px-7 py-4 text-[16px] font-bold leading-none text-white shadow-[0_16px_36px_-14px_rgba(231,0,0,0.6)] transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] ${className}`}
     >
       {L.book}
     </a>
+  );
+}
+
+function Field({
+  name,
+  label,
+  type = "text",
+  autoComplete,
+  dir,
+  inputMode,
+}: {
+  name: string;
+  label: string;
+  type?: string;
+  autoComplete: string;
+  dir?: "ltr";
+  inputMode?: "tel";
+}) {
+  return (
+    <label className="block">
+      <span className="mb-1.5 block text-[14px] font-semibold text-ink/75">{label}</span>
+      <input
+        name={name}
+        type={type}
+        required
+        autoComplete={autoComplete}
+        dir={dir}
+        inputMode={inputMode}
+        minLength={type === "tel" ? 8 : 2}
+        className="w-full rounded-[12px] border border-[var(--line-strong)] bg-paper px-4 py-3.5 text-[16px] text-ink outline-none transition-colors focus:border-ink"
+      />
+    </label>
+  );
+}
+
+/**
+ * نموذج الحجز: الاسم والجوال والشركة، ثم صفحة الدفع عند Ziina.
+ *
+ * `<dialog>` أصيل: يحبس التركيز ويُغلق بـ Esc بلا مكتبة. والمبلغ لا
+ * يُرسل من هنا — الدالة على الخادم هي من تحدّده.
+ */
+function CheckoutDialog() {
+  const ref = useRef<HTMLDialogElement>(null);
+  const placement = useRef("");
+  const [state, setState] = useState<"idle" | "sending" | "error">("idle");
+
+  useEffect(() => {
+    const open = (e: Event) => {
+      placement.current = String((e as CustomEvent).detail ?? "");
+      setState("idle");
+      ref.current?.showModal();
+      track("begin_checkout", { placement: placement.current, value: LAUNCH_PRICE, currency: LAUNCH_CURRENCY });
+    };
+    window.addEventListener(BOOK_EVENT, open);
+    return () => window.removeEventListener(BOOK_EVENT, open);
+  }, []);
+
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const f = new FormData(e.currentTarget);
+    const payer = {
+      name: String(f.get("name") ?? "").trim(),
+      phone: String(f.get("phone") ?? "").trim(),
+      company: String(f.get("company") ?? "").trim(),
+    };
+    setState("sending");
+    try {
+      const res = await fetch("/api/pay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payer),
+      });
+      const data = (await res.json()) as { id?: string; url?: string };
+      if (!res.ok || !data.url) throw new Error(String(res.status));
+      try {
+        /* لصفحة الشكر: رسالة واتساب باسمه وشركته، ورقم العملية للتحقّق */
+        sessionStorage.setItem(PAYER_KEY, JSON.stringify({ name: payer.name, company: payer.company }));
+        if (data.id) sessionStorage.setItem(PAY_INTENT_KEY, data.id);
+      } catch {
+        /* تصفّح خاص — الدفع يعمل، والرسالة تبقى بفراغاتها */
+      }
+      window.location.href = data.url;
+    } catch {
+      setState("error");
+    }
+  };
+
+  const c = L.checkout;
+  return (
+    <dialog
+      ref={ref}
+      aria-labelledby="checkout-title"
+      className="m-0 mt-auto w-full max-w-none rounded-t-[24px] bg-paper p-0 text-ink backdrop:bg-black/55 backdrop:backdrop-blur-[2px] sm:m-auto sm:max-w-[460px] sm:rounded-[24px]"
+      onClick={(e) => e.target === ref.current && ref.current?.close()}
+    >
+      <form onSubmit={submit} className="px-5 pb-[max(20px,env(safe-area-inset-bottom))] pt-6 sm:p-8">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <h2 id="checkout-title" className="text-[22px] font-bold">
+              {c.title}
+            </h2>
+            <p className="mt-1 text-[14px] text-ink/65">{c.sub}</p>
+          </div>
+          <button
+            type="button"
+            aria-label={c.close}
+            onClick={() => ref.current?.close()}
+            className="grid size-9 shrink-0 place-items-center rounded-full border border-[var(--line)] text-ink/60 hover:text-ink"
+          >
+            <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+        <div className="space-y-3.5">
+          <Field name="name" label={c.name} autoComplete="name" />
+          <Field name="phone" label={c.phone} type="tel" autoComplete="tel" dir="ltr" inputMode="tel" />
+          <Field name="company" label={c.company} autoComplete="organization" />
+        </div>
+        {state === "error" && (
+          <p role="alert" className="mt-4 rounded-[12px] bg-red/[0.07] p-3.5 text-[14px] leading-[1.7] text-ink">
+            {c.error}{" "}
+            <a
+              href={launchWa(L.wa.book, false)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.currentTarget.href = launchWa(L.wa.book);
+                track("whatsapp_click", { placement: "launch_checkout_error" });
+              }}
+              className="font-bold text-red underline underline-offset-4"
+            >
+              {c.errorCta}
+            </a>
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={state === "sending"}
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-red px-6 py-4 text-[16px] font-bold leading-none text-white transition-opacity disabled:opacity-60"
+        >
+          {state === "sending" ? c.sending : c.submit}
+        </button>
+        <p className="mt-3.5 flex items-center justify-center gap-1.5 text-center text-[12.5px] text-ink/60">
+          <svg viewBox="0 0 24 24" className="size-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <rect x="5" y="11" width="14" height="10" rx="2" />
+            <path d="M8 11V8a4 4 0 1 1 8 0v3" />
+          </svg>
+          {c.secure}
+        </p>
+      </form>
+    </dialog>
+  );
+}
+
+/** عاد من صفحة الدفع بلا دفع — سطر يطمئنه ويعيده إلى الطريق */
+function PaymentNotice() {
+  const [kind, setKind] = useState<"cancelled" | "failed" | null>(null);
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get("payment");
+    if (p === "cancelled" || p === "failed") setKind(p);
+  }, []);
+  if (!kind) return null;
+  return (
+    <div role="status" className="mx-auto max-w-[1180px] px-4 sm:px-8">
+      <p className="rounded-[14px] border border-[var(--line)] bg-paper-2 p-4 text-[14.5px] leading-[1.7]">
+        {kind === "cancelled" ? L.checkout.cancelled : L.checkout.failed}
+      </p>
+    </div>
   );
 }
 
@@ -214,6 +370,8 @@ export function LaunchPage() {
           {phoneFor("sa").display}
         </a>
       </div>
+
+      <PaymentNotice />
 
       {/* 1 — البداية */}
       <section className="mx-auto grid w-full max-w-[1180px] items-center gap-8 px-4 pb-12 pt-6 sm:px-8 sm:pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12 lg:pb-20">
@@ -483,6 +641,8 @@ export function LaunchPage() {
           </div>
         </div>
       </footer>
+
+      <CheckoutDialog />
 
       {/* شريط الجوال الثابت */}
       <div

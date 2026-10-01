@@ -12,6 +12,12 @@ interface ImportMetaEnv {
   readonly VITE_GA_ID?: string;
   /** مُعرِّف Meta Pixel — أرقام فقط */
   readonly VITE_META_PIXEL_ID?: string;
+  /** حساب Google Ads — الشكل `AW-XXXXXXXXX` */
+  readonly VITE_GADS_ID?: string;
+  /** تسميات تحويلات Google Ads: الشراء، ونقرة واتساب، وتحميل الملف */
+  readonly VITE_GADS_PURCHASE_LABEL?: string;
+  readonly VITE_GADS_WHATSAPP_LABEL?: string;
+  readonly VITE_GADS_PDF_LABEL?: string;
   /** رمز تحقّق Google Search Console */
   readonly VITE_GSC_VERIFICATION?: string;
   /** رمز تحقّق Bing Webmaster Tools — قيمة `msvalidate.01` */

@@ -1278,7 +1278,7 @@ export const privacyPage = {
     en: "A short page on what we collect and why. In brief: we don't sell your data, and we collect only what's needed to reply to you and measure how the site performs.",
   } as Bi,
   updatedLabel: { ar: "آخر تحديث", en: "Last updated" } as Bi,
-  updated: { ar: "سبتمبر 2026", en: "September 2026" } as Bi,
+  updated: { ar: "أكتوبر 2026", en: "October 2026" } as Bi,
   sections: [
     {
       title: { ar: "ما الذي نجمعه", en: "What we collect" } as Bi,
@@ -1297,8 +1297,15 @@ export const privacyPage = {
     {
       title: { ar: "القياس والكوكيز", en: "Analytics and cookies" } as Bi,
       body: {
-        ar: "نستخدم Google Analytics و Meta Pixel لقياس عدد الزيارات ومصادرها وأي الصفحات تُقرأ. القياس لا يعمل إطلاقًا إذا كان متصفحك يرسل إشارة «عدم التتبّع» أو Global Privacy Control — نفحصها قبل تحميل أي وسم.",
-        en: "We use Google Analytics and the Meta Pixel to measure visits, their sources, and which pages get read. None of it loads at all if your browser sends Do Not Track or Global Privacy Control — we check before loading any tag.",
+        ar: "نستخدم Google Analytics و Meta Pixel لقياس عدد الزيارات ومصادرها وأي الصفحات تُقرأ، ووسم Google Ads لمعرفة أي إعلان أوصل زائرًا إلى طلبٍ أو دفع. القياس لا يعمل إطلاقًا إذا كان متصفحك يرسل إشارة «عدم التتبّع» أو Global Privacy Control — نفحصها قبل تحميل أي وسم.",
+        en: "We use Google Analytics and the Meta Pixel to measure visits, their sources, and which pages get read, and the Google Ads tag to learn which ad led a visitor to an enquiry or a payment. None of it loads at all if your browser sends Do Not Track or Global Privacy Control — we check before loading any tag.",
+      } as Bi,
+    },
+    {
+      title: { ar: "الدفع", en: "Payments" } as Bi,
+      body: {
+        ar: "حين تدفع من صفحة عرض، يتمّ الدفع على صفحة مزوّد الدفع لا على موقعنا: بيانات بطاقتك تصله هو وحده ولا نراها. ونستلم منه ما يلزم لبدء العمل فقط: اسمك، ورقم جوالك، واسم شركتك، والمبلغ.",
+        en: "When you pay from an offer page, the payment happens on the payment provider's page, not on our site: your card details reach the provider alone and we never see them. We receive only what we need to start the work: your name, mobile number, company name, and the amount.",
       } as Bi,
     },
     {

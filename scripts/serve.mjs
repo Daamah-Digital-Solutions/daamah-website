@@ -15,6 +15,7 @@
  */
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
+import { createBrotliCompress } from "node:zlib";
 import { extname, join, resolve } from "node:path";
 
 const dist = resolve("dist");
@@ -40,12 +41,20 @@ const TYPES = {
 
 const isFile = (p) => existsSync(p) && statSync(p).isFile();
 
-const send = (res, status, file) => {
+/* Vercel يضغط النصوص (Brotli) — وبلا ضغط هنا يقيس Lighthouse محليًا
+   صفحةً أثقل بأضعاف ممّا يصل الزائر فعلًا */
+const TEXT = new Set([".html", ".js", ".css", ".json", ".xml", ".txt", ".svg", ".webmanifest"]);
+
+const send = (res, status, file, req) => {
+  const compress = TEXT.has(extname(file)) && /\bbr\b/.test(req?.headers["accept-encoding"] ?? "");
   res.writeHead(status, {
     "Content-Type": TYPES[extname(file)] ?? "application/octet-stream",
     "X-Content-Type-Options": "nosniff",
+    ...(compress && { "Content-Encoding": "br", Vary: "Accept-Encoding" }),
   });
-  createReadStream(file).pipe(res);
+  const body = createReadStream(file);
+  if (compress) body.pipe(createBrotliCompress()).pipe(res);
+  else body.pipe(res);
 };
 
 createServer((req, res) => {
@@ -65,16 +74,16 @@ createServer((req, res) => {
   }
 
   const direct = join(dist, path);
-  if (isFile(direct)) return send(res, 200, direct);
+  if (isFile(direct)) return send(res, 200, direct, req);
 
   const asDir = join(dist, path, "index.html");
-  if (isFile(asDir)) return send(res, 200, asDir);
+  if (isFile(asDir)) return send(res, 200, asDir, req);
 
   const asHtml = `${direct}.html`;
-  if (isFile(asHtml)) return send(res, 200, asHtml);
+  if (isFile(asHtml)) return send(res, 200, asHtml, req);
 
   const notFound = join(dist, path.startsWith("/en") ? "en/404.html" : "404.html");
-  if (isFile(notFound)) return send(res, 404, notFound);
+  if (isFile(notFound)) return send(res, 404, notFound, req);
 
   res.writeHead(404, { "Content-Type": "text/plain" }).end("404");
 }).listen(port, () => {

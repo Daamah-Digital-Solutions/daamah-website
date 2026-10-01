@@ -18,6 +18,7 @@ import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { launchDeck, launchDeckPath } from "./launchDeck";
+import { LAUNCH_INDEXED, launch, launchPath, launchThanksPath } from "./launchOffer";
 import { BLOG_ENABLED } from "./features";
 import { contractorsPage, contractorsPath } from "./contractors";
 import { faqPage, faqPath } from "./faqAbout";
@@ -392,6 +393,26 @@ export const routes: RouteMeta[] = [
     langs: ["ar"],
     noindex: true,
     image: "/assets/og-digital-launch.jpg",
+  },
+  /* صفحة هبوط إعلانات البحث — نصّ حقيقي، والفهرسة قرارٌ في `launchOffer.ts` */
+  {
+    path: launchPath,
+    title: { ar: launch.meta.title, en: launch.meta.title },
+    description: { ar: launch.meta.description, en: launch.meta.description },
+    priority: 0.8,
+    kind: "page",
+    langs: ["ar"],
+    noindex: !LAUNCH_INDEXED,
+    image: "/assets/og-digital-launch.jpg",
+  },
+  {
+    path: launchThanksPath,
+    title: { ar: "تم استلام طلبك — دَعمة", en: "تم استلام طلبك — دَعمة" },
+    description: { ar: "شكرًا لاختيارك باقة الانطلاق الرقمي.", en: "شكرًا لاختيارك باقة الانطلاق الرقمي." },
+    priority: 0,
+    kind: "page",
+    langs: ["ar"],
+    noindex: true,
   },
   /* صفحة قطاع: أسهل عبارة تجارية أمامنا («بروفايل شركة مقاولات») ولا
      منافس يشرح ما تطلبه لجنة التأهيل فعلًا */

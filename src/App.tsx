@@ -3,6 +3,7 @@ import { BLOG_ENABLED } from "./content/features";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
 import { barePaths, launchDeckPath } from "./content/launchDeck";
+import { launchPath, launchThanksPath } from "./content/launchOffer";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -36,6 +37,8 @@ const ContractorsPage = lazy(() => import("./pages/ContractorsPage").then((m) =>
 const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ default: m.PackagesPage })));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 const DeckPage = lazy(() => import("./pages/DeckPage").then((m) => ({ default: m.DeckPage })));
+const LaunchPage = lazy(() => import("./pages/LaunchPage").then((m) => ({ default: m.LaunchPage })));
+const LaunchThanksPage = lazy(() => import("./pages/LaunchThanksPage").then((m) => ({ default: m.LaunchThanksPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
 const BlogTagPage = lazy(() => import("./pages/BlogTagPage").then((m) => ({ default: m.BlogTagPage })));
@@ -85,7 +88,13 @@ function pageRoutes(prefix: string) {
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
     <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
     /* عرض عربي فقط: لا نسخة إنجليزية له، فلا مسار تحت `/en` */
-    ...(prefix === "" ? [<Route key="launch-deck" path={launchDeckPath} element={<DeckPage />} />] : []),
+    ...(prefix === ""
+      ? [
+          <Route key="launch-deck" path={launchDeckPath} element={<DeckPage />} />,
+          <Route key="launch" path={launchPath} element={<LaunchPage />} />,
+          <Route key="launch-thanks" path={launchThanksPath} element={<LaunchThanksPage />} />,
+        ]
+      : []),
   ];
 }
 
@@ -97,9 +106,9 @@ function pageRoutes(prefix: string) {
  * فلا يمكن أن يختلف ما يراه الزاحف عمّا يراه الزائر.
  */
 export function Shell() {
-  /* صفحة العرض بلا هيدر ولا فوتر: رابطٌ يُرسَل لعميل ليقرأ العرض،
-     لا ليتجوّل في الموقع */
-  const bare = barePaths.includes(stripLang(useLocation().pathname));
+  /* صفحات العرض بلا هيدر ولا فوتر: رابطٌ يُرسَل لعميل ليقرأ العرض،
+     وصفحة إعلان لا قائمة فيها يخرج منها زائرٌ دُفع ثمن وصوله */
+  const bare = [...barePaths, launchPath, launchThanksPath].includes(stripLang(useLocation().pathname));
   return (
     <ThemeProvider>
       <LangProvider>

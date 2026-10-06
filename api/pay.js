@@ -36,7 +36,7 @@ function ziina(path, init = {}) {
     ...init,
     headers: {
       Authorization: `Bearer ${process.env.ZIINA_API_KEY}`,
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
       ...init.headers,
     },
   });
@@ -95,7 +95,7 @@ export async function POST(request) {
   }
 
   if (res.ok && data.redirect_url && process.env.ZIINA_TEST === "1") {
-    return json({ id: data.id, url: data.redirect_url, message_length: used.length });
+    return json({ id: data.id, url: data.redirect_url, message_length: used.length, message_echo: data.message ?? null });
   }
   if (!res.ok || !data.redirect_url) {
     console.error("ziina create failed", res.status, text.slice(0, 500));

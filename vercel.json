@@ -34,25 +34,25 @@
       "statusCode": 301
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "daamah-website.vercel.app"
         }
       ],
-      "destination": "https://daamah.net/:path*",
+      "destination": "https://daamah.net/$1",
       "statusCode": 301
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.daamah.net"
         }
       ],
-      "destination": "https://daamah.net/:path*",
+      "destination": "https://daamah.net/$1",
       "permanent": true
     }
   ],

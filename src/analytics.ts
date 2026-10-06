@@ -45,6 +45,17 @@ const ADS_LABEL: Partial<Record<EventName, string | undefined>> = {
   pdf_download: import.meta.env.VITE_GADS_PDF_LABEL,
 };
 
+/**
+ * النطاقات التي يُقاس عليها — الموقع الحيّ وحده.
+ *
+ * نسخ المعاينة على `vercel.app` تُبنى بالمعرّفات نفسها، فكانت ترسل
+ * زياراتها (وزيارات من يراجعها) إلى الحساب نفسه وتخلط أرقامه.
+ * `VITE_ANALYTICS_ANY_HOST=1` يفتح القياس على أي نطاق — للاختبار المحلي وحده.
+ */
+const LIVE_HOSTS = ["daamah.net", "www.daamah.net"];
+const onLiveHost = () =>
+  LIVE_HOSTS.includes(window.location.hostname) || import.meta.env.VITE_ANALYTICS_ANY_HOST === "1";
+
 /** هل عبّر الزائر عن رفضه للتتبّع؟ */
 function optedOut(): boolean {
   const nav = navigator as Navigator & {
@@ -77,8 +88,15 @@ let ready = false;
  * الأولى فقط وبقي بقيّة تصفّح الزائر غير مرئي.
  */
 export function initAnalytics() {
-  if (ready || optedOut()) return;
+  if (ready || optedOut() || !onLiveHost()) return;
   ready = true;
+
+  /* أي رابط هاتف في الموقع، اليوم أو غدًا: مستمع واحد على الوثيقة
+     بدل `onClick` يُنسى على رابط يُضاف لاحقًا */
+  document.addEventListener("click", (e) => {
+    const a = (e.target as Element | null)?.closest?.('a[href^="tel:"]');
+    if (a) track("phone_click", { placement: a.closest("footer") ? "footer" : a.closest("header") ? "header" : "page" });
+  });
 
   /* وسم جوجل واحد للاثنين: يُحمَّل مرّة، ولكلّ حساب `config` */
   if (GA_ID || ADS_ID) {
@@ -127,12 +145,15 @@ export function pageView(path: string, title: string) {
 /**
  * أحداث الموقع — أسماؤها من لغة العمل لا من لغة المنصّات.
  *
- * `lead` هو الحدث الوحيد الذي يعنينا فعلًا: زائر أرسل طلب عرض سعر.
- * والبقيّة إشارات نيّة تسبقه، تفيد في معرفة أين يتوقّف الناس.
+ * `generate_lead` هو الحدث الذي يعنينا فعلًا: نموذجٌ أُرسل بنجاح — لا
+ * ضغطة على زرّه — ومعه `form_name`. والبقيّة إشارات نيّة تسبقه، تفيد
+ * في معرفة أين يتوقّف الناس.
  */
 export type EventName =
-  | "lead"
+  | "generate_lead"
   | "quote_form_open"
+  /** ضغطة على أي رابط `tel:` */
+  | "phone_click"
   | "whatsapp_click"
   | "email_click"
   /** نداء إجراء نُقر عليه — يحمل موضعه وخدمته ومدينته */
@@ -148,14 +169,53 @@ export type EventName =
 
 /** الحدث المقابل في Meta — ما لا مقابل له يُرسل كحدث مخصّص. */
 const META_STANDARD: Partial<Record<EventName, string>> = {
-  lead: "Lead",
+  generate_lead: "Lead",
   quote_form_open: "InitiateCheckout",
   begin_checkout: "InitiateCheckout",
   purchase: "Purchase",
 };
 
-export function track(name: EventName, params: Params = {}) {
+/**
+ * موضع الزرّ بلغة التقرير — من `placement` الذي يحمله كل نداء.
+ *
+ * `placement` دقيق ومتشعّب (اسم المكوّن الذي فيه الزرّ)؛ والتقرير يسأل
+ * سؤالًا أبسط: أيّ زرّ يعمل — الهيرو أم الفوتر أم العائم أم صفحة الباقة؟
+ * ما لا يرد هنا يُرسل كما هو.
+ */
+const LOCATION: Record<string, string> = {
+  hero: "hero",
+  service_hero: "service_hero",
+  header: "header",
+  mobile_menu: "mobile_menu",
+  footer: "footer",
+  footer_cta: "footer",
+  fab: "floating",
+  page_cta: "page_cta",
+  page_cta_review: "page_cta",
+  intro_film: "intro_film",
+  /* صفحة الباقة (/launch) */
+  launch_top: "package_header",
+  launch_hero: "package_hero",
+  launch_price: "package_pricing",
+  launch_closing: "package_closing",
+  launch_bar: "package_floating",
+  launch_footer: "package_footer",
+  launch_checkout_error: "package_checkout",
+  launch_thanks: "package_thank_you",
+  /* عرض الباقة (/digital-launch) */
+  deck: "package_deck",
+  deck_cta: "package_deck_floating",
+};
+
+function withLocation(name: EventName, params: Params): Params {
+  if (name !== "whatsapp_click" && name !== "cta_click") return params;
+  const placement = String(params.placement ?? "page").replace(/_book$/, "");
+  return { ...params, button_location: LOCATION[placement] ?? placement.replace(/_review$/, "") };
+}
+
+export function track(name: EventName, raw: Params = {}) {
   if (!ready) return;
+  const params = withLocation(name, raw);
   if (GA_ID) window.gtag?.("event", name, params);
 
   const label = ADS_LABEL[name];

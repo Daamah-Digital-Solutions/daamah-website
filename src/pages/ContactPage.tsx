@@ -25,7 +25,7 @@ function Channel({
   return (
     <a
       href={href}
-      onClick={() => track(event)}
+      onClick={() => track(event, { placement: "contact_page" })}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group flex items-center justify-between gap-6 border-t border-[var(--line)] py-7 last:border-b"
     >

@@ -5,13 +5,33 @@
   "redirects": [
     {
       "source": "/national-day",
-      "destination": "/",
-      "permanent": true
+      "destination": "/launch",
+      "statusCode": 301
     },
     {
       "source": "/website-offer",
-      "destination": "/",
-      "permanent": true
+      "destination": "/launch",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-portfolio",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-portfolio/:path+",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/partners",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/marketing-solutions",
+      "destination": "/services/digital-marketing",
+      "statusCode": 301
     },
     {
       "source": "/:path*",

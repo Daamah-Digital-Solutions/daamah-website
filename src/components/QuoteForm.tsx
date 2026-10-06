@@ -184,7 +184,10 @@ export function QuoteForm() {
       compose(values),
     )}`;
 
-    track("lead", {
+    /* هنا لا قبله: النموذج اجتاز التحقّق ورسالته جاهزة — ضغطة على
+       زرّ نموذج ناقص ليست طلبًا */
+    track("generate_lead", {
+      form_name: "quote_form",
       interest: values.interest || "unspecified",
       budget: values.budget || "unspecified",
       lang,

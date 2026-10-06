@@ -116,6 +116,8 @@ function CheckoutDialog() {
       });
       const data = (await res.json()) as { id?: string; url?: string };
       if (!res.ok || !data.url) throw new Error(String(res.status));
+      /* النموذج أُرسل فعلًا وعملية الدفع أُنشئت — هذا هو الطلب */
+      track("generate_lead", { form_name: "launch_checkout", placement: placement.current });
       try {
         /* لصفحة الشكر: رسالة واتساب باسمه وشركته، ورقم العملية للتحقّق */
         sessionStorage.setItem(PAYER_KEY, JSON.stringify({ name: payer.name, company: payer.company }));

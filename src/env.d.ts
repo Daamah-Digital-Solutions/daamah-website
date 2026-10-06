@@ -18,6 +18,8 @@ interface ImportMetaEnv {
   readonly VITE_GADS_PURCHASE_LABEL?: string;
   readonly VITE_GADS_WHATSAPP_LABEL?: string;
   readonly VITE_GADS_PDF_LABEL?: string;
+  /** `1` يفتح القياس خارج daamah.net — للاختبار المحلي وحده */
+  readonly VITE_ANALYTICS_ANY_HOST?: string;
   /** رمز تحقّق Google Search Console */
   readonly VITE_GSC_VERIFICATION?: string;
   /** رمز تحقّق Bing Webmaster Tools — قيمة `msvalidate.01` */

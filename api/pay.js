@@ -58,26 +58,44 @@ export async function POST(request) {
 
   /* العودة إلى نفس النطاق الذي جاء منه الطلب — يعمل على المعاينات وعلى daamah.net */
   const origin = new URL(request.url).origin;
-  const res = await ziina("/payment_intent", {
-    method: "POST",
-    body: JSON.stringify({
-      amount: AMOUNT,
-      currency_code: CURRENCY,
-      /* يظهر على صفحة الدفع وفي سجلّ العملية عند Ziina — منه يعرف يحيى من دفع */
-      message: clean(`باقة الانطلاق الرقمي — ${company} — ${name} — ${phone}`, 250),
-      success_url: `${origin}/launch/thank-you?pi={PAYMENT_INTENT_ID}`,
-      cancel_url: `${origin}/launch?payment=cancelled`,
-      failure_url: `${origin}/launch?payment=failed`,
-      test: process.env.ZIINA_TEST === "1",
-    }),
-  });
 
-  const text = await res.text();
-  let data = {};
-  try {
-    data = JSON.parse(text);
-  } catch {
-    /* ردّ غير JSON — يُسجَّل نصّه */
+  /* الوصف يظهر على صفحة الدفع وفي سجلّ العملية عند Ziina — منه يعرف يحيى
+     من دفع. حدّ طوله عند Ziina غير موثّق، فنجرّب من الأوفى إلى الأقصر:
+     الشركة والجوال أهمّ ما فيه، واسم الباقة آخر ما يُستغنى عنه. */
+  const messages = [
+    clean(`${company} — ${name} — ${phone}`, 100),
+    clean(`${company} — ${phone}`, 60),
+    clean(`${company} ${phone}`, 40),
+    "باقة الانطلاق الرقمي",
+  ];
+
+  let res, text, data, used;
+  for (const message of messages) {
+    used = message;
+    res = await ziina("/payment_intent", {
+      method: "POST",
+      body: JSON.stringify({
+        amount: AMOUNT,
+        currency_code: CURRENCY,
+        message,
+        success_url: `${origin}/launch/thank-you?pi={PAYMENT_INTENT_ID}`,
+        cancel_url: `${origin}/launch?payment=cancelled`,
+        failure_url: `${origin}/launch?payment=failed`,
+        test: process.env.ZIINA_TEST === "1",
+      }),
+    });
+    text = await res.text();
+    data = {};
+    try {
+      data = JSON.parse(text);
+    } catch {
+      /* ردّ غير JSON — يُسجَّل نصّه */
+    }
+    if (data?.code !== "MESSAGE_LENGTH_INVALID") break;
+  }
+
+  if (res.ok && data.redirect_url && process.env.ZIINA_TEST === "1") {
+    return json({ id: data.id, url: data.redirect_url, message_length: used.length });
   }
   if (!res.ok || !data.redirect_url) {
     console.error("ziina create failed", res.status, text.slice(0, 500));

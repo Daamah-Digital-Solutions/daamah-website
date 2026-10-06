@@ -38,6 +38,17 @@
       "has": [
         {
           "type": "host",
+          "value": "daamah-website.vercel.app"
+        }
+      ],
+      "destination": "https://daamah.net/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": "www.daamah.net"
         }
       ],
@@ -70,6 +81,21 @@
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".+\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
         }
       ]
     }

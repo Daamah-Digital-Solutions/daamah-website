@@ -72,10 +72,22 @@ export async function POST(request) {
     }),
   });
 
-  const data = await res.json().catch(() => ({}));
+  const text = await res.text();
+  let data = {};
+  try {
+    data = JSON.parse(text);
+  } catch {
+    /* ردّ غير JSON — يُسجَّل نصّه */
+  }
   if (!res.ok || !data.redirect_url) {
-    console.error("ziina create failed", res.status, data?.latest_error ?? data?.message ?? "");
-    return json({ error: "provider" }, 502);
+    console.error("ziina create failed", res.status, text.slice(0, 500));
+    /* سبب الرفض كما قاله Ziina — رمز ورسالة، لا سرّ فيهما. يظهر في وضع
+       التجربة وحده كي لا تُعرض أخطاء المزوّد على زوّار الموقع */
+    const detail =
+      process.env.ZIINA_TEST === "1"
+        ? { provider_status: res.status, provider_message: clean(text, 400) }
+        : {};
+    return json({ error: "provider", ...detail }, 502);
   }
   return json({ id: data.id, url: data.redirect_url });
 }

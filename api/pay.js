@@ -60,18 +60,23 @@ export async function POST(request) {
   const origin = new URL(request.url).origin;
 
   /* الوصف يظهر على صفحة الدفع وفي سجلّ العملية عند Ziina — منه يعرف يحيى
-     من دفع. حدّ طوله عند Ziina غير موثّق، فنجرّب من الأوفى إلى الأقصر:
-     الشركة والجوال أهمّ ما فيه، واسم الباقة آخر ما يُستغنى عنه. */
+     من دفع. قيدان اكتُشفا بالتجربة لا من التوثيق:
+     - العربية تُخزَّن علامات استفهام، فالوصف بحروف لاتينية وأرقام فقط.
+       رقم الجوال يصل سليمًا وهو ما يعرّف الدافع؛ واسمه وشركته بالعربية
+       يصلان في رسالة واتساب من صفحة الشكر.
+     - الطول محدود (49 حرفًا قُبلت و75 رُفضت)، فنجرّب من الأوفى إلى الأقصر. */
+  const latin = (v) => clean(v.replace(/[^\x20-\x7E]/g, " "), 60);
+  const tel = latin(phone);
+  const co = latin(company);
   const messages = [
-    clean(`${company} — ${name} — ${phone}`, 100),
-    clean(`${company} — ${phone}`, 60),
-    clean(`${company} ${phone}`, 40),
-    "باقة الانطلاق الرقمي",
-  ];
+    co && `Digital Launch | ${co} | ${tel}`,
+    `Digital Launch Package | ${tel}`,
+    `Launch | ${tel}`,
+    "Digital Launch Package",
+  ].filter((m) => m && m.length <= 50);
 
-  let res, text, data, used;
+  let res, text, data;
   for (const message of messages) {
-    used = message;
     res = await ziina("/payment_intent", {
       method: "POST",
       body: JSON.stringify({
@@ -94,9 +99,6 @@ export async function POST(request) {
     if (data?.code !== "MESSAGE_LENGTH_INVALID") break;
   }
 
-  if (res.ok && data.redirect_url && process.env.ZIINA_TEST === "1") {
-    return json({ id: data.id, url: data.redirect_url, message_length: used.length, message_echo: data.message ?? null });
-  }
   if (!res.ok || !data.redirect_url) {
     console.error("ziina create failed", res.status, text.slice(0, 500));
     /* سبب الرفض كما قاله Ziina — رمز ورسالة، لا سرّ فيهما. يظهر في وضع

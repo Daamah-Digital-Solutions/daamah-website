@@ -19,6 +19,7 @@ import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { launchDeck, launchDeckPath } from "./launchDeck";
 import { LAUNCH_INDEXED, launch, launchPath, launchThanksPath } from "./launchOffer";
+import { payLink, payLinkPath, payThanks, payThanksPath } from "./payLink";
 import { BLOG_ENABLED } from "./features";
 import { contractorsPage, contractorsPath } from "./contractors";
 import { faqPage, faqPath } from "./faqAbout";
@@ -404,6 +405,23 @@ export const routes: RouteMeta[] = [
     langs: ["ar"],
     noindex: !LAUNCH_INDEXED,
     image: "/assets/og-digital-launch.jpg",
+  },
+  {
+    path: payLinkPath,
+    title: { ar: payLink.meta.title, en: payLink.meta.title },
+    description: { ar: payLink.meta.description, en: payLink.meta.description },
+    priority: 0,
+    kind: "page",
+    langs: ["ar"],
+    noindex: true,
+  },
+  {
+    path: payThanksPath,
+    title: payThanks.meta.title,
+    description: payThanks.meta.description,
+    priority: 0,
+    kind: "page",
+    noindex: true,
   },
   {
     path: launchThanksPath,

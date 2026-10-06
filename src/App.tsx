@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
 import { barePaths, launchDeckPath } from "./content/launchDeck";
 import { launchPath, launchThanksPath } from "./content/launchOffer";
+import { payLinkPath, payThanksPath } from "./content/payLink";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -38,6 +39,8 @@ const PackagesPage = lazy(() => import("./pages/PackagesPage").then((m) => ({ de
 const ContactPage = lazy(() => import("./pages/ContactPage").then((m) => ({ default: m.ContactPage })));
 const DeckPage = lazy(() => import("./pages/DeckPage").then((m) => ({ default: m.DeckPage })));
 const LaunchPage = lazy(() => import("./pages/LaunchPage").then((m) => ({ default: m.LaunchPage })));
+const PayLinkPage = lazy(() => import("./pages/PayLinkPage").then((m) => ({ default: m.PayLinkPage })));
+const PayThanksPage = lazy(() => import("./pages/PayThanksPage").then((m) => ({ default: m.PayThanksPage })));
 const LaunchThanksPage = lazy(() => import("./pages/LaunchThanksPage").then((m) => ({ default: m.LaunchThanksPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -87,12 +90,15 @@ function pageRoutes(prefix: string) {
       : []),
     <Route key={`${prefix}-privacy`} path={at("privacy")} element={<PrivacyPage />} />,
     <Route key={`${prefix}-faq`} path={at("faq")} element={<FaqPage />} />,
+    /* شكر روابط الدفع — باللغتين: لغتها تتبع عملة الرابط */
+    <Route key={`${prefix}-pay-thanks`} path={at(payThanksPath.slice(1))} element={<PayThanksPage />} />,
     /* عرض عربي فقط: لا نسخة إنجليزية له، فلا مسار تحت `/en` */
     ...(prefix === ""
       ? [
           <Route key="launch-deck" path={launchDeckPath} element={<DeckPage />} />,
           <Route key="launch" path={launchPath} element={<LaunchPage />} />,
           <Route key="launch-thanks" path={launchThanksPath} element={<LaunchThanksPage />} />,
+          <Route key="pay-link" path={payLinkPath} element={<PayLinkPage />} />,
         ]
       : []),
   ];
@@ -108,7 +114,7 @@ function pageRoutes(prefix: string) {
 export function Shell() {
   /* صفحات العرض بلا هيدر ولا فوتر: رابطٌ يُرسَل لعميل ليقرأ العرض،
      وصفحة إعلان لا قائمة فيها يخرج منها زائرٌ دُفع ثمن وصوله */
-  const bare = [...barePaths, launchPath, launchThanksPath].includes(stripLang(useLocation().pathname));
+  const bare = [...barePaths, launchPath, launchThanksPath, payLinkPath, payThanksPath].includes(stripLang(useLocation().pathname));
   return (
     <ThemeProvider>
       <LangProvider>

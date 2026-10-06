@@ -1,5 +1,5 @@
 /**
- * الدفع عبر Ziina — دالة Vercel واحدة بطريقتين.
+ * دفع «باقة الانطلاق الرقمي» عبر Ziina — دالة Vercel بطريقتين.
  *
  * POST /api/pay            ← ينشئ عملية دفع بـ 2,000 ريال سعودي ويعيد رابط صفحة Ziina
  * GET  /api/pay?id=<id>    ← حالة العملية كما يراها Ziina (لصفحة الشكر)
@@ -7,43 +7,15 @@
  * المبلغ والعملة هنا لا في المتصفح: لا يستطيع أحد أن يدفع أقلّ بتعديل
  * الطلب. وصفحة الشكر لا تحتسب الشراء إلا بعد أن يؤكّد Ziina نفسه أن
  * العملية «completed» — فتح الرابط وحده لا يكفي.
- *
- * متغيّرات البيئة (Vercel ← Settings ← Environment Variables):
- *   ZIINA_API_KEY  مفتاح Ziina بصلاحية write_payment_intents — سرّي، بلا VITE_
- *   ZIINA_TEST=1   عمليات تجريبية بلا خصم حقيقي (أي بطاقة تعمل). يُحذف للتشغيل الفعلي.
  */
+import { arabicUrl, clean, configured, createIntent, getIntent, json, latin, testMode } from "./_ziina.js";
 
-const API = "https://api-v2.ziina.com/api";
 /** 2,000 ريال بالهللة — العملة الصغرى */
 const AMOUNT = 200000;
 const CURRENCY = "SAR";
 
-const json = (body, status = 200) =>
-  new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
-  });
-
-const clean = (v, max) =>
-  String(v ?? "")
-    .replace(/[\u0000-\u001f<>]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, max);
-
-function ziina(path, init = {}) {
-  return fetch(`${API}${path}`, {
-    ...init,
-    headers: {
-      Authorization: `Bearer ${process.env.ZIINA_API_KEY}`,
-      "Content-Type": "application/json; charset=utf-8",
-      ...init.headers,
-    },
-  });
-}
-
 export async function POST(request) {
-  if (!process.env.ZIINA_API_KEY) return json({ error: "not_configured" }, 503);
+  if (!configured()) return json({ error: "not_configured" }, 503);
 
   let body = {};
   try {
@@ -60,68 +32,38 @@ export async function POST(request) {
   const origin = new URL(request.url).origin;
 
   /* الوصف يظهر على صفحة الدفع وفي سجلّ العملية عند Ziina — منه يعرف يحيى
-     من دفع. قيدان اكتُشفا بالتجربة لا من التوثيق:
-     - العربية تُخزَّن علامات استفهام، فالوصف بحروف لاتينية وأرقام فقط.
-       رقم الجوال يصل سليمًا وهو ما يعرّف الدافع؛ واسمه وشركته بالعربية
-       يصلان في رسالة واتساب من صفحة الشكر.
-     - الطول محدود (49 حرفًا قُبلت و75 رُفضت)، فنجرّب من الأوفى إلى الأقصر. */
-  const latin = (v) => clean(v.replace(/[^\x20-\x7E]/g, " "), 60);
+     من دفع. رقم الجوال يصل سليمًا وهو ما يعرّف الدافع؛ واسمه وشركته
+     بالعربية يصلان في رسالة واتساب من صفحة الشكر. */
   const tel = latin(phone);
   const co = latin(company);
-  const messages = [
-    co && `Digital Launch | ${co} | ${tel}`,
-    `Digital Launch Package | ${tel}`,
-    `Launch | ${tel}`,
-    "Digital Launch Package",
-  ].filter((m) => m && m.length <= 50);
+  const made = await createIntent({
+    amount: AMOUNT,
+    currency: CURRENCY,
+    messages: [
+      co && `Digital Launch | ${co} | ${tel}`,
+      `Digital Launch Package | ${tel}`,
+      `Launch | ${tel}`,
+      "Digital Launch Package",
+    ],
+    successUrl: `${origin}/launch/thank-you?pi={PAYMENT_INTENT_ID}`,
+    cancelUrl: `${origin}/launch?payment=cancelled`,
+    failureUrl: `${origin}/launch?payment=failed`,
+  });
 
-  let res, text, data;
-  for (const message of messages) {
-    res = await ziina("/payment_intent", {
-      method: "POST",
-      body: JSON.stringify({
-        amount: AMOUNT,
-        currency_code: CURRENCY,
-        message,
-        success_url: `${origin}/launch/thank-you?pi={PAYMENT_INTENT_ID}`,
-        cancel_url: `${origin}/launch?payment=cancelled`,
-        failure_url: `${origin}/launch?payment=failed`,
-        test: process.env.ZIINA_TEST === "1",
-      }),
-    });
-    text = await res.text();
-    data = {};
-    try {
-      data = JSON.parse(text);
-    } catch {
-      /* ردّ غير JSON — يُسجَّل نصّه */
-    }
-    if (data?.code !== "MESSAGE_LENGTH_INVALID") break;
-  }
-
-  if (!res.ok || !data.redirect_url) {
-    console.error("ziina create failed", res.status, text.slice(0, 500));
-    /* سبب الرفض كما قاله Ziina — رمز ورسالة، لا سرّ فيهما. يظهر في وضع
-       التجربة وحده كي لا تُعرض أخطاء المزوّد على زوّار الموقع */
-    const detail =
-      process.env.ZIINA_TEST === "1"
-        ? { provider_status: res.status, provider_message: clean(text, 400) }
-        : {};
-    return json({ error: "provider", ...detail }, 502);
-  }
-  return json({ id: data.id, url: data.redirect_url });
+  if (!made.ok) return json({ error: "provider", ...made.detail }, 502);
+  /* صفحة الباقة عربية وعملاؤها سعوديون — فصفحة الدفع بالعربية */
+  return json({ id: made.id, url: arabicUrl(made.url) });
 }
 
 export async function GET(request) {
-  if (!process.env.ZIINA_API_KEY) return json({ error: "not_configured" }, 503);
+  if (!configured()) return json({ error: "not_configured" }, 503);
   const id = new URL(request.url).searchParams.get("id") ?? "";
   if (!/^[\w-]{6,80}$/.test(id)) return json({ error: "bad_id" }, 400);
 
-  const res = await ziina(`/payment_intent/${encodeURIComponent(id)}`);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) return json({ error: "provider" }, 502);
+  const data = await getIntent(id);
+  if (!data) return json({ error: "provider" }, 502);
 
   /* الشراء يُحتسب لعمليتنا وحدها: المبلغ والعملة كما أنشأناهما */
   const ours = data.amount === AMOUNT && data.currency_code === CURRENCY;
-  return json({ status: ours ? data.status : "mismatch", test: Boolean(process.env.ZIINA_TEST === "1") });
+  return json({ status: ours ? data.status : "mismatch", test: testMode() });
 }

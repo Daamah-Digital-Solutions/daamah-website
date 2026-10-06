@@ -83,15 +83,15 @@ export function LaunchThanksPage() {
   return (
     <div className="grid min-h-dvh place-items-center bg-paper px-4 py-16 text-ink">
       <div className="w-full max-w-[560px] text-center">
-        <Link to="/" aria-label={brand.name.ar} className="mx-auto mb-12 inline-block">
-          <img src="/assets/logo-wordmark.png" alt={brand.name.ar} width={2035} height={544} className="h-[20px] w-auto dark:hidden" />
+        <Link to="/" aria-label={brand.name.ar} className="mx-auto mb-10 inline-block">
+          <img src="/assets/logo-wordmark.png" alt={brand.name.ar} width={2035} height={544} className="h-[38px] w-auto sm:h-[46px] dark:hidden" />
           <img
             src="/assets/logo-wordmark-light.png"
             alt=""
             aria-hidden="true"
             width={2035}
             height={544}
-            className="hidden h-[20px] w-auto dark:block"
+            className="hidden h-[38px] w-auto sm:h-[46px] dark:block"
           />
         </Link>
         <h1 className="text-[clamp(2rem,7vw,3rem)] font-bold leading-[1.2]">{L.thanks.title}</h1>

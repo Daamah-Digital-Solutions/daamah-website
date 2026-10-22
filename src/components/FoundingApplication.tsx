@@ -15,6 +15,7 @@ import {
 import { metaClient, track } from "../analytics";
 import { utm } from "../utm";
 import { WhatsAppMark } from "./WhatsAppFab";
+import { FoundingCard } from "./FoundingVisuals";
 
 export const APPLY_EVENT = "daamah:fp-apply";
 
@@ -68,23 +69,34 @@ function Check({ className = "size-4" }: { className?: string }) {
   );
 }
 
-function Options({ items, chosen, onPick }: { items: Choice[]; chosen?: string; onPick: (c: Choice) => void }) {
+/** اختيار بلمسة: دائرة تمتلئ، وحدّ يشتدّ — لا قلب ألوان يصدم العين */
+function Options({ items, chosen, onPick, cols = 1 }: { items: Choice[]; chosen?: string; onPick: (c: Choice) => void; cols?: 1 | 2 }) {
   return (
-    <div className="grid gap-2.5">
-      {items.map((c) => (
-        <button
-          key={c.id}
-          type="button"
-          onClick={() => onPick(c)}
-          aria-pressed={chosen === c.id}
-          className={`flex min-h-[56px] items-center justify-between gap-3 rounded-[14px] border px-4 py-3.5 text-start text-[16px] font-semibold transition-colors duration-200 ${
-            chosen === c.id ? "border-ink bg-ink text-paper" : "border-[var(--line-strong)] hover:border-ink"
-          }`}
-        >
-          {c.label}
-          {chosen === c.id && <Check />}
-        </button>
-      ))}
+    <div className={`grid gap-2.5 ${cols === 2 ? "sm:grid-cols-2" : ""}`}>
+      {items.map((c) => {
+        const on = chosen === c.id;
+        return (
+          <button
+            key={c.id}
+            type="button"
+            onClick={() => onPick(c)}
+            aria-pressed={on}
+            className={`group flex min-h-[58px] items-center gap-3.5 rounded-[16px] border px-4 py-3.5 text-start text-[16px] font-semibold transition-all duration-200 active:scale-[0.99] ${
+              on ? "border-ink bg-paper-2 shadow-[inset_0_0_0_1px_var(--color-ink)]" : "border-[var(--line-strong)] hover:border-ink/60 hover:bg-paper-2/60"
+            }`}
+          >
+            <span
+              className={`grid size-[22px] shrink-0 place-items-center rounded-full border-[1.5px] transition-colors duration-200 ${
+                on ? "border-ink bg-ink text-paper" : "border-[var(--line-strong)] group-hover:border-ink/60"
+              }`}
+              aria-hidden="true"
+            >
+              {on && <Check className="size-3" />}
+            </span>
+            {c.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -229,6 +241,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
   const [paying, setPaying] = useState<"deposit" | "full" | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [failedText, setFailedText] = useState("");
+  const [reviewCompany, setReviewCompany] = useState("");
 
   const remaining = seats?.remaining;
 
@@ -299,6 +312,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
     setFailedText(
       [`الشركة: ${company}`, `الاسم: ${name}`, `الواتساب: ${phone}`, `الإيميل: ${email}`, `المجال: ${shown}`, `الحضور الحالي: ${presence.label}`, `الهدف: ${goal.label}`].join("\n"),
     );
+    setReviewCompany(company);
     setScreen("review");
 
     const t = utm();
@@ -396,10 +410,10 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
     <dialog
       ref={ref}
       aria-label={fp.name}
-      className="m-0 h-dvh max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-black/55 backdrop:backdrop-blur-[2px] sm:m-auto sm:h-auto sm:max-h-[92dvh] sm:max-w-[560px] sm:rounded-[24px]"
+      className="m-0 h-dvh max-h-none w-full max-w-none bg-paper p-0 text-ink backdrop:bg-black/55 backdrop:backdrop-blur-[2px] sm:m-auto sm:h-auto sm:max-h-[92dvh] sm:max-w-[620px] sm:rounded-[28px]"
       onClick={(e) => e.target === ref.current && close()}
     >
-      <div className="flex min-h-full flex-col px-5 pb-[max(24px,env(safe-area-inset-bottom))] pt-4 sm:min-h-0 sm:px-8 sm:pb-8 sm:pt-6">
+      <div className="flex min-h-full flex-col px-5 pb-[max(24px,env(safe-area-inset-bottom))] pt-4 sm:min-h-0 sm:px-10 sm:pb-10 sm:pt-7">
         {/* الرأس: رجوع، والتقدّم، وإغلاق */}
         <div className="mb-6 flex h-10 items-center gap-3">
           {step !== null && step > 0 ? (
@@ -419,8 +433,10 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
           {step !== null && (
             <div className="ms-auto flex items-center gap-2.5">
               <span className="nums text-[13px] font-semibold text-ink/60">{F.step(step + 1, 4)}</span>
-              <span className="h-1.5 w-20 overflow-hidden rounded-full bg-paper-3 sm:w-28" aria-hidden="true">
-                <span className="block h-full rounded-full bg-ink transition-[width] duration-500" style={{ width: `${((step + 1) / 4) * 100}%` }} />
+              <span className="flex gap-1" aria-hidden="true">
+                {[0, 1, 2, 3].map((i) => (
+                  <span key={i} className={`h-1 w-6 rounded-full transition-colors duration-500 sm:w-8 ${i <= step ? "bg-ink" : "bg-paper-3"}`} />
+                ))}
               </span>
             </div>
           )}
@@ -439,8 +455,9 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
         <div key={String(screen)} className="fp-screen flex-1">
           {screen === 0 && (
             <div>
-              <h2 className="mb-5 text-[24px] font-bold leading-[1.3]">{F.industry.q}</h2>
+              <h2 className="mb-7 text-[clamp(1.65rem,6.4vw,2.1rem)] font-semibold leading-[1.3]">{F.industry.q}</h2>
               <Options
+                cols={2}
                 items={F.industry.options}
                 chosen={industry?.id}
                 onPick={(c) => {
@@ -470,7 +487,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
 
           {screen === 1 && (
             <div>
-              <h2 className="mb-5 text-[24px] font-bold leading-[1.3]">{F.presence.q}</h2>
+              <h2 className="mb-7 text-[clamp(1.65rem,6.4vw,2.1rem)] font-semibold leading-[1.3]">{F.presence.q}</h2>
               <Options
                 items={F.presence.options}
                 chosen={presence?.id}
@@ -484,7 +501,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
 
           {screen === 2 && (
             <div>
-              <h2 className="mb-5 text-[24px] font-bold leading-[1.3]">{F.goal.q}</h2>
+              <h2 className="mb-7 text-[clamp(1.65rem,6.4vw,2.1rem)] font-semibold leading-[1.3]">{F.goal.q}</h2>
               <Options
                 items={F.goal.options}
                 chosen={goal?.id}
@@ -498,7 +515,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
 
           {screen === 3 && (
             <form onSubmit={submit} noValidate className="space-y-4">
-              <h2 className="mb-1 text-[24px] font-bold leading-[1.3]">{F.details.q}</h2>
+              <h2 className="mb-3 text-[clamp(1.65rem,6.4vw,2.1rem)] font-semibold leading-[1.3]">{F.details.q}</h2>
               <Field label={F.details.company} error={errors.company}>
                 <input name="company" autoComplete="organization" className={`${input} ${errors.company ? "border-red" : "border-[var(--line-strong)]"}`} />
               </Field>
@@ -555,11 +572,16 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
           )}
 
           {screen === "review" && (
-            <div className="grid min-h-[50dvh] place-items-center text-center sm:min-h-[320px]" role="status">
-              <div>
-                <span className="fp-spin mx-auto mb-6 block size-12 rounded-full border-[3px] border-paper-3 border-t-ink" aria-hidden="true" />
-                <p className="text-[20px] font-bold">{F.reviewing}</p>
-                <p className="mt-1.5 text-[14px] text-ink/60">{F.reviewingSub}</p>
+            <div className="grid min-h-[60dvh] place-items-center text-center sm:min-h-[420px]" role="status">
+              <div className="w-full">
+                <div className="fp-review mx-auto w-full max-w-[300px]">
+                  <FoundingCard company={reviewCompany} seats={seats} />
+                </div>
+                <p className="mt-9 text-[21px] font-semibold">{F.reviewing}</p>
+                <p className="mt-2 inline-flex items-center gap-2 text-[14px] text-ink/60">
+                  <span className="fp-spin block size-3.5 rounded-full border-2 border-paper-3 border-t-ink" aria-hidden="true" />
+                  {F.reviewingSub}
+                </p>
               </div>
             </div>
           )}
@@ -594,11 +616,10 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
                 </div>
               ) : (
                 <>
-                  <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#25d366]/12 px-3 py-1.5 text-[13px] font-bold text-[#1a9e4b]">
-                    <Check className="size-3.5" />
-                    {fp.name}
-                  </p>
-                  <h2 className="text-[clamp(1.45rem,5.6vw,1.8rem)] font-bold leading-[1.35]">{A.title}</h2>
+                  <div className="fp-accept mx-auto mb-7 w-full max-w-[340px]">
+                    <FoundingCard company={lead.company} seats={seats} />
+                  </div>
+                  <h2 className="text-[clamp(1.45rem,5.6vw,1.8rem)] font-semibold leading-[1.4]">{A.title}</h2>
                   <p className="mt-2 text-[16px] text-ink/70">{A.company(lead.company)}</p>
                   {remaining !== undefined && remaining > 0 && (
                     <p className="nums mt-4 text-[15px] font-bold">
@@ -685,7 +706,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
 
           {screen === "out_of_scope" && (
             <div className="py-4">
-              <h2 className="text-[clamp(1.4rem,5.4vw,1.75rem)] font-bold leading-[1.4]">{fp.outOfScope.title}</h2>
+              <h2 className="text-[clamp(1.5rem,5.8vw,1.9rem)] font-semibold leading-[1.4]">{fp.outOfScope.title}</h2>
               <p className="mt-3 text-[15.5px] leading-[1.8] text-ink/70">{fp.outOfScope.text}</p>
               <div className="mt-7">
                 <WaButton href={fpWa(fp.wa.outOfScope(lead?.company ?? "", lead?.industry ?? ""))} placement="fp_out_of_scope">
@@ -702,7 +723,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
                   {notice}
                 </p>
               )}
-              <h2 className="text-[clamp(1.4rem,5.4vw,1.75rem)] font-bold leading-[1.4]">{fp.waitlisted.title}</h2>
+              <h2 className="text-[clamp(1.5rem,5.8vw,1.9rem)] font-semibold leading-[1.4]">{fp.waitlisted.title}</h2>
               <p className="mt-3 text-[15.5px] leading-[1.8] text-ink/70">{fp.waitlisted.text}</p>
               <div className="mt-7">
                 <WaButton href={fpWa(fp.wa.ask)} placement="fp_waitlist">
@@ -714,7 +735,7 @@ export function FoundingApplication({ seats, onSeats }: { seats: { total: number
 
           {screen === "error" && (
             <div className="py-4">
-              <h2 className="text-[clamp(1.4rem,5.4vw,1.75rem)] font-bold leading-[1.4]">{fp.error.title}</h2>
+              <h2 className="text-[clamp(1.5rem,5.8vw,1.9rem)] font-semibold leading-[1.4]">{fp.error.title}</h2>
               <p className="mt-3 text-[15.5px] leading-[1.8] text-ink/70">{fp.error.text}</p>
               <div className="mt-7">
                 <WaButton href={fpWa(fp.wa.failed(failedText))} placement="fp_error">

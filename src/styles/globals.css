@@ -625,3 +625,96 @@ html[lang="ar"] .tag {
     animation-duration: 2.4s;
   }
 }
+
+/* بطاقة «شريك تأسيس»: لمعة تعبرها على مهل، وطفو خفيف في الهيرو */
+.fp-sheen {
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.09) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-position: 130% 0;
+}
+.anim-ready .fp-sheen {
+  animation: fp-sheen 7s var(--ease-in-out) infinite;
+}
+@keyframes fp-sheen {
+  0%,
+  55% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -130% 0;
+  }
+}
+/* على الجوال ميلٌ بسيط — الدوران في العمق يُخرج حافّتها عن الشاشة */
+.fp-float {
+  transform: rotate(-3deg);
+}
+@media (min-width: 1024px) {
+  .fp-float {
+    transform: perspective(1400px) rotateY(-12deg) rotateX(6deg) rotate(-3deg);
+  }
+  .anim-ready .fp-float {
+    animation: fp-float 8s var(--ease-in-out) infinite;
+  }
+}
+@keyframes fp-float {
+  0%,
+  100% {
+    transform: perspective(1400px) rotateY(-12deg) rotateX(6deg) rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1400px) rotateY(-9deg) rotateX(4deg) rotate(-2deg) translateY(-10px);
+  }
+}
+/* دبّوس الخريطة يهبط مكانه حين يظهر */
+.anim-ready .reveal.in .fp-pin {
+  animation: fp-pin 900ms var(--ease-out-quint) 300ms both;
+}
+@keyframes fp-pin {
+  from {
+    transform: translateY(-26px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-ready .fp-sheen,
+  .anim-ready .fp-float {
+    animation: none;
+  }
+}
+/* الطلب: البطاقة «تُراجَع» ثم تُسلَّم باسم الشركة */
+.anim-ready .fp-review {
+  animation: fp-review 1.6s var(--ease-in-out) infinite alternate;
+}
+@keyframes fp-review {
+  from {
+    transform: perspective(900px) rotateY(-10deg) translateY(0);
+    opacity: 0.85;
+  }
+  to {
+    transform: perspective(900px) rotateY(10deg) translateY(-6px);
+    opacity: 1;
+  }
+}
+.anim-ready .fp-accept {
+  animation: fp-accept 1100ms var(--ease-out-quint) both;
+}
+@keyframes fp-accept {
+  from {
+    transform: perspective(900px) rotateX(55deg) translateY(30px) scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-ready .fp-review,
+  .anim-ready .fp-accept {
+    animation: none;
+  }
+}

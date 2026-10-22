@@ -606,3 +606,22 @@ html[lang="ar"] .tag {
     scroll-behavior: auto;
   }
 }
+
+/* ── برنامج شركاء التأسيس: شاشات الطلب ──
+   كل شاشة تدخل بانزلاق قصير، ومؤشّر المراجعة يدور. بلا حركة لمن طلب ذلك. */
+.anim-ready .fp-screen {
+  animation: reveal-in var(--dur-slow) var(--ease-out-quint) both;
+}
+.fp-spin {
+  animation: fp-spin 0.9s linear infinite;
+}
+@keyframes fp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fp-spin {
+    animation-duration: 2.4s;
+  }
+}

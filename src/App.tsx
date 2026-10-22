@@ -5,6 +5,7 @@ import { EN_PREFIX, LangProvider, stripLang } from "./i18n";
 import { barePaths, launchDeckPath } from "./content/launchDeck";
 import { launchPath, launchThanksPath } from "./content/launchOffer";
 import { payLinkPath, payThanksPath } from "./content/payLink";
+import { fpAdminPath, fpPath, fpThanksPath } from "./content/fpPaths";
 import { ThemeProvider } from "./theme";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
@@ -41,6 +42,9 @@ const DeckPage = lazy(() => import("./pages/DeckPage").then((m) => ({ default: m
 const LaunchPage = lazy(() => import("./pages/LaunchPage").then((m) => ({ default: m.LaunchPage })));
 const PayLinkPage = lazy(() => import("./pages/PayLinkPage").then((m) => ({ default: m.PayLinkPage })));
 const PayThanksPage = lazy(() => import("./pages/PayThanksPage").then((m) => ({ default: m.PayThanksPage })));
+const FoundingPartnersPage = lazy(() => import("./pages/FoundingPartnersPage").then((m) => ({ default: m.FoundingPartnersPage })));
+const FoundingThanksPage = lazy(() => import("./pages/FoundingThanksPage").then((m) => ({ default: m.FoundingThanksPage })));
+const FoundingAdminPage = lazy(() => import("./pages/FoundingAdminPage").then((m) => ({ default: m.FoundingAdminPage })));
 const LaunchThanksPage = lazy(() => import("./pages/LaunchThanksPage").then((m) => ({ default: m.LaunchThanksPage })));
 const BlogPage = lazy(() => import("./pages/BlogPage").then((m) => ({ default: m.BlogPage })));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage").then((m) => ({ default: m.BlogPostPage })));
@@ -99,6 +103,9 @@ function pageRoutes(prefix: string) {
           <Route key="launch" path={launchPath} element={<LaunchPage />} />,
           <Route key="launch-thanks" path={launchThanksPath} element={<LaunchThanksPage />} />,
           <Route key="pay-link" path={payLinkPath} element={<PayLinkPage />} />,
+          <Route key="fp" path={fpPath} element={<FoundingPartnersPage />} />,
+          <Route key="fp-thanks" path={fpThanksPath} element={<FoundingThanksPage />} />,
+          <Route key="fp-admin" path={fpAdminPath} element={<FoundingAdminPage />} />,
         ]
       : []),
   ];
@@ -114,7 +121,7 @@ function pageRoutes(prefix: string) {
 export function Shell() {
   /* صفحات العرض بلا هيدر ولا فوتر: رابطٌ يُرسَل لعميل ليقرأ العرض،
      وصفحة إعلان لا قائمة فيها يخرج منها زائرٌ دُفع ثمن وصوله */
-  const bare = [...barePaths, launchPath, launchThanksPath, payLinkPath, payThanksPath].includes(stripLang(useLocation().pathname));
+  const bare = [...barePaths, launchPath, launchThanksPath, payLinkPath, payThanksPath, fpPath, fpThanksPath, fpAdminPath].includes(stripLang(useLocation().pathname));
   return (
     <ThemeProvider>
       <LangProvider>

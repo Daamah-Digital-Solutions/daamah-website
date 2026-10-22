@@ -19,6 +19,7 @@ import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
 import { launchDeck, launchDeckPath } from "./launchDeck";
 import { LAUNCH_INDEXED, launch, launchPath, launchThanksPath } from "./launchOffer";
+import { fp, fpAdminPath, fpPath, fpThanksPath } from "./foundingPartners";
 import { payLink, payLinkPath, payThanks, payThanksPath } from "./payLink";
 import { BLOG_ENABLED } from "./features";
 import { contractorsPage, contractorsPath } from "./contractors";
@@ -421,6 +422,34 @@ export const routes: RouteMeta[] = [
     description: payThanks.meta.description,
     priority: 0,
     kind: "page",
+    noindex: true,
+  },
+  /* برنامج شركاء التأسيس — هبوط إعلانات ميتا، خارج الفهرسة: يُوصل إليه الإعلان لا البحث */
+  {
+    path: fpPath,
+    title: { ar: fp.meta.title, en: fp.meta.title },
+    description: { ar: fp.meta.description, en: fp.meta.description },
+    priority: 0,
+    kind: "page",
+    langs: ["ar"],
+    noindex: true,
+  },
+  {
+    path: fpThanksPath,
+    title: { ar: "تم استلام دفعتك — دَعمة", en: "تم استلام دفعتك — دَعمة" },
+    description: { ar: "أهلًا بك في برنامج شركاء التأسيس.", en: "أهلًا بك في برنامج شركاء التأسيس." },
+    priority: 0,
+    kind: "page",
+    langs: ["ar"],
+    noindex: true,
+  },
+  {
+    path: fpAdminPath,
+    title: { ar: "لوحة شركاء التأسيس — دَعمة", en: "لوحة شركاء التأسيس — دَعمة" },
+    description: { ar: "لوحة داخلية.", en: "لوحة داخلية." },
+    priority: 0,
+    kind: "page",
+    langs: ["ar"],
     noindex: true,
   },
   {

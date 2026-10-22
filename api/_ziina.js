@@ -93,3 +93,14 @@ export async function getIntent(id) {
   if (!res.ok) return null;
   return res.json().catch(() => null);
 }
+
+/**
+ * يربط حساب Ziina بمستقبِل الأحداث. للحساب webhook واحد، وكل ربط
+ * جديد يستبدل السابق — فمستقبِلنا واحد يخدم كل عمليات الموقع.
+ * يحتاج المفتاح صلاحية `write_webhooks`.
+ */
+export async function registerWebhook(url, secret) {
+  const res = await ziina("/webhook", { method: "POST", body: JSON.stringify({ url, secret }) });
+  const text = await res.text();
+  return { ok: res.ok, status: res.status, message: clean(text, 300) };
+}

@@ -165,7 +165,15 @@ export type EventName =
   | "begin_checkout"
   /** دفعٌ تمّ — يُرسل من صفحة الشكر مرّة لكل عملية */
   | "purchase"
-  | "pdf_download";
+  | "pdf_download"
+  /** فتح صفحة عرض — ViewContent في ميتا */
+  | "view_content"
+  /** فتح طلب الانضمام — قبل أول إجابة */
+  | "start_application"
+  /** شاشة من شاشات الطلب — منها نعرف أين يتوقّف الناس */
+  | "application_step"
+  /** حجز اجتماع */
+  | "schedule";
 
 /** الحدث المقابل في Meta — ما لا مقابل له يُرسل كحدث مخصّص. */
 const META_STANDARD: Partial<Record<EventName, string>> = {
@@ -173,6 +181,14 @@ const META_STANDARD: Partial<Record<EventName, string>> = {
   quote_form_open: "InitiateCheckout",
   begin_checkout: "InitiateCheckout",
   purchase: "Purchase",
+  view_content: "ViewContent",
+  schedule: "Schedule",
+};
+
+/** أسماء الأحداث المخصّصة في ميتا حين تختلف عن أسمائنا */
+const META_CUSTOM: Partial<Record<EventName, string>> = {
+  start_application: "StartApplication",
+  application_step: "ApplicationStep",
 };
 
 /**
@@ -205,6 +221,15 @@ const LOCATION: Record<string, string> = {
   /* عرض الباقة (/digital-launch) */
   deck: "package_deck",
   deck_cta: "package_deck_floating",
+  /* برنامج شركاء التأسيس (/founding-partners) */
+  fp_hero: "program_hero",
+  fp_price: "program_pricing",
+  fp_closing: "program_closing",
+  fp_bar: "program_floating",
+  fp_out_of_scope: "program_out_of_scope",
+  fp_waitlist: "program_waitlist",
+  fp_error: "program_error",
+  fp_thanks: "program_thank_you",
 };
 
 function withLocation(name: EventName, params: Params): Params {
@@ -213,7 +238,24 @@ function withLocation(name: EventName, params: Params): Params {
   return { ...params, button_location: LOCATION[placement] ?? placement.replace(/_review$/, "") };
 }
 
-export function track(name: EventName, raw: Params = {}) {
+/** هل القياس يعمل لهذا الزائر؟ — ومنه يعرف الخادم إن كان يرسل عنه لميتا */
+export const canTrack = () => ready;
+
+const cookie = (name: string) => document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`))?.[1];
+
+/**
+ * ما يحتاجه الخادم ليرسل الحدث نفسه لميتا (Conversions API): رضا
+ * الزائر عن القياس، ومعرّفا البكسل (`_fbp`، و`_fbc` أو نقرة الإعلان).
+ */
+export function metaClient(fbclid?: string) {
+  const fbc = cookie("_fbc") ?? (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+  return { consent: ready, fbp: cookie("_fbp"), fbc, url: window.location.href.split("?")[0] };
+}
+
+/**
+ * `eventId` يربط الحدث بنسخته من الخادم — ميتا تعدّهما مرّة واحدة.
+ */
+export function track(name: EventName, raw: Params = {}, opts: { eventId?: string } = {}) {
   if (!ready) return;
   const params = withLocation(name, raw);
   if (GA_ID) window.gtag?.("event", name, params);
@@ -229,6 +271,7 @@ export function track(name: EventName, raw: Params = {}) {
   }
 
   const standard = META_STANDARD[name];
-  if (standard) window.fbq?.("track", standard, params);
-  else window.fbq?.("trackCustom", name, params);
+  const extra = opts.eventId ? [{ eventID: opts.eventId }] : [];
+  if (standard) window.fbq?.("track", standard, params, ...extra);
+  else window.fbq?.("trackCustom", META_CUSTOM[name] ?? name, params, ...extra);
 }

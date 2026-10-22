@@ -1309,6 +1309,13 @@ export const privacyPage = {
       } as Bi,
     },
     {
+      title: { ar: "طلبات البرامج", en: "Program applications" } as Bi,
+      body: {
+        ar: "حين تقدّم على برنامج من صفحاتنا (مثل «برنامج شركاء التأسيس»)، نحفظ على خادمنا إجاباتك واسمك واسم شركتك ورقم واتسابك وإيميلك، ومصدر زيارتك (الحملة الإعلانية)، لنراجع طلبك ونتواصل معك بخصوصه وحده. وإن كان القياس يعمل في متصفحك، نُعلم Meta بالطلب أو الحجز أو الدفع لتعرف أيّ إعلان أوصلك، ومعه إيميلك ورقمك مُجزّأين (SHA-256) لا نصًّا يُقرأ. لا نبيع بياناتك ولا نشاركها لغير ذلك.",
+        en: "When you apply to a program from our pages (such as the Founding Partners Program), we store your answers, name, company name, WhatsApp number, email and visit source (the ad campaign) on our server, to review your application and contact you about it alone. If analytics runs in your browser, we notify Meta of the application, booking or payment so it can tell which ad brought you, along with your email and number as one-way hashes (SHA-256), never as readable text. We don't sell your data or share it for anything else.",
+      } as Bi,
+    },
+    {
       title: { ar: "حقوقك", en: "Your rights" } as Bi,
       body: {
         ar: "يمكنك أن تطلب حذف أي بيانات أرسلتها إلينا، أو نسخةً منها، برسالة إلى بريدنا. نستجيب خلال أسبوع على الأكثر ولا نطلب سببًا.",

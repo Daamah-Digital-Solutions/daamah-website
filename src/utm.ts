@@ -21,6 +21,8 @@ export type Touch = {
   content?: string;
   /** معرّف نقرة Google Ads — يصل حتى لو غابت وسوم utm */
   gclid?: string;
+  /** معرّف نقرة إعلانات ميتا */
+  fbclid?: string;
   /** أول صفحة دخل منها */
   landing?: string;
   /** من أين جاء، حين لا توجد وسوم */
@@ -49,10 +51,11 @@ export function captureUtm() {
     term: p.get("utm_term") ?? undefined,
     content: p.get("utm_content") ?? undefined,
     gclid: p.get("gclid") ?? undefined,
+    fbclid: p.get("fbclid") ?? undefined,
     landing: window.location.pathname,
   };
 
-  const tagged = Object.values(touch).some((v, i) => i < 6 && v);
+  const tagged = Boolean(touch.source || touch.medium || touch.campaign || touch.term || touch.content || touch.gclid || touch.fbclid);
   if (!tagged) {
     // زيارة بلا وسوم: المُحيل هو كل ما نعرفه، وهو أفضل من لا شيء
     const ref = document.referrer;
@@ -83,6 +86,7 @@ export function sourceLine(): string {
   const t = utm();
   const parts = [t.campaign, t.source, t.medium].filter(Boolean);
   if (t.gclid && !parts.length) parts.push("google-ads");
+  if (t.fbclid && !parts.length) parts.push("meta-ads");
   if (!parts.length && t.referrer) parts.push(t.referrer);
   return parts.join(" · ");
 }

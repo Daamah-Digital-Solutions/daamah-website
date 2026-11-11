@@ -1,5 +1,6 @@
 import type { Bi } from "../i18n";
 import type { FaqItem } from "./faq";
+import { uaeCities, uaeCityPages } from "./uae";
 
 /**
  * الطبقة السعودية — صفحة لكل (خدمة × مدينة).
@@ -20,14 +21,20 @@ import type { FaqItem } from "./faq";
  * فلا يتناقض ما تقوله الصفحة مع ما يعرضه الموقع.
  */
 
-export type CityKey = "riyadh" | "jeddah";
+export type CityKey = "riyadh" | "jeddah" | "ajman" | "sharjah" | "dubai";
+
+/** السوق الذي تتبعه المدينة — منه تُشتقّ الأعمال والآراء وصفحة السوق. */
+export type CityMarket = "sa" | "ae";
+
+export type City = { key: CityKey; market: CityMarket; name: Bi; inCity: Bi; blurb: Bi };
 
 /** الخدمات التي لنا فيها ما نقوله محليًا — لا كل الخدمات. */
 export type CityServiceSlug = "web-development" | "branding" | "digital-marketing" | "seo" | "company-profile";
 
-export const cities: { key: CityKey; name: Bi; inCity: Bi; blurb: Bi }[] = [
+const saudiCities: City[] = [
   {
     key: "riyadh",
+    market: "sa",
     name: { ar: "الرياض", en: "Riyadh" },
     /* الصيغة المجرورة تُستعمل داخل الجُمل: «في الرياض» */
     inCity: { ar: "في الرياض", en: "in Riyadh" },
@@ -38,6 +45,7 @@ export const cities: { key: CityKey; name: Bi; inCity: Bi; blurb: Bi }[] = [
   },
   {
     key: "jeddah",
+    market: "sa",
     name: { ar: "جدة", en: "Jeddah" },
     inCity: { ar: "في جدة", en: "in Jeddah" },
     blurb: {
@@ -46,6 +54,12 @@ export const cities: { key: CityKey; name: Bi; inCity: Bi; blurb: Bi }[] = [
     },
   },
 ];
+
+/** كل المدن — السعودية هنا، والإماراتية في `uae.ts`. */
+export const cities: City[] = [...saudiCities, ...uaeCities];
+
+/** مدن سوقٍ بعينه */
+export const citiesIn = (market: CityMarket) => cities.filter((c) => c.market === market);
 
 export const cityMeta = (key: CityKey) => cities.find((c) => c.key === key)!;
 
@@ -62,7 +76,7 @@ export type CityPage = {
   faq: FaqItem[];
 };
 
-export const cityPages: CityPage[] = [
+const saudiCityPages: CityPage[] = [
   /* ─────────── الرياض × المواقع ─────────── */
   {
     service: "web-development",
@@ -870,13 +884,18 @@ export const cityPages: CityPage[] = [
   },
 ];
 
+/** كل صفحات (خدمة × مدينة) — السعودية هنا، والإمارات في `uae.ts`. */
+export const cityPages: CityPage[] = [...saudiCityPages, ...uaeCityPages];
+
 /** صفحة (خدمة × مدينة) بعينها. */
 export const findCityPage = (service: string, city: string) =>
   cityPages.find((p) => p.service === service && p.city === city);
 
 /** المدن التي لهذه الخدمة صفحةٌ فيها — منها تُبنى الروابط الداخلية. */
-export const citiesForService = (service: string): CityKey[] =>
-  cityPages.filter((p) => p.service === service).map((p) => p.city);
+export const citiesForService = (service: string, market?: CityMarket): CityKey[] =>
+  cityPages
+    .filter((p) => p.service === service && (!market || cityMeta(p.city).market === market))
+    .map((p) => p.city);
 
 /* ── صفحة «خدماتنا في السعودية» ── */
 export const saudiHub = {
@@ -933,7 +952,10 @@ export const saudiHub = {
 export const cityUi = {
   painLabel: { ar: "ما نراه يتكرّر", en: "What we see repeatedly" } as Bi,
   approachLabel: { ar: "كيف نعالجه", en: "How we handle it" } as Bi,
-  workLabel: { ar: "من أعمالنا في السعودية", en: "From our Saudi work" } as Bi,
+  workLabel: {
+    sa: { ar: "من أعمالنا في السعودية", en: "From our Saudi work" },
+    ae: { ar: "من أعمالنا في الإمارات", en: "From our UAE work" },
+  } as Record<CityMarket, Bi>,
   faqLabel: { ar: "أسئلة متكررة", en: "Common questions" } as Bi,
   otherCities: { ar: "نفس الخدمة في مدن أخرى", en: "The same service elsewhere" } as Bi,
   serviceLink: { ar: "تفاصيل الخدمة كاملة", en: "Full service details" } as Bi,

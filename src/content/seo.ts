@@ -17,6 +17,7 @@ import {
 import { allTags, langsOf, posts } from "./blog";
 import { tagLabel } from "./blog/tags";
 import { cityPages, saudiHub } from "./saudi";
+import { uaeHub } from "./uae";
 import { launchDeck, launchDeckPath } from "./launchDeck";
 import { LAUNCH_INDEXED, launch, launchPath, launchThanksPath } from "./launchOffer";
 import { fp, fpAdminPath, fpPath, fpThanksPath } from "./foundingPartners";
@@ -230,6 +231,10 @@ const META: Record<string, Bi> = {
   "/saudi": {
     ar: "ما نقدّمه للسوق السعودي: هوية بصرية، مواقع، سيو، وتسويق. مواعيد على توقيت الرياض، ومراجعة مكتوبة عند كل مرحلة.",
     en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Riyadh-time scheduling, with a written review at every stage.",
+  },
+  "/uae": {
+    ar: "مكتبنا في عجمان، ونخدم الشركات في الشارقة ودبي وكل الإمارات: هوية بصرية، مواقع، بروفايلات شركات، وتسويق رقمي يُقاس بالطلبات.",
+    en: "Our office is in Ajman, serving companies in Sharjah, Dubai and across the UAE: branding, websites, company profiles, and marketing measured in enquiries.",
   },
   "/clients/adg": {
     ar: "هوية بصرية لشركة عقارات في جورجيا ولبنان، ثم إدارة حضورها على السوشيال — العلامة التي بنيناها هي التي تتكلّم يوميًا.",
@@ -477,6 +482,16 @@ export const routes: RouteMeta[] = [
       en: `Our services in Saudi Arabia — ${brand.name.en}`,
     },
     description: describe("/saudi", saudiHub.intro),
+    priority: 0.9,
+    kind: "saudi",
+  },
+  {
+    path: "/uae",
+    title: {
+      ar: `خدماتنا في الإمارات — مكتبنا في عجمان | ${brand.short.ar}`,
+      en: `Our services in the UAE — Ajman office | ${brand.short.en}`,
+    },
+    description: describe("/uae", uaeHub.intro),
     priority: 0.9,
     kind: "saudi",
   },

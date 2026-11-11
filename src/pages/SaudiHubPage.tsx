@@ -1,7 +1,8 @@
 import { useLang } from "../i18n";
 import { services, saudi } from "../content/home";
 import { workItems } from "../content/work";
-import { cities, citiesForService, cityPages, saudiHub } from "../content/saudi";
+import { cityMeta, citiesForService, citiesIn, cityPages, saudiHub, type CityMarket } from "../content/saudi";
+import { uaeHub } from "../content/uae";
 import { PageHero } from "../components/PageHero";
 import { PageCta } from "../components/PageCta";
 import { waMessage } from "../content/whatsapp";
@@ -18,35 +19,37 @@ import {
 } from "../components/ui";
 
 /**
- * صفحة «خدماتنا في السعودية».
+ * صفحة السوق — «خدماتنا في السعودية» (`/saudi`) و«في الإمارات» (`/uae`).
  *
  * تجمع ما تفرّق: الخدمات التي لنا فيها صفحات مدن، والمدن نفسها،
  * والأعمال المنفّذة في السوق السعودي — وهي مشتقّة من `work.ts` لا
  * مكتوبة هنا. وظيفتها أن تكون مدخلًا واحدًا يربط هذه الصفحات
  * ببعضها، فتصل قوّة الروابط الداخلية إليها جميعًا.
  */
-export function SaudiHubPage() {
+export function SaudiHubPage({ market = "sa" }: { market?: CityMarket }) {
   const { t } = useLang();
 
-  const covered = [...new Set(cityPages.map((p) => p.service))];
-  const proof = workItems.filter((w) => w.markets.includes("sa")).slice(0, 6);
+  const hub = market === "ae" ? uaeHub : { ...saudiHub, note: saudi.note };
+  const cities = citiesIn(market);
+  const covered = [...new Set(cityPages.filter((p) => cityMeta(p.city).market === market).map((p) => p.service))];
+  const proof = workItems.filter((w) => w.markets.includes(market)).slice(0, 6);
 
   return (
     <>
       <PageHero
-        label={t(saudiHub.label)}
-        title={t(saudiHub.title)}
-        intro={t(saudiHub.intro)}
+        label={t(hub.label)}
+        title={t(hub.title)}
+        intro={t(hub.intro)}
       />
 
       {/* إشارات الثقة */}
       <section className="py-20 sm:py-28">
         <Wrap>
           <Reveal>
-            <SectionLabel>{t(saudiHub.trustLabel)}</SectionLabel>
+            <SectionLabel>{t(hub.trustLabel)}</SectionLabel>
           </Reveal>
           <ul className="mt-10 grid gap-x-14 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-            {saudiHub.trust.map((x, i) => (
+            {hub.trust.map((x, i) => (
               <Reveal key={x.title.en} delay={i * 70} as="li">
                 <Chevron className="h-3 w-auto text-red" />
                 <h2 className="mt-4 text-[18px] font-medium leading-snug">{t(x.title)}</h2>
@@ -55,7 +58,7 @@ export function SaudiHubPage() {
             ))}
           </ul>
           <Reveal delay={140}>
-            <p className="body mt-12 max-w-[60ch]">{t(saudi.note)}</p>
+            <p className="body mt-12 max-w-[60ch]">{t(hub.note)}</p>
           </Reveal>
         </Wrap>
       </section>
@@ -64,7 +67,7 @@ export function SaudiHubPage() {
       <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>
           <Reveal>
-            <SectionLabel>{t(saudiHub.servicesLabel)}</SectionLabel>
+            <SectionLabel>{t(hub.servicesLabel)}</SectionLabel>
           </Reveal>
 
           <div className="mt-10 border-t border-[var(--line)]">
@@ -79,7 +82,7 @@ export function SaudiHubPage() {
                       <p className="body mt-2 max-w-[44ch]">{t(service.desc)}</p>
                     </div>
                     <ul className="flex flex-wrap items-start gap-x-3 gap-y-2.5 lg:col-span-7 lg:justify-end">
-                      {citiesForService(slug).map((c) => {
+                      {citiesForService(slug, market).map((c) => {
                         const city = cities.find((x) => x.key === c)!;
                         return (
                           <li key={c}>
@@ -106,7 +109,7 @@ export function SaudiHubPage() {
       <section className="py-20 sm:py-28">
         <Wrap>
           <Reveal>
-            <SectionLabel>{t(saudiHub.citiesLabel)}</SectionLabel>
+            <SectionLabel>{t(hub.citiesLabel)}</SectionLabel>
           </Reveal>
           <div className="mt-10 grid gap-x-16 gap-y-10 lg:grid-cols-2">
             {cities.map((c, i) => (
@@ -123,7 +126,7 @@ export function SaudiHubPage() {
         <section className="bg-paper-2 py-20 sm:py-28">
           <Wrap>
             <Reveal>
-              <SectionLabel>{t(saudiHub.workLabel)}</SectionLabel>
+              <SectionLabel>{t(hub.workLabel)}</SectionLabel>
             </Reveal>
             <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-10">
               {proof.map((w, i) => (
@@ -134,9 +137,9 @@ export function SaudiHubPage() {
         </section>
       )}
 
-      <Testimonials market="sa" />
+      <Testimonials market={market} />
 
-      <PageCta lines={saudiHub.ctaLines} wa={waMessage.saudi} placement="saudi" />
+      <PageCta lines={hub.ctaLines} wa={market === "ae" ? waMessage.uae : waMessage.saudi} placement={market === "ae" ? "uae" : "saudi"} />
     </>
   );
 }

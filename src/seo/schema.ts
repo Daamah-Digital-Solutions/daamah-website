@@ -5,7 +5,7 @@ import { faqPath } from "../content/faqAbout";
 import { contractorsPage, contractorsPath } from "../content/contractors";
 import { markets, sectorMeta, workItems } from "../content/work";
 import { findPost, posts } from "../content/blog";
-import { cityMeta, findCityPage } from "../content/saudi";
+import { cities, cityMeta, findCityPage } from "../content/saudi";
 import { serviceDetails } from "../content/pages";
 import { OG_IMAGE, SITE_URL, findRoute, type RouteMeta } from "./../content/seo";
 
@@ -17,8 +17,9 @@ import { OG_IMAGE, SITE_URL, findRoute, type RouteMeta } from "./../content/seo"
  * واحد فلا يمكن أن يختلف ما يقرأه الزاحف عمّا يراه الزائر.
  *
  * ما لا نصرّح به عمدًا:
- * - `LocalBusiness` و`address`: لا مكتب لنا في السعودية، والادّعاء
- *   بعنوان لا وجود له يُسقِط بطاقة النشاط كلها لا هذا الحقل وحده.
+ * - `address` إلا لمكتب عجمان: هو العنوان المسجّل في بطاقة Google
+ *   Business Profile ويُعرض في الفوتر وصفحة التواصل. لا عنوان لنا في
+ *   السعودية، والادّعاء بعنوان لا وجود له يُسقِط بطاقة النشاط كلها.
  * - `Review` و`AggregateRating`: التقييم الذي يكتبه صاحب الموقع عن
  *   نفسه مخالف صريح لإرشادات جوجل.
  */
@@ -56,6 +57,13 @@ function organization(lang: Lang): Json {
     image: abs(OG_IMAGE),
     email: brand.email,
     telephone: tel.raw,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: pick(brand.address.lines, lang)[0],
+      addressLocality: pick(brand.address.city, lang),
+      addressCountry: brand.address.countryCode,
+    },
+    hasMap: brand.address.maps,
     foundingDate: String(brand.founded),
     sameAs: brand.social,
     knowsLanguage: ["ar", "en"],
@@ -84,6 +92,9 @@ function organization(lang: Lang): Json {
       { "@type": "City", name: lang === "ar" ? "جدة" : "Jeddah" },
       { "@type": "City", name: lang === "ar" ? "الدمام" : "Dammam" },
       { "@type": "Country", name: pick(markets.ae, lang) },
+      ...cities
+        .filter((c) => c.market === "ae")
+        .map((c) => ({ "@type": "City", name: pick(c.name, lang) })),
       { "@type": "Country", name: pick(markets.eg, lang) },
     ],
     hasOfferCatalog: {
@@ -247,7 +258,7 @@ function cityService(bare: string, lang: Lang): Json[] {
       areaServed: {
         "@type": "City",
         name: pick(info.name, lang),
-        containedInPlace: { "@type": "Country", name: pick(markets.sa, lang) },
+        containedInPlace: { "@type": "Country", name: pick(markets[info.market], lang) },
       },
       availableLanguage: ["ar", "en"],
     },

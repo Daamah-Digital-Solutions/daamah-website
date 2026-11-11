@@ -99,6 +99,24 @@ export function ContactPage() {
                       <dd className="mt-3 text-[15px] font-medium leading-relaxed">{d.value}</dd>
                     </div>
                   ))}
+                  <div className="border-b border-[var(--line)] py-6">
+                    <dt className="tag text-ink/40">{t(contactPage.addressLabel)}</dt>
+                    <dd className="mt-3">
+                      <a
+                        href={brand.address.maps}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => track("map_click", { placement: "contact" })}
+                        className="ulink text-[15px] font-medium leading-relaxed"
+                      >
+                        <address className="not-italic">
+                          {t(brand.address.lines).map((l) => (
+                            <span key={l} className="block">{l}</span>
+                          ))}
+                        </address>
+                      </a>
+                    </dd>
+                  </div>
                 </dl>
 
                 <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">

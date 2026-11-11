@@ -175,13 +175,17 @@ generates.
 
 **6. Structured data must match what the page shows.** `FAQPage` markup is built from the same
 `content/faq.ts` entries the page renders. Declaring questions a visitor cannot see is what
-gets a rich result pulled. For the same reason there is no `LocalBusiness`, no `address`, and no
-self-authored `Review` anywhere.
+gets a rich result pulled. For the same reason there is no self-authored `Review` anywhere, and the only
+`address` is the Ajman office — the one registered on the Google Business Profile and shown
+in the footer and on `/contact` (`brand.address` in `content/home.ts`). No address is claimed
+for Saudi Arabia.
 
-## The Saudi layer
+## The Saudi and UAE layers
 
-`content/saudi.ts` holds one page per (service × city) — currently four services × Riyadh and
-Jeddah. Every field is written for that pairing: a Riyadh buyer's problems are not a Jeddah
+`content/saudi.ts` holds one page per (service × city) — five services × Riyadh and Jeddah —
+and `content/uae.ts` the UAE set (Ajman, Sharjah, Dubai), merged into the same `cityPages`.
+Each city carries its `market` (`sa` | `ae`), which picks the proof, testimonials and hub
+(`/saudi` or `/uae`, both rendered by `SaudiHubPage`). Every field is written for that pairing: a Riyadh buyer's problems are not a Jeddah
 trader's, and their questions differ.
 
 Pages that repeat one text with the city name swapped are doorway pages, and they cost the

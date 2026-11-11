@@ -117,6 +117,12 @@ export const waMessage = {
     en: "— our company is in Saudi Arabia and I'd like to know how you could work with us.",
   }),
 
+  /** صفحة «خدماتنا في الإمارات» */
+  uae: compose({
+    ar: "وشركتنا في الإمارات، وأرغب في معرفة كيف يمكنكم العمل معنا.",
+    en: "— our company is in the UAE and I'd like to know how you could work with us.",
+  }),
+
   /**
    * العرض الخفيف — لمن ليس جاهزًا للكلام.
    *

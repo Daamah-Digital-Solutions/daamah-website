@@ -76,6 +76,7 @@ function pageRoutes(prefix: string) {
     />,
     <Route key={`${prefix}-contractors`} path={at("contractors")} element={<ContractorsPage />} />,
     <Route key={`${prefix}-saudi`} path={at("saudi")} element={<SaudiHubPage />} />,
+    <Route key={`${prefix}-uae`} path={at("uae")} element={<SaudiHubPage market="ae" />} />,
     <Route key={`${prefix}-work`} path={at("work")} element={<WorkPage />} />,
     <Route key={`${prefix}-workitem`} path={at("work/:slug")} element={<WorkDetailPage />} />,
     <Route key={`${prefix}-client`} path={at("clients/:slug")} element={<ClientStoryPage />} />,

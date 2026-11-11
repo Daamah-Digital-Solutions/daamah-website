@@ -39,6 +39,25 @@ export const brand = {
       whatsapp: "https://wa.me/971566051140",
     },
   ] as Phone[],
+  /**
+   * المكتب — العنوان نفسه المسجّل في بطاقة Google Business Profile،
+   * حرفًا بحرف. تطابق الاسم والعنوان والهاتف بين الموقع والبطاقة
+   * إشارةٌ محليةٌ يقرأها جوجل؛ أي اختلاف بينهما يُضعفها.
+   */
+  address: {
+    street: { ar: "برج أمبرجيم، شارع الشيخ خليفة بن زايد", en: "Amber Gem Tower, Sheikh Khalifa Bin Zayed St" } as Bi,
+    district: { ar: "الراشدية 3", en: "Al Rashidiya 3" } as Bi,
+    city: { ar: "عجمان", en: "Ajman" } as Bi,
+    country: { ar: "الإمارات العربية المتحدة", en: "United Arab Emirates" } as Bi,
+    countryCode: "AE",
+    /** كما يُعرض: سطران */
+    lines: {
+      ar: ["برج أمبرجيم، شارع الشيخ خليفة بن زايد، الراشدية 3", "عجمان، الإمارات العربية المتحدة"],
+      en: ["Amber Gem Tower, Sheikh Khalifa Bin Zayed St, Al Rashidiya 3", "Ajman, United Arab Emirates"],
+    } as Bi<string[]>,
+    /** بطاقة النشاط على خرائط جوجل */
+    maps: "https://share.google/nQiPYQRBBhMnrKBc4",
+  },
   social: [
     "https://instagram.com/daamah.digital.solutions",
     "https://facebook.com/daamah.digital.solutions",
@@ -437,6 +456,8 @@ export const footer = {
   contactTitle: { ar: "تواصل", en: "Contact" } as Bi,
   faqTitle: { ar: "الأسئلة الشائعة", en: "FAQ" } as Bi,
   saudiTitle: { ar: "في السعودية", en: "In Saudi Arabia" } as Bi,
+  uaeTitle: { ar: "في الإمارات", en: "In the UAE" } as Bi,
+  addressLabel: { ar: "المكتب", en: "Office" } as Bi,
   privacyTitle: { ar: "الخصوصية", en: "Privacy" } as Bi,
   socialTitle: { ar: "تابعنا", en: "Follow" } as Bi,
   rights: { ar: "جميع الحقوق محفوظة", en: "All rights reserved" } as Bi,

@@ -1239,6 +1239,7 @@ export const contactPage = {
   } as Bi,
   responseLabel: { ar: "زمن الرد", en: "Response time" } as Bi,
   response: { ar: "خلال يوم عمل", en: "Within one business day" } as Bi,
+  addressLabel: { ar: "المكتب", en: "Office" } as Bi,
   /* لكل سوق توقيته: «أوقات العمل» بلا منطقة زمنية سؤالٌ مفتوح على
      من يقرأ من مدينة أخرى — ونحن نُجدوِل على توقيت العميل لا توقيتنا. */
   regionsLabel: { ar: "أين نعمل", en: "Where we work" } as Bi,

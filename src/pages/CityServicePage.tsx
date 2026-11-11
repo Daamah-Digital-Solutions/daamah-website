@@ -32,7 +32,8 @@ const WORK_KEY: Record<string, ServiceKey | undefined> = {
  * صفحة (خدمة × مدينة).
  *
  * الإثبات هنا مشتقّ لا مكتوب: الأعمال تُرشَّح من `work.ts` بسوق
- * السعودية، فلا يُكتب عمل مرّتين ولا تدّعي الصفحة ما ليس في الموقع.
+ * المدينة (السعودية أو الإمارات)، فلا يُكتب عمل مرّتين ولا تدّعي
+ * الصفحة ما ليس في الموقع.
  */
 export function CityServicePage() {
   const { slug = "", city = "" } = useParams();
@@ -48,9 +49,10 @@ export function CityServicePage() {
 
   const cityInfo = cityMeta(city as CityKey);
   const key = WORK_KEY[slug];
-  const saudiWork = workItems.filter((w) => w.markets.includes("sa"));
-  const proof = (key ? saudiWork.filter((w) => w.service === key) : saudiWork).slice(0, 3);
-  const others = citiesForService(slug).filter((c) => c !== city);
+  const market = cityInfo.market;
+  const marketWork = workItems.filter((w) => w.markets.includes(market));
+  const proof = (key ? marketWork.filter((w) => w.service === key) : marketWork).slice(0, 3);
+  const others = citiesForService(slug, market).filter((c) => c !== city);
 
   return (
     <>
@@ -116,7 +118,7 @@ export function CityServicePage() {
         <section className="py-20 sm:py-28">
           <Wrap>
             <Reveal>
-              <SectionLabel>{t(cityUi.workLabel)}</SectionLabel>
+              <SectionLabel>{t(cityUi.workLabel[market])}</SectionLabel>
             </Reveal>
             <Justified gap="gap-3 sm:gap-4 lg:gap-5" fill className="mt-10">
               {proof.map((w, i) => (
@@ -127,7 +129,7 @@ export function CityServicePage() {
         </section>
       )}
 
-      <Testimonials service={slug} market="sa" />
+      <Testimonials service={slug} market={market} />
 
       <section className="bg-paper-2 py-20 sm:py-28">
         <Wrap>

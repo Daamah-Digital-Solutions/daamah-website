@@ -61,6 +61,7 @@ export function Footer() {
     ...navItems.filter((n) => n.href !== "/services" && n.href !== "/contact"),
     { href: "/profile", label: footer.profileTitle },
     { href: "/saudi", label: footer.saudiTitle },
+    { href: "/uae", label: footer.uaeTitle },
     { href: "/contractors", label: { ar: "لشركات المقاولات", en: "For contractors" } },
     { href: "/faq", label: footer.faqTitle },
     /* المدوّنة في الفوتر لا القائمة: طريق الزواحف إليها، لا طريق المشتري */
@@ -170,6 +171,24 @@ export function Footer() {
                     className="ltr inline-block text-[17px] font-medium text-paper transition-opacity duration-(--dur-fast) hover:opacity-70"
                   >
                     {brand.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[13px] text-paper/40">{t(footer.addressLabel)}</dt>
+                <dd className="mt-1.5">
+                  <a
+                    href={brand.address.maps}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track("map_click", { placement: "footer" })}
+                    className="inline-block text-[15px] leading-relaxed text-paper/75 transition-opacity duration-(--dur-fast) hover:opacity-70"
+                  >
+                    <address className="not-italic">
+                      {t(brand.address.lines).map((l) => (
+                        <span key={l} className="block">{l}</span>
+                      ))}
+                    </address>
                   </a>
                 </dd>
               </div>

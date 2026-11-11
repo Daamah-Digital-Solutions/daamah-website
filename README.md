@@ -183,7 +183,7 @@ for Saudi Arabia.
 ## The Saudi and UAE layers
 
 `content/saudi.ts` holds one page per (service × city) — five services × Riyadh and Jeddah —
-and `content/uae.ts` the UAE set (Ajman, Sharjah, Dubai), merged into the same `cityPages`.
+and `content/uae.ts` the UAE set (all seven emirates), merged into the same `cityPages`.
 Each city carries its `market` (`sa` | `ae`), which picks the proof, testimonials and hub
 (`/saudi` or `/uae`, both rendered by `SaudiHubPage`). Every field is written for that pairing: a Riyadh buyer's problems are not a Jeddah
 trader's, and their questions differ.

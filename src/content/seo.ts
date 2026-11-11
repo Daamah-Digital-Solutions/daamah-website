@@ -233,8 +233,8 @@ const META: Record<string, Bi> = {
     en: "What we offer the Saudi market: branding, websites, SEO, and marketing. Riyadh-time scheduling, with a written review at every stage.",
   },
   "/uae": {
-    ar: "مكتبنا في عجمان، ونخدم الشركات في الشارقة ودبي وكل الإمارات: هوية بصرية، مواقع، بروفايلات شركات، وتسويق رقمي يُقاس بالطلبات.",
-    en: "Our office is in Ajman, serving companies in Sharjah, Dubai and across the UAE: branding, websites, company profiles, and marketing measured in enquiries.",
+    ar: "مكتبنا في عجمان، ونخدم الشركات في الإمارات السبع من أبوظبي ودبي إلى الفجيرة: هوية بصرية، مواقع، بروفايلات، سيو، وتسويق رقمي يُقاس بالطلبات.",
+    en: "Our office is in Ajman, serving companies across all seven emirates, from Abu Dhabi and Dubai to Fujairah: branding, websites, profiles, SEO and marketing measured in enquiries.",
   },
   "/clients/adg": {
     ar: "هوية بصرية لشركة عقارات في جورجيا ولبنان، ثم إدارة حضورها على السوشيال — العلامة التي بنيناها هي التي تتكلّم يوميًا.",

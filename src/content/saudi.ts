@@ -21,7 +21,16 @@ import { uaeCities, uaeCityPages } from "./uae";
  * فلا يتناقض ما تقوله الصفحة مع ما يعرضه الموقع.
  */
 
-export type CityKey = "riyadh" | "jeddah" | "ajman" | "sharjah" | "dubai";
+export type CityKey =
+  | "riyadh"
+  | "jeddah"
+  | "abu-dhabi"
+  | "dubai"
+  | "sharjah"
+  | "ajman"
+  | "umm-al-quwain"
+  | "ras-al-khaimah"
+  | "fujairah";
 
 /** السوق الذي تتبعه المدينة — منه تُشتقّ الأعمال والآراء وصفحة السوق. */
 export type CityMarket = "sa" | "ae";

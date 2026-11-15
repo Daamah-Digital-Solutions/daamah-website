@@ -39,32 +39,32 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/الرئيسية",
+      "source": "/ar/%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9",
       "destination": "/",
       "statusCode": 301
     },
     {
-      "source": "/ar/عن-الشركة",
+      "source": "/ar/%D8%B9%D9%86-%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9",
       "destination": "/about",
       "statusCode": 301
     },
     {
-      "source": "/ar/تواصل-معنا",
+      "source": "/ar/%D8%AA%D9%88%D8%A7%D8%B5%D9%84-%D9%85%D8%B9%D9%86%D8%A7",
       "destination": "/contact",
       "statusCode": 301
     },
     {
-      "source": "/ar/خدماتنا",
+      "source": "/ar/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%86%D8%A7",
       "destination": "/services",
       "statusCode": 301
     },
     {
-      "source": "/ar/خدماتنا/التسويق-الرقمى",
+      "source": "/ar/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%86%D8%A7/%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82-%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%89",
       "destination": "/services/digital-marketing",
       "statusCode": 301
     },
     {
-      "source": "/ar/خدماتنا/حلول-الإعلان-الإبداعي",
+      "source": "/ar/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%86%D8%A7/%D8%AD%D9%84%D9%88%D9%84-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%86-%D8%A7%D9%84%D8%A5%D8%A8%D8%AF%D8%A7%D8%B9%D9%8A",
       "destination": "/services/media-buying",
       "statusCode": 301
     },
@@ -74,7 +74,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/خدماتنا/حلول-البرمجيات-الذكية",
+      "source": "/ar/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA%D9%86%D8%A7/%D8%AD%D9%84%D9%88%D9%84-%D8%A7%D9%84%D8%A8%D8%B1%D9%85%D8%AC%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D8%B0%D9%83%D9%8A%D8%A9",
       "destination": "/solutions",
       "statusCode": 301
     },
@@ -84,12 +84,12 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/أهم-استراتيجيات-التسويق-الرقمي-لنجاح",
+      "source": "/ar/%D8%A3%D9%87%D9%85-%D8%A7%D8%B3%D8%AA%D8%B1%D8%A7%D8%AA%D9%8A%D8%AC%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%B3%D9%88%D9%8A%D9%82-%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A-%D9%84%D9%86%D8%AC%D8%A7%D8%AD",
       "destination": "/services/digital-marketing",
       "statusCode": 301
     },
     {
-      "source": "/ar/كيفية-إنشاء-الهوية-البصرية",
+      "source": "/ar/%D9%83%D9%8A%D9%81%D9%8A%D8%A9-%D8%A5%D9%86%D8%B4%D8%A7%D8%A1-%D8%A7%D9%84%D9%87%D9%88%D9%8A%D8%A9-%D8%A7%D9%84%D8%A8%D8%B5%D8%B1%D9%8A%D8%A9",
       "destination": "/services/branding",
       "statusCode": 301
     },
@@ -109,12 +109,12 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/مزرعة-الحياة",
+      "source": "/ar/portfolio/%D9%85%D8%B2%D8%B1%D8%B9%D8%A9-%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9",
       "destination": "/clients/alhayat",
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/مزرعة-الحياة-للدواجن",
+      "source": "/ar/portfolio/%D9%85%D8%B2%D8%B1%D8%B9%D8%A9-%D8%A7%D9%84%D8%AD%D9%8A%D8%A7%D8%A9-%D9%84%D9%84%D8%AF%D9%88%D8%A7%D8%AC%D9%86",
       "destination": "/clients/alhayat",
       "statusCode": 301
     },
@@ -124,7 +124,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/شركة-hcc-للتأمين-الدولي",
+      "source": "/ar/portfolio/%D8%B4%D8%B1%D9%83%D8%A9-hcc-%D9%84%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
       "destination": "/clients/hcc",
       "statusCode": 301
     },
@@ -134,12 +134,12 @@
       "statusCode": 301
     },
     {
-      "source": "/portfolio/يوتيليتى-فيجن",
+      "source": "/portfolio/%D9%8A%D9%88%D8%AA%D9%8A%D9%84%D9%8A%D8%AA%D9%89-%D9%81%D9%8A%D8%AC%D9%86",
       "destination": "/work/utility-vision",
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/يوتيليتى-فيجن",
+      "source": "/ar/portfolio/%D9%8A%D9%88%D8%AA%D9%8A%D9%84%D9%8A%D8%AA%D9%89-%D9%81%D9%8A%D8%AC%D9%86",
       "destination": "/work/utility-vision",
       "statusCode": 301
     },
@@ -149,7 +149,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/ڤيوتشر-أكسيس",
+      "source": "/ar/portfolio/%DA%A4%D9%8A%D9%88%D8%AA%D8%B4%D8%B1-%D8%A3%D9%83%D8%B3%D9%8A%D8%B3",
       "destination": "/work/future-axis",
       "statusCode": 301
     },
@@ -169,7 +169,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/ڤيبرنت-ديزاين",
+      "source": "/ar/portfolio/%DA%A4%D9%8A%D8%A8%D8%B1%D9%86%D8%AA-%D8%AF%D9%8A%D8%B2%D8%A7%D9%8A%D9%86",
       "destination": "/work/vibrant-design",
       "statusCode": 301
     },
@@ -189,7 +189,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/الرغد",
+      "source": "/ar/portfolio/%D8%A7%D9%84%D8%B1%D8%BA%D8%AF",
       "destination": "/work/alraghad",
       "statusCode": 301
     },
@@ -199,7 +199,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/جرين-مارك",
+      "source": "/ar/portfolio/%D8%AC%D8%B1%D9%8A%D9%86-%D9%85%D8%A7%D8%B1%D9%83",
       "destination": "/work/greenmark",
       "statusCode": 301
     },
@@ -214,7 +214,7 @@
       "statusCode": 301
     },
     {
-      "source": "/ar/portfolio/أوتو-كار",
+      "source": "/ar/portfolio/%D8%A3%D9%88%D8%AA%D9%88-%D9%83%D8%A7%D8%B1",
       "destination": "/work/auto-crazy-car",
       "statusCode": 301
     },

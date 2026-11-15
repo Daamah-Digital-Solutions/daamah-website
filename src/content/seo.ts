@@ -113,7 +113,7 @@ const home: RouteMeta = {
  */
 const SERVICE_TITLES: Record<string, Bi> = {
   "branding": { ar: "تصميم هوية بصرية وشعار للشركات", en: "Brand identity & logo design" },
-  "company-profile": { ar: "تصميم بروفايل شركة Company Profile عربي وإنجليزي", en: "Company profile design, Arabic & English" },
+  "company-profile": { ar: "تصميم بروفايل شركة بالعربي والإنجليزي (ملف تعريفي)", en: "Company profile design, Arabic & English" },
   "web-development": { ar: "تصميم مواقع الشركات وتطويرها في السعودية", en: "Company website design & development" },
   "seo": { ar: "خدمات سيو وتحسين محركات البحث في السعودية", en: "SEO services in Saudi Arabia" },
   "social-media": { ar: "إدارة حسابات السوشيال ميديا للشركات", en: "Social media management for companies" },
@@ -151,7 +151,7 @@ const META: Record<string, Bi> = {
     en: "Brand identity and logo design for companies: a full system of colour, type, imagery and tone built from your market, with a usage guide and ready applications.",
   },
   "/services/company-profile": {
-    ar: "تصميم بروفايل شركة (Company Profile) بالعربية والإنجليزية: ملف يُقرأ في خمس دقائق ويصلح للمناقصات وملفات التأهيل، نكتب نصوصه ونصمّمه على هويتكم.",
+    ar: "تصميم بروفايل شركة (Company Profile) بالعربي والإنجليزي: نكتب النصوص ونصمّم الملف التعريفي على هويتكم، ويصلح للمناقصات وملفات التأهيل. شاهد نماذج من أعمالنا.",
     en: "Company profile design in Arabic and English: a document read in five minutes that holds up in tenders and qualification files, written and designed on your identity.",
   },
   "/services/web-development": {

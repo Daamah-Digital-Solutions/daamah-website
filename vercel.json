@@ -34,6 +34,266 @@
       "statusCode": 301
     },
     {
+      "source": "/ar",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/الرئيسية",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/عن-الشركة",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/تواصل-معنا",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/خدماتنا",
+      "destination": "/services",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/خدماتنا/التسويق-الرقمى",
+      "destination": "/services/digital-marketing",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/خدماتنا/حلول-الإعلان-الإبداعي",
+      "destination": "/services/media-buying",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/creative-advertising-solutions",
+      "destination": "/services/media-buying",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/خدماتنا/حلول-البرمجيات-الذكية",
+      "destination": "/solutions",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/software-solutions",
+      "destination": "/solutions",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/أهم-استراتيجيات-التسويق-الرقمي-لنجاح",
+      "destination": "/services/digital-marketing",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/كيفية-إنشاء-الهوية-البصرية",
+      "destination": "/services/branding",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/daughters",
+      "destination": "/work/daughters",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/alhayat-poultry-farm",
+      "destination": "/clients/alhayat",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/مزرعة-الحياة",
+      "destination": "/clients/alhayat",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/مزرعة-الحياة-للدواجن",
+      "destination": "/clients/alhayat",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/international-insurance-company",
+      "destination": "/clients/hcc",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/شركة-hcc-للتأمين-الدولي",
+      "destination": "/clients/hcc",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/utility-vision",
+      "destination": "/work/utility-vision",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/يوتيليتى-فيجن",
+      "destination": "/work/utility-vision",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/يوتيليتى-فيجن",
+      "destination": "/work/utility-vision",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/future-axis",
+      "destination": "/work/future-axis",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/ڤيوتشر-أكسيس",
+      "destination": "/work/future-axis",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/tech-care",
+      "destination": "/work/tech-care",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/caffeine-kiss",
+      "destination": "/work/caffeine-kiss",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/vibrant-design",
+      "destination": "/work/vibrant-design",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/ڤيبرنت-ديزاين",
+      "destination": "/work/vibrant-design",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/sedra",
+      "destination": "/work/sedra",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/profit-max-investment-2",
+      "destination": "/clients/profitmax",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/alraghd",
+      "destination": "/work/alraghad",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/الرغد",
+      "destination": "/work/alraghad",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/green-mark",
+      "destination": "/work/greenmark",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/جرين-مارك",
+      "destination": "/work/greenmark",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/rahiq",
+      "destination": "/work/rahiq",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/auto-car",
+      "destination": "/work/auto-crazy-car",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/أوتو-كار",
+      "destination": "/work/auto-crazy-car",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/vip",
+      "destination": "/work/vip-limo",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/vip-ar",
+      "destination": "/work/vip-limo",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/sy-sara-younis",
+      "destination": "/clients/sara-younis",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/:slug/feed",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/:slug/feed",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/:slug",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio/:slug",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio_category/:path*",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/portfolio_category/:path*",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/porto_tag/:path*",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/porto_tag/:path*",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/ar/comments/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
       "source": "/(.*)",
       "has": [
         {

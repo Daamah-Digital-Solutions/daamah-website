@@ -13,6 +13,7 @@ export const tagLabels: Record<string, Bi> = {
   ecommerce: { ar: "التجارة الإلكترونية", en: "E-commerce" },
   marketing: { ar: "التسويق الرقمي", en: "Digital marketing" },
   saudi: { ar: "السوق السعودي", en: "Saudi market" },
+  uae: { ar: "السوق الإماراتي", en: "UAE market" },
   pricing: { ar: "التكلفة", en: "Pricing" },
   ai: { ar: "الذكاء الاصطناعي", en: "AI" },
   profile: { ar: "الملف التعريفي", en: "Company profile" },

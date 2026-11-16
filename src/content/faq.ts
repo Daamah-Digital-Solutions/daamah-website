@@ -218,6 +218,27 @@ export const byService: Record<string, FaqItem[]> = {
         en: "Yes, and written rather than translated. Machine-translated content reads oddly to a Gulf client and doesn't match how they actually search — Arabic queries are full of phrasings no English tool surfaces.",
       },
     },
+    {
+      q: { ar: "هل تعملون على موقعي الحالي أم يجب بناء موقع جديد؟", en: "Do you work on my current site, or do I need a new one?" },
+      a: {
+        ar: "نبدأ بموقعك الحالي. التدقيق التقني يوضّح ما يمكن إصلاحه فيه وما لا يمكن، ولا نقترح موقعًا جديدًا إلا إن كان ما يمنع الفهرسة في أساس الموقع نفسه — ونقول لك السبب قبل أي قرار.",
+        en: "We start with your current site. The technical audit shows what can be fixed and what can't, and we only suggest a new site if what blocks indexing is in the site's foundation — and we tell you why before any decision.",
+      },
+    },
+    {
+      q: { ar: "هل تقدّمون السيو في الإمارات أيضًا؟", en: "Do you offer SEO in the UAE too?" },
+      a: {
+        ar: "نعم. مكتبنا في عجمان، ونعمل مع شركات في السعودية والإمارات. بحث الكلمات يُبنى لكل سوق على حدة، لأن الباحث في دبي لا يكتب كما يكتب الباحث في الرياض.",
+        en: "Yes. Our office is in Ajman, and we work with companies in Saudi Arabia and the UAE. Keyword research is built for each market separately, because a searcher in Dubai doesn't type the way one in Riyadh does.",
+      },
+    },
+    {
+      q: { ar: "كيف أعرف أن السيو يجلب عملاء لا زيارات فقط؟", en: "How do I know SEO brings clients, not just visits?" },
+      a: {
+        ar: "نربط Search Console والتحليلات بالطلبات نفسها: النماذج المرسلة، وضغطات واتساب، والاتصالات القادمة من البحث. وننصح بأن تكون الحسابات باسمك لا باسمنا، لترى الأرقام بنفسك.",
+        en: "We tie Search Console and analytics to the leads themselves: forms sent, WhatsApp clicks and calls coming from search. We recommend the accounts be in your name, not ours, so you see the numbers yourself.",
+      },
+    },
   ],
   "social-media": [
     {

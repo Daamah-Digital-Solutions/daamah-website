@@ -807,6 +807,20 @@ const saudiCityPages: CityPage[] = [
           en: "Remotely on Riyadh time: a kickoff session, a written review of the copy, then of the design, then handover. We've worked this way with Saudi companies since 2019.",
         },
       },
+      {
+        q: { ar: "هل نحتاج بروفايل بالعربي والإنجليزي معًا؟", en: "Do we need the profile in both Arabic and English?" },
+        a: {
+          ar: "يعتمد على من سيقرؤه. جهات القطاع العام في الرياض تقرأ بالعربية غالبًا، والاستشاريون والشركات الكبرى والشركاء الدوليون بالإنجليزية. إن كان ملفك يذهب إلى الطرفين فالأفضل نسختان تُكتب كل منهما للغتها، لا نسخة مترجمة عن الأخرى.",
+          en: "It depends on who will read it. Public-sector entities in Riyadh mostly read Arabic; consultants, large companies and international partners read English. If your file goes to both, two versions each written for its language work better than one translated from the other.",
+        },
+      },
+      {
+        q: { ar: "كم صفحة يكون بروفايل الشركة؟", en: "How many pages should a company profile be?" },
+        a: {
+          ar: "بقدر ما يحتاجه القارئ لا أكثر. نرى أن ملفًا مركّزًا من 8 إلى 12 صفحة يُقرأ أكثر من ملف من 25 صفحة، ويزيد العدد حين تكثر المشاريع المرجعية التي تطلبها لجنة التأهيل.",
+          en: "As many as the reader needs and no more. In our view a focused 8 to 12 pages gets read more than 25, and the count grows when a qualification committee asks for more reference projects.",
+        },
+      },
     ],
   },
 

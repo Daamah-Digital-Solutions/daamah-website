@@ -24,6 +24,12 @@ export function llmsTxt(): string {
   const tel = phoneFor();
   const sectors = [...new Set(workItems.map((w) => w.sector))].map((k) => sectorMeta(k).label.en);
   const core = routes.filter((r) => ["home", "page", "services", "service", "work"].includes(r.kind) && !r.noindex);
+  /* المواقع: صفحتا السوقين ثم (خدمة × مدينة) — بدونها لا يعرف النموذج
+     أن لنا مكتبًا في عجمان ولا أننا نعمل في دبي أو الرياض بعينها،
+     فلا يذكرنا حين يُسأل عن «شركة … في عجمان» */
+  const hubs = routes.filter((r) => r.kind === "saudi" && !r.noindex);
+  const cityRoutes = routes.filter((r) => r.kind === "city" && !r.noindex);
+  const office = `${brand.address.lines.en.join(", ")} — [Google Maps](${brand.address.maps})`;
   /* المقالات بلغتها الأصلية: أكثرها عربي، والنموذج يقرأ العربية —
      ترجمة عنوانٍ لمقال غير مترجم تَعِد بصفحة لا وجود لها */
   const articles = routes
@@ -42,6 +48,7 @@ export function llmsTxt(): string {
     `- Founded: ${brand.founded}`,
     `- Markets: Saudi Arabia, UAE, the Gulf, Europe, Egypt`,
     `- Languages: Arabic, English`,
+    `- Office: ${office}`,
     `- Contact: ${brand.email} · ${tel.display} · WhatsApp ${tel.whatsapp}`,
     `- Profiles: ${brand.social.join(" · ")}`,
     "",
@@ -56,6 +63,13 @@ export function llmsTxt(): string {
     "## Key pages",
     "",
     ...core.map((r) => `- [${r.title.en.split("—")[0].trim()}](${abs(r.path, "en")}): ${r.description.en}`),
+    "",
+    "## Locations",
+    "",
+    `Office in ${brand.address.city.en}, ${brand.address.country.en}. Serving companies across the UAE and Saudi Arabia.`,
+    "",
+    ...hubs.map((r) => `- [${r.title.en.split("|")[0].trim()}](${abs(r.path, "en")}): ${r.description.en}`),
+    ...cityRoutes.map((r) => `- [${r.title.en.split("|")[0].trim()}](${abs(r.path, "en")}): ${r.description.en}`),
     ...(articles.length ? ["", "## Articles", "", ...articles] : []),
     "",
     "## Optional",

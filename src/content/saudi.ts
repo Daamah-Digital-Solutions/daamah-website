@@ -410,6 +410,20 @@ const saudiCityPages: CityPage[] = [
           en: "A family name is an asset, not a burden: it's what your customer knows and trusts. We keep it and rebuild what surrounds it — type, colour system, application — so recognition stays while the look moves on.",
         },
       },
+      {
+        q: { ar: "ماذا نستلم في نهاية مشروع الهوية؟", en: "What do we receive at the end of an identity project?" },
+        a: {
+          ar: "الشعار بكل صيغه للطباعة والشاشة، ونظام الألوان بقيمه المطبوعة والرقمية، والخطوط العربية والإنجليزية، ودليل استخدام يشرح التطبيق على اللافتة والعبوة والسوشيال، وقوالب السوشيال والمطبوعات الأساسية. وقبل ذلك تصلك اتجاهان أو ثلاثة مختلفة فعلًا، ثم نطوّر ما تختاره مع جولتَي تعديل ضمن النطاق.",
+          en: "The logo in every format for print and screen, the colour system with print and digital values, Arabic and English typefaces, a usage guide covering signage, packaging and social, and social templates plus core print items. Before that you see two or three genuinely different directions, then we develop the one you pick with two revision rounds included.",
+        },
+      },
+      {
+        q: { ar: "كيف نعمل معكم ونحن في جدة؟", en: "How do we work with you from Jeddah?" },
+        a: {
+          ar: "عن بُعد وعلى توقيت السعودية: جلسة اكتشاف نفهم فيها نشاطك وزبونك، ثم عرض الاتجاهات ومراجعتها مكتوبةً، ثم التسليم. ونسلّم ملفات اللافتة والعبوة جاهزةً لصانع اللافتات والمطبعة في جدة.",
+          en: "Remotely, on Saudi time: a discovery session to understand your business and customer, then presenting and reviewing directions in writing, then handover. Signage and packaging files arrive ready for your sign maker and printer in Jeddah.",
+        },
+      },
     ],
   },
 

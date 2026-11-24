@@ -166,6 +166,27 @@ export const byService: Record<string, FaqItem[]> = {
         en: "We don't file on your behalf, but we hand over files in the formats the registries require — including the Saudi Authority for Intellectual Property — and walk you through the steps.",
       },
     },
+    {
+      q: { ar: "كم تكلفة تصميم الهوية البصرية؟", en: "How much does brand identity design cost?" },
+      a: {
+        ar: "تتحدّد بالنطاق: شعار وحده يختلف عن هوية أساسية (ألوان وخطوط وتطبيقات على القرطاسية والسوشيال)، وكلاهما يختلف عن نظام هوية كامل بدليل استخدام وهوية عربية وإنجليزية مصمَّمتين معًا. شرحنا النطاقات الشائعة في السوق السعودي وما يرفع السعر فعلًا في مقال «كم تكلفة تصميم الهوية البصرية في السعودية؟» في المدوّنة، ونرسل لك عرضًا مكتوبًا بعد جلسة النطاق.",
+        en: "It depends on scope: a logo alone differs from a core identity (colours, type, stationery and social applications), and both differ from a full system with a usage guide and Arabic and English designed together. Our blog post on brand identity cost in Saudi Arabia lays out the common market ranges and what actually drives the price; you get a written quote after the scoping session.",
+      },
+    },
+    {
+      q: { ar: "هل نحتاج هوية جديدة أم يكفي تطوير هويتنا الحالية؟", en: "Do we need a new identity, or can our current one be developed?" },
+      a: {
+        ar: "ليس دائمًا هوية جديدة. إن كان شعارك ما زال يُعرَف ويعمل، فقد يكفي أن نبني حوله نظام ألوان وخطوط وقواعد استخدام بدل البدء من الصفر. نقرّر ذلك معك في جلسة الاكتشاف بعد أن نرى كيف تظهر علامتك اليوم.",
+        en: "Not always a new one. If your logo is still recognised and works, building a colour, type and usage system around it may be enough instead of starting over. We decide that with you in the discovery session, after seeing how your brand shows up today.",
+      },
+    },
+    {
+      q: { ar: "هل تصمّمون هويات لشركات في الإمارات؟", en: "Do you design identities for companies in the UAE?" },
+      a: {
+        ar: "نعم. لدينا مكتب في عجمان ونخدم الشركات في دبي وأبوظبي وعجمان وباقي الإمارات، ونصمّم الهوية بالعربية والإنجليزية معًا لأن السوق الإماراتي يقرأ باللغتين.",
+        en: "Yes. We have an office in Ajman and serve companies in Dubai, Abu Dhabi, Ajman and the other emirates, designing the identity in Arabic and English together because the UAE market reads both.",
+      },
+    },
   ],
   "web-development": [
     {
